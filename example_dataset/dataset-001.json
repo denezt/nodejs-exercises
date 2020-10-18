@@ -1,0 +1,28 @@
+{
+	"originalInfo" : {
+	  "firstName" : "richard",
+	  "lastName" : "jackson",
+	  "phone" : "4158675309",
+	  "password":"thisIsAPassword",
+	  "tosAgreement":true
+	},
+	"hashedInfo" : {
+	  "firstName" : "richard",
+	  "lastName" : "jackson",
+	  "phone" : "4158675309",
+	  "hashedPassword":"66a9e3fb315db5db205c1c3b6d2288d7740b9079147954f3a3367f855b9bb7f0",
+	  "tosAgreement":true
+	}
+},
+{
+	"exercise": 002,
+	{
+	  "firstName" : "richard",
+	  "lastName" : "jackson",
+	  "phone" : "4158675309",
+	  "emailAddress" : "myemail@email.com",
+	  "streetAddress" : "123 Rottweiler Ln",	  
+	  "password":"thisIsAPassword",
+	  "tosAgreement":true
+	}
+}
