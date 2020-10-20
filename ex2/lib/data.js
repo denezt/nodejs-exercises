@@ -14,10 +14,12 @@ var lib = {};
 // Base directory of data folder
 lib.baseDir = path.join(__dirname,'/../.data/');
 
-
 // Write data to a file
 lib.create = function(dir,file,data,callback){
-  // Open the file for writing  
+	console.log(typeof lib.baseDir,lib.baseDir + dir);
+	let myPath = lib.baseDir + dir;
+		
+  // Open the file for writing
   fs.open(lib.baseDir.toString()+dir+'/'+file+'.json', 'wx', function(err, fileDescriptor){
     if(!err && fileDescriptor){
       // Convert data to string
