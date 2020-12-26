@@ -1,2 +1,2 @@
-# nodejs-exercises
-NodeJS for Backend Developers
+# NodeJS Exercises
+### NodeJS for Backend Developers

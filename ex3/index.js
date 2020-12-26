@@ -5,12 +5,40 @@
 
 // Dependencies
 var http = require('http');
+var https = require('https');
 var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
-var config = require('./config');
+var config = require('./lib/config');
+var fs = require('fs');
+var handlers = require('./lib/handlers');
+var helpers = require('./lib/helpers');
 
- // Configure the server to respond to all requests with a string
-var server = http.createServer(function(req,res){
+ // Instantiate the HTTP server
+var httpServer = http.createServer(function(req,res){
+  unifiedServer(req,res);
+});
+
+// Start the HTTP server
+httpServer.listen(config.httpPort,function(){
+  console.log('The HTTP server is running on port '+config.httpPort);
+});
+
+// Instantiate the HTTPS server
+var httpsServerOptions = {
+  'key': fs.readFileSync('./https/key.pem'),
+  'cert': fs.readFileSync('./https/cert.pem')
+};
+var httpsServer = https.createServer(httpsServerOptions,function(req,res){
+  unifiedServer(req,res);
+});
+
+// Start the HTTPS server
+httpsServer.listen(config.httpsPort,function(){
+ console.log('The HTTPS server is running on port '+config.httpsPort);
+});
+
+// All the server logic for both the http and https server
+var unifiedServer = function(req,res){
 
   // Parse the url
   var parsedUrl = url.parse(req.url, true);
@@ -46,7 +74,7 @@ var server = http.createServer(function(req,res){
         'queryStringObject' : queryStringObject,
         'method' : method,
         'headers' : headers,
-        'payload' : buffer
+        'payload' : helpers.parseJsonToObject(buffer)
       };
 
       // Route the request to the handler specified in the router
@@ -56,7 +84,7 @@ var server = http.createServer(function(req,res){
         statusCode = typeof(statusCode) == 'number' ? statusCode : 200;
 
         // Use the payload returned from the handler, or set the default payload to an empty object
-        payload = typeof(payload) == 'object' ? payload : {};
+        payload = typeof(payload) == 'object'? payload : {};
 
         // Convert the payload to a string
         var payloadString = JSON.stringify(payload);
@@ -65,33 +93,14 @@ var server = http.createServer(function(req,res){
         res.setHeader('Content-Type', 'application/json');
         res.writeHead(statusCode);
         res.end(payloadString);
-        console.log("Returning this response: ",statusCode,payloadString);
-
+        console.log(trimmedPath,statusCode);
       });
 
   });
-});
-
-// Start the server
-server.listen(config.httpPort,function(){
-  let ipaddr = '139.59.147.182';
-  console.log('The server is up and running in '+ config.envName + ' on port ' + config.httpPort + ' ip addr: ' + ipaddr );
-});
-
-// Define all the handlers
-var handlers = {};
-
-// Sample handler
-handlers.hello = function(data,callback){
-    callback(200,{'hello':'My name is computer'});
-};
-
-// Not found handler
-handlers.notFound = function(data,callback){
-  callback(404);
 };
 
 // Define the request router
 var router = {
-  'hello' : handlers.hello
+  'ping' : handlers.ping,
+  'users' : handlers.users
 };
