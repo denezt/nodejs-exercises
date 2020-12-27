@@ -249,7 +249,7 @@ handlers._tokens.post = function(data, callback){
 // Tokens - get
 handlers._tokens.get = function(data, callback){
   var id = typeof(data.queryStringObject.id) == 'string'
-  && data.queryStringObject.id.trim().length > 0 ? id : false;
+  && data.queryStringObject.id.trim().length > 0 ? data.queryStringObject.id.trim() : false;
   if(id){
     // Lookup the user
     _data.read('tokens',id,function(err,tokenData){
