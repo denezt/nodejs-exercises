@@ -97,19 +97,18 @@ handlers._users.post = function(data,callback){
 // Optional data: none
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data, callback){
-  // var datastoreFilename = handlers.datastore(data.payload.emailAddress);
+  var datastoreFilename = handlers.datastore(data.queryStringObject.emailAddress);
   console.log(data);
-  callback(200,data);
     // Lookup the user
-    // _data.read('users',datastoreFilename,function(err,data){
-    //   if(!err && data){
-    //     // Remove the hashed password from the user user object before returning it to the requester
-    //     delete data.hashedPassword;
-    //     callback(200,data);
-    //   } else {
-    //     callback(404);
-    //   }
-    // });
+    _data.read('users',datastoreFilename,function(err,data){
+      if(!err && data){
+        // Remove the hashed password from the user user object before returning it to the requester
+        delete data.hashedPassword;
+        callback(200,data);
+      } else {
+        callback(404);
+      }
+    });
 };
 
 // Required data: phone
