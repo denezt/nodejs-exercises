@@ -18,8 +18,7 @@ curl --location --request POST '139.59.147.182:3000/users' \
 
 get_data(){
 	curl --location --request GET \
-	'139.59.147.182:3000/users?emailAddress=myemail@emaild.com'
-	return 0
+	'139.59.147.182:3000/users?emailAddress=myemail@email.com'
 }
 
 case $option in

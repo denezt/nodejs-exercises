@@ -97,7 +97,10 @@ handlers._users.post = function(data,callback){
 // Optional data: none
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data, callback){
-  var datastoreFilename = typeof(handlers.datastore(data.queryStringObject.emailAddress)) == 'string' && data.queryStringObject.emailAddress.trim().length > 0 ? data.queryStringObject.emailAddress.trim() : false;
+  var datastoreFilename = typeof(handlers.datastore(data.queryStringObject.emailAddress)) == 'string' && data.queryStringObject.emailAddress.trim().length > 0 ? handlers.datastore(data.queryStringObject.emailAddress.trim()) : false;
+
+  console.log('TypeOf emailAddress: ' + typeof(handlers.datastore(data.queryStringObject.emailAddress)));
+  console.log('Length of emailAddress: ' + data.queryStringObject.emailAddress.trim().length);
   console.log(data);
 
   if(datastoreFilename){
