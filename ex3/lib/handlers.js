@@ -34,7 +34,7 @@ handlers.users = function(data, callback){
 handlers._users  = {};
 
 handlers.datastore = function(data, callback){
-  let emailToFilename = typeof(data) !== 'undefined' ? data.replace('@','_').replace('.','_') : false;
+  let emailToFilename = (typeof(data) !== 'undefined') ? data.replace('@','_').replace('.','_') : false;
   return emailToFilename;
 }
 
@@ -123,14 +123,14 @@ handlers._users.get = function(data, callback){
 // Optional data: firstName, lastName, password (at least one must be specified)
 // @TODO Only let an authenticated user up their object. Dont let them access update elses.
 handlers._users.put = function(data,callback){
-  var datastoreFilename = typeof(handlers.datastore(data.payload.emailAddress)) == 'string' && data.payload.emailAddress.trim().length > 0 ? handlers.datastore(data.payload.emailAddress) : false;
+  var datastoreFilename = typeof(handlers.datastore(data.payload.emailAddress)) === 'string' && data.payload.emailAddress.trim().length > 0 ? handlers.datastore(data.payload.emailAddress) : false;
 
   // Check for optional fields
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
   var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
 
-  if (datastoreFilename){
+  if (typeof(datastoreFilename) === 'string'){
     // Error if nothing is sent to update
     if(firstName || lastName || password){
       // Lookup the user

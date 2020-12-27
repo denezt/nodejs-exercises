@@ -23,7 +23,7 @@ get_data(){
 
 put_data(){
 curl --location --request PUT '139.59.147.182:3000/users' \
---header 'Content-Type: text/plain' \
+--header 'Content-Type: text/json' \
 --data-raw '{
 	"firstName":"randy",
 	"emailAddress" : "myemail@email.com",
