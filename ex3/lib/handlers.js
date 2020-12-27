@@ -35,7 +35,7 @@ handlers._users  = {};
 
 handlers.datastore = function(data, callback){
   let emailToFilename = data.replace('@','_').replace('.','_');
-	return emailToFilename;
+  return emailToFilename;
 }
 
 // Users - post
