@@ -34,7 +34,7 @@ handlers.users = function(data,callback){
 handlers._users  = {};
 
 handlers.datastore = function(data, callback){
-	return helpers.hash(data.payload.emailAddress);
+	return helpers.hash(data);
 }
 
 // Users - post
