@@ -37,11 +37,21 @@ delete_data(){
 	'139.59.147.182:3000/users?emailAddress=myemail@email.com'
 }
 
+create_token(){
+	curl --location --request POST '139.59.147.182:3000/tokens' \
+        --header 'Content-Type: text/plain' \
+        --data-raw '{
+                "emailAddress" : "myemail@email.com",
+                "password" : "thisIsAPassword",
+        }'
+}
+
 case $option in
 	-post|--post) post_data;;
 	-get|--get) get_data;;
 	-put|--put) put_data;;
 	-delete|--delete) delete_data;;
+	-create-token|--create-token) create_token;;
 esac
 
 printf '\n'
