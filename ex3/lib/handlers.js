@@ -34,8 +34,7 @@ handlers.users = function(data,callback){
 handlers._users  = {};
 
 handlers.datastore = function(data, callback){
-  let compositeUserData = data.payload.firstName + data.payload.lastName + data.payload.emailAddress + data.payload.streetAddress;
-	return helpers.hash(compositeUserData);
+	return helpers.hash(data.payload.emailAddress);
 }
 
 // Users - post
@@ -50,7 +49,7 @@ handlers._users.post = function(data,callback){
 
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
   var tosAgreement = (typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true) ? true : false;
-  var encryptedFilename = handlers.datastore(data);
+  var encryptedFilename = handlers.datastore(data.payload.emailAddress);
   console.log('encryptedFilename: ' + encryptedFilename);
 
   if(firstName && lastName && emailAddress && streetAddress && password && tosAgreement){
@@ -86,14 +85,12 @@ handlers._users.post = function(data,callback){
 
       } else {
         // User already exists
-        callback(400,{'Error' : 'A user with that emailAddress number already exists'});
+        callback(400,{'Error' : 'A user with that emailAddress already exists'});
       }
     });
-
   } else {
     callback(400,{'Error' : 'Missing required fields'});
   }
-
 };
 
 // Required data: phone
@@ -101,12 +98,9 @@ handlers._users.post = function(data,callback){
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data,callback){
   // Check that phone is valid
-  handlers.datastore(data.payload.firstName +
-	data.payload.lastName +
-	data.payload.emailAddress +
-	data.payload.streetAddress);
+  var encryptedFilename = handlers.datastore(data.payload.emailAddress);
     // Lookup the user
-    _data.read('users',phone,function(err,data){
+    _data.read('users',encryptedFilename,function(err,data){
       if(!err && data){
         // Remove the hashed password from the user user object before returning it to the requester
         delete data.hashedPassword;
@@ -121,51 +115,42 @@ handlers._users.get = function(data,callback){
 // Optional data: firstName, lastName, password (at least one must be specified)
 // @TODO Only let an authenticated user up their object. Dont let them access update elses.
 handlers._users.put = function(data,callback){
-  // Check for required field
-  var phone = typeof(data.payload.phone) == 'string' && data.payload.phone.trim().length == 10 ? data.payload.phone.trim() : false;
-
   // Check for optional fields
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
   var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
 
-  // Error if phone is invalid
-  if(phone){
-    // Error if nothing is sent to update
-    if(firstName || lastName || password){
-      // Lookup the user
-      _data.read('users',phone,function(err,userData){
-        if(!err && userData){
-          // Update the fields if necessary
-          if(firstName){
-            userData.firstName = firstName;
-          }
-          if(lastName){
-            userData.lastName = lastName;
-          }
-          if(password){
-            userData.hashedPassword = helpers.hash(password);
-          }
-          // Store the new updates
-          _data.update('users',phone,userData,function(err){
-            if(!err){
-              callback(200);
-            } else {
-              console.log(err);
-              callback(500,{'Error' : 'Could not update the user.'});
-            }
-          });
-        } else {
-          callback(400,{'Error' : 'Specified user does not exist.'});
+  // Error if nothing is sent to update
+  if(firstName || lastName || password){
+    // Lookup the user
+    _data.read('users',phone,function(err,userData){
+      if(!err && userData){
+        // Update the fields if necessary
+        if(firstName){
+          userData.firstName = firstName;
         }
-      });
-    } else {
-      callback(400,{'Error' : 'Missing fields to update.'});
-    }
+        if(lastName){
+          userData.lastName = lastName;
+        }
+        if(password){
+          userData.hashedPassword = helpers.hash(password);
+        }
+        // Store the new updates
+        _data.update('users',phone,userData,function(err){
+          if(!err){
+            callback(200);
+          } else {
+            console.log(err);
+            callback(500,{'Error' : 'Could not update the user.'});
+          }
+        });
+      } else {
+        callback(400,{'Error' : 'Specified user does not exist.'});
+      }
+    });
   } else {
-    callback(400,{'Error' : 'Missing required field.'});
+    callback(400,{'Error' : 'Missing fields to update.'});
   }
-
 };
 
 // Required data: phone
