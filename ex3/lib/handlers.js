@@ -116,6 +116,8 @@ handlers._users.get = function(data,callback){
 // Optional data: firstName, lastName, password (at least one must be specified)
 // @TODO Only let an authenticated user up their object. Dont let them access update elses.
 handlers._users.put = function(data,callback){
+  var datastoreFilename = handlers.datastore(data.payload.emailAddress);
+
   // Check for optional fields
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
@@ -124,7 +126,7 @@ handlers._users.put = function(data,callback){
   // Error if nothing is sent to update
   if(firstName || lastName || password){
     // Lookup the user
-    _data.read('users',phone,function(err,userData){
+    _data.read('users',datastoreFilename, function(err,userData){
       if(!err && userData){
         // Update the fields if necessary
         if(firstName){
@@ -137,7 +139,7 @@ handlers._users.put = function(data,callback){
           userData.hashedPassword = helpers.hash(password);
         }
         // Store the new updates
-        _data.update('users',phone,userData,function(err){
+        _data.update('users',datastoreFilename,userData,function(err){
           if(!err){
             callback(200);
           } else {
