@@ -163,7 +163,7 @@ handlers._users.put = function(data,callback){
       callback(400,{'Error' : 'Missing fields to update.'});
     }
   } else {
-    callback(400,{'Error' : 'Missing required field.'});
+    callback(400,{'Error' : 'Missing required field or parameters are incorrect.'});
   }
 };
 

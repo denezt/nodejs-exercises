@@ -28,7 +28,7 @@ put_data(){
 	--header 'Content-Type: text/json' \
 	--data-raw '{
 		"firstName":"randy",
-		"emailAddress" : "myemail@email.com",
+		"emailAddress" : "myemail@email.com"
 	}'
 }
 
