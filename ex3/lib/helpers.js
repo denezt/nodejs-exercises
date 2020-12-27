@@ -41,7 +41,7 @@ helpers.createRandomString = function(strLength){
     var str = '';
     for (var i = 1; i < strLength; i++) {
       // Get a random character from the possibleCharacters string.
-      var randomCharacter = allowCharacters.charAt(Math.floor(Math.random() * possibleCharacters.length));
+      var randomCharacter = allowCharacters.charAt(Math.floor(Math.random() * allowCharacters.length));
       // Append this character to the final string
       str += randomCharacter;
     }
