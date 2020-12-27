@@ -246,7 +246,7 @@ handlers._tokens.post = function(data, callback){
       }
     });
   } else {
-    callback(400, {'Error':'Missing required field(s)'});
+    callback(400, {'Error':'Missing required field(s) or invalid parameters given'});
   }
 
 };

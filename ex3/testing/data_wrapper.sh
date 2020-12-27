@@ -42,7 +42,7 @@ create_token(){
         --header 'Content-Type: text/plain' \
         --data-raw '{
                 "emailAddress" : "myemail@email.com",
-                "password" : "thisIsAPassword",
+                "password" : "thisIsAPassword"
         }'
 }
 
