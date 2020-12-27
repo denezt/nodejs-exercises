@@ -100,7 +100,7 @@ handlers._users.post = function(data,callback){
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data,callback){
   // Check that phone is valid
-  this.datastore(data.payload.firstName +
+  handlers.datastore(data.payload.firstName +
 	data.payload.lastName +
 	data.payload.emailAddress +
 	data.payload.streetAddress);
