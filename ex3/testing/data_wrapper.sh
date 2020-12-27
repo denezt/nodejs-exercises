@@ -23,9 +23,19 @@ get_data(){
 	'139.59.147.182:3000/users?emailAddress=myemail@email.com'
 }
 
+put_data(){
+curl --location --request PUT '139.59.147.182:3000/users' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+	"firstName":"randy",
+	"emailAddress" : "myemail@email.com",
+}'
+}
+
 case $option in
 -post|--post) post_data;;
 -get|--get) get_data;;
+-put|--put) put_data;;
 esac
 
 
