@@ -130,7 +130,7 @@ handlers._users.put = function(data,callback){
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
   var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
 
-  if (typeof(datastoreFilename) === 'string'){
+  if (datastoreFilename){
     // Error if nothing is sent to update
     if(firstName || lastName || password){
       // Lookup the user
