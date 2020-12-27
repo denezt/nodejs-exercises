@@ -16,7 +16,16 @@ curl --location --request POST '139.59.147.182:3000/users' \
 
 }
 
+get_data(){
+	curl --location --request GET \
+	'139.59.147.182:3000/users?emailAddress=myemail@emaild.com'
+	return 0
+}
+
 case $option in
 -post|--post) post_data;;
--get|--get);;
+-get|--get) get_data;;
 esac
+
+
+printf '\n'

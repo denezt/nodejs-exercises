@@ -97,8 +97,11 @@ handlers._users.post = function(data,callback){
 // Optional data: none
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data, callback){
-  var datastoreFilename = handlers.datastore(data.queryStringObject.emailAddress);
+  var datastoreFilename = typeof(handlers.datastore(data.queryStringObject.emailAddress)) == 'string' && handlers.datastore(data.queryStringObject.emailAddress) !== 'undefined' ? handlers.datastore(data.queryStringObject.emailAddress) : ' ';
+
   console.log(data);
+
+  if(datastoreFilename){
     // Lookup the user
     _data.read('users',datastoreFilename,function(err,data){
       if(!err && data){
@@ -109,6 +112,9 @@ handlers._users.get = function(data, callback){
         callback(404);
       }
     });
+  } else {
+    callback(400, {'Error':'Missing required field'});
+  }
 };
 
 // Required data: phone
