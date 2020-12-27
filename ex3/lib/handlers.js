@@ -248,7 +248,8 @@ handlers._tokens.post = function(data, callback){
 
 // Tokens - get
 handlers._tokens.get = function(data, callback){
-  var id = typeof(handlers.datastore(data.queryStringObject.id)) == 'string' && data.queryStringObject.emailAddress.trim().length > 0 ? id : false;
+  var id = typeof(handlers.datastore(data.queryStringObject.id)) == 'string'
+  && data.queryStringObject.id.trim().length > 0 ? id : false;
   if(id){
     // Lookup the user
     _data.read('users',id,function(err,tokenData){

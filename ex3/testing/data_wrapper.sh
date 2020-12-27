@@ -46,12 +46,19 @@ create_token(){
         }'
 }
 
+get_token(){
+	curl --location --request GET \
+	'139.59.147.182:3000/tokens?id=jpv9iuqhnjmp8p3lln6'
+}
+
+
 case $option in
 	-post|--post) post_data;;
 	-get|--get) get_data;;
 	-put|--put) put_data;;
 	-delete|--delete) delete_data;;
 	-create-token|--create-token) create_token;;
+	-get-token|--get-token) get_token;;
 esac
 
 printf '\n'
