@@ -49,7 +49,7 @@ handlers._users.post = function(data,callback){
 
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
   var tosAgreement = (typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true) ? true : false;
-  var encryptedFilename = this.datastore(data);
+  var encryptedFilename = handlers.datastore(data);
   console.log('encryptedFilename: ' + encryptedFilename);
 
   if(firstName && lastName && emailAddress && streetAddress && password && tosAgreement){
