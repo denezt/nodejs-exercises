@@ -34,7 +34,8 @@ handlers.users = function(data,callback){
 handlers._users  = {};
 
 handlers.datastore = function(data, callback){
-	return helpers.hash(data);
+  let emailToFilename = data.replace('@','_');
+	return helpers.hash(emailToFilename);
 }
 
 // Users - post
@@ -49,12 +50,12 @@ handlers._users.post = function(data,callback){
 
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
   var tosAgreement = (typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true) ? true : false;
-  var encryptedFilename = handlers.datastore(data.payload.emailAddress);
-  console.log('encryptedFilename: ' + encryptedFilename);
+  var datastoreFilename = handlers.datastore(data.payload.emailAddress);
+  console.log('datastoreFilename: ' + datastoreFilename);
 
   if(firstName && lastName && emailAddress && streetAddress && password && tosAgreement){
     // Make sure the user doesnt already exist
-    _data.read('users',encryptedFilename,function(err,data){
+    _data.read('users',datastoreFilename,function(err,data){
       if(err){
         // Hash the password
         var hashedPassword = helpers.hash(password);
@@ -71,7 +72,7 @@ handlers._users.post = function(data,callback){
           };
 
           // Store the user
-          _data.create('users',encryptedFilename,userObject,function(err){
+          _data.create('users',datastoreFilename,userObject,function(err){
             if(!err){
               callback(200);
             } else {
@@ -98,9 +99,9 @@ handlers._users.post = function(data,callback){
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data,callback){
   // Check that phone is valid
-  var encryptedFilename = handlers.datastore(data.payload.emailAddress);
+  var datastoreFilename = handlers.datastore(data.payload.emailAddress);
     // Lookup the user
-    _data.read('users',encryptedFilename,function(err,data){
+    _data.read('users',datastoreFilename,function(err,data){
       if(!err && data){
         // Remove the hashed password from the user user object before returning it to the requester
         delete data.hashedPassword;
