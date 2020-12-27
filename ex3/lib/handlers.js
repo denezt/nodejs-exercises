@@ -35,7 +35,7 @@ handlers._users  = {};
 
 handlers.datastore = function(data, callback){
   let compositeUserData = data.payload.firstName + data.payload.lastName + data.payload.emailAddress + data.payload.streetAddress;
-	return helpers.password(compositeUserData);
+	return helpers.hash(compositeUserData);
 }
 
 // Users - post
