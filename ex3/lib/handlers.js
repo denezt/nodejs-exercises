@@ -33,6 +33,10 @@ handlers.users = function(data,callback){
 // Container for all the users methods
 handlers._users  = {};
 
+handlers.datastore = function(data, callback){
+	return data.payload.firstName;
+}
+
 // Users - post
 // Required data: firstName, lastName, emailAddress, streetAddress, password, tosAgreement
 // Optional data: none
@@ -40,16 +44,16 @@ handlers._users.post = function(data,callback){
   // Check that all required fields are filled out
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
-  //var phone = typeof(data.payload.phone) == 'string' && data.payload.phone.trim().length == 10 ? data.payload.phone.trim() : false;
-  var phone = typeof(data.payload.phone) == 'string' ? data.payload.phone.trim() : false;
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress.trim() : false;
   var streetAddress = typeof(data.payload.streetAddress) == 'string' ? data.payload.streetAddress.trim() : false;  
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
   var tosAgreement = (typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true) ? true : false;
+  var encryptedFilename = this.datastore(data);
+  console.log('encryptedFilename: ' + encryptedFilename);
 
-  if(firstName && lastName && phone && emailAddress && streetAddress && password && tosAgreement){
+  if(firstName && lastName && emailAddress && streetAddress && password && tosAgreement){
     // Make sure the user doesnt already exist
-    _data.read('users',phone,function(err,data){
+    _data.read('users',encryptedFilename,function(err,data){
       if(err){
         // Hash the password
         var hashedPassword = helpers.hash(password);
@@ -59,7 +63,6 @@ handlers._users.post = function(data,callback){
           var userObject = {
             'firstName' : firstName,
             'lastName' : lastName,
-            'phone' : phone,
             'emailAddress' : emailAddress,
             'streetAddress' : streetAddress,
             'hashedPassword' : hashedPassword,
@@ -67,7 +70,7 @@ handlers._users.post = function(data,callback){
           };
 
           // Store the user
-          _data.create('users',phone,userObject,function(err){
+          _data.create('users',encryptedFilename,userObject,function(err){
             if(!err){
               callback(200);
             } else {
@@ -96,8 +99,10 @@ handlers._users.post = function(data,callback){
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data,callback){
   // Check that phone is valid
-  var phone = typeof(data.payload.phone) == 'string' && data.payload.phone.trim().length == 10 ? data.payload.phone.trim() : false;
-  if(phone){
+  this.datastore(data.payload.firstName +
+	data.payload.lastName +
+	data.payload.emailAddress +
+	data.payload.streetAddress);
     // Lookup the user
     _data.read('users',phone,function(err,data){
       if(!err && data){
@@ -108,9 +113,6 @@ handlers._users.get = function(data,callback){
         callback(404);
       }
     });
-  } else {
-    callback(400,{'Error' : 'Missing required field'})
-  }
 };
 
 // Required data: phone
