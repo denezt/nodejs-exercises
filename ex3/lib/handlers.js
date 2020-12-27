@@ -52,8 +52,6 @@ handlers._users.post = function(data,callback){
   var tosAgreement = (typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true) ? true : false;
 
   var datastoreFilename = handlers.datastore(data.queryStringObject.emailAddress);
-  console.log('datastoreFilename: ' + datastoreFilename);
-
   if(firstName && lastName && emailAddress && streetAddress && password && tosAgreement){
     // Make sure the user doesnt already exist
     _data.read('users',datastoreFilename,function(err,data){
@@ -100,9 +98,6 @@ handlers._users.post = function(data,callback){
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data, callback){
   var datastoreFilename = typeof(handlers.datastore(data.queryStringObject.emailAddress)) == 'string' && data.queryStringObject.emailAddress.trim().length > 0 ? handlers.datastore(data.queryStringObject.emailAddress) : false;
-  console.log('TypeOf emailAddress: ' + typeof(handlers.datastore(data.queryStringObject.emailAddress)));
-  console.log('Length of emailAddress: ' + data.queryStringObject.emailAddress.trim().length);
-  console.log(data);
 
   if(datastoreFilename){
     // Lookup the user
@@ -253,7 +248,19 @@ handlers._tokens.post = function(data, callback){
 
 // Tokens - get
 handlers._tokens.get = function(data, callback){
-
+  var id = typeof(handlers.datastore(data.queryStringObject.id)) == 'string' && data.queryStringObject.emailAddress.trim().length > 0 ? id : false;
+  if(id){
+    // Lookup the user
+    _data.read('users',id,function(err,tokenData){
+      if(!err && tokenData){
+        callback(200,tokenData);
+      } else {
+        callback(404);
+      }
+    });
+  } else {
+    callback(400, {'Error':'Missing required field'});
+  }
 };
 
 // Tokens - put
