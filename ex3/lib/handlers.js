@@ -50,7 +50,8 @@ handlers._users.post = function(data,callback){
 
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
   var tosAgreement = (typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true) ? true : false;
-  var datastoreFilename = handlers.datastore(data.payload.emailAddress);
+
+  var datastoreFilename = handlers.datastore(data.queryStringObject.emailAddress);
   console.log('datastoreFilename: ' + datastoreFilename);
 
   if(firstName && lastName && emailAddress && streetAddress && password && tosAgreement){
@@ -94,11 +95,11 @@ handlers._users.post = function(data,callback){
   }
 };
 
+// Required data: emailAddress
 // Optional data: none
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data, callback){
   var datastoreFilename = typeof(handlers.datastore(data.queryStringObject.emailAddress)) == 'string' && data.queryStringObject.emailAddress.trim().length > 0 ? handlers.datastore(data.queryStringObject.emailAddress) : false;
-
   console.log('TypeOf emailAddress: ' + typeof(handlers.datastore(data.queryStringObject.emailAddress)));
   console.log('Length of emailAddress: ' + data.queryStringObject.emailAddress.trim().length);
   console.log(data);
@@ -119,7 +120,7 @@ handlers._users.get = function(data, callback){
   }
 };
 
-// Required data: phone
+// Required data: emailAddress
 // Optional data: firstName, lastName, password (at least one must be specified)
 // @TODO Only let an authenticated user up their object. Dont let them access update elses.
 handlers._users.put = function(data,callback){
@@ -194,7 +195,78 @@ handlers._users.delete = function(data,callback){
   }
 };
 
-console.log(handlers._users);
+// Users
+handlers.tokens = function(data, callback){
+  var acceptableMethods = ['post','get','put','delete'];
+  if(acceptableMethods.indexOf(data.method) > -1){
+    handlers._tokens[data.method](data,callback);
+  } else {
+    callback(405);
+  }
+};
+
+// Container for all the tokens methods
+handlers._tokens = {};
+
+// Tokens - post
+handlers._tokens.post = function(data, callback){
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress.trim() : false;
+  var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
+  var datastoreFilename = typeof(handlers.datastore(data.payload.emailAddress)) === 'string' && data.payload.emailAddress.trim().length > 0 ? handlers.datastore(data.payload.emailAddress) : false;
+  if (emailAddress && password){
+    // Search for user via the emailAddress
+    _data.read('users',datastoreFilename, function(err, userData){
+      if(!err && userData){
+        // Here we will hash the sent password and compare it to the
+        // stored password from the user object.
+        var hashedPassword = helpers.hash(password);
+        if (hashedPassword == userData.hashedPassword){
+            // When the password is valid, then we will create a token with random name.
+            // Set an expiration data for one hour in the future.
+            var tokenId = helpers.createRandomString(20);
+            var expires = Date.now() + 1000 * 60 * 60;
+            var tokenObject = {
+                'emailAddress' : emailAddress,
+                'id': tokenId,
+                'expires' : expires
+            };
+            // Store the tokens
+            _data.create('tokens',tokenId, tokenObject, function(err){
+              if(!err){
+                callback(200,tokenObject);
+              } else {
+                callback(500, {'Error':'Could not creat the new token'});
+              }
+            });
+        } else {
+          callback(400, {'Error':'Password did not match the specified user\'s stored password'});
+        }
+      } else {
+        callback(400, {'Error':'Could not find the specified user'});
+      }
+    });
+  } else {
+    callback(400, {'Error':'Missing required field(s)'});
+  }
+
+};
+
+// Tokens - get
+handlers._tokens.get = function(data, callback){
+
+};
+
+// Tokens - put
+handlers._tokens.put = function(data, callback){
+
+};
+
+// Tokens - delete
+handlers._tokens.delete = function(data, callback){
+
+};
+
+
 
 // Export the handlers
 module.exports = handlers;
