@@ -21,7 +21,7 @@ handlers.notFound = function(data,callback){
 };
 
 // Users
-handlers.users = function(data,callback){
+handlers.users = function(data, callback){
   var acceptableMethods = ['post','get','put','delete'];
   if(acceptableMethods.indexOf(data.method) > -1){
     handlers._users[data.method](data,callback);
@@ -97,19 +97,18 @@ handlers._users.post = function(data,callback){
 // Required data: phone
 // Optional data: none
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
-handlers._users.get = function(data,callback){
-  // Check that phone is valid
+handlers._users.get = function(data, callback){
   var datastoreFilename = handlers.datastore(data.payload.emailAddress);
     // Lookup the user
-    _data.read('users',datastoreFilename,function(err,data){
-      if(!err && data){
-        // Remove the hashed password from the user user object before returning it to the requester
-        delete data.hashedPassword;
-        callback(200,data);
-      } else {
-        callback(404);
-      }
-    });
+    // _data.read('users',datastoreFilename,function(err,data){
+    //   if(!err && data){
+    //     // Remove the hashed password from the user user object before returning it to the requester
+    //     delete data.hashedPassword;
+    //     callback(200,data);
+    //   } else {
+    //     callback(404);
+    //   }
+    // });
 };
 
 // Required data: phone
