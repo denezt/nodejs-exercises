@@ -35,11 +35,6 @@ handlers._users  = {};
 
 handlers.datastore = function(data, callback){
   let emailToFilename = typeof(data) !== 'undefined' ? data.replace('@','_').replace('.','_') : false;
-
-  if (!emailToFilename){
-    callback(400, {'Error' : 'Missing required email field'});  
-  }
-
   return emailToFilename;
 }
 
