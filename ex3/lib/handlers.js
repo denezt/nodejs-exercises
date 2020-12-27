@@ -172,12 +172,13 @@ handlers._users.put = function(data,callback){
 // @TODO Cleanup (delete) any other data files associated with the user
 handlers._users.delete = function(data,callback){
   // Check that phone number is valid
-  var phone = typeof(data.queryStringObject.phone) == 'string' && data.queryStringObject.phone.trim().length == 10 ? data.queryStringObject.phone.trim() : false;
-  if(phone){
+  var datastoreFilename = typeof(handlers.datastore(data.queryStringObject.emailAddress)) === 'string' && data.queryStringObject.emailAddress.trim().length > 0 ? handlers.datastore(data.queryStringObject.emailAddress) : false;
+
+  if(datastoreFilename){
     // Lookup the user
-    _data.read('users',phone,function(err,data){
+    _data.read('users',datastoreFilename,function(err,data){
       if(!err && data){
-        _data.delete('users',phone,function(err){
+        _data.delete('users',datastoreFilename,function(err){
           if(!err){
             callback(200);
           } else {
