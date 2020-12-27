@@ -33,6 +33,8 @@ handlers.users = function(data, callback){
 // Container for all the users methods
 handlers._users  = {};
 
+console.log(handlers._users);
+
 handlers.datastore = function(data, callback){
   let emailToFilename = (typeof(data) !== 'undefined') ? data.replace('@','_').replace('.','_') : false;
   return emailToFilename;

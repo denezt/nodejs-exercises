@@ -15,8 +15,8 @@ var lib = {};
 // Base directory of data folder
 lib.baseDir = '.data';
 
-const pathsToCheck = [ lib.baseDir, lib.baseDir + '/users' ];
-
+// Create all datastore files
+const pathsToCheck = [ lib.baseDir, lib.baseDir + '/users', lib.baseDir + '/tokens' ];
 for (let i = 0; i < pathsToCheck.length; i++){
 	let targetFile = pathsToCheck[i];
 	fs.stat(targetFile, function(err,stats){
