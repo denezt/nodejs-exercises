@@ -98,7 +98,7 @@ handlers._users.post = function(data,callback){
 // @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data, callback){
   var datastoreFilename = typeof(handlers.datastore(data.queryStringObject.emailAddress)) == 'string' && data.queryStringObject.emailAddress.trim().length > 0 ? handlers.datastore(data.queryStringObject.emailAddress) : false;
-  
+
   console.log('TypeOf emailAddress: ' + typeof(handlers.datastore(data.queryStringObject.emailAddress)));
   console.log('Length of emailAddress: ' + data.queryStringObject.emailAddress.trim().length);
   console.log(data);
@@ -123,43 +123,47 @@ handlers._users.get = function(data, callback){
 // Optional data: firstName, lastName, password (at least one must be specified)
 // @TODO Only let an authenticated user up their object. Dont let them access update elses.
 handlers._users.put = function(data,callback){
-  var datastoreFilename = handlers.datastore(data.payload.emailAddress);
+  var datastoreFilename = typeof(handlers.datastore(data.payload.emailAddress)) == 'string' && data.payload.emailAddress.trim().length > 0 ? handlers.datastore(data.payload.emailAddress) : false;
 
   // Check for optional fields
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
   var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
 
-  // Error if nothing is sent to update
-  if(firstName || lastName || password){
-    // Lookup the user
-    _data.read('users',datastoreFilename, function(err,userData){
-      if(!err && userData){
-        // Update the fields if necessary
-        if(firstName){
-          userData.firstName = firstName;
-        }
-        if(lastName){
-          userData.lastName = lastName;
-        }
-        if(password){
-          userData.hashedPassword = helpers.hash(password);
-        }
-        // Store the new updates
-        _data.update('users',datastoreFilename,userData,function(err){
-          if(!err){
-            callback(200);
-          } else {
-            console.log(err);
-            callback(500,{'Error' : 'Could not update the user.'});
+  if (datastoreFilename){
+    // Error if nothing is sent to update
+    if(firstName || lastName || password){
+      // Lookup the user
+      _data.read('users',datastoreFilename, function(err,userData){
+        if(!err && userData){
+          // Update the fields if necessary
+          if(firstName){
+            userData.firstName = firstName;
           }
-        });
-      } else {
-        callback(400,{'Error' : 'Specified user does not exist.'});
-      }
-    });
+          if(lastName){
+            userData.lastName = lastName;
+          }
+          if(password){
+            userData.hashedPassword = helpers.hash(password);
+          }
+          // Store the new updates
+          _data.update('users',datastoreFilename,userData,function(err){
+            if(!err){
+              callback(200);
+            } else {
+              console.log(err);
+              callback(500,{'Error' : 'Could not update the user.'});
+            }
+          });
+        } else {
+          callback(400,{'Error' : 'Specified user does not exist.'});
+        }
+      });
+    } else {
+      callback(400,{'Error' : 'Missing fields to update.'});
+    }
   } else {
-    callback(400,{'Error' : 'Missing fields to update.'});
+    callback(400,{'Error' : 'Missing required field.'});
   }
 };
 
