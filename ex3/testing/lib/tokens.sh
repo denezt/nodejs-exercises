@@ -23,9 +23,12 @@ update_token(){
 	if [ ${#token} -ge 19 ];
 	then
 		curl --location --request PUT \
-		"139.59.147.182:3000/tokens" \
+		'139.59.147.182:3000/tokens' \
 		--header 'Content-Type: text/json' \
-		--data-raw "{ \"id\" : \"${token}\", \"extend\" : true}"
+		--data-raw "{
+			\"id\" : \"${token}\",
+			\"extend\" : true
+		}"
 	else
 		error "Missing token or invalid parameter was given"
 	fi
