@@ -1,0 +1,20 @@
+{
+  "customer": [
+    {
+    "firstName":"richard",
+    "lastName" : "jackson",
+    "emailAddress" : "myemail@email.com",
+    "streetAddress" : "123 Applewood Ln",
+    "password" : "thisIsAPassword",
+    "tosAgreement" : true
+    },
+    {
+    "firstName":"werner",
+    "lastName" : "pfefferminze",
+    "emailAddress" : "wp@postfach.de",
+    "streetAddress" : "12 Rottweiler Str",
+    "password" : "luftwaffe18",
+    "tosAgreement" : true
+    }
+  ]
+}

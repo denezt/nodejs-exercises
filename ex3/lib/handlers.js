@@ -99,6 +99,7 @@ handlers._users.post = function(data,callback){
 handlers._users.get = function(data, callback){
   var datastoreFilename = typeof(handlers.datastore(data.queryStringObject.emailAddress)) == 'string' && data.queryStringObject.emailAddress.trim().length > 0 ? handlers.datastore(data.queryStringObject.emailAddress) : false;
 
+  console.log(datastoreFilename);
   if(datastoreFilename){
     // Lookup the user
     _data.read('users',datastoreFilename,function(err,data){
