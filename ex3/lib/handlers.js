@@ -215,7 +215,7 @@ handlers._users.delete = function(data,callback){
       }
     });
   } else {
-    callback(400,{'Error' : 'Missing required field'})
+    callback(400,{'Error' : 'Missing required field'});
   }
 };
 
