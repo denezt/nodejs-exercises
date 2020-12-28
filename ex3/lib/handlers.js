@@ -301,8 +301,8 @@ handlers._tokens.put = function(data, callback){
   && data.payload.id.trim().length == 19 ? data.payload.id.trim() : false;
   var extend = typeof(data.payload.extend) == 'boolean'
   && data.payload.extend == true ? true : false;
-  console.log("ID: " + id)
-  console.log("Extend: " + extend.toString())
+  console.log("ID: " + id);
+  console.log("Extend: " + extend.toString());
   if (id && extend) {
     // Lookup the token
     _data.read('tokens',id,function(err,tokenData){
@@ -354,7 +354,7 @@ handlers._tokens.delete = function(data, callback){
       }
     });
   } else {
-    callback(400,{'Error' : 'Missing required field'})
+    callback(400,{'Error' : 'Missing required field'});
   }
 };
 
