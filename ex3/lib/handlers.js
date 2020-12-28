@@ -51,7 +51,7 @@ handlers._users.post = function(data,callback){
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
   var tosAgreement = (typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true) ? true : false;
 
-  var datastoreFilename = handlers.datastore(data.queryStringObject.emailAddress);
+  var datastoreFilename = handlers.datastore(data.payload.emailAddress);
   if(firstName && lastName && emailAddress && streetAddress && password && tosAgreement){
     // Make sure the user doesnt already exist
     _data.read('users',datastoreFilename,function(err,data){
