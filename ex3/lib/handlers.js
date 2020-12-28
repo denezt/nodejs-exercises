@@ -366,7 +366,7 @@ handlers._tokens.verifyToken = function(id,emailAddress,callback){
     if (!err && tokenData) {
       // Check that the token is for the given user and has not expired
       if (tokenData.emailAddress == emailAddress && tokenData.expires > Date.now()) {
-        callback(true)
+        callback(true);
       } else {
         callback(false);
       }
