@@ -143,7 +143,7 @@ handlers._users.put = function(data,callback){
     // Error if nothing is sent to update
     if(firstName || lastName || password){
       // Get the token from the headers
-      var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+      var token = (typeof(data.headers.token) == 'string') ? data.headers.token : false;
       // Verify that the given token is valid for the phone number
       handlers._tokens.verifyToken(token,emailAddress,function(tokenIsValid){
         if (tokenIsValid) {
@@ -188,12 +188,12 @@ handlers._users.put = function(data,callback){
 handlers._users.delete = function(data,callback){
   // Check that phone number is valid
   var emailAddress = data.queryStringObject.emailAddress;
-  var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
+  var datastoreFilename = (typeof(handlers.datastore(emailAddress)) == 'string') && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
 
   if(datastoreFilename){
     // Lookup the user
     // Get the token from the headers
-    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+    var token = (typeof(data.headers.token) == 'string') ? data.headers.token : false;
     // Verify that the given token is valid for the phone number
     handlers._tokens.verifyToken(token,emailAddress,function(tokenIsValid){
       if (tokenIsValid) {
@@ -277,8 +277,8 @@ handlers._tokens.post = function(data, callback){
 
 // Tokens - get
 handlers._tokens.get = function(data, callback){
-  var id = typeof(data.queryStringObject.id) == 'string'
-  && data.queryStringObject.id.trim().length == 19 ? data.queryStringObject.id.trim() : false;
+  var id = (typeof(data.queryStringObject.id) == 'string'
+  && data.queryStringObject.id.trim().length == 19) ? data.queryStringObject.id.trim() : false;
   if(id){
     // Lookup the user
     _data.read('tokens',id,function(err,tokenData){
@@ -297,8 +297,8 @@ handlers._tokens.get = function(data, callback){
 // Required data : id, extend
 // Optional data: none
 handlers._tokens.put = function(data, callback){
-  var id = typeof(data.payload.id) == 'string'
-  && data.payload.id.trim().length == 19 ? data.payload.id.trim() : false;
+  var id = (typeof(data.payload.id) == 'string'
+  && data.payload.id.trim().length == 19) ? data.payload.id.trim() : false;
   var extend = typeof(data.payload.extend) == 'boolean'
   && data.payload.extend == true ? true : false;
   console.log("ID: " + id);
