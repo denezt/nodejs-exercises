@@ -304,8 +304,30 @@ handlers._tokens.put = function(data, callback){
 };
 
 // Tokens - delete
+// Required data: id
+// Optional data: none
 handlers._tokens.delete = function(data, callback){
+  // Check that the id is invalid
+  var id = typeof(handlers.datastore(data.queryStringObject.id)) === 'string' && data.queryStringObject.id.trim().length == 19 ? data.queryStringObject.id : false;
 
+  if(id){
+    // Lookup the user
+    _data.read('tokens',id,function(err,data){
+      if(!err && data){
+        _data.delete('tokens',id,function(err){
+          if(!err){
+            callback(200);
+          } else {
+            callback(500,{'Error' : 'Could not delete the specified token'});
+          }
+        });
+      } else {
+        callback(400,{'Error' : 'Could not find the specified token.'});
+      }
+    });
+  } else {
+    callback(400,{'Error' : 'Missing required field'})
+  }
 };
 
 
