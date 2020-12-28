@@ -110,6 +110,7 @@ handlers._users.get = function(data, callback){
         } else {
           callback(404);
         }
+      });
     } else {
       callback(403,{'Error':'Missing required token in header, or token is invalid'});
     }
@@ -133,11 +134,6 @@ handlers._users.put = function(data,callback){
   if (datastoreFilename){
     // Error if nothing is sent to update
     if(firstName || lastName || password){
-      // Get the token from the headers
-      var token = (typeof(data.headers.token) == 'string') ? data.headers.token : false;
-      // Verify that the given token is valid for the phone number
-      handlers._tokens.verifyToken(token,emailAddress,function(tokenIsValid){
-        if (tokenIsValid) {
           // Lookup the user
           _data.read('users',datastoreFilename, function(err,userData){
             if(!err && userData){
@@ -164,10 +160,7 @@ handlers._users.put = function(data,callback){
               callback(400,{'Error' : 'Specified user does not exist.'});
             }
           });
-        } else {
-            callback(403,{'Error':'Missing required token in header, or token is invalid'});
-        }
-      });
+      }
   } else {
     callback(400,{'Error' : 'Missing required field or parameters are incorrect.'});
   }
@@ -351,21 +344,21 @@ handlers._tokens.delete = function(data, callback){
 
 // // General Purpose function
 // // Verify if a given token id is currently valid for a given user
-// handlers._tokens.verifyToken = function(id,emailAddress,callback){
-//   // Lookup the tokens
-//   _data.read('tokens',id,function(err,tokenData){
-//     if (!err && tokenData) {
-//       // Check that the token is for the given user and has not expired
-//       if (tokenData.emailAddress == emailAddress && tokenData.expires > Date.now()) {
-//         callback(true);
-//       } else {
-//         callback(false);
-//       }
-//     } else {
-//       callback(false);
-//     }
-//   });
-// };
+handlers._tokens.verifyToken = function(id,emailAddress,callback){
+  // Lookup the tokens
+  _data.read('tokens',id,function(err,tokenData){
+    if (!err && tokenData) {
+      // Check that the token is for the given user and has not expired
+      if (tokenData.emailAddress == emailAddress && tokenData.expires > Date.now()) {
+        callback(true);
+      } else {
+        callback(false);
+      }
+    } else {
+      callback(false);
+    }
+  });
+};
 
 
 // Export the handlers
