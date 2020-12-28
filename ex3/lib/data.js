@@ -22,11 +22,9 @@ for (let i = 0; i < pathsToCheck.length; i++){
 	fs.stat(targetFile, function(err,stats){
 		if (typeof stats === 'undefined'){
 			if (err){
-				console.log("Handling exception of missing directory: " + targetFile);
+				console.log("Creating missing directory: " + targetFile);
 				fs.mkdir(targetFile, { recursive : true, mode: 0o777 }, (err) =>{ });
 			}
-		} else {
-			console.log(stats);
 		}
 	});
 }
