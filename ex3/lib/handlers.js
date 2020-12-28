@@ -111,9 +111,6 @@ handlers._users.get = function(data, callback){
           callback(404);
         }
       });
-    } else {
-      callback(403,{'Error':'Missing required token in header, or token is invalid'});
-    }
   } else {
     callback(400, {'Error':'Missing required field'});
   }
