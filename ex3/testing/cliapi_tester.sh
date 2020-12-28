@@ -24,6 +24,8 @@ case $_action in
 	create-token) create_token;;
 	get-token) get_token "${_token}";;
 	update-token) update_token "${_token}";;
+	delete-token) delete_token "${_token}";;
+	*) error "Missing or invalid action parameter was given";;
 esac
 
 printf '\n'

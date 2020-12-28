@@ -33,3 +33,13 @@ update_token(){
 		error "Missing token or invalid parameter was given"
 	fi
 }
+
+delete_token(){
+	token="${1}"
+	if [ ${#token} -ge 19 ];
+	then
+		curl --location --request DELETE "139.59.147.182:3000/tokens?id=${token}"
+	else
+		error "Missing token or invalid parameter was given"
+	fi
+}

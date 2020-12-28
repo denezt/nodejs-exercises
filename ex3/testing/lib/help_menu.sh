@@ -16,6 +16,7 @@ commands(){
 	printf "\033[35mCreate Token Data\t\033[32m[ create-token ]\033[0m\n"
 	printf "\033[35mGet Token\t\t\033[32m[ get-token ]\033[0m\n"
 	printf "\033[35mUpdate Token\t\t\033[32m[ update-token ]\033[0m\n"
+	printf "\033[35mDelete Token\t\t\033[32m[ delete-token ]\033[0m\n"
 }
 
 help_menu(){
