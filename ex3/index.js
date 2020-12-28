@@ -10,7 +10,7 @@ var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
 var config = require('./lib/config');
 var fs = require('fs');
-var handlers = require('./lib/handlers');
+// var handlers = require('./lib/handlers');
 var helpers = require('./lib/helpers');
 
  // Instantiate the HTTP server
