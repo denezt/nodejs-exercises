@@ -36,7 +36,7 @@ handlers._users  = {};
 handlers.datastore = function(data, callback){
   let emailToFilename = (typeof(data) !== 'undefined') ? data.replace('@','_').replace('.','_') : false;
   return emailToFilename.replace(/^"(.+)"$/,'$1');
-}
+};
 
 // Users - post
 // Required data: firstName, lastName, emailAddress, streetAddress, password, tosAgreement
