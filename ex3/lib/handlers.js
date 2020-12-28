@@ -282,7 +282,7 @@ handlers._tokens.put = function(data, callback){
         // Check to the make sure the token isn't already expired.
         if (tokenData.expires > Date.now()) {
           // Set the expiration an hour from now
-          var tokenData.expires = Date.now() + 1000 * 60 * 60;
+          tokenData.expires = Date.now() + 1000 * 60 * 60;
           // Will store the new updates
           _data.update('tokens',id,tokenData,function(err){
             if (!err) {
