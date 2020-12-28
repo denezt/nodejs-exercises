@@ -250,7 +250,7 @@ handlers._tokens.post = function(data, callback){
 // Tokens - get
 handlers._tokens.get = function(data, callback){
   var id = typeof(data.queryStringObject.id) == 'string'
-  && data.queryStringObject.id.trim().length > 20 ? data.queryStringObject.id.trim() : false;
+  && data.queryStringObject.id.trim().length == 19 ? data.queryStringObject.id.trim() : false;
   if(id){
     // Lookup the user
     _data.read('tokens',id,function(err,tokenData){
@@ -270,7 +270,7 @@ handlers._tokens.get = function(data, callback){
 // Optional data: none
 handlers._tokens.put = function(data, callback){
   var id = typeof(data.payload.id) == 'string'
-  && data.payload.id.trim().length > 20 ? data.payload.id.trim() : false;
+  && data.payload.id.trim().length == 19 ? data.payload.id.trim() : false;
   var extend = typeof(data.payload.extend) == 'boolean'
   && data.payload.extend == true ? true : false;
   console.log("ID: " + id)
