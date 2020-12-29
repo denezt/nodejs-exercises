@@ -379,7 +379,7 @@ handlers._tokens.verifyToken = function(id,emailAddress,callback){
 handlers.menu = function(data, callback){
   var acceptableMethods = ['get'];
   if(acceptableMethods.indexOf(data.method) > -1){
-    handlers._tokens[data.method](data,callback);
+    handlers._menu[data.method](data,callback);
   } else {
     callback(405);
   }
