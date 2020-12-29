@@ -102,13 +102,23 @@ handlers._users.get = function(data, callback){
 
   console.log(datastoreFilename);
   if(datastoreFilename){
-      _data.read('users',datastoreFilename,function(err,data){
-        if(!err && data){
-          // Remove the hashed password from the user user object before returning it to the requester
-          delete data.hashedPassword;
-          callback(200,data);
+    // Get the token from the headers
+    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+      // Verify that the given token is valid for the email
+      handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
+        if (tokenIsValid){
+          // Lookup the user
+          _data.read('users',datastoreFilename,function(err,data){
+            if(!err && data){
+              // Remove the hashed password from the user user object before returning it to the requester
+              delete data.hashedPassword;
+              callback(200,data);
+            } else {
+              callback(404);
+            }
+          });
         } else {
-          callback(404);
+          callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }
       });
   } else {
@@ -131,32 +141,43 @@ handlers._users.put = function(data,callback){
   if (datastoreFilename){
     // Error if nothing is sent to update
     if(firstName || lastName || password){
-          // Lookup the user
-          _data.read('users',datastoreFilename, function(err,userData){
-            if(!err && userData){
-              // Update the fields if necessary
-              if(firstName){
-                userData.firstName = firstName;
-              }
-              if(lastName){
-                userData.lastName = lastName;
-              }
-              if(password){
-                userData.hashedPassword = helpers.hash(password);
-              }
-              // Store the new updates
-              _data.update('users',datastoreFilename,userData,function(err){
-                if(!err){
-                  callback(200);
+
+      // Get the token from the headers
+      var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+        // Verify that the given token is valid for the email
+        handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
+            if (tokenIsValid){
+              // Lookup the user
+              _data.read('users',datastoreFilename, function(err,userData){
+                if(!err && userData){
+                  // Update the fields if necessary
+                  if(firstName){
+                    userData.firstName = firstName;
+                  }
+                  if(lastName){
+                    userData.lastName = lastName;
+                  }
+                  if(password){
+                    userData.hashedPassword = helpers.hash(password);
+                  }
+                  // Store the new updates
+                  _data.update('users',datastoreFilename,userData,function(err){
+                    if(!err){
+                      callback(200);
+                    } else {
+                      console.log(err);
+                      callback(500,{'Error' : 'Could not update the user.'});
+                    }
+                  });
                 } else {
-                  console.log(err);
-                  callback(500,{'Error' : 'Could not update the user.'});
+                  callback(400,{'Error' : 'Specified user does not exist.'});
                 }
               });
-            } else {
-              callback(400,{'Error' : 'Specified user does not exist.'});
+            }else{
+              callback(403,{'Error':'Missing required token in header, or token is invalid'});
             }
-          });
+        });
+
       }
   } else {
     callback(400,{'Error' : 'Missing required field or parameters are incorrect.'});
