@@ -37,7 +37,7 @@ for (let i = 0; i < pathsToCheck.length; i++){
 }
 
 // Write data to a file
-fs.stat(targetFile, function(err,stats){
+fs.stat(lib.baseDir.toString() + '/.data/menu/menu_items.json', function(err,stats){
 	if (typeof stats === 'undefined'){
 		if (err){
 			fs.open(lib.baseDir.toString() + '/.data/menu/menu_items.json', 'wx', function(err, fileDescriptor){
