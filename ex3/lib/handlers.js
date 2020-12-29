@@ -392,17 +392,38 @@ handlers._menu = {};
 // Optional data: none
 handlers._menu.get = function(data, callback){
   var emailAddress = data.queryStringObject.emailAddress;
-  var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
 
   console.log('handlers._menu.get [emailAddress]: ' + emailAddress);
-  if(datastoreFilename){
+  if(emailAddress){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           // Lookup the user
-        callback(200,{'data':'Menu items'});
+          callback(200,
+              {"items": [
+                {
+                  "price": "$6.00",
+                  "name": "Pina Colada",
+                  "description": ""
+                },
+                {
+                  "price": "$4.60",
+                  "name": "Jugo Natural de Naranja",
+                  "description": "Natural orange juice."
+                },
+                {
+                  "price": "$4.50",
+                  "name": "Morir Sonando",
+                  "description": ""
+                },
+                {
+                  "price": "$4.50",
+                  "name": "Limonada",
+                  "description": "Lemonade."
+                }
+              });
           /*_data.read('menu',datastoreFilename,function(err,data){
             if(!err && data){
               // Remove the hashed password from the user user object before returning it to the requester
