@@ -21,7 +21,7 @@ done
 case $_action in
 	post|insert) post_data;;
 	get|fetch) get_data "${_emailAddress}" "${_token}";;
-	put|modify) put_data "${_token}";;
+	put|modify) put_data "${_emailAddress}" "${_token}" "${_data}";;
 	delete|remove) delete_data  "${_emailAddress}" "${_token}";;
 	create-token) create_token;;
 	get-token) get_token "${_token}";;
