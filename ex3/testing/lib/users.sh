@@ -3,32 +3,40 @@ post_data(){
 	echo "Array Size: ${ARRSZ}"
 	for (( i = 0; i < ${ARRSZ}; i++ ));
 	do
-		curl --location --request POST '139.59.147.182:3000/users' \
+		curl -D- --location --request POST '139.59.147.182:3000/users' \
 		--header 'Content-Type: text/plain' \
 		--data-raw "$(jq ."customer[$i]" dataset.json)"
 	done
 }
 
 get_data(){
-	emailAddress=(`jq ."customer[]|.emailAddress" dataset.json`)
-	for (( i=0;$i < ${#emailAddress[@]}; i++ ));
-	do
-		printf "${emailAddress[$i]}\n"
-		curl --location --request GET "139.59.147.182:3000/users?emailAddress=${emailAddress[$i]}"
-		printf "\n"
-	done
+	emailAddress="${1}"
+	token="${2}"
+	printf "${emailAddress}\n"
+	curl -D- --location --request GET "139.59.147.182:3000/users?emailAddress=${emailAddress}" \
+	--header 'Content-Type: text/json' \
+	--header "token: ${token}"
+	printf "\n"
 }
 
 put_data(){
-	curl --location --request PUT '139.59.147.182:3000/users' \
+	emailAddress="${1}"
+	token="${2}"
+	data="${3}"
+	curl -D- --location --request PUT '139.59.147.182:3000/users' \
 	--header 'Content-Type: text/json' \
-	--data-raw '{
-		"firstName":"randy",
-		"emailAddress" : "myemail@email.com"
-	}'
+	--header "token: ${token}" \
+	--data-raw "{
+		'firstName': "${data}",
+		'emailAddress' : "${emailAddress}"
+	}"
+	printf "\n"
 }
 
 delete_data(){
-	curl --location --request DELETE \
-	'139.59.147.182:3000/users?emailAddress=myemail@email.com'
+	emailAddress="${1}"
+	token="${2}"
+	curl -D- --location --request DELETE \
+	'139.59.147.182:3000/users?emailAddress=myemail@email.com' \
+	--header "token: ${token}"
 }
