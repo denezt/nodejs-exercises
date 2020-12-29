@@ -388,6 +388,7 @@ handlers.menu = function(data, callback){
 // Container for all the tokens methods
 handlers._menu = {};
 
+// This should always run
 _data.initiate('menu','menu_items',function(err){
   if(!err){
     console.log("Created Dataset [menu_items]");
@@ -407,7 +408,13 @@ handlers._menu.get = function(data, callback){
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           // Static Resturant Menu
-          callback(200,{'empyt':true});
+          _data.read('menu','menu_items',function(err,data){
+            if(!err && data){
+              callback(200,data);
+            } else {
+              callback(404);
+            }
+          });
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }
