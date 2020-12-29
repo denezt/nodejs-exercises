@@ -43,8 +43,9 @@ lib.initiate = function(dir,file,callback){
 	// Open the file for writing
 	fs.open(lib.baseDir.toString() + '/' + dir + '/' + file + '.json', 'wx', function(err, fileDescriptor){
 		if(!err && fileDescriptor){
-     			// Convert data to string
-			var stringData = {"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]};
+			// Convert data to string
+			var data = {"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]};
+			var stringData = JSON.stringify(data);
 
       // Write to file and close it
       fs.writeFile(fileDescriptor, stringData,function(err){
