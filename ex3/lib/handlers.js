@@ -392,48 +392,14 @@ handlers._menu = {};
 // Optional data: none
 handlers._menu.get = function(data, callback){
   var emailAddress = data.queryStringObject.emailAddress;
-
-  console.log('handlers._menu.get [emailAddress]: ' + emailAddress);
   if(emailAddress){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
-          // Lookup the user
-          callback(200,
-              {"items": [
-                {
-                  "price": "$6.00",
-                  "name": "Pina Colada",
-                  "description": ""
-                },
-                {
-                  "price": "$4.60",
-                  "name": "Jugo Natural de Naranja",
-                  "description": "Natural orange juice."
-                },
-                {
-                  "price": "$4.50",
-                  "name": "Morir Sonando",
-                  "description": ""
-                },
-                {
-                  "price": "$4.50",
-                  "name": "Limonada",
-                  "description": "Lemonade."
-                }
-              ]
-              });
-          /*_data.read('menu',datastoreFilename,function(err,data){
-            if(!err && data){
-              // Remove the hashed password from the user user object before returning it to the requester
-              delete data.hashedPassword;
-              callback(200,data);
-            } else {
-              callback(404);
-            }
-          });*/
+          // Static Resturant Menu
+          callback(200,{"items": [{"price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]});
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }
