@@ -1,4 +1,4 @@
-get_data(){
+menu_items(){
 	emailAddress="${1}"
 	token="${2}"
 	printf "${emailAddress}\n"

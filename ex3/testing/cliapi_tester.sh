@@ -5,6 +5,7 @@
 source ./lib/error.sh
 source ./lib/users.sh
 source ./lib/tokens.sh
+source ./lib/menu.sh
 source ./lib/help_menu.sh
 
 for args in $@

@@ -391,7 +391,7 @@ handlers._menu = {};
 // Required data: emailAddress
 // Optional data: none
 handlers._menu.get = function(data, callback){
-  var emailAddress = data.headers.emailAddress;
+  var emailAddress = data.queryStringObject.emailAddress;
   var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
 
   if(datastoreFilename){
