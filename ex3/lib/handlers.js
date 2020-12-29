@@ -95,7 +95,6 @@ handlers._users.post = function(data,callback){
 
 // Required data: emailAddress
 // Optional data: none
-// @TODO Only let an authenticated user access their object. Dont let them access anyone elses.
 handlers._users.get = function(data, callback){
   var emailAddress = data.queryStringObject.emailAddress;
   var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
@@ -128,7 +127,6 @@ handlers._users.get = function(data, callback){
 
 // Required data: emailAddress
 // Optional data: firstName, lastName, password (at least one must be specified)
-// @TODO Only let an authenticated user up their object. Dont let them access update elses.
 handlers._users.put = function(data,callback){
   var emailAddress = data.queryStringObject.emailAddress;
   var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
@@ -184,8 +182,7 @@ handlers._users.put = function(data,callback){
   }
 };
 
-// Required data: phone
-// @TODO Only let an authenticated user delete their object. Dont let them delete update elses.
+// Required data: emailAddress
 // @TODO Cleanup (delete) any other data files associated with the user
 handlers._users.delete = function(data,callback){
   // Check that phone number is valid
