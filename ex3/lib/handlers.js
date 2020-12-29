@@ -35,7 +35,6 @@ handlers._users  = {};
 
 handlers.datastore = function(data, callback){
   let emailToFilename = (typeof(data) !== 'undefined') ? data.replace('@','_').replace('.','_') : false;
-  console.log('emailToFilename [handlers.datastore]: ' + emailToFilename);
   return emailToFilename.replace(/^"(.+)"$/,'$1');
 };
 
@@ -131,7 +130,6 @@ handlers._users.get = function(data, callback){
 handlers._users.put = function(data,callback){
   var emailAddress = data.payload.emailAddress;
   var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
-  console.log('handlers._users.put [emailAddress]: ' + emailAddress);
 
   // Check for optional fields
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
@@ -220,7 +218,7 @@ handlers._users.delete = function(data,callback){
   }
 };
 
-// Users
+// Tokens
 handlers.tokens = function(data, callback){
   var acceptableMethods = ['post','get','put','delete'];
   if(acceptableMethods.indexOf(data.method) > -1){
@@ -377,6 +375,50 @@ handlers._tokens.verifyToken = function(id,emailAddress,callback){
   });
 };
 
+// Menu
+handlers.menu = function(data, callback){
+  var acceptableMethods = ['get'];
+  if(acceptableMethods.indexOf(data.method) > -1){
+    handlers._tokens[data.method](data,callback);
+  } else {
+    callback(405);
+  }
+};
+
+// Container for all the tokens methods
+handlers._menu = {};
+
+// Required data: emailAddress
+// Optional data: none
+handlers._menu.get = function(data, callback){
+  var emailAddress = data.headers.emailAddress;
+  var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
+
+  if(datastoreFilename){
+    // Get the token from the headers
+    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+      // Verify that the given token is valid for the email
+      handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
+        if (tokenIsValid){
+          // Lookup the user
+        callback(200,{'data':'Menu items'});
+          /*_data.read('menu',datastoreFilename,function(err,data){
+            if(!err && data){
+              // Remove the hashed password from the user user object before returning it to the requester
+              delete data.hashedPassword;
+              callback(200,data);
+            } else {
+              callback(404);
+            }
+          });*/
+        } else {
+          callback(403,{'Error':'Missing required token in header, or token is invalid'});
+        }
+      });
+  } else {
+    callback(400, {'Error':'Missing required field'});
+  }
+};
 
 // Export the handlers
 module.exports = handlers;

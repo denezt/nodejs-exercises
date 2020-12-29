@@ -27,6 +27,7 @@ case $_action in
 	get-token) get_token "${_token}";;
 	update-token) update_token "${_token}";;
 	delete-token) delete_token "${_token}";;
+	view-menu) menu_items "${_emailAddress}" "${_token}";;
 	*) error "Missing or invalid action parameter was given";;
 esac
 
