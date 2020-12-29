@@ -423,6 +423,7 @@ handlers._menu.get = function(data, callback){
                   "name": "Limonada",
                   "description": "Lemonade."
                 }
+              ]
               });
           /*_data.read('menu',datastoreFilename,function(err,data){
             if(!err && data){
