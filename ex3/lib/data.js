@@ -37,39 +37,6 @@ for (let i = 0; i < pathsToCheck.length; i++){
 }
 
 // Write data to a file
-fs.stat(lib.baseDir.toString() + '/.data/menu/menu_items.json', function(err,stats){
-	if (typeof stats === 'undefined'){
-		if (err){
-			fs.open(lib.baseDir.toString() + '/.data/menu/menu_items.json', 'wx', function(err, fileDescriptor){
-				var menuData = {"items": [{"price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]};
-				if(!err && fileDescriptor){
-							// Convert data to string
-					var stringData = JSON.stringify(menuData);
-
-					// Write to file and close it
-					fs.writeFile(fileDescriptor, stringData,function(err){
-						if(!err){
-							fs.close(fileDescriptor,function(err){
-								if(!err){
-									callback(false);
-								} else {
-									callback('Error closing new file');
-								}
-							});
-						} else {
-							callback('Error writing to new file');
-						}
-					});
-				} else {
-					callback('Could not create new file, it may already exist');
-				}
-			});
-		}
-	}
-});
-
-
-// Write data to a file
 lib.create = function(dir,file,data,callback){
 	console.log(typeof lib.baseDir,lib.baseDir + '/' + dir);
 	let myPath = lib.baseDir + dir;
