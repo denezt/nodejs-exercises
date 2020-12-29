@@ -20,16 +20,14 @@ get_data(){
 }
 
 put_data(){
-	emailAddress="${1}"
-	token="${2}"
-	data="${3}"
+	token="${1}"
 	curl -D- --location --request PUT '139.59.147.182:3000/users' \
 	--header 'Content-Type: text/json' \
 	--header "token: ${token}" \
-	--data-raw "{
-		'firstName': "${data}",
-		'emailAddress' : "${emailAddress}"
-	}"
+	--data-raw '{
+		"firstName" : "randy",
+		"emailAddress" : "myemail@email.com"
+	}'
 	printf "\n"
 }
 

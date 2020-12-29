@@ -35,6 +35,7 @@ handlers._users  = {};
 
 handlers.datastore = function(data, callback){
   let emailToFilename = (typeof(data) !== 'undefined') ? data.replace('@','_').replace('.','_') : false;
+  console.log('emailToFilename [handlers.datastore]: ' + emailToFilename);
   return emailToFilename.replace(/^"(.+)"$/,'$1');
 };
 
@@ -128,8 +129,9 @@ handlers._users.get = function(data, callback){
 // Required data: emailAddress
 // Optional data: firstName, lastName, password (at least one must be specified)
 handlers._users.put = function(data,callback){
-  var emailAddress = data.queryStringObject.emailAddress;
+  var emailAddress = data.payload.emailAddress;
   var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
+  console.log('handlers._users.put [emailAddress]: ' + emailAddress);
 
   // Check for optional fields
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
