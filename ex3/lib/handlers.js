@@ -388,6 +388,14 @@ handlers.menu = function(data, callback){
 // Container for all the tokens methods
 handlers._menu = {};
 
+_data.initiate('menu','menu_items',function(err){
+  if(!err){
+    callback(200,{'Status':'Ok'});
+  } else {
+    callback(500, {'Error':'Could not creat the new token'});
+  }
+});
+
 // Required data: emailAddress
 // Optional data: none
 handlers._menu.get = function(data, callback){

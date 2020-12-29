@@ -37,7 +37,7 @@ for (let i = 0; i < pathsToCheck.length; i++){
 }
 
 // Initiate Datasets
-lib.initiate = function(dir,file,data,callback){
+lib.initiate = function(dir,file,callback){
 	console.log(typeof lib.baseDir,lib.baseDir + '/' + dir);
 	let myPath = lib.baseDir + dir;
 	// Open the file for writing
