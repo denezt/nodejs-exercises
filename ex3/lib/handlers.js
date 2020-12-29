@@ -389,11 +389,7 @@ handlers.menu = function(data, callback){
 handlers._menu = {};
 
 _data.initiate('menu','menu_items',function(err){
-  if(!err){
-    callback(200,{'Status':'Ok'});
-  } else {
-    callback(500, {'Error':'Could not creat the new token'});
-  }
+  if(!err) console.log("Error!!!");
 });
 
 // Required data: emailAddress
