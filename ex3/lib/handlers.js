@@ -389,7 +389,11 @@ handlers.menu = function(data, callback){
 handlers._menu = {};
 
 _data.initiate('menu','menu_items',function(err){
-  if(!err) console.log("Error!!!");
+  if(!err){
+    console.log("Created Dataset [menu_items]");
+  } else {
+    console.log("Dataset [menu_items] was found");
+  }
 });
 
 // Required data: emailAddress
