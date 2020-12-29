@@ -394,6 +394,7 @@ handlers._menu.get = function(data, callback){
   var emailAddress = data.queryStringObject.emailAddress;
   var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
 
+  console.log('handlers._menu.get [emailAddress]: ' + emailAddress);
   if(datastoreFilename){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
