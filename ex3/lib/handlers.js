@@ -390,7 +390,7 @@ handlers._menu = {};
 
 // Required data: emailAddress
 // Optional data: none
-handlers._menu.get = function(data, fallback){
+handlers._menu.get = function(data, callback){
   var emailAddress = data.queryStringObject.emailAddress;
   if(emailAddress){
     // Get the token from the headers
@@ -399,13 +399,13 @@ handlers._menu.get = function(data, fallback){
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           // Static Resturant Menu
-          fallback(200,{"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]});
+          callback(200,{"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]});
         } else {
-          fallback(403,{'Error':'Missing required token in header, or token is invalid'});
+          callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }
       });
   } else {
-    fallback(400, {'Error':'Missing required field'});
+    callback(400, {'Error':'Missing required field'});
   }
 };
 
