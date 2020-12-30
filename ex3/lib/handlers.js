@@ -12,7 +12,7 @@ var handlers = {};
 
 // Ping
 handlers.ping = function(data,callback){
-  callback(200);
+  callback(200,{'status':'ok'});
 };
 
 // Not-Found
