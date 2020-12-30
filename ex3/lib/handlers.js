@@ -308,6 +308,7 @@ handlers._tokens.put = function(data, callback){
   && data.payload.extend == true ? true : false;
   console.log("ID: " + id);
   console.log("Extend: " + extend.toString());
+
   if (id && extend) {
     // Lookup the token
     _data.read('tokens',id,function(err,tokenData){
@@ -315,7 +316,7 @@ handlers._tokens.put = function(data, callback){
         // Check to the make sure the token isn't already expired.
         if (tokenData.expires > Date.now()) {
           // Set the expiration an hour from now
-          tokenData.expires = Date.now() + 1000 * 60 * 3600;
+          tokenData.expires = Date.now() + 1000 * 60 * 1440;
           // Will store the new updates
           _data.update('tokens',id,tokenData,function(err){
             if (!err) {
