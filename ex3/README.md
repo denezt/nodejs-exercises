@@ -1,6 +1,19 @@
 # NodeJS API for Pizza Delivery Company
 ## Backend application for pizza delivery Company
 
+### Features
+
+| Id | Feature             | Description     |
+| :- | :------------------ | :------------- |
+| 1  | User Administration |      |
+
+
+
+
+### Command Line Interface for Testing API
+
+<h5>Use this extensible script located in the 'testing' directory to test the API</h5>
+
 <pre>
 CLI API Tester
 Action	[ --action={COMMAND}, action:{COMMAND} ]
