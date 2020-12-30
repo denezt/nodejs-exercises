@@ -6,8 +6,20 @@ source ./lib/error.sh
 source ./lib/users.sh
 source ./lib/tokens.sh
 source ./lib/menu.sh
+source ./lib/carts.sh
 source ./lib/help_menu.sh
-export curl_call="curl -v -D- --location --request"
+
+for args in $@
+do
+	case $args in
+		-d|-debug|--debug) _debug="on";;
+	esac
+done
+
+case $_debug in
+	on) export curl_call="curl -v -D- --location --request";;
+	*) export curl_call="curl --location --request";;
+esac
 
 for args in $@
 do
@@ -25,11 +37,13 @@ case $_action in
 	get|fetch) get_data "${_emailAddress}" "${_token}";;
 	put|modify) put_data "${_emailAddress}" "${_token}" "${_data}";;
 	delete|remove) delete_data  "${_emailAddress}" "${_token}";;
-	create-token) create_token "${_emailAddress}" "${_data}";;
-	get-token) get_token "${_token}";;
-	update-token) update_token "${_token}";;
-	delete-token) delete_token "${_token}";;
-	view-menu) menu_items "${_emailAddress}" "${_token}";;
+	create-token|cT) create_token "${_emailAddress}" "${_data}";;
+	get-token|gT) get_token "${_token}";;
+	update-token|uT) update_token "${_token}";;
+	delete-token|dT) delete_token "${_token}";;
+	view-menu|vM) menu_items "${_emailAddress}" "${_token}";;
+	create-cart|cC) create_cart "${_emailAddress}" "${_token}";;
+	view-cart|vC) create_cart "${_emailAddress}" "${_token}";;
 	*) error "Missing or invalid action parameter was given";;
 esac
 
