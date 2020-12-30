@@ -472,5 +472,31 @@ handlers._cart.post = function(data,callback){
   }
 };
 
+handlers._cart.get = function(data,callback){
+  console.log(data.payload);
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
+
+  if(emailAddress && itemObject){
+    var cartName = helpers.hash128(emailAddress);
+    // Get the token from the headers
+    _data.read('carts',cartName,function(err,data){
+      if(err){
+          // Read the cart items
+          if(!err){
+            callback(200,data);
+          } else {
+            console.log(err);
+            callback(500,{'Error' : 'Could not create the new cart'});
+          }
+      } else {
+        // User already exists
+        callback(400,{'Error' : 'Cart already exists update instead'});
+      }
+    });
+  } else {
+    callback(400,{'Error' : 'Missing required fields'});
+  }
+};
+
 // Export the handlers
 module.exports = handlers;
