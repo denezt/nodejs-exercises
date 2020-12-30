@@ -465,7 +465,7 @@ handlers._cart.post = function(data,callback){
             if(!err && data){
               callback(200,data);
             } else {
-              callback(404);
+              callback(404,{'Error':'Cart already create you should update instead'});
             }
           });
         } else {
