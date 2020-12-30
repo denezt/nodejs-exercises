@@ -449,26 +449,26 @@ handlers._cart.post = function(data,callback){
   var itemObject = typeof(data.payload.itemList) == 'object' ? data.payload.itemList : false;
 
   if(emailAddress && itemObject){
+    var cartName = helpers.hash(emailAddress);
     // Get the token from the headers
-    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
-      // Verify that the given token is valid for the email
-      handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
-        if (tokenIsValid){
-          var cartObject = itemObject;
-          // Create Cart from Menu Item Number
-          _data.create('carts',token,cartObject,function(err,data){
-            if(!err && data){
-              callback(200,data);
+    _data.read('carts',cartName,function(err,data){
+      if(err){
+          // Store the cart items
+          _data.create('carts',cartName,itemObject,function(err){
+            if(!err){
+              callback(200);
             } else {
-              callback(404,{'Error':'Cart already created you should update instead'});
+              console.log(err);
+              callback(500,{'Error' : 'Could not create the new cart'});
             }
           });
-        } else {
-          callback(403,{'Error':'Missing required token in header, or token is invalid'});
-        }
-      });
+      } else {
+        // User already exists
+        callback(400,{'Error' : 'A user with that emailAddress already exists'});
+      }
+    });
   } else {
-    callback(400, {'Error':'Missing required field'});
+    callback(400,{'Error' : 'Missing required fields'});
   }
 };
 
