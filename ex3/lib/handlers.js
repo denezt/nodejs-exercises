@@ -444,6 +444,7 @@ handlers.cart = function(data, callback){
 handlers._cart = {};
 
 handlers._cart.post = function(data,callback){
+  console.log(data.payload);
   console.log('Item Typeof: ' + typeof(data.payload.item));
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
   var itemNumber = typeof(data.payload.item) == 'number' ? data.payload.item : false;
