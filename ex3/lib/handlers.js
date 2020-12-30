@@ -97,7 +97,7 @@ handlers._users.post = function(data,callback){
 // Optional data: none
 handlers._users.get = function(data, callback){
   console.log(data)
-  var emailAddress = data.headers.emailaddress;
+  var emailAddress = data.queryStringObject.emailAddress;
   var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
 
   console.log(datastoreFilename);
