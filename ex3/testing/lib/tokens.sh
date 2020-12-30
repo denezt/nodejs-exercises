@@ -3,7 +3,7 @@ create_token(){
 	userPassword=${2}
 	if [ ${#emailAddress} -gt 1 -a ${#userPassword} -gt 1 ];
 	then
-	curl --location --request POST '139.59.147.182:3000/tokens' \
+		$curl_call POST '139.59.147.182:3000/tokens' \
         --header 'Content-Type: text/plain' \
         --data-raw "{
                 \"emailAddress\" : \"${emailAddress}\",
@@ -18,7 +18,7 @@ get_token(){
 	token=${1}
 	if [ ${#token} -ge 19 ];
 	then
-		curl --location --request GET \
+		$curl_call GET \
 		"139.59.147.182:3000/tokens?id=${token}"
 	else
 		error "Missing token"
@@ -29,7 +29,7 @@ update_token(){
 	token=${1}
 	if [ ${#token} -ge 19 ];
 	then
-		curl --location --request PUT \
+		$curl_call PUT \
 		'139.59.147.182:3000/tokens' \
 		--header 'Content-Type: text/json' \
 		--data-raw "{
@@ -45,7 +45,7 @@ delete_token(){
 	token="${1}"
 	if [ ${#token} -ge 19 ];
 	then
-		curl --location --request DELETE "139.59.147.182:3000/tokens?id=${token}"
+		$curl_call DELETE "139.59.147.182:3000/tokens?id=${token}"
 	else
 		error "Missing token or invalid parameter was given"
 	fi

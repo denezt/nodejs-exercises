@@ -7,6 +7,7 @@ source ./lib/users.sh
 source ./lib/tokens.sh
 source ./lib/menu.sh
 source ./lib/help_menu.sh
+export curl_call="curl -v -D- --location --request"
 
 for args in $@
 do
