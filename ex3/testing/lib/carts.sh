@@ -7,11 +7,7 @@ create_cart(){
   --header "token: ${token}" \
   --data-raw "{
     \"emailAddress\": \"${emailAddress}\",
-    \"itemList\": [
-    {
-    \"id\" :1,
-    \"count\" : 4
-  }]
+    \"itemList\": []
   }"
 }
 
