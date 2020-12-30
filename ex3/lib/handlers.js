@@ -456,15 +456,13 @@ handlers._cart.post = function(data,callback){
         if (tokenIsValid){
 
           // Create Cart from Menu Item Number
-          _data.create('cart',token,function(err,data){
+          _data.create('carts',token,function(err,data){
             if(!err && data){
               callback(200,data);
             } else {
               callback(404);
             }
           });
-
-
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }

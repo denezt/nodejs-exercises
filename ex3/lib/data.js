@@ -20,6 +20,7 @@ const pathsToCheck = [
 	lib.baseDir + '/users',
 	lib.baseDir + '/tokens',
 	lib.baseDir + '/menu',
+	lib.baseDir + '/carts',
 	lib.baseDir + '/orders'
 ];
 
