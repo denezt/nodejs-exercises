@@ -406,28 +406,23 @@ _data.initiate('menu','menu_items',function(err){
 // Required data: emailAddress
 // Optional data: none
 handlers._menu.get = function(data, callback){
-  var emailAddress = data.queryStringObject.emailAddress;
-  if(emailAddress){
-    // Get the token from the headers
-    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
-      // Verify that the given token is valid for the email
-      handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
-        if (tokenIsValid){
-          // Static Resturant Menu
-          _data.read('menu','menu_items',function(err,data){
-            if(!err && data){
-              callback(200,data);
-            } else {
-              callback(404);
-            }
-          });
-        } else {
-          callback(403,{'Error':'Missing required token in header, or token is invalid'});
-        }
-      });
-  } else {
-    callback(400, {'Error':'Missing required field'});
-  }
+  // Get the token from the headers
+  var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+    // Verify that the given token is valid for the email
+    handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
+      if (tokenIsValid){
+        // Static Resturant Menu
+        _data.read('menu','menu_items',function(err,data){
+          if(!err && data){
+            callback(200,data);
+          } else {
+            callback(404);
+          }
+        });
+      } else {
+        callback(403,{'Error':'Missing required token in header, or token is invalid'});
+      }
+    });
 };
 
 // Menu
@@ -445,7 +440,6 @@ handlers._cart = {};
 
 handlers._cart.post = function(data,callback){
   console.log(data.payload);
-  console.log('Item Typeof: ' + typeof(data.payload.item));
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
   var itemObject = typeof(data.payload.itemList) == 'object' ? data.payload.itemList : false;
 
