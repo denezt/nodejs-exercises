@@ -447,16 +447,15 @@ handlers._cart.post = function(data,callback){
   console.log(data.payload);
   console.log('Item Typeof: ' + typeof(data.payload.item));
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-  var itemNumber = typeof(data.payload.itemId) == 'number' ? data.payload.itemId : false;
   var itemObject = typeof(data.payload.itemList) == 'object' ? data.payload.itemList : false;
 
-  if(emailAddress && itemNumber && itemObject){
+  if(emailAddress && itemObject){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
-          var cartObject = itemObject;          
+          var cartObject = itemObject;
           // Create Cart from Menu Item Number
           _data.create('carts',token,cartObject,function(err,data){
             if(!err && data){
