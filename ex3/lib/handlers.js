@@ -447,25 +447,22 @@ handlers._cart.post = function(data,callback){
   console.log(data.payload);
   console.log('Item Typeof: ' + typeof(data.payload.item));
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-  var itemNumber = typeof(data.payload.item) == 'number' ? data.payload.item : false;
+  var itemNumber = typeof(data.payload.itemId) == 'number' ? data.payload.itemId : false;
+  var itemObject = typeof(data.payload.itemList) == 'object' ? data.payload.itemList : false;
 
-  if(emailAddress && itemNumber){
+  if(emailAddress && itemNumber && itemObject){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
-          var cartObject = {
-              'emailAddress' : emailAddress,
-              'itemId': itemNumber,
-              'count' : 1
-          };
+          var cartObject = itemObject;          
           // Create Cart from Menu Item Number
           _data.create('carts',token,cartObject,function(err,data){
             if(!err && data){
               callback(200,data);
             } else {
-              callback(404,{'Error':'Cart already create you should update instead'});
+              callback(404,{'Error':'Cart already created you should update instead'});
             }
           });
         } else {
