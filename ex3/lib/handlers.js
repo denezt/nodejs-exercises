@@ -464,7 +464,7 @@ handlers._cart.post = function(data,callback){
           });
       } else {
         // User already exists
-        callback(400,{'Error' : 'A user with that emailAddress already exists'});
+        callback(400,{'Error' : 'Cart already exists update instead'});
       }
     });
   } else {
