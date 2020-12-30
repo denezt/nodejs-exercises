@@ -439,21 +439,25 @@ handlers.cart = function(data, callback){
 handlers._cart = {};
 
 handlers._cart.post = function(data,callback){
-  var emailAddress = data.payload.emailAddress;
-  if(emailAddress){
+  var emailAddress = typeof(data.payload.emailaddress) == 'string' ? data.payload.emailaddress : false;
+  var itemNumber = typeof(data.payload.item) == 'number' ? data.payload.item : false;
+  if(emailAddress && itemNumber){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
-          // Static Resturant Menu
-          _data.read('cart',token,function(err,data){
+
+          // Create Cart from Menu Item Number
+          _data.create('cart',token,function(err,data){
             if(!err && data){
               callback(200,data);
             } else {
               callback(404);
             }
           });
+
+
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }
