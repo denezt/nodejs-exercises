@@ -494,6 +494,7 @@ handlers._cart.get = function(data,callback){
           // Lookup the user
           _data.read('carts',cartName,function(err,data){
             if(!err && data){
+              console.log('Array Length: ' + data.length);
               callback(200,data);
             } else {
               callback(404);
