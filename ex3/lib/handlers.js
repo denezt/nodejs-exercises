@@ -449,7 +449,7 @@ handlers._cart.post = function(data,callback){
   var itemObject = typeof(data.payload.itemList) == 'object' ? data.payload.itemList : false;
 
   if(emailAddress && itemObject){
-    var cartName = helpers.hash(emailAddress);
+    var cartName = helpers.hash128(emailAddress);
     // Get the token from the headers
     _data.read('carts',cartName,function(err,data){
       if(err){
