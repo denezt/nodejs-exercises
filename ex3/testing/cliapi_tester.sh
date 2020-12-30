@@ -24,7 +24,7 @@ case $_action in
 	get|fetch) get_data "${_emailAddress}" "${_token}";;
 	put|modify) put_data "${_emailAddress}" "${_token}" "${_data}";;
 	delete|remove) delete_data  "${_emailAddress}" "${_token}";;
-	create-token) create_token;;
+	create-token) create_token "${_emailAddress}" "${_data}";;
 	get-token) get_token "${_token}";;
 	update-token) update_token "${_token}";;
 	delete-token) delete_token "${_token}";;

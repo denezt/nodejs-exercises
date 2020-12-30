@@ -1,7 +1,7 @@
 usage(){
 	printf "\033[36mUSAGE:\033[0m\n"
 	printf "\033[35m$0 \033[32m--action=load\033[0m\n"
-	printf "\033[35m$0 \033[32m--action=create-token\033[0m \033[33m--email=myemail@email.com\033[0m\n"
+	printf "\033[35m$0 \033[32m--action=create-token\033[0m \033[33m--email=myemail@email.com  1765  ./cliapi_tester.sh --action=create-token --email=myemail@email.com --data=thisIsAPassword--data=thisIsASecret\033[0m\n"
 	printf "\033[35m$0 \033[32m--action=get \033[33m--email=myemail@email.com\033[0m \033[33m--token=9zy66v8ktl40fe7qv5f\033[0m\n"
 	printf "\033[35m$0 \033[32m--action=get-token \033[33m--email=myemail@email.com\033[0m \033[33m--token=9zy66v8ktl40fe7qv5f\033[0m\n"
 	printf "\033[35m$0 \033[32m--action=update-token \033[33m--email=myemail@email.com\033[0m \033[33m--token=9zy66v8ktl40fe7qv5f\033[0m\n"

@@ -1,10 +1,17 @@
 create_token(){
+	emailAddress=${1}
+	userPassword=${2}
+	if [ ${#emailAddress} -gt 1 -a ${#userPassword} -gt 1 ];
+	then
 	curl --location --request POST '139.59.147.182:3000/tokens' \
         --header 'Content-Type: text/plain' \
-        --data-raw '{
-                "emailAddress" : "myemail@email.com",
-                "password" : "thisIsAPassword"
-        }'
+        --data-raw "{
+                \"emailAddress\" : \"${emailAddress}\",
+                \"password\" : \"${userPassword}\"
+        }"
+	else
+		error "Missing a parameter required for token creation"
+	fi
 }
 
 get_token(){
