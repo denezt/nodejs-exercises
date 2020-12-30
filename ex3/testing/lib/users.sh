@@ -16,7 +16,7 @@ get_data(){
 	curl -v -D- --location --request GET "139.59.147.182:3000/users?emailAddress=${emailAddress}" \
 	--header 'Content-Type: text/json' \
 	--header "token: ${token}" \
-	--header "emailAddress: ${emailAddress}"
+	--header "emailaddress: ${emailAddress}"
 	printf "\n"
 }
 
