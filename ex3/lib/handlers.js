@@ -476,7 +476,7 @@ handlers._cart.get = function(data,callback){
   console.log(data.payload);
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
 
-  if(emailAddress && itemObject){
+  if(emailAddress){
     var cartName = helpers.hash128(emailAddress);
     // Get the token from the headers
     _data.read('carts',cartName,function(err,data){
