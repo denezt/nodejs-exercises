@@ -1,7 +1,7 @@
 # NodeJS API for Pizza Delivery Company
 ## Backend application for pizza delivery Company
 
-<p>
+<pre>
 CLI API Tester
 Action	[ --action={COMMAND}, action:{COMMAND} ]
 Token	[ --token={TOKEN}, token:{TOKEN} ]
@@ -17,7 +17,7 @@ Create Token Data	[ create-token ]
 Get Token		[ get-token ]
 Update Token		[ update-token ]
 Delete Token		[ delete-token ]
-</p>
+</pre>
 
 ``` sh
 USAGE:
