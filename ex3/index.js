@@ -104,5 +104,6 @@ var router = {
   'ping' : handlers.ping,
   'users' : handlers.users,
   'tokens' : handlers.tokens,
-  'menu' : handlers.menu
+  'menu' : handlers.menu,
+  'cart' : handlers.cart
 };

@@ -96,7 +96,7 @@ handlers._users.post = function(data,callback){
 // Required data: emailAddress
 // Optional data: none
 handlers._users.get = function(data, callback){
-  var emailAddress = data.queryStringObject.emailAddress;
+  var emailAddress = data.headers.emailAddress;
   var datastoreFilename = typeof(handlers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? handlers.datastore(emailAddress) : false;
 
   console.log(datastoreFilename);
@@ -385,7 +385,7 @@ handlers.menu = function(data, callback){
   }
 };
 
-// Container for all the tokens methods
+// Container for all the menu methods
 handlers._menu = {};
 
 // This should always run
@@ -409,6 +409,44 @@ handlers._menu.get = function(data, callback){
         if (tokenIsValid){
           // Static Resturant Menu
           _data.read('menu','menu_items',function(err,data){
+            if(!err && data){
+              callback(200,data);
+            } else {
+              callback(404);
+            }
+          });
+        } else {
+          callback(403,{'Error':'Missing required token in header, or token is invalid'});
+        }
+      });
+  } else {
+    callback(400, {'Error':'Missing required field'});
+  }
+};
+
+// Menu
+handlers.cart = function(data, callback){
+  var acceptableMethods = ['post','get','put','delete'];
+  if(acceptableMethods.indexOf(data.method) > -1){
+    handlers._cart[data.method](data,callback);
+  } else {
+    callback(405);
+  }
+};
+
+// Container for all the cart methods
+handlers._cart = {};
+
+handlers._cart.post = function(data,callback){
+  var emailAddress = data.payload.emailAddress;
+  if(emailAddress){
+    // Get the token from the headers
+    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+      // Verify that the given token is valid for the email
+      handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
+        if (tokenIsValid){
+          // Static Resturant Menu
+          _data.read('cart',token,function(err,data){
             if(!err && data){
               callback(200,data);
             } else {

@@ -5,7 +5,6 @@
 
 // Dependencies
 const fs = require('fs');
-var fsPromises = fs.promises;
 var path = require('path');
 var helpers = require('./helpers');
 
