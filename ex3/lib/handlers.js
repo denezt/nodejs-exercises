@@ -455,15 +455,6 @@ handlers._cart.post = function(data,callback){
       // Verify that the given token is valid for the email
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
-
-          // Create Cart from Menu Item Number
-          _data.delete('carts',token,function(err,data){
-            if(!err && data){
-              callback(200,data);
-            } else {
-              callback(404);
-            }
-          });
           var cartObject = {
               'emailAddress' : emailAddress,
               'itemId': itemNumber,
