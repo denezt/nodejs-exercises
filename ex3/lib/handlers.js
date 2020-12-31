@@ -417,7 +417,7 @@ handlers._menu.get = function(data, callback){
           // Static Resturant Menu
           _data.read('menu','menu_items',function(err,data){
             if(!err && data){
-              callback(200,data.items[0]);
+              callback(200,data);
             } else {
               callback(404);
             }
@@ -493,9 +493,17 @@ handlers._cart.get = function(data,callback){
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           // Lookup the user
+          var menuCount = 0;
+          _data.read('menu','menu_items',function(err,data){
+            if(!err && data){
+              menuCount = data.items.length;
+            }
+            console.log('Menu Count: ' + menuCount);
+          });
           _data.read('carts',cartName,function(err,data){
             if(!err && data){
               console.log('Array Length: ' + data.length);
+
               callback(200,data);
             } else {
               callback(404);
