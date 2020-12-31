@@ -417,7 +417,7 @@ handlers._menu.get = function(data, callback){
           // Static Resturant Menu
           _data.read('menu','menu_items',function(err,data){
             if(!err && data){
-              callback(200,data[0]);
+              callback(200,data.items[0]);
             } else {
               callback(404);
             }
