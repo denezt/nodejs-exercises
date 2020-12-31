@@ -492,14 +492,15 @@ handlers._cart.get = function(data,callback){
       // Verify that the given token is valid for the email
       handlers._tokens.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
-          // Lookup the user
           var menuCount = 0;
+
           _data.read('menu','menu_items',function(err,data){
             if(!err && data){
               menuCount = data.items.length;
             }
             console.log('Menu Count: ' + menuCount);
           });
+          // Lookup the carts
           _data.read('carts',cartName,function(err,data){
             if(!err && data){
               console.log('Array Length: ' + data.length);
