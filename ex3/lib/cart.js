@@ -88,26 +88,23 @@ cart._cart.put = function(data,callback){
         token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
             if (tokenIsValid){
               var cartName = helper.hash128(emailAddress);
-                var updateCart = {};
-                updateCart.items = [];
-
-                // Lookup the user
-                _data.read('carts',cartName, function(err,userData){
-                  console.log('userData items: ' + userData);
-                  if(!err && userData){
-
-                  }
-                });
-
-                // Store the new updates
-                _data.update('carts',cartName,updateCart,function(err){
-                  if(!err){
-                    callback(200);
+                _data.read('carts',cartName,function(err,data){
+                  if(err){
+                      itemObject.item[itemId].count = itemCount;
+                      // Store the cart items
+                      _data.update('carts',cartName,itemObject,function(err){
+                        if(!err){
+                          callback(200);
+                        } else {
+                          console.log(err);
+                          callback(500,{'Error' : 'Could not create the new cart'});
+                        }
+                      });
                   } else {
-                    console.log(err);
-                    callback(500,{'Error' : 'Could not update the user.'});
+                    // User already exists
+                    callback(400,{'Error' : 'Cart already exists update instead'});
                   }
-                });
+              });
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }
