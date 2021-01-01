@@ -5,20 +5,20 @@ var helper = require('./helper');
 var token_holder = {};
 
 // Container for all the tokens methods
-token_holder._tokens = {};
+token_holder._token = {};
 
 // Tokens
 token_holder.tokens = function(data, callback){
   var acceptableMethods = ['post','get','put','delete'];
   if(acceptableMethods.indexOf(data.method) > -1){
-    token_holder._tokens[data.method](data,callback);
+    token_holder._token[data.method](data,callback);
   } else {
     callback(405);
   }
 };
 
 // Tokens - post
-token_holder._tokens.post = function(data, callback){
+token_holder._token.post = function(data, callback){
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress.trim() : false;
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
   var datastoreFilename = typeof(helper.datastore(data.payload.emailAddress)) === 'string' && data.payload.emailAddress.trim().length > 0 ? helper.datastore(data.payload.emailAddress) : false;
@@ -61,7 +61,7 @@ token_holder._tokens.post = function(data, callback){
 };
 
 // Tokens - get
-token_holder._tokens.get = function(data, callback){
+token_holder._token.get = function(data, callback){
   var id = (typeof(data.queryStringObject.id) == 'string'
   && data.queryStringObject.id.trim().length == 19) ? data.queryStringObject.id.trim() : false;
   if(id){
@@ -81,7 +81,7 @@ token_holder._tokens.get = function(data, callback){
 // Tokens - put
 // Required data : id, extend
 // Optional data: none
-token_holder._tokens.put = function(data, callback){
+token_holder._token.put = function(data, callback){
   var id = (typeof(data.payload.id) == 'string'
   && data.payload.id.trim().length == 19) ? data.payload.id.trim() : false;
   var extend = typeof(data.payload.extend) == 'boolean'
@@ -120,7 +120,7 @@ token_holder._tokens.put = function(data, callback){
 // Tokens - delete
 // Required data: id
 // Optional data: none
-token_holder._tokens.delete = function(data, callback){
+token_holder._token.delete = function(data, callback){
   // Check that the id is invalid
   var id = typeof(helper.datastore(data.queryStringObject.id)) === 'string' && data.queryStringObject.id.trim().length == 19 ? data.queryStringObject.id : false;
 
@@ -146,7 +146,7 @@ token_holder._tokens.delete = function(data, callback){
 
 // // General Purpose function
 // // Verify if a given token id is currently valid for a given user
-token_holder._tokens.verifyToken = function(id,emailAddress,callback){
+token_holder._token.verifyToken = function(id,emailAddress,callback){
   // Lookup the tokens
   _data.read('tokens',id,function(err,tokenData){
     if (!err && tokenData) {
@@ -164,4 +164,4 @@ token_holder._tokens.verifyToken = function(id,emailAddress,callback){
 
 
 // Export the module
-module.exports = token;
+module.exports = token_holder;
