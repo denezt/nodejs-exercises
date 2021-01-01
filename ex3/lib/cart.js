@@ -3,25 +3,25 @@
 var _data = require('./data');
 var _token = require('./token');
 var helper = require('./helper');
-var token_holder = require('./token');
+var token = require('./token');
 
-var shopping_cart = {};
+var cart = {};
 
 // Container for all the cart methods
-shopping_cart._cart = {};
+cart._cart = {};
 
 // Menu
-shopping_cart.cart = function(data, callback){
+cart.cart = function(data, callback){
   var acceptableMethods = ['post','get','put','delete'];
   if(acceptableMethods.indexOf(data.method) > -1){
-    shopping_cart._cart[data.method](data,callback);
+    cart._cart[data.method](data,callback);
   } else {
     callback(405);
   }
 };
 
 
-shopping_cart._cart.post = function(data,callback){
+cart._cart.post = function(data,callback){
   console.log(data.payload);
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
   var itemObject = typeof(data.payload.itemList) == 'object' ? data.payload.itemList : false;
@@ -29,7 +29,7 @@ shopping_cart._cart.post = function(data,callback){
   if(emailAddress && itemObject){
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
-      token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
+      _token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           var cartName = helper.hash128(emailAddress);
           // Get the token from the headers
@@ -58,7 +58,7 @@ shopping_cart._cart.post = function(data,callback){
   }
 };
 
-shopping_cart._cart.get = function(data,callback){
+cart._cart.get = function(data,callback){
   console.log(data.payload);
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
 
@@ -67,7 +67,7 @@ shopping_cart._cart.get = function(data,callback){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
-      token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
+      _token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           var menuCount = 0;
           _data.read('menu','menu_items',function(err,data){
@@ -95,4 +95,4 @@ shopping_cart._cart.get = function(data,callback){
 };
 
 // Export the module
-module.exports = shopping_cart;
+module.exports = cart;

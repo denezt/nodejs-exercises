@@ -10,7 +10,7 @@ var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
 var config = require('./lib/config');
 var fs = require('fs');
-var handler = require('./lib/handlers');
+var handlers = require('./lib/handlers');
 var helper = require('./lib/helper');
 var cart = require('./lib/cart');
 var token = require('./lib/token');
@@ -69,7 +69,7 @@ var unifiedServer = function(req,res){
       buffer += decoder.end();
 
       // Check the router for a matching path for a handler. If one is not found, use the notFound handler instead.
-      var chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handler.notFound;
+      var chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
 
       // Construct the data object to send to the handler
       var data = {
@@ -104,9 +104,9 @@ var unifiedServer = function(req,res){
 
 // Define the request router
 var router = {
-  'ping' : handler.ping,
-  'user' : handler.user,
-  'menu' : handler.menu,
-  'token' : token.token_holder,
-  'cart' : cart.shopping_cart
+  'ping' : handlers.ping,
+  'user' : handlers.user,
+  'menu' : handlers.menu,
+  'token' : token.token,
+  'cart' : cart.cart
 };
