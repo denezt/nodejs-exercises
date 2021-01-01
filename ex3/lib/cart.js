@@ -81,7 +81,7 @@ cart._cart.put = function(data,callback){
   if (emailAddress){
     var cartName = helper.hash128(emailAddress);
     // Error if nothing is sent to update
-    if(itemId && itemCount){
+    if(itemId && itemCount >= 0){
       // Get the token from the headers
       var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
         // Verify that the given token is valid for the email
