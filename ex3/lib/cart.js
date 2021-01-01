@@ -100,8 +100,10 @@ cart._cart.put = function(data,callback){
                         console.log(userData.items[i].itemid);
                       }
                     }
+                  }
                 });
                 console.log(userData);
+
                 // Store the new updates
                 _data.update('carts',cartName,userData,function(err){
                   if(!err){
@@ -111,14 +113,13 @@ cart._cart.put = function(data,callback){
                     callback(500,{'Error' : 'Could not update the user.'});
                   }
                 });
-              } else {
-                callback(400,{'Error' : 'Specified user does not exist.'});
-              });
-            }else{
-              callback(403,{'Error':'Missing required token in header, or token is invalid'});
-            }
-        });
-      }
+        } else {
+          callback(403,{'Error':'Missing required token in header, or token is invalid'});
+        }
+      });
+    } else {
+      callback(400,{'Error' : 'Missing required field or parameters are incorrect.'});
+    }
   } else {
     callback(400,{'Error' : 'Missing required field or parameters are incorrect.'});
   }
