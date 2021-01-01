@@ -7,13 +7,13 @@ var helper = require('./helper');
 var user = {};
 
 // Container for all the users methods
-user._users  = {};
+user._user  = {};
 
 // Users
-user.users = function(data, callback){
+user.user = function(data, callback){
   var acceptableMethods = ['post','get','put','delete'];
   if(acceptableMethods.indexOf(data.method) > -1){
-    user._users[data.method](data,callback);
+    user._user[data.method](data,callback);
   } else {
     callback(405);
   }
@@ -22,7 +22,7 @@ user.users = function(data, callback){
 // Users - post
 // Required data: firstName, lastName, emailAddress, streetAddress, password, tosAgreement
 // Optional data: none
-user._users.post = function(data,callback){
+user._user.post = function(data,callback){
   // Check that all required fields are filled out
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
@@ -76,7 +76,7 @@ user._users.post = function(data,callback){
 
 // Required data: emailAddress
 // Optional data: none
-user._users.get = function(data, callback){
+user._user.get = function(data, callback){
   console.log(data)
   var emailAddress = data.queryStringObject.emailAddress;
   var datastoreFilename = typeof(helper.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 1 ? helper.datastore(emailAddress) : false;
@@ -109,7 +109,7 @@ user._users.get = function(data, callback){
 
 // Required data: emailAddress
 // Optional data: firstName, lastName, password (at least one must be specified)
-user._users.put = function(data,callback){
+user._user.put = function(data,callback){
   var emailAddress = data.payload.emailAddress;
   var datastoreFilename = typeof(helper.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? helper.datastore(emailAddress) : false;
 
@@ -166,7 +166,7 @@ user._users.put = function(data,callback){
 
 // Required data: emailAddress
 // @TODO Cleanup (delete) any other data files associated with the user
-user._users.delete = function(data,callback){
+user._user.delete = function(data,callback){
   // Check that phone number is valid
   var emailAddress = data.queryStringObject.emailAddress;
   var datastoreFilename = (typeof(helper.datastore(emailAddress)) == 'string') && emailAddress.trim().length > 0 ? helper.datastore(emailAddress) : false;
