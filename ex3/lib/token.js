@@ -8,7 +8,7 @@ var token_holder = {};
 token_holder._token = {};
 
 // Tokens
-token_holder.tokens = function(data, callback){
+token_holder.token = function(data, callback){
   var acceptableMethods = ['post','get','put','delete'];
   if(acceptableMethods.indexOf(data.method) > -1){
     token_holder._token[data.method](data,callback);
