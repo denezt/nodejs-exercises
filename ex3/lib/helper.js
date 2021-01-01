@@ -1,5 +1,5 @@
 /*
- * helper for various tasks
+ * Helper for various tasks
  *
  */
 

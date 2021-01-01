@@ -1,3 +1,8 @@
+/*
+ * Request Handler for User
+ *
+ */
+
 // Dependencies
 var _data = require('./data');
 var token_holder = require('./token');

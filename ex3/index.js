@@ -15,6 +15,7 @@ var helper = require('./lib/helper');
 var cart_holder = require('./lib/cart');
 var token_holder = require('./lib/token');
 var user_holder = require('./lib/user');
+var menu_holder = require('./lib/menu');
 
 
  // Instantiate the HTTP server
@@ -106,7 +107,7 @@ var unifiedServer = function(req,res){
 // Define the request router
 var router = {
   'ping' : handlers.ping,
-  'menu' : handlers.menu,
+  'menu' : menu_holder.menu,
   'cart' : cart_holder.cart,
   'token' : token_holder.token,
   'user' : user_holder.user
