@@ -1,9 +1,9 @@
 
 
 var _data = require('./data');
-var token = require('./token');
+var token_holder = require('./token');
 var helper = require('./helper');
-var token = require('./token');
+
 
 var cart = {};
 
@@ -29,7 +29,7 @@ cart._cart.post = function(data,callback){
   if(emailAddress && itemObject){
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
-      _token._token.verifyToken(token, emailAddress, function(tokenIsValid){
+      token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           var cartName = helper.hash128(emailAddress);
           // Get the token from the headers
@@ -62,13 +62,13 @@ cart._cart.get = function(data,callback){
   console.log(data.payload);
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
   console.log(token);
-  
+
   if(emailAddress){
     var cartName = helper.hash128(emailAddress);
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
-      _token.verifyToken(token, emailAddress, function(tokenIsValid){
+      token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           var menuCount = 0;
           _data.read('menu','menu_items',function(err,data){
