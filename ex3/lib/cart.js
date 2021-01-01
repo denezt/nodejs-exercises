@@ -98,18 +98,15 @@ cart._cart.put = function(data,callback){
                       // Update the fields if necessary
                       if(itemId == userData.items[i].itemid){
                         // userData.items[i].count = itemCount;
-                        updateCart.items[i].itemid = itemId;
                         updateCart.items[i].count = itemCount;
                       } else {
                         updateCart.items[i].itemid = userData.itemid;
                         updateCart.items[i].count = userData.count;
                       }
                     }
-                }
-
-
+                  }
                 });
-
+                console.log(updateCart);
                 // Store the new updates
                 _data.update('carts',cartName,updateCart,function(err){
                   if(!err){
