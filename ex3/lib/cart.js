@@ -96,13 +96,14 @@ cart._cart.put = function(data,callback){
                   if(!err && userData){
                     for (var i = 0; i < userData.items.length; i++) {
                       // Update the fields if necessary
-                      if(itemId == userData.items[i].itemid){
-                        // userData.items[i].count = itemCount;
-                        updateCart.items[i].count = itemCount;
-                      } else {
-                        updateCart.items[i].itemid = userData.itemid;
-                        updateCart.items[i].count = userData.count;
-                      }
+                      console.log(userData.items[i].itemid);
+                      // if(itemId == userData.items[i].itemid){
+                      //   userData.items[i].itemid = itemId;
+                      //   updateCart.items[i].count = itemCount;
+                      // } else {
+                      //   updateCart.items[i].itemid = userData.itemid;
+                      //   updateCart.items[i].count = userData.count;
+                      // }
                     }
                   }
                 });
