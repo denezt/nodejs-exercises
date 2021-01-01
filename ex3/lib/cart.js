@@ -29,7 +29,7 @@ cart._cart.post = function(data,callback){
   if(emailAddress && itemObject){
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
-      token._token.verifyToken(token, emailAddress, function(tokenIsValid){
+      token.token._token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           var cartName = helper.hash128(emailAddress);
           // Get the token from the headers
@@ -67,7 +67,7 @@ cart._cart.get = function(data,callback){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
-      token._token.verifyToken(token, emailAddress, function(tokenIsValid){
+      token.token._token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           var menuCount = 0;
           _data.read('menu','menu_items',function(err,data){
