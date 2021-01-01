@@ -35,17 +35,6 @@ cart._cart.post = function(data,callback){
       token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           var cartName = helper.hash128(emailAddress);
-          itemObject = {
-            "items":[
-              {
-                'itemid':'1',
-                'count': 0
-              },{
-                'itemid':'2',
-                'count': 0
-              }
-            ]
-          }
           // Get the token from the headers
           _data.read('carts',cartName,function(err,data){
             if(err){
@@ -74,20 +63,23 @@ cart._cart.post = function(data,callback){
 
 
 
-// Required data: emailAddress
+// Required data: emailAddress, itemId, itemCount
 // Optional data: firstName, lastName, password (at least one must be specified)
 cart._cart.put = function(data,callback){
-  var emailAddress = data.payload.emailAddress;
-  var datastoreFilename = typeof(helper.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? helper.datastore(emailAddress) : false;
 
-  // Check for optional fields
-  var itemId = typeof(data.payload.itemid) == 'string' && data.payload.itemid.trim().length > 0 ? data.payload.itemid.trim() : false;
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
+
+  var cartName = helper.hash128(emailAddress);
 
 
-  if (datastoreFilename){
+  var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
+
+  var itemCount = typeof(data.payload.itemCount) == 'number' && data.payload.itemCount.trim().length > 0 ? data.payload.itemCount.trim() : false;
+
+  // Check if required request info given
+  if (emailAddress && cartName){
     // Error if nothing is sent to update
     if(itemId && itemCount){
-
       // Get the token from the headers
       var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
         // Verify that the given token is valid for the email
@@ -100,14 +92,14 @@ cart._cart.put = function(data,callback){
                 if(!err && userData){
                   for (var i = 0; i < userData.items.length; i++) {
                     console.log(userData.items[i]);
-                  }
-                  // Update the fields if necessary
-                  if(firstName){
-                    userData.firstName = firstName;
+                    // Update the fields if necessary
+                    if(itemId == userData.items[i]){
+                      userData.items[i].count = itemCount;
+                    }
                   }
 
                   // Store the new updates
-                  _data.update('carts',datastoreFilename,userData,function(err){
+                  _data.update('carts',cartName,userData,function(err){
                     if(!err){
                       callback(200);
                     } else {
@@ -123,7 +115,6 @@ cart._cart.put = function(data,callback){
               callback(403,{'Error':'Missing required token in header, or token is invalid'});
             }
         });
-
       }
   } else {
     callback(400,{'Error' : 'Missing required field or parameters are incorrect.'});
@@ -157,8 +148,12 @@ cart._cart.get = function(data,callback){
           _data.read('carts',cartName,function(err,data){
             if(!err && data){
               console.log('Array Length: ' + data.items.length);
+              console.log('Displaying Shopping Cart:');
               for (var i = 0; i < data.items.length; i++) {
-                console.log(data.items[i].itemid);
+                // Only show if added to cart
+                if (data.items[i].count > 0){
+                  console.log('Item in shopping cart: ' + data.items[i].itemid + ' Count in shopping cart: ' + data.items[i].count);
+                }
               }
               callback(200,data);
             } else {
