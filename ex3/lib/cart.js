@@ -27,7 +27,7 @@ cart.cart = function(data, callback){
 cart._cart.post = function(data,callback){
   console.log(data.payload);
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-  var itemObject = typeof(data.payload.itemList) == 'object' ? data.payload.itemList : false;
+  var itemObject = typeof(data.payload.shoppingCart) == 'object' ? data.payload.shoppingCart : false;
 
   if(emailAddress && itemObject){
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
@@ -68,12 +68,10 @@ cart._cart.post = function(data,callback){
 cart._cart.put = function(data,callback){
 
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-
   var cartName = helper.hash128(emailAddress);
-
-
+  // Item Id for update
   var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
-
+  // Item Count for update
   var itemCount = typeof(data.payload.itemCount) == 'number' && data.payload.itemCount.trim().length > 0 ? data.payload.itemCount.trim() : false;
 
   // Check if required request info given
