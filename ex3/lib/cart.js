@@ -89,31 +89,31 @@ cart._cart.put = function(data,callback){
             if (tokenIsValid){
               var cartName = helper.hash128(emailAddress);
 
-              // Lookup the user
-              _data.read('carts',cartName, function(err,userData){
-                if(!err && userData){
-                  for (var i = 0; i < userData.items.length; i++) {                  
-                    // Update the fields if necessary
-                    if(itemId == userData.items[i].itemid){
-                      userData.items[i].count = itemCount;
-                    } else {
-                      console.log(userData.items[i].itemid);
+                // Lookup the user
+                _data.read('carts',cartName, function(err,userData){
+                  if(!err && userData){
+                    for (var i = 0; i < userData.items.length; i++) {
+                      // Update the fields if necessary
+                      if(itemId == userData.items[i].itemid){
+                        userData.items[i].count = itemCount;
+                      } else {
+                        console.log(userData.items[i].itemid);
+                      }
                     }
+                });
+                console.log(userData);
+                // Store the new updates
+                _data.update('carts',cartName,userData,function(err){
+                  if(!err){
+                    callback(200);
+                  } else {
+                    console.log(err);
+                    callback(500,{'Error' : 'Could not update the user.'});
                   }
-                  console.log(userData);
-                  // Store the new updates
-                  _data.update('carts',cartName,userData,function(err){
-                    if(!err){
-                      callback(200);
-                    } else {
-                      console.log(err);
-                      callback(500,{'Error' : 'Could not update the user.'});
-                    }
-                  });
-                } else {
-                  callback(400,{'Error' : 'Specified user does not exist.'});
-                }
-              });
+                });
+              } else {
+                callback(400,{'Error' : 'Specified user does not exist.'});
+              }
             }else{
               callback(403,{'Error':'Missing required token in header, or token is invalid'});
             }
