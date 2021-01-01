@@ -1,45 +1,22 @@
-/*
- * Request Handlers
- *
- */
-
 // Dependencies
 var _data = require('./data');
 var token_holder = require('./token');
 var helper = require('./helper');
 
+var menu = {};
 
-// Define all the handlers
-var handlers = {};
-
-// Ping
-handlers.ping = function(data,callback){
-  callback(200,{'status':'ok'});
-};
-
-// Not-Found
-handlers.notFound = function(data,callback){
-  callback(404);
-};
-
-/* Moving Cart to user.js */
-
-/* Moving Tokens to token.js */
-
-/* Moving Menu to menu.js */
+// Container for all the menu methods
+menu._menu = {};
 
 // Menu
-handlers.menu = function(data, callback){
+menu.menu = function(data, callback){
   var acceptableMethods = ['get'];
   if(acceptableMethods.indexOf(data.method) > -1){
-    handlers._menu[data.method](data,callback);
+    menu._menu[data.method](data,callback);
   } else {
     callback(405);
   }
 };
-
-// Container for all the menu methods
-handlers._menu = {};
 
 // This should always run
 _data.initiate('menu','menu_items',function(err){
@@ -52,7 +29,7 @@ _data.initiate('menu','menu_items',function(err){
 
 // Required data: emailAddress
 // Optional data: none
-handlers._menu.get = function(data, callback){
+menu._menu.get = function(data, callback){
   var emailAddress = data.queryStringObject.emailAddress;
   if(emailAddress){
     // Get the token from the headers
@@ -77,7 +54,4 @@ handlers._menu.get = function(data, callback){
   }
 };
 
-/* Moving Cart to cart.js */
-
-// Export the handlers
-module.exports = handlers;
+module.exports = menu;

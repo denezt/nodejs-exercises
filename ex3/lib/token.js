@@ -145,8 +145,8 @@ token._token.delete = function(data, callback){
   }
 };
 
-// // General Purpose function
-// // Verify if a given token id is currently valid for a given user
+// General Purpose function
+// Verify if a given token id is currently valid for a given user
 token._token.verifyToken = function(id,emailAddress,callback){
   // Lookup the tokens
   _data.read('tokens',id,function(err,tokenData){
@@ -162,7 +162,6 @@ token._token.verifyToken = function(id,emailAddress,callback){
     }
   });
 };
-
 
 // Export the module
 module.exports = token;
