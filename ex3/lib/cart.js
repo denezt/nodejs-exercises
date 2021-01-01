@@ -153,7 +153,10 @@ cart._cart.get = function(data,callback){
           // Lookup the carts
           _data.read('carts',cartName,function(err,data){
             if(!err && data){
-              console.log('Array Length: ' + data.length);
+              console.log('Array Length: ' + data.items.length);
+              for (var i = 0; i < data.items.length; i++) {
+                console.log(data.items[i].itemid);
+              }
               callback(200,data);
             } else {
               callback(404);
