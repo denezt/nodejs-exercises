@@ -90,9 +90,9 @@ cart._cart.put = function(data,callback){
               var cartName = helper.hash128(emailAddress);
                 _data.read('carts',cartName,function(err,data){
                   if(!err){
-                      itemObject.item[itemId].count = itemCount;
+                      data.items[itemId].count = itemCount;
                       // Store the cart items
-                      _data.update('carts',cartName,itemObject,function(err){
+                      _data.update('carts',cartName,data,function(err){
                         if(!err){
                           callback(200);
                         } else {
