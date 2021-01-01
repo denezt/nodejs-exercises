@@ -64,6 +64,7 @@ token_holder._token.post = function(data, callback){
 token_holder._token.get = function(data, callback){
   var id = (typeof(data.queryStringObject.id) == 'string'
   && data.queryStringObject.id.trim().length == 19) ? data.queryStringObject.id.trim() : false;
+  console.log(data);
   if(id){
     // Lookup the user
     _data.read('tokens',id,function(err,tokenData){
