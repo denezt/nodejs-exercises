@@ -96,13 +96,13 @@ cart._cart.put = function(data,callback){
                   if(!err && userData){
                     for (var i = 0; i < userData.items.length; i++) {
                       // Update the fields if necessary
-                      if(itemId == userData.items[i].itemId){
+                      if(itemId == userData.items[i].itemid){
                         // userData.items[i].count = itemCount;
-                        updateCart.items[i].itemId = itemId;
-                        updateCart.items[i].itemCount = itemCount;
+                        updateCart.items[i].itemid = itemId;
+                        updateCart.items[i].count = itemCount;
                       } else {
-                        updateCart.items[i].itemId = userData.itemId;
-                        updateCart.items[i].itemCount = userData.itemCount;
+                        updateCart.items[i].itemid = userData.itemid;
+                        updateCart.items[i].count = userData.count;
                       }
                     }
                 }
