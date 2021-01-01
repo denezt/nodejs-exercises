@@ -94,9 +94,10 @@ cart._cart.put = function(data,callback){
                 // Lookup the user
                 _data.read('carts',cartName, function(err,userData){
                   if(!err && userData){
+                    console.log('userData length: ' + userData.items.length);
                     for (var i = 0; i < userData.items.length; i++) {
                       // Update the fields if necessary
-                      console.log(userData.items[i].itemid);
+                      console.log(userData.items[i]);
                       // if(itemId == userData.items[i].itemid){
                       //   userData.items[i].itemid = itemId;
                       //   updateCart.items[i].count = itemCount;
