@@ -40,6 +40,9 @@ cart._cart.post = function(data,callback){
               {
                 'itemid':'1',
                 'count': 0
+              },{
+                'itemid':'2',
+                'count': 0
               }
             ]
           }
