@@ -44,7 +44,7 @@ case $_action in
 	view-menu|vM) menu_items "${_emailAddress}" "${_token}";;
 	create-cart|cC) create_cart "${_emailAddress}" "${_token}";;
 	view-cart|vC) view_cart "${_emailAddress}" "${_token}";;
-	*) error "Missing or invalid action parameter was given";;
+	*) error "Missing or invalid 'action' parameter was given";;
 esac
 
 printf '\n'

@@ -12,8 +12,8 @@ var config = require('./lib/config');
 var fs = require('fs');
 var handlers = require('./lib/handlers');
 var helper = require('./lib/helper');
-var cart = require('./lib/cart');
-var token = require('./lib/token');
+var cart_holder = require('./lib/cart');
+var token_holder = require('./lib/token');
 
 
  // Instantiate the HTTP server
@@ -107,6 +107,6 @@ var router = {
   'ping' : handlers.ping,
   'user' : handlers.user,
   'menu' : handlers.menu,
-  'token' : token.token,
-  'cart' : cart.cart
+  'token' : token_holder.token,
+  'cart' : cart_holder.cart
 };
