@@ -89,19 +89,24 @@ cart._cart.put = function(data,callback){
             if (tokenIsValid){
               var cartName = helper.hash128(emailAddress);
                 var updateCart = {};
+                updateCart.items = [];
+
                 // Lookup the user
                 _data.read('carts',cartName, function(err,userData){
                   if(!err && userData){
                     for (var i = 0; i < userData.items.length; i++) {
                       // Update the fields if necessary
-                      if(itemId == userData.items[i].itemid){
-                        userData.items[i].count = itemCount;
+                      if(itemId == userData.items[i].itemId){
+                        // userData.items[i].count = itemCount;
+                        updateCart.items[i].itemId = itemId;
+                        updateCart.items[i].itemCount = itemCount;
                       } else {
-                        console.log(userData.items[i].itemid);
+                        updateCart.items[i].itemId = userData.itemId;
+                        updateCart.items[i].itemCount = userData.itemCount;
                       }
                     }
-                    updateCart = userData;
-                  }
+                }
+
 
                 });
 
