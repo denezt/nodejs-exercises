@@ -89,7 +89,7 @@ cart._cart.put = function(data,callback){
             if (tokenIsValid){
               var cartName = helper.hash128(emailAddress);
                 _data.read('carts',cartName,function(err,data){
-                  if(err){
+                  if(!err){
                       itemObject.item[itemId].count = itemCount;
                       // Store the cart items
                       _data.update('carts',cartName,itemObject,function(err){
