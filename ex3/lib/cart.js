@@ -6,7 +6,7 @@
 var _data = require('./data');
 var token_holder = require('./token');
 var helper = require('./helper');
-
+var menu = require('./menu');
 
 var cart = {};
 
@@ -37,7 +37,10 @@ cart._cart.post = function(data,callback){
           var cartName = helper.hash128(emailAddress);
           itemObject = {
             "items":[
-              {'':''}
+              {
+                'itemid':'1',
+                'count': 0
+              }
             ]
           }
           // Get the token from the headers
@@ -92,9 +95,8 @@ cart._cart.put = function(data,callback){
               // Lookup the user
               _data.read('carts',cartName, function(err,userData){
                 if(!err && userData){
-                  for (var i = 0; i < userData.itemList.length; i++) {
-                    console.log(userData.itemList[i]);
-
+                  for (var i = 0; i < userData.items.length; i++) {
+                    console.log(userData.items[i]);
                   }
                   // Update the fields if necessary
                   if(firstName){
@@ -141,6 +143,7 @@ cart._cart.get = function(data,callback){
       token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           var menuCount = 0;
+          // Counts the menu items
           _data.read('menu','menu_items',function(err,data){
             if(!err && data){
               menuCount = data.items.length;
