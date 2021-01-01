@@ -113,7 +113,7 @@ cart._cart.put = function(data,callback){
                 });
               } else {
                 callback(400,{'Error' : 'Specified user does not exist.'});
-              }
+              });
             }else{
               callback(403,{'Error':'Missing required token in header, or token is invalid'});
             }
