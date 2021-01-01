@@ -10,10 +10,10 @@ var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
 var config = require('./lib/config');
 var fs = require('fs');
-var handlers = require('./lib/handlers');
-var helpers = require('./lib/helpers');
+var handler = require('./lib/handlers');
+var helper = require('./lib/helpers');
 var cart = require('./lib/cart');
-var tokens = require('./lib/token');
+var token = require('./lib/token');
 
 
  // Instantiate the HTTP server
@@ -69,7 +69,7 @@ var unifiedServer = function(req,res){
       buffer += decoder.end();
 
       // Check the router for a matching path for a handler. If one is not found, use the notFound handler instead.
-      var chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
+      var chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handler.notFound;
 
       // Construct the data object to send to the handler
       var data = {
@@ -77,7 +77,7 @@ var unifiedServer = function(req,res){
         'queryStringObject' : queryStringObject,
         'method' : method,
         'headers' : headers,
-        'payload' : helpers.parseJsonToObject(buffer)
+        'payload' : helper.parseJsonToObject(buffer)
       };
 
       // Route the request to the handler specified in the router
@@ -104,9 +104,9 @@ var unifiedServer = function(req,res){
 
 // Define the request router
 var router = {
-  'ping' : handlers.ping,
-  'users' : handlers.users,
-  'menu' : handlers.menu,
-  'tokens' : tokens.token_holder,
+  'ping' : handler.ping,
+  'user' : handler.user,
+  'menu' : handler.menu,
+  'token' : token.token_holder,
   'cart' : cart.shopping_cart
 };

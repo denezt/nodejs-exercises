@@ -122,7 +122,7 @@ token_holder._tokens.put = function(data, callback){
 // Optional data: none
 token_holder._tokens.delete = function(data, callback){
   // Check that the id is invalid
-  var id = typeof(handlers.datastore(data.queryStringObject.id)) === 'string' && data.queryStringObject.id.trim().length == 19 ? data.queryStringObject.id : false;
+  var id = typeof(helpers.datastore(data.queryStringObject.id)) === 'string' && data.queryStringObject.id.trim().length == 19 ? data.queryStringObject.id : false;
 
   if(id){
     // Lookup the user
@@ -164,4 +164,4 @@ token_holder._tokens.verifyToken = function(id,emailAddress,callback){
 
 
 // Export the module
-module.exports = token_holder;
+module.exports = token;
