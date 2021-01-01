@@ -68,6 +68,7 @@ cart._cart.post = function(data,callback){
 cart._cart.put = function(data,callback){
 
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
+
   var cartName = helper.hash128(emailAddress);
   // Item Id for update
   var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
@@ -75,7 +76,7 @@ cart._cart.put = function(data,callback){
   var itemCount = typeof(data.payload.itemCount) == 'number' && data.payload.itemCount.trim().length > 0 ? data.payload.itemCount.trim() : false;
 
   // Check if required request info given
-  if (emailAddress && cartName){
+  if (emailAddress){
     // Error if nothing is sent to update
     if(itemId && itemCount){
       // Get the token from the headers
