@@ -61,6 +61,14 @@ helpers.createRandomString = function(strLength){
   }
 };
 
+helpers.datastore = function(data, callback){
+  let convertToFilename = (typeof(data) !== 'undefined') ? data.replace('@','_').replace('.','_') : false;
+  if (convertToFilename) {
+    return convertToFilename.replace(/^"(.+)"$/,'$1');
+  } else {
+    return false;
+  }
+};
 
 // Export the module
 module.exports = helpers;

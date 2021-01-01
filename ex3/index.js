@@ -12,6 +12,9 @@ var config = require('./lib/config');
 var fs = require('fs');
 var handlers = require('./lib/handlers');
 var helpers = require('./lib/helpers');
+var cart = require('./lib/cart');
+var tokens = require('./lib/cart');
+
 
  // Instantiate the HTTP server
 var httpServer = http.createServer(function(req,res){
@@ -103,7 +106,7 @@ var unifiedServer = function(req,res){
 var router = {
   'ping' : handlers.ping,
   'users' : handlers.users,
-  'tokens' : handlers.tokens,
   'menu' : handlers.menu,
-  'cart' : handlers.cart
+  'tokens' : tokens.token_holder,
+  'cart' : cart.shopping_cart
 };
