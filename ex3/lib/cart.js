@@ -88,7 +88,7 @@ cart._cart.put = function(data,callback){
         token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
             if (tokenIsValid){
               var cartName = helper.hash128(emailAddress);
-
+                var updateCart = {};
                 // Lookup the user
                 _data.read('carts',cartName, function(err,userData){
                   if(!err && userData){
@@ -100,11 +100,13 @@ cart._cart.put = function(data,callback){
                         console.log(userData.items[i].itemid);
                       }
                     }
+                    updateCart = userData;
                   }
+
                 });
 
                 // Store the new updates
-                _data.update('carts',cartName,userData,function(err){
+                _data.update('carts',cartName,updateCart,function(err){
                   if(!err){
                     callback(200);
                   } else {
