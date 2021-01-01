@@ -102,7 +102,6 @@ cart._cart.put = function(data,callback){
                     }
                   }
                 });
-                console.log(userData);
 
                 // Store the new updates
                 _data.update('carts',cartName,userData,function(err){
