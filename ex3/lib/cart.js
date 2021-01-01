@@ -92,14 +92,15 @@ cart._cart.put = function(data,callback){
               // Lookup the user
               _data.read('carts',cartName, function(err,userData){
                 if(!err && userData){
-                  for (var i = 0; i < userData.items.length; i++) {
-                    console.log(userData.items[i]);
+                  for (var i = 0; i < userData.items.length; i++) {                  
                     // Update the fields if necessary
-                    if(itemId == userData.items[i]){
+                    if(itemId == userData.items[i].itemid){
                       userData.items[i].count = itemCount;
+                    } else {
+                      console.log(userData.items[i].itemid);
                     }
                   }
-                  console.log(userData);  
+                  console.log(userData);
                   // Store the new updates
                   _data.update('carts',cartName,userData,function(err){
                     if(!err){
