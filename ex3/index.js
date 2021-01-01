@@ -13,7 +13,7 @@ var fs = require('fs');
 var handlers = require('./lib/handlers');
 var helpers = require('./lib/helpers');
 var cart = require('./lib/cart');
-var tokens = require('./lib/cart');
+var tokens = require('./lib/token');
 
 
  // Instantiate the HTTP server

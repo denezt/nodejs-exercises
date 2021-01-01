@@ -6,7 +6,7 @@
 // Dependencies
 var _data = require('./data');
 var helpers = require('./helpers');
-var token_holder = require('./tokens');
+var token_holder = require('./token');
 
 
 // Define all the handlers

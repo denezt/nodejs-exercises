@@ -3,7 +3,7 @@
 var _data = require('./data');
 var _tokens = require('./token');
 var helpers = require('./helpers');
-var token_holder = require('./tokens');
+var token_holder = require('./token');
 
 var shopping_cart = {};
 
