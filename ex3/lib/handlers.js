@@ -5,8 +5,8 @@
 
 // Dependencies
 var _data = require('./data');
+var token_holder = require('./token');
 var helper = require('./helper');
-var token = require('./token');
 
 
 // Define all the handlers
@@ -102,7 +102,7 @@ handlers._users.get = function(data, callback){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
-      token._token.verifyToken(token, emailAddress, function(tokenIsValid){
+      token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           // Lookup the user
           _data.read('users',datastoreFilename,function(err,data){
@@ -141,7 +141,7 @@ handlers._users.put = function(data,callback){
       // Get the token from the headers
       var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
         // Verify that the given token is valid for the email
-        token._token.verifyToken(token, emailAddress, function(tokenIsValid){
+        token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
             if (tokenIsValid){
               // Lookup the user
               _data.read('users',datastoreFilename, function(err,userData){
@@ -192,7 +192,7 @@ handlers._users.delete = function(data,callback){
     // Get the token from the headers
     var token = (typeof(data.headers.token) == 'string') ? data.headers.token : false;
     // Verify that the given token is valid for the phone number
-    token._token.verifyToken(token,emailAddress,function(tokenIsValid){
+    token_holder._token.verifyToken(token,emailAddress,function(tokenIsValid){
       if (tokenIsValid) {
         _data.read('users',datastoreFilename,function(err,data){
           if(!err && data){
@@ -248,7 +248,7 @@ handlers._menu.get = function(data, callback){
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
-      token._token.verifyToken(token, emailAddress, function(tokenIsValid){
+      token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           // Static Resturant Menu
           _data.read('menu','menu_items',function(err,data){
