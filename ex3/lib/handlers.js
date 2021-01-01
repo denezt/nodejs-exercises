@@ -5,7 +5,7 @@
 
 // Dependencies
 var _data = require('./data');
-var helpers = require('./helpers');
+var helper = require('./helper');
 var token_holder = require('./token');
 
 
@@ -48,13 +48,13 @@ handlers._users.post = function(data,callback){
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
   var tosAgreement = (typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true) ? true : false;
 
-  var datastoreFilename = helpers.datastore(data.payload.emailAddress);
+  var datastoreFilename = helper.datastore(data.payload.emailAddress);
   if(firstName && lastName && emailAddress && streetAddress && password && tosAgreement){
     // Make sure the user doesnt already exist
     _data.read('users',datastoreFilename,function(err,data){
       if(err){
         // Hash the password
-        var hashedPassword = helpers.hash(password);
+        var hashedPassword = helper.hash(password);
 
         // Create the user object
         if(hashedPassword){
@@ -95,7 +95,7 @@ handlers._users.post = function(data,callback){
 handlers._users.get = function(data, callback){
   console.log(data)
   var emailAddress = data.queryStringObject.emailAddress;
-  var datastoreFilename = typeof(helpers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 1 ? helpers.datastore(emailAddress) : false;
+  var datastoreFilename = typeof(helper.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 1 ? helper.datastore(emailAddress) : false;
 
   console.log(datastoreFilename);
   if(datastoreFilename){
@@ -127,7 +127,7 @@ handlers._users.get = function(data, callback){
 // Optional data: firstName, lastName, password (at least one must be specified)
 handlers._users.put = function(data,callback){
   var emailAddress = data.payload.emailAddress;
-  var datastoreFilename = typeof(helpers.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? helpers.datastore(emailAddress) : false;
+  var datastoreFilename = typeof(helper.datastore(emailAddress)) == 'string' && emailAddress.trim().length > 0 ? helper.datastore(emailAddress) : false;
 
   // Check for optional fields
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
@@ -154,7 +154,7 @@ handlers._users.put = function(data,callback){
                     userData.lastName = lastName;
                   }
                   if(password){
-                    userData.hashedPassword = helpers.hash(password);
+                    userData.hashedPassword = helper.hash(password);
                   }
                   // Store the new updates
                   _data.update('users',datastoreFilename,userData,function(err){
@@ -185,7 +185,7 @@ handlers._users.put = function(data,callback){
 handlers._users.delete = function(data,callback){
   // Check that phone number is valid
   var emailAddress = data.queryStringObject.emailAddress;
-  var datastoreFilename = (typeof(helpers.datastore(emailAddress)) == 'string') && emailAddress.trim().length > 0 ? helpers.datastore(emailAddress) : false;
+  var datastoreFilename = (typeof(helper.datastore(emailAddress)) == 'string') && emailAddress.trim().length > 0 ? helper.datastore(emailAddress) : false;
 
   if(datastoreFilename){
     // Lookup the user

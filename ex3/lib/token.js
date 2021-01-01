@@ -1,6 +1,6 @@
 
 var _data = require('./data');
-var helpers = require('./helpers');
+var helper = require('./helper');
 
 var token_holder = {};
 
@@ -21,18 +21,18 @@ token_holder.tokens = function(data, callback){
 token_holder._tokens.post = function(data, callback){
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress.trim() : false;
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
-  var datastoreFilename = typeof(helpers.datastore(data.payload.emailAddress)) === 'string' && data.payload.emailAddress.trim().length > 0 ? helpers.datastore(data.payload.emailAddress) : false;
+  var datastoreFilename = typeof(helper.datastore(data.payload.emailAddress)) === 'string' && data.payload.emailAddress.trim().length > 0 ? helper.datastore(data.payload.emailAddress) : false;
   if (emailAddress && password){
     // Search for user via the emailAddress
     _data.read('users',datastoreFilename, function(err, userData){
       if(!err && userData){
         // Here we will hash the sent password and compare it to the
         // stored password from the user object.
-        var hashedPassword = helpers.hash(password);
+        var hashedPassword = helper.hash(password);
         if (hashedPassword == userData.hashedPassword){
             // When the password is valid, then we will create a token with random name.
             // Set an expiration data for one hour in the future.
-            var tokenId = helpers.createRandomString(20);
+            var tokenId = helper.createRandomString(20);
             var expires = Date.now() + 1000 * 60 * 60;
             var tokenObject = {
                 'emailAddress' : emailAddress,
@@ -122,7 +122,7 @@ token_holder._tokens.put = function(data, callback){
 // Optional data: none
 token_holder._tokens.delete = function(data, callback){
   // Check that the id is invalid
-  var id = typeof(helpers.datastore(data.queryStringObject.id)) === 'string' && data.queryStringObject.id.trim().length == 19 ? data.queryStringObject.id : false;
+  var id = typeof(helper.datastore(data.queryStringObject.id)) === 'string' && data.queryStringObject.id.trim().length == 19 ? data.queryStringObject.id : false;
 
   if(id){
     // Lookup the user
