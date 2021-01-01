@@ -11,7 +11,7 @@ var StringDecoder = require('string_decoder').StringDecoder;
 var config = require('./lib/config');
 var fs = require('fs');
 var handler = require('./lib/handlers');
-var helper = require('./lib/helpers');
+var helper = require('./lib/helper');
 var cart = require('./lib/cart');
 var token = require('./lib/token');
 

@@ -1,5 +1,5 @@
 /*
- * Helpers for various tasks
+ * helper for various tasks
  *
  */
 
@@ -7,11 +7,11 @@
 var config = require('./config');
 var crypto = require('crypto');
 
-// Container for all the helpers
-var helpers = {};
+// Container for all the helper
+var helper = {};
 
 // Parse a JSON string to an object in all cases, without throwing
-helpers.parseJsonToObject = function(str){
+helper.parseJsonToObject = function(str){
   try{
     var obj = JSON.parse(str);
     return obj;
@@ -21,7 +21,7 @@ helpers.parseJsonToObject = function(str){
 };
 
 // Create a SHA256 hash
-helpers.hash = function(str){
+helper.hash = function(str){
   if(typeof(str) == 'string' && str.length > 0){
     var hash = crypto.createHmac('sha256', config.hashingSecret).update(str).digest('hex');
     return hash;
@@ -31,7 +31,7 @@ helpers.hash = function(str){
 };
 
 // Create a SHA128 hash
-helpers.hash128 = function(str){
+helper.hash128 = function(str){
   if(typeof(str) == 'string' && str.length > 0){
     var hash = crypto.createHmac('md5', config.hashingSecret).update(str).digest('hex');
     return hash;
@@ -41,7 +41,7 @@ helpers.hash128 = function(str){
 };
 
 // Create a string of random alphanumeric characters, of a given length parameter.
-helpers.createRandomString = function(strLength){
+helper.createRandomString = function(strLength){
   strLength = typeof(strLength) == 'number' && strLength > 0 ? strLength : false;
 
   if (strLength){
@@ -61,7 +61,7 @@ helpers.createRandomString = function(strLength){
   }
 };
 
-helpers.datastore = function(data, callback){
+helper.datastore = function(data, callback){
   let convertToFilename = (typeof(data) !== 'undefined') ? data.replace('@','_').replace('.','_') : false;
   if (convertToFilename) {
     return convertToFilename.replace(/^"(.+)"$/,'$1');
@@ -71,4 +71,4 @@ helpers.datastore = function(data, callback){
 };
 
 // Export the module
-module.exports = helpers;
+module.exports = helper;
