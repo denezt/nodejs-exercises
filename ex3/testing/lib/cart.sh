@@ -40,13 +40,13 @@ update_cart(){
   itemId="${3}"
   itemCount="${4}"
 
-  curl -v -D- --location --request PUT "${target_server}:${target_port}/cart" \
+  $curl_call PUT "${target_server}:${target_port}/cart" \
 	--header 'Content-Type: text/json' \
 	--header "token: ${token}" \
 	--data-raw "{
 				\"emailAddress\": \"${emailAddress}\",
 				\"itemId\" : \"${itemId}\",
-				\"itemCount\" : "${itemCount}"
+				\"itemCount\" : \"${itemCount}\"
 			}"
 }
 
