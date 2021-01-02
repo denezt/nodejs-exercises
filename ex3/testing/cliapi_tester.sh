@@ -35,6 +35,7 @@ do
 		--item=*|item:*) _item=$(echo "$args" | cut -d'=' -f2 | cut -d':' -f2);;
 		--count=*|count:*) _count=$(echo "$args" | cut -d'=' -f2 | cut -d':' -f2);;
 		-h|-help|--help) help_menu;;
+		*) error "The parameter ${args} is an invalid parameter (cowardly exiting execution)";;
 	esac
 done
 
