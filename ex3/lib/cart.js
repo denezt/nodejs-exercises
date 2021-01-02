@@ -73,7 +73,7 @@ cart._cart.put = function(data,callback){
   // Item Id for update
   var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
   // Item Count for update
-  console.log(data.payload.itemCount,typeof(data.payload.itemCount));
+  console.log(Number(data.payload.itemCount),typeof(data.payload.itemCount));
   var itemCount = typeof(Number(data.payload.itemCount)) == 'number' && Number(data.payload.itemCount) >= 0 ? Number(data.payload.itemCount) : false;
 
   // var itemCount = typeof(Number('1')) == 'number' ? Number('1') : false;
