@@ -72,7 +72,7 @@ cart._cart.put = function(data,callback){
 
   // Item Id for update
   var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
-  // Item Count for update  
+  // Item Count for update
   var itemCount = typeof(Number(data.payload.itemCount)) == 'number' && Number(data.payload.itemCount) >= 0 ? Number(data.payload.itemCount) : false;
 
   // Check if required request info given
@@ -92,7 +92,7 @@ cart._cart.put = function(data,callback){
                       // Store the cart items
                       _data.update('carts',cartName,data,function(err){
                         if(!err){
-                          callback(200);
+                          callback(200,{'status':'ok'});
                         } else {
                           console.log(err);
                           callback(500,{'Error' : 'Could not create the new cart'});
