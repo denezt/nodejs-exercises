@@ -67,14 +67,14 @@ cart._cart.post = function(data,callback){
 // Optional data: firstName, lastName, password (at least one must be specified)
 cart._cart.put = function(data,callback){
 
-  console.log(typeof(data.payload.emailAddress));
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
 
 
   // Item Id for update
   var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
   // Item Count for update
-  var itemCount = typeof(Number(data.payload.itemCount)) == 'number' ? Number(data.payload.itemCount) : false;
+  console.log(Number(data.payload.itemCount),typeof(Number(data.payload.itemCount)));
+  var itemCount = typeof(Number(data.payload.itemCount)) == 'number' && Number(data.payload.itemCount) >= 0 ? Number(data.payload.itemCount) : false;
 
   // var itemCount = typeof(Number('1')) == 'number' ? Number('1') : false;
 

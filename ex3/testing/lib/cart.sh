@@ -3,7 +3,7 @@ create_cart(){
 	token="${2}"
   menu_items "${_emailAddress}" "${_token}"
   $curl_call POST "${target_server}:${target_port}/cart" \
-  --header 'Content-Type: text/json' \
+  --header "Content-Type: text/json" \
   --header "token: ${token}" \
   --data-raw "{
     \"emailAddress\": \"${emailAddress}\",
@@ -41,12 +41,12 @@ update_cart(){
   itemCount="${4}"
 
   $curl_call PUT "${target_server}:${target_port}/cart" \
-	--header 'Content-Type: text/json' \
+	--header "Content-Type: text/json" \
 	--header "token: ${token}" \
 	--data-raw "{
-				\'emailAddress\': \'${emailAddress}\',
-				\'itemId\' : \'${itemId}\',
-				\'itemCount\' : \'${itemCount}\'
+				\"emailAddress\": \"${emailAddress}\",
+				\"itemId\" : \"${itemId}\",
+				\"itemCount\" : \"${itemCount}\"
 			}"
 }
 
@@ -55,7 +55,7 @@ view_cart(){
   emailAddress="${1}"
 	token="${2}"
   $curl_call GET "${target_server}:${target_port}/cart" \
-	--header 'Content-Type: text/json' \
+	--header "Content-Type: text/json" \
 	--header "token: ${token}" \
 	--data-raw "{
 			\"emailAddress\": \"${emailAddress}\"
