@@ -44,9 +44,9 @@ update_cart(){
 	--header 'Content-Type: text/json' \
 	--header "token: ${token}" \
 	--data-raw "{
-				\"emailAddress\": \"${emailAddress}\",
-				\"itemId\" : \"${itemId}\",
-				\"itemCount\" : \"${itemCount}\"
+				\'emailAddress\': \'${emailAddress}\',
+				\'itemId\' : \'${itemId}\',
+				\'itemCount\' : \'${itemCount}\'
 			}"
 }
 
