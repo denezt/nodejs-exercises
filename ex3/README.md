@@ -21,6 +21,8 @@ CLI API Tester
 Action            [ --action={COMMAND}, action:{COMMAND} ]
 Token             [ --token={TOKEN}, token:{TOKEN} ]
 Email             [ --email={EMAIL_ADDRESS}, email:{EMAIL_ADDRESS} ]
+Item ID           [ --item={ITEM_ID}, item:{ITEM_ID} ]
+Item Count        [ --count={ITEM_COUNT}, count:{ITEM_COUNT} ]
 
 USER COMMANDS:
 Post Data         [ load, insert, post ]
