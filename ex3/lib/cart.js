@@ -67,6 +67,7 @@ cart._cart.post = function(data,callback){
 // Optional data: firstName, lastName, password (at least one must be specified)
 cart._cart.put = function(data,callback){
 
+  console.log(typeof(data.payload.emailAddress));
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
 
 
