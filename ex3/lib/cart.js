@@ -74,7 +74,7 @@ cart._cart.put = function(data,callback){
   var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
   // Item Count for update
   console.log(Number(data.payload.itemCount.trim()),typeof(Number(data.payload.itemCount.trim())));
-  var itemCount = typeof(Number(data.payload.itemCount.trim())) == 'number' && Number(data.payload.itemCount.trim()) >= 0 ? Number(data.payload.itemCount.trim()) : false;
+  var itemCount = typeof(Number("'" + data.payload.itemCount.trim() + "'")) == 'number' && Number("'" + data.payload.itemCount.trim() + "'") >= 0 ? Number("'" + data.payload.itemCount.trim() + "'") : false;
 
   // var itemCount = typeof(Number('1')) == 'number' ? Number('1') : false;
 
