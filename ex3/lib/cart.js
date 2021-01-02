@@ -73,19 +73,16 @@ cart._cart.put = function(data,callback){
   // Item Id for update
   var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
   // Item Count for update
-  console.log(Number(data.payload.itemCount),typeof(Number(data.payload.itemCount)));
-  var itemCount = typeof(Number(data.payload.itemCount)) == 'number' && Number(data.payload.itemCount) >= 0 ? Number(data.payload.itemCount) : false;
+  console.log(Number(data.payload.itemCount.trim()),typeof(Number(data.payload.itemCount.trim())));
+  var itemCount = typeof(Number(data.payload.itemCount.trim())) == 'number' && Number(data.payload.itemCount.trim()) >= 0 ? Number(data.payload.itemCount.trim()) : false;
 
   // var itemCount = typeof(Number('1')) == 'number' ? Number('1') : false;
-
-
-  console.log(emailAddress);
 
   // Check if required request info given
   if (emailAddress){
     var cartName = helper.hash128(emailAddress);
     // Error if nothing is sent to update
-    if(itemId && itemCount){
+    if(itemId){
       // Get the token from the headers
       var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
         // Verify that the given token is valid for the email
