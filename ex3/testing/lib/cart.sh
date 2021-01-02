@@ -46,7 +46,7 @@ update_cart(){
 	--data-raw "{
 				\"emailAddress\": \"${emailAddress}\",
 				\"itemId\" : \"${itemId}\",
-				\"itemCount\" : \"${itemCount}\"
+				\"itemCount\" : "${itemCount}"
 			}"
 }
 
