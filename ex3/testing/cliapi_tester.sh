@@ -2,6 +2,10 @@
 #
 #
 
+
+target_server="139.59.147.182"
+target_port="3000"
+
 source ./lib/error.sh
 source ./lib/user.sh
 source ./lib/token.sh
@@ -27,7 +31,9 @@ do
 		--action=*|action:*) _action=$(echo "$args" | cut -d'=' -f2 | cut -d':' -f2);;
 		--email=*|email:*) _emailAddress=$(echo "$args" | cut -d'=' -f2 | cut -d':' -f2);;
 		--token=*|token:*) _token=$(echo "$args" | cut -d'=' -f2 | cut -d':' -f2);;
-		--data=*|data:*) _data=$(echo "$args" | cut -d'=' -f2 | cut -d':' -f2);;
+		--password=*|password:*) _password=$(echo "$args" | cut -d'=' -f2 | cut -d':' -f2);;
+		--item=*|item:*) _item=$(echo "$args" | cut -d'=' -f2 | cut -d':' -f2);;
+		--count=*|count:*) _count=$(echo "$args" | cut -d'=' -f2 | cut -d':' -f2);;
 		-h|-help|--help) help_menu;;
 	esac
 done
@@ -35,14 +41,15 @@ done
 case $_action in
 	load|insert|post) post_data;;
 	get|fetch) get_data "${_emailAddress}" "${_token}";;
-	put|modify) put_data "${_emailAddress}" "${_token}" "${_data}";;
+	put|modify) put_data "${_emailAddress}" "${_token}" "${_password}";;
 	delete|remove) delete_data  "${_emailAddress}" "${_token}";;
-	create-token|cT) create_token "${_emailAddress}" "${_data}";;
+	create-token|cT) create_token "${_emailAddress}" "${_password}";;
 	get-token|gT) get_token "${_token}";;
 	update-token|uT) update_token "${_token}";;
 	delete-token|dT) delete_token "${_token}";;
 	view-menu|vM) menu_items "${_emailAddress}" "${_token}";;
 	create-cart|cC) create_cart "${_emailAddress}" "${_token}";;
+	update-cart|uC) update_cart "${_emailAddress}" "${_token}" "${_item}" "${_count}";;
 	view-cart|vC) view_cart "${_emailAddress}" "${_token}";;
 	*) error "Missing or invalid 'action' parameter was given";;
 esac

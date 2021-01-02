@@ -110,10 +110,10 @@ cart._cart.put = function(data,callback){
         }
       });
     } else {
-      callback(400,{'Error' : 'Missing required field or parameters are incorrect.'});
+      callback(400,{'Error' : 'Missing required field or parameters are incorrect (itemid or count).'});
     }
   } else {
-    callback(400,{'Error' : 'Missing required field or parameters are incorrect.'});
+    callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
   }
 };
 
