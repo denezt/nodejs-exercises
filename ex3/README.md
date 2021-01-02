@@ -8,7 +8,7 @@
 | 1  | User Administration  | Create, edit, remove user.  | Implemented |
 | 2  | Token Administration | Create, edit, delete token. | Implemented |
 | 3  | Menu Viewer          | View the current menu.      | Implemented |
-| 4  | Shopping Cart        | Add, Remove, View           | To Do       |
+| 4  | Shopping Cart        | Add, Remove, View           | Implemented |
 | 5  | Create Order         | Add, Remove, Submit         | To Do       |
 
 
