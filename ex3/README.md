@@ -18,7 +18,7 @@
 
 <pre>
 CLI API Tester
-Action			[ --action={COMMAND}, action:{COMMAND} ]
+Action		[ --action={COMMAND}, action:{COMMAND} ]
 Token			[ --token={TOKEN}, token:{TOKEN} ]
 Email			[ --email={EMAIL_ADDRESS}, email:{EMAIL_ADDRESS} ]
 
@@ -29,10 +29,10 @@ Put Data		[ put, modify ]
 Delete Data		[ delete, remove ]
 
 TOKEN ACTIONS:
-Create Token Data	[ create-token ]
-Get Token		[ get-token ]
-Update Token		[ update-token ]
-Delete Token		[ delete-token ]
+Create Token Data [ create-token ]
+Get Token         [ get-token ]
+Update Token      [ update-token ]
+Delete Token      [ delete-token ]
 
 MENU ACTIONS:
 View Menu Items		[ view-menu ]
