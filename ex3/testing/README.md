@@ -2,17 +2,19 @@
 
 <h4>Creating the token using CLIAPI</h4>
 <pre>
-./cliapi_tester.sh --action=cT --email=myemail@email.com --data=PASSWORD
+$ ./cliapi_tester.sh --action=cT --email=myemail@email.com --data=PASSWORD
 </pre>
+
 <h4>Creating the token using cURL</h4>
-<pre>
+
+``` sh
 curl -v -D- --location --request POST "localhost:3000/token" \
     --header 'Content-Type: text/plain' \
     --data-raw "{
             \"emailAddress\" : \"myemail@email.com\",
             \"password\" : \"PASSWORD\"
     }"
-</pre>
+```
 
 <h4>Create Cart using CLIAPI</h4>
 <pre>
