@@ -31,10 +31,16 @@ Put Data          [ put, modify ]
 Delete Data       [ delete, remove ]
 
 TOKEN ACTIONS:
-Create Token Data [ create-token ]
-Get Token         [ get-token ]
-Update Token      [ update-token ]
-Delete Token      [ delete-token ]
+Create Token Data [ create-token, cT ]
+Get Token         [ get-token, gT ]
+Update Token      [ update-token, uT ]
+Delete Token      [ delete-token, dT ]
+
+CART ACTIONS:
+Create Cart       [ create-cart, cC ]
+Update Cart       [ update-cart, uC ]
+View Cart         [ view-cart, vC ]
+Delete Cart       [ delete-cart, dC ]
 
 MENU ACTIONS:
 View Menu Items   [ view-menu ]
