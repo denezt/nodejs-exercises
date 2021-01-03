@@ -39,7 +39,9 @@ order._order.post = function(data,callback){
           var itemObject = {};
           var menuItems = [];
           _data.read('menu','menu_items',function(err,menuData){
-            menuItems = menuData.items;
+            if(err){
+              menuItems = menuData.items;
+            }
           });
 
           _data.read('carts',orderName,function(err,cartData){
