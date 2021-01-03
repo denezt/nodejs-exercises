@@ -46,7 +46,7 @@ order._order.post = function(data,callback){
           });
 
           _data.read('carts',orderName,function(err,cartData){
-            if(err){
+            if(!err){
                 for (var i = 0; i < cartData.length; i++) {
                   if (cartData.items[i].count > 0 ){
                     itemObject.items[i] = {
@@ -56,20 +56,24 @@ order._order.post = function(data,callback){
                   }
                   console.log(itemObject);
                 }
-              // Store the order items
-              _data.create('orders',orderName,itemObject,function(err){
-                if(!err){
-                  callback(200,{'status':'created'});
-                } else {
-                  console.log(err);
-                  callback(500,{'Error' : 'Could not create the new order'});
-                }
-              });
+
             } else {
               // User already exists
               callback(400,{'Error' : 'Order already exists update instead'});
             }
         });
+
+        // Store the order items
+        _data.create('orders',orderName,itemObject,function(err){
+          if(!err){
+            callback(200,{'status':'created'});
+          } else {
+            console.log(err);
+            callback(500,{'Error' : 'Could not create the new order'});
+          }
+        });
+
+
       } else {
         callback(403,{'Error':'Missing required token in header, or token is invalid'});
       }
