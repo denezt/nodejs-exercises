@@ -20,7 +20,7 @@ curl -v -D- --location --request POST "localhost:3000/token" \
 <!-- Cart Features -->
 
 <h4>Create Cart using CLIAPI</h4>
-<em style='color:red;'>Need to run this before adding anything into the cart</em>
+<b>Need to run this before adding anything into the cart</b>
 <pre>
 $ ./cliapi_tester.sh --action=cC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
