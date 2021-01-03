@@ -22,13 +22,5 @@ handlers.notFound = function(data,callback){
   callback(404);
 };
 
-/* Moving Cart to user.js */
-
-/* Moving Tokens to token.js */
-
-/* Moving Menu to menu.js */
-
-/* Moving Cart to cart.js */
-
 // Export the handlers
 module.exports = handlers;
