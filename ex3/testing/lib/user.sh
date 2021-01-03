@@ -1,6 +1,5 @@
 post_data(){
 	ARRSZ=`jq .'customer|length' dataset.json`
-	echo "Array Size: ${ARRSZ}"
 	for (( i = 0; i < ${ARRSZ}; i++ ));
 	do
 		$curl_call POST "${target_server}:${target_port}/user" \

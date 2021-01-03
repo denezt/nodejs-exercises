@@ -10,7 +10,7 @@ create_token(){
                 \"password\" : \"${userPassword}\"
         }"
 	else
-		error "Missing a parameter required for token creation"
+		error "{'Error':'Missing a parameter required for token creation'}"
 	fi
 }
 
@@ -21,7 +21,7 @@ get_token(){
 		$curl_call GET \
 		"${target_server}:${target_port}/token?id=${token}"
 	else
-		error "Missing token"
+		error "{'Error':'Missing token'}"
 	fi
 }
 
@@ -36,7 +36,7 @@ update_token(){
 			\"extend\" : true
 		}"
 	else
-		error "Missing token or invalid parameter was given"
+		error "{'Error':'Missing token or invalid parameter was given'}"
 	fi
 }
 
@@ -46,6 +46,6 @@ delete_token(){
 	then
 		$curl_call DELETE "${target_server}:${target_port}/token?id=${token}"
 	else
-		error "Missing token or invalid parameter was given"
+		error "{'Error':'Missing token or invalid parameter was given'}"
 	fi
 }

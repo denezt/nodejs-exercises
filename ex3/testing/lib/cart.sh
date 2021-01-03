@@ -39,8 +39,6 @@ update_cart(){
   token="${2}"
   itemId="${3}"
   itemCount="${4}"
-  printf "itemCount: ${itemCount}\n"
-
   $curl_call PUT "${target_server}:${target_port}/cart" \
 	--header "Content-Type: text/json" \
 	--header "token: ${token}" \

@@ -22,7 +22,7 @@ done
 
 case $_debug in
 	on) export curl_call="curl -v -D- --location --request";;
-	*) export curl_call="curl --location --request";;
+	*) export curl_call="curl --silent --location --request";;
 esac
 
 for args in $@
