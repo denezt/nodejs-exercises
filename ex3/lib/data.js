@@ -64,7 +64,6 @@ lib.initiate = function(dir,file,callback){
       callback('Could not create new file, it may already exist');
     }
   });
-
 };
 
 // Write data to a file

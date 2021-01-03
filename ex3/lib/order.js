@@ -29,17 +29,28 @@ order.order = function(data, callback){
 order._order.post = function(data,callback){
   console.log(data.payload);
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-  var itemObject = typeof(data.payload.shoppingCart) == 'object' ? data.payload.shoppingCart : false;
 
-  if(emailAddress && itemObject){
+  if(emailAddress){
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
       token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
         if (tokenIsValid){
           var orderName = helper.hash128(emailAddress);
-          // Get the token from the headers
-          _data.read('orders',orderName,function(err,data){
+          var itemObject = {};
+          var menuItems = [];
+          _data.read('menu','menu_items',function(err,menuData){
+            menuItems = menuData.items;
+          });
+
+          _data.read('carts',orderName,function(err,cartData){
             if(err){
+                for (var i = 0; i < cartData.length; i++) {
+                  if (cartData.items[i].count > 0 ){
+                    itemObject.items[i].item =  menuItems[cartData.itemid];
+                    itemObject.items[i].count = cartData.count;
+                  }
+                }
+
                 // Store the order items
                 _data.create('orders',orderName,itemObject,function(err){
                   if(!err){
@@ -51,7 +62,7 @@ order._order.post = function(data,callback){
                 });
             } else {
               // User already exists
-              callback(400,{'Error' : 'Cart already exists update instead'});
+              callback(400,{'Error' : 'Order already exists update instead'});
             }
         });
       } else {
@@ -60,56 +71,6 @@ order._order.post = function(data,callback){
     });
   } else {
     callback(400,{'Error' : 'Missing required fields'});
-  }
-};
-
-
-// Cart - put
-// Required data: emailAddress, itemId, itemCount
-// Optional data: none
-order._order.put = function(data,callback){
-  var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-  // Item Id for update
-  var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
-  // Item Count for update
-  var itemCount = typeof(Number(data.payload.itemCount)) == 'number' && Number(data.payload.itemCount) >= 0 ? Number(data.payload.itemCount) : -1;
-
-  // Check if required request info given
-  if (emailAddress){
-    // Error if nothing is sent to update
-    if(itemId && itemCount >= 0){
-      // Get the token from the headers
-      var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
-        // Verify that the given token is valid for the email
-        token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
-            if (tokenIsValid){
-              var orderName = helper.hash128(emailAddress);
-                _data.read('orders',orderName,function(err,data){
-                  if(!err){
-                      data.items[itemId-1].count = itemCount;
-                      // Store the order items
-                      _data.update('orders',orderName,data,function(err){
-                        if(!err){
-                          callback(200,{'status':'updated'});
-                        } else {
-                          console.log(err);
-                          callback(500,{'Error' : 'Could not create the new order'});
-                        }
-                      });
-                  } else {
-                    // User already exists
-                    callback(400,{'Error' : 'No order was found'});
-                  }
-              });
-        } else {
-          callback(403,{'Error':'Missing required token in header, or token is invalid'});
-        }
-      });
-    } else {
-      callback(400,{'Error' : 'Missing required field or parameters are incorrect (itemid or count).'});
-    }
-  } else {
-    callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
   }
 };
 
