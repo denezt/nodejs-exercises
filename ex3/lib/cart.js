@@ -163,5 +163,36 @@ cart._cart.get = function(data,callback){
   }
 };
 
+// Cart - delete
+// Required data: emailAddress
+// Optional data: none
+cart._cart.delete = function(data, callback){
+  // Check that the id is invalid
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
+
+  if(emailAddress){
+    var cartName = helper.hash128(emailAddress);
+    // Lookup the user
+    _data.read('carts',cartName,function(err,data){
+      if(!err && data){
+        _data.delete('carts',cartName,function(err){
+          if(!err){
+            callback(200);
+          } else {
+            callback(500,{'Error' : 'Could not delete the specified cart'});
+          }
+        });
+      } else {
+        callback(400,{'Error' : 'Could not find the specified cart.'});
+      }
+    });
+  } else {
+    callback(400,{'Error' : 'Missing required field'});
+  }
+};
+
+
+
+
 // Export the module
 module.exports = cart;
