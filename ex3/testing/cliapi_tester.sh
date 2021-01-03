@@ -1,7 +1,5 @@
 #!/bin/bash
 #
-#
-
 
 target_server="139.59.147.182"
 target_port="3000"
@@ -52,6 +50,7 @@ case $_action in
 	create-cart|cC) create_cart "${_emailAddress}" "${_token}";;
 	update-cart|uC) update_cart "${_emailAddress}" "${_token}" "${_item}" "${_count}";;
 	view-cart|vC) view_cart "${_emailAddress}" "${_token}";;
+	delete-cart|dC) delete_cart "${_emailAddress}" "${_token}";;
 	*) error "Missing or invalid 'action' parameter was given";;
 esac
 

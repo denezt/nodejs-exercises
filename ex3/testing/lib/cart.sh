@@ -51,11 +51,21 @@ update_cart(){
 			}"
 }
 
-
 view_cart(){
   emailAddress="${1}"
 	token="${2}"
   $curl_call GET "${target_server}:${target_port}/cart" \
+	--header "Content-Type: text/json" \
+	--header "token: ${token}" \
+	--data-raw "{
+			\"emailAddress\": \"${emailAddress}\"
+	}"
+}
+
+delete_cart(){
+  emailAddress="${1}"
+	token="${2}"
+  $curl_call DELETE "${target_server}:${target_port}/cart" \
 	--header "Content-Type: text/json" \
 	--header "token: ${token}" \
 	--data-raw "{
