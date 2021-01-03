@@ -43,7 +43,7 @@ cart._cart.post = function(data,callback){
                 // Store the cart items
                 _data.create('carts',cartName,itemObject,function(err){
                   if(!err){
-                    callback(200);
+                    callback(200,{'status','created'});
                   } else {
                     console.log(err);
                     callback(500,{'Error' : 'Could not create the new cart'});

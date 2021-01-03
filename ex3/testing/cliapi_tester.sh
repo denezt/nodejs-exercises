@@ -1,7 +1,9 @@
 #!/bin/bash
 #
 
+# Address for the target server - application server
 target_server="139.59.147.182"
+# Port for the target server - application port
 target_port="3000"
 
 source ./lib/error.sh

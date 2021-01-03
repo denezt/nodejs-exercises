@@ -37,9 +37,9 @@ help_menu(){
 	printf "\033[35mAction\t\t\t\033[32m[ --action={COMMAND}, action:{COMMAND} ]\033[0m\n"
 	printf "\033[35mToken\t\t\t\033[32m[ --token={TOKEN}, token:{TOKEN} ]\033[0m\n"
 	printf "\033[35mEmail\t\t\t\033[32m[ --email={EMAIL_ADDRESS}, email:{EMAIL_ADDRESS} ]\033[0m\n"
-	printf "\033[35mPassword\t\t\t\033[32m[ --password={EXTRA_DATA}, email:{EXTRA_DATA} ]\033[0m\n"
-	printf "\033[35mItem ID\t\t\033[32m[ --password={EXTRA_DATA}, email:{EXTRA_DATA} ]\033[0m\n"
-	printf "\033[35mItem Count\t\t\t\033[32m[ --password={EXTRA_DATA}, email:{EXTRA_DATA} ]\033[0m\n"
+	printf "\033[35mPassword\t\t\033[32m[ --password={EXTRA_DATA}, email:{EXTRA_DATA} ]\033[0m\n"
+	printf "\033[35mItem ID\t\t\t\033[32m[ --item={ITEM_ID}, item:{ITEM_ID} ]\033[0m\n"
+	printf "\033[35mItem Count\t\t\033[32m[ --count={ITEM_COUNT}, count:{ITEM_COUNT} ]\033[0m\n"
 	printf "\n"
 	commands
 	printf "\n"
