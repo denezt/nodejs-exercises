@@ -90,7 +90,7 @@ cart._cart.put = function(data,callback){
                       // Store the cart items
                       _data.update('carts',cartName,data,function(err){
                         if(!err){
-                          callback(200);
+                          callback(200,{'status':'updated'});
                         } else {
                           console.log(err);
                           callback(500,{'Error' : 'Could not create the new cart'});
