@@ -48,7 +48,7 @@ order._order.post = function(data,callback){
           _data.read('carts',orderName,function(err,cartData){
             console.log(cartData);
             if(!err){
-                for (var i = 0; i < cartData.length; i++) {
+                for (var i = 0; i < cartData.items.length; i++) {
                   if (cartData.items[i].count > 0 ){
                     itemObject.items[i] = {
                         'name' : menuItems[cartData.itemid],
