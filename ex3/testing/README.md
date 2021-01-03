@@ -4,32 +4,26 @@
 
 <h3>Token Controller</h3>
 <h4>Creating the token using CLIAPI</h4>
-
 <pre>
 $ ./cliapi_tester.sh --action=cT --email=myemail@email.com --data=PASSWORD
 </pre>
-
 <h4>Creating the token using cURL</h4>
-
-<h4>
+<pre>
 curl -v -D- --location --request POST "localhost:3000/token" \
     --header 'Content-Type: text/plain' \
     --data-raw "{
             \"emailAddress\" : \"myemail@email.com\",
             \"password\" : \"PASSWORD\"
     }"
-</h4>
+</pre>
 
-<!-- Create Features -->
+<!-- Cart Features -->
 
 <h4>Create Cart using CLIAPI</h4>
-
 <pre>
 ./cliapi_tester.sh --action=cC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
-
 <h4>Create cart using cURL</h4>
-
 <pre>
   curl -v -D- --location --request POST "localhost:3000/cart" \
   --header "Content-Type: text/json" \
