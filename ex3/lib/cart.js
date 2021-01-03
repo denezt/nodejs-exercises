@@ -150,7 +150,7 @@ cart._cart.get = function(data,callback){
               }
               callback(200,data);
             } else {
-              callback(404,{'Error':'No cart was created'});
+              callback(204,{'Error':'No cart was created'});
             }
           });
         } else {
