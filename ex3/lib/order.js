@@ -50,10 +50,10 @@ order._order.post = function(data,callback){
             if(!err){
                 for (var i = 0; i < cartData.items.length; i++) {
                   if (cartData.items[i].count > 0 ){
-                    itemObject.items[i] = {
-                        'name' : menuItems[cartData.items[i].itemid],
+                    itemObject.items.push ({
+                        'name' : menuItems[cartData.items[i].itemid].name,
                         'count' : cartData.items[i].count
-                      }
+                      });
                   }
                   console.log(itemObject);
                 }
