@@ -23,7 +23,9 @@ cart.cart = function(data, callback){
   }
 };
 
-
+// Cart - post
+// Required data: emailAddress, itemObject
+// Optional data: none
 cart._cart.post = function(data,callback){
   console.log(data.payload);
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
@@ -62,14 +64,11 @@ cart._cart.post = function(data,callback){
 };
 
 
-
+// Cart - put
 // Required data: emailAddress, itemId, itemCount
-// Optional data: firstName, lastName, password (at least one must be specified)
+// Optional data: none
 cart._cart.put = function(data,callback){
-
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-
-
   // Item Id for update
   var itemId = typeof(data.payload.itemId) == 'string' && data.payload.itemId.trim().length > 0 ? data.payload.itemId.trim() : false;
   // Item Count for update
@@ -115,7 +114,7 @@ cart._cart.put = function(data,callback){
   }
 };
 
-
+// Cart - get
 // Required data: emailAddress
 // Optional data: None
 cart._cart.get = function(data,callback){
@@ -151,7 +150,7 @@ cart._cart.get = function(data,callback){
               }
               callback(200,data);
             } else {
-              callback(404);
+              callback(404,{'Error':'No cart was created'});
             }
           });
         } else {
