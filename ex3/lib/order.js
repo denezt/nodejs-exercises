@@ -40,7 +40,7 @@ order._order.post = function(data,callback){
           itemObject.items = [];
           var menuItems = [];
           _data.read('menu','menu_items',function(err,menuData){
-            if(err){
+            if(!err){
               menuItems = menuData.items;
             }
           });
