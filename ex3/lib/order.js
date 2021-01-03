@@ -51,8 +51,8 @@ order._order.post = function(data,callback){
                 for (var i = 0; i < cartData.items.length; i++) {
                   if (cartData.items[i].count > 0 ){
                     itemObject.items[i] = {
-                        'name' : menuItems[cartData.itemid],
-                        'count' : cartData.count
+                        'name' : menuItems[cartData.items[i].itemid],
+                        'count' : cartData.items[i].count
                       }
                   }
                   console.log(itemObject);
