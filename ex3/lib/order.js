@@ -54,19 +54,19 @@ order._order.post = function(data,callback){
                         'name' : menuItems[cartData.itemid],
                         'count' : cartData.count
                       });
-                    };
                   }
+
                 }
 
-                // Store the order items
-                _data.create('orders',orderName,itemObject,function(err){
-                  if(!err){
-                    callback(200,{'status':'created'});
-                  } else {
-                    console.log(err);
-                    callback(500,{'Error' : 'Could not create the new order'});
-                  }
-                });
+              // Store the order items
+              _data.create('orders',orderName,itemObject,function(err){
+                if(!err){
+                  callback(200,{'status':'created'});
+                } else {
+                  console.log(err);
+                  callback(500,{'Error' : 'Could not create the new order'});
+                }
+              });
             } else {
               // User already exists
               callback(400,{'Error' : 'Order already exists update instead'});
