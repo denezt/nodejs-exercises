@@ -1,9 +1,9 @@
-## Command Line Interface Application Programming Interface Tester
+# Command Line Interface Application Programming Interface Tester
 
 <!-- Token Features -->
 
-<h3>Token Controller</h3>
-<h4>Creating the token using CLIAPI</h4>
+<h2>Token Controller</h2>
+<h3>Creating the token using CLIAPI</h3>
 <pre>
 $ ./cliapi_tester.sh --action=cT --email=myemail@email.com --data=PASSWORD
 </pre>
@@ -19,8 +19,8 @@ curl -v -D- --location --request POST "localhost:3000/token" \
 
 <!-- Cart Features -->
 
-<h4>Create Cart using CLIAPI</h4>
-<b>Need to run this before adding anything into the cart</b>
+<h2>Create Cart using CLIAPI</h2>
+<h3>Need to run this before adding anything into the cart</h3>
 <pre>
 $ ./cliapi_tester.sh --action=cC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
@@ -59,7 +59,7 @@ $ ./cliapi_tester.sh --action=cC --email=myemail@email.com --token=9zy66v8ktl40f
 </pre>
 
 
-<h4>Add item in cart using CLIAPI</h4>
+<h2>Add item in cart using CLIAPI</h2>
 <pre>
 $ ./cliapi_tester.sh --action=uC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
@@ -75,7 +75,7 @@ curl -v -D- --location PUT "${target_server}:${target_port}/cart" \
     }"
 </pre>
 
-<h4>View Cart using CLIAPI</h4>
+<h2>View Cart using CLIAPI</h2>
 <pre>
 $ ./cliapi_tester.sh --action=vC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
@@ -90,12 +90,12 @@ $ ./cliapi_tester.sh --action=vC --email=myemail@email.com --token=9zy66v8ktl40f
     }"
 </pre>
 
-<h4>Remove all items from cart using CLIAPI</h4>
+<h2>Remove all items from cart using CLIAPI</h2>
 <pre>
 $ ./cliapi_tester.sh --action=dC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
 
-<h4>View cart using cURL</h4>
+<h2>View cart using cURL</h2>
 <pre>
   curl -v -D- --location --request DELETE "localhost:3000/cart" \
   --header "Content-Type: text/json" \
