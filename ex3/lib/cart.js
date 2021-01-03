@@ -75,7 +75,7 @@ cart._cart.put = function(data,callback){
   var itemCount = typeof(Number(data.payload.itemCount)) == 'number' && Number(data.payload.itemCount) >= 0 ? Number(data.payload.itemCount) : false;
 
   // Check if required request info given
-  if (emailAddress){  
+  if (emailAddress){
     // Error if nothing is sent to update
     if(itemId){
       // Get the token from the headers
@@ -90,7 +90,7 @@ cart._cart.put = function(data,callback){
                       // Store the cart items
                       _data.update('carts',cartName,data,function(err){
                         if(!err){
-                          callback(200,{'status':'updated'});
+                          callback(200);
                         } else {
                           console.log(err);
                           callback(500,{'Error' : 'Could not create the new cart'});
