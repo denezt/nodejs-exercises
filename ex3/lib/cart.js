@@ -117,7 +117,6 @@ cart._cart.put = function(data,callback){
 // Required data: emailAddress
 // Optional data: None
 cart._cart.get = function(data,callback){
-  console.log(data.payload);
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
   console.log(token);
 
