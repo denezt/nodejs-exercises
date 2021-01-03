@@ -37,6 +37,7 @@ order._order.post = function(data,callback){
         if (tokenIsValid){
           var orderName = helper.hash128(emailAddress);
           var itemObject = {};
+          itemObject.items = [];
           var menuItems = [];
           _data.read('menu','menu_items',function(err,menuData){
             if(err){
@@ -48,8 +49,12 @@ order._order.post = function(data,callback){
             if(!err){
                 for (var i = 0; i < cartData.length; i++) {
                   if (cartData.items[i].count > 0 ){
-                    itemObject.items[i].item =  menuItems[cartData.itemid];
-                    itemObject.items[i].count = cartData.count;
+                    itemObject.items.push(
+                      {
+                        'name' : menuItems[cartData.itemid],
+                        'count' : cartData.count
+                      });
+                    };
                   }
                 }
 
