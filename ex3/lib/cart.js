@@ -98,7 +98,7 @@ cart._cart.put = function(data,callback){
                       });
                   } else {
                     // User already exists
-                    callback(400,{'Error' : 'Cart already exists update instead'});
+                    callback(400,{'Error' : 'No cart was found'});
                   }
               });
         } else {
