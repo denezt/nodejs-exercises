@@ -46,6 +46,7 @@ order._order.post = function(data,callback){
           });
 
           _data.read('carts',orderName,function(err,cartData){
+            console.log(cartData);
             if(!err){
                 for (var i = 0; i < cartData.length; i++) {
                   if (cartData.items[i].count > 0 ){
