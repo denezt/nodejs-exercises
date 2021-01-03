@@ -89,12 +89,12 @@ $ ./cliapi_tester.sh --action=vC --email=myemail@email.com --token=9zy66v8ktl40f
     }"
 </pre>
 
-<h2>Remove all items from cart using CLIAPI</h2>
+<h3>Remove all items from cart using CLIAPI</h3>
 <pre>
 $ ./cliapi_tester.sh --action=dC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
 
-<h2>View cart using cURL</h2>
+<h3>View cart using cURL</h3>
 <pre>
   curl -v -D- --location --request DELETE "localhost:3000/cart" \
   --header "Content-Type: text/json" \
