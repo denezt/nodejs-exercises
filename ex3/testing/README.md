@@ -1,20 +1,25 @@
 ## Command Line Interface Application Programming Interface Tester
 
+<!-- Token Features -->
+<h3>Token Controller</h3>
 <h4>Creating the token using CLIAPI</h4>
+
 <pre>
 $ ./cliapi_tester.sh --action=cT --email=myemail@email.com --data=PASSWORD
 </pre>
 
 <h4>Creating the token using cURL</h4>
 
-``` sh
+<h4>
 curl -v -D- --location --request POST "localhost:3000/token" \
     --header 'Content-Type: text/plain' \
     --data-raw "{
             \"emailAddress\" : \"myemail@email.com\",
             \"password\" : \"PASSWORD\"
     }"
-```
+</h4>
+
+<!-- Create Features -->
 
 <h4>Create Cart using CLIAPI</h4>
 <pre>
