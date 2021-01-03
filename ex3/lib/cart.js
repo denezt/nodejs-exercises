@@ -91,7 +91,7 @@ cart._cart.put = function(data,callback){
                       // Store the cart items
                       _data.update('carts',cartName,data,function(err){
                         if(!err){
-                          callback(200,{'status':'ok'});
+                          callback(200,{'status':'updated'});
                         } else {
                           console.log(err);
                           callback(500,{'Error' : 'Could not create the new cart'});
@@ -176,7 +176,7 @@ cart._cart.delete = function(data, callback){
       if(!err && data){
         _data.delete('carts',cartName,function(err){
           if(!err){
-            callback(200);
+            callback(200,{'status':'deleted'});
           } else {
             callback(500,{'Error' : 'Could not delete the specified cart'});
           }
