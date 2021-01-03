@@ -21,7 +21,7 @@ curl -v -D- --location --request POST "localhost:3000/token" \
 
 <h4>Create Cart using CLIAPI</h4>
 <pre>
-./cliapi_tester.sh --action=cC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
+$ ./cliapi_tester.sh --action=cC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
 <h4>Create cart using cURL</h4>
 <pre>
@@ -57,14 +57,46 @@ curl -v -D- --location --request POST "localhost:3000/token" \
     }"
 </pre>
 
+
+<h4>Add item in cart using CLIAPI</h4>
+<pre>
+$ ./cliapi_tester.sh --action=uC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
+</pre>
+<h4>Add item in cart using cURL</h4>
+<pre>
+curl -v -D- --location PUT "${target_server}:${target_port}/cart" \
+--header "Content-Type: text/json" \
+--header "token: 9zy66v8ktl40fe7qv5f" \
+--data-raw "{
+      \"emailAddress\": \"myemail@email.com\",
+      \"itemId\" : \"1\",
+      \"itemCount\" : \"2\"
+    }"
+</pre>
+
 <h4>View Cart using CLIAPI</h4>
 <pre>
-./cliapi_tester.sh --action=vC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
+$ ./cliapi_tester.sh --action=vC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
 
 <h4>View cart using cURL</h4>
 <pre>
   curl -v -D- --location --request GET "localhost:3000/cart" \
+  --header "Content-Type: text/json" \
+  --header "token: 9zy66v8ktl40fe7qv5f" \
+  --data-raw "{
+      \"emailAddress\": \"myemail@email.com\"
+    }"
+</pre>
+
+<h4>Remove all items from cart using CLIAPI</h4>
+<pre>
+$ ./cliapi_tester.sh --action=dC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
+</pre>
+
+<h4>View cart using cURL</h4>
+<pre>
+  curl -v -D- --location --request DELETE "localhost:3000/cart" \
   --header "Content-Type: text/json" \
   --header "token: 9zy66v8ktl40fe7qv5f" \
   --data-raw "{
