@@ -49,15 +49,13 @@ order._order.post = function(data,callback){
             if(!err){
                 for (var i = 0; i < cartData.length; i++) {
                   if (cartData.items[i].count > 0 ){
-                    itemObject.items.push(
-                      {
+                    itemObject.items[i] = {
                         'name' : menuItems[cartData.itemid],
                         'count' : cartData.count
-                      });
+                      }
                   }
-
+                  console.log(itemObject);
                 }
-
               // Store the order items
               _data.create('orders',orderName,itemObject,function(err){
                 if(!err){
