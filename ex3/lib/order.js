@@ -51,7 +51,7 @@ order._order.post = function(data,callback){
                 for (var i = 0; i < cartData.items.length; i++) {
                   if (cartData.items[i].count > 0 ){
                     itemObject.items.push ({
-                        'name' : menuItems[cartData.items[i].itemid].name,
+                        'name' : menuItems[cartData.items[i].itemid - 1].name,
                         'count' : cartData.items[i].count
                       });
                   }
