@@ -45,7 +45,7 @@ order._order.post = function(data,callback){
           });
 
           _data.read('carts',orderName,function(err,cartData){
-            if(err){
+            if(!err){
                 for (var i = 0; i < cartData.length; i++) {
                   if (cartData.items[i].count > 0 ){
                     itemObject.items[i].item =  menuItems[cartData.itemid];
