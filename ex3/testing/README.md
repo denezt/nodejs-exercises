@@ -23,11 +23,13 @@ curl -v -D- --location --request POST "localhost:3000/token" \
 <!-- Create Features -->
 
 <h4>Create Cart using CLIAPI</h4>
+
 <pre>
 ./cliapi_tester.sh --action=cC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
 
 <h4>Create cart using cURL</h4>
+
 <pre>
   curl -v -D- --location --request POST "localhost:3000/cart" \
   --header "Content-Type: text/json" \
