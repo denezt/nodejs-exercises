@@ -96,6 +96,8 @@ cart._cart.put = function(data,callback){
                 // will prevent item count from invalid input
                 var validItemCount = (menuCount >= itemCount) ? true : false;
 
+                console.log(validItemCount);
+
                 if (validItemCount) {
                   _data.read('carts',cartName,function(err,data){
                     if(!err ){
