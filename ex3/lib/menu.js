@@ -34,8 +34,8 @@ _data.initiate('menu','menu_items',function(err){
 
 menu.limit = _data.read('menu','menu_items',function(err,data){
   if(!err && data){
-
-    callback(200,{'menu_count' : data.items.length});
+    data = {'menu_count' : data.items.length}
+    callback(200,data);
   } else {
     callback(404);
   }
