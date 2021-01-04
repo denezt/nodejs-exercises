@@ -126,6 +126,7 @@ order._order.get = function(data,callback){
 order._order.put = function(data, callback){
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
   var submit = typeof(data.payload.submit) == 'boolean' && data.payload.submit == true ? true : false;
+  var apiKey = typeof(data.payload.apiKey) == 'string' && data.payload.apiKey == true ? true : false;
 
   console.log('submit: ' + submit);
   // Check if required request info given
@@ -174,7 +175,6 @@ order._order.put = function(data, callback){
           	 text: 'Congratulations rj, you just sent an email with Mailgun!  You are truly awesome!',
              api_key: 'api:b97aabb0ce934116a61e2f141af788fa-3d0809fb-7589f9f0'
            });
-
 
           const option2 = {
             hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org/messages',

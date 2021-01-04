@@ -5,3 +5,5 @@ tmp/**
 .gradle
 .buildfile
 example_dataset
+config/**
+local/**
