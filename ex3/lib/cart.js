@@ -91,9 +91,9 @@ cart._cart.put = function(data,callback){
                     menuCount = data.items.length;
                   }
                 });
-              
+
               _data.read('carts',cartName,function(err,data){
-                if(!err){
+                if(!err && (menuCount <= itemId)){
                     data.items[itemId-1].count = itemCount;
                     // Store the cart items
                     _data.update('carts',cartName,data,function(err){
