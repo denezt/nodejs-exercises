@@ -3,12 +3,13 @@
  *
  */
 
-var _data = require('./data');
-var token_holder = require('./token');
-var helper = require('./helper');
-var menu = require('./menu');
+const _data = require('./data');
+const token_holder = require('./token');
+const helper = require('./helper');
+const menu = require('./menu');
+const https = require('https');
 
-var order = {};
+const order = {};
 
 // Container for all the order methods
 order._order = {};
@@ -133,14 +134,14 @@ order._order.put = function(data, callback){
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
       token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
-          if (tokenIsValid){
-            var cartName = helper.hash128(emailAddress);
-            var menuCount = 0;
-            callback(200,{'status':'submitted'});    
-      } else {
-        callback(403,{'Error':'Missing required token in header, or token is invalid'});
-      }
-    });
+        if (tokenIsValid){
+          var cartName = helper.hash128(emailAddress);
+          var menuCount = 0;
+          callback(200,{'status':'submitted'});
+        } else {
+          callback(403,{'Error':'Missing required token in header, or token is invalid'});
+        }
+      });
   } else {
     callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
   }
