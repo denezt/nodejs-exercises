@@ -1,11 +1,12 @@
 # Command Line Interface Application Programming Interface Tester
 
-| Item ID     | Using CLIAPI     | Using cURL     |
-| :------------- | :------------- | :------------- |
+| Item ID     | Using CLIAPI      | Using cURL     |
+| :---------- | :-------------    | :------------- |
 | 1       | [creating the token using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#creating-the-token-using-cliapi)  | [creating the token using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#creating-the-token-using-curl) |
-| Break |
 | 2       | [create cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#create-cart-using-cliapi)  | [create-cart-using-curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#create-cart-using-curl) |
-| 3       | [create cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#create-cart-using-cliapi)  | [create-cart-using-curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#create-cart-using-curl) |
+| 3       | [add item in cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#add-item-in-cart-using-cliapi) | [add item in cart using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#add-item-in-cart-using-curl) |
+| 4       | [view cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#view-cart-using-cliapi) | [view cart using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#view-cart-using-curl) |
+| 5       | [remove all items from cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#remove-all-items-from-cart-using-cliapi) | [remove all items from cart using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#remove-all-items-from-cart-using-curl) |
 
 <!-- Token Features -->
 <h2>Token Controller</h2>
