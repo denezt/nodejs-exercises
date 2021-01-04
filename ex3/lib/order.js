@@ -136,7 +136,7 @@ order._order.put = function(data, callback){
           if (tokenIsValid){
             var cartName = helper.hash128(emailAddress);
             var menuCount = 0;
-
+            callback(200,{'status':'submitted'});    
       } else {
         callback(403,{'Error':'Missing required token in header, or token is invalid'});
       }

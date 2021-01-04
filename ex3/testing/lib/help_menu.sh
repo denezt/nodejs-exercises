@@ -31,7 +31,7 @@ commands(){
 	printf "\033[35mDelete Cart\t\t\033[32m[ delete-cart, dC ]\033[0m\n"
 	printf "\n\033[36mORDER ACTIONS:\033[0m\n"
 	printf "\033[35mCreate Order\t\t\033[32m[ create-order, cO ]\033[0m\n"
-	printf "\033[35mUpdate Order\t\t\033[32m[ update-order, uO ]\033[0m\n"
+	printf "\033[35mSubmit Order\t\t\033[32m[ submit-order, sO ]\033[0m\n"
 	printf "\033[35mView Order\t\t\033[32m[ view-order, vO ]\033[0m\n"
 	printf "\033[35mDelete Order\t\t\033[32m[ delete-order, dO ]\033[0m\n"
 }
