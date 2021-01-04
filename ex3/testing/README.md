@@ -24,6 +24,7 @@ curl -v -D- --location --request POST "localhost:3000/token" \
             \"password\" : \"PASSWORD\"
     }"
 </pre>
+
 [Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
 
 <!-- Cart Features -->
@@ -67,6 +68,7 @@ $ ./cliapi_tester.sh --action=cC --email=myemail@email.com --token=9zy66v8ktl40f
       }
     }"
 </pre>
+
 [Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
 
 <!-- Cart Features 2 -->
@@ -85,6 +87,7 @@ curl -v -D- --location PUT "${target_server}:${target_port}/cart" \
       \"itemCount\" : \"2\"
     }"
 </pre>
+
 [Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
 
 <!-- Cart Features 3 -->
@@ -102,6 +105,7 @@ $ ./cliapi_tester.sh --action=vC --email=myemail@email.com --token=9zy66v8ktl40f
       \"emailAddress\": \"myemail@email.com\"
     }"
 </pre>
+
 [Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
 
 <!-- Cart Features 4 -->
@@ -119,4 +123,5 @@ $ ./cliapi_tester.sh --action=dC --email=myemail@email.com --token=9zy66v8ktl40f
       \"emailAddress\": \"myemail@email.com\"
     }"
 </pre>
+
 [Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
