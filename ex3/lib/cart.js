@@ -91,12 +91,11 @@ cart._cart.put = function(data,callback){
                     menuCount = data.items.length;
                   }
                 });
-              // Verify the Item Id is within range
-              var validItemId = ((menuCount >= itemId) && (itemId >= 0)) ? true : false;
 
               _data.read('carts',cartName,function(err,data){
                 if(!err){
-                  if (validItemId){
+                  // Verify the Item Id is within range
+                  if ((menuCount >= itemId) && (itemId >= 0)){
                     data.items[itemId-1].count = itemCount;
                     // Store the cart items
                     _data.update('carts',cartName,data,function(err){
