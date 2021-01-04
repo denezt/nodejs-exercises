@@ -197,6 +197,19 @@ order._order.put = function(data, callback){
           req2.write(formData);
           req2.end();
 
+
+          // Finally we will remove the order from queue
+          _data.delete('orders',cartName,function(err){
+            if(!err){
+              console.log("Remove order" + cartName);
+            }
+          });
+          _data.delete('carts',cartName,function(err){
+            if(!err){
+              console.log("Remove shopping cart" + cartName);
+            }
+          });
+
           callback(200,{'status':'submitted'});
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
