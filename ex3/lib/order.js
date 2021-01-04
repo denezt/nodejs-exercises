@@ -118,6 +118,34 @@ order._order.get = function(data,callback){
   }
 };
 
+
+// Order - put
+// Required data : id, extend
+// Optional data: none
+order._order.put = function(data, callback){
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
+  var submit = typeof(data.payload.submit) == 'boolean' && data.payload.submit == true ? true : false;
+
+  console.log('submit: ' + submit);
+  // Check if required request info given
+  if (emailAddress){
+    // Get the token from the headers
+    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+      // Verify that the given token is valid for the email
+      token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
+          if (tokenIsValid){
+            var cartName = helper.hash128(emailAddress);
+            var menuCount = 0;
+
+      } else {
+        callback(403,{'Error':'Missing required token in header, or token is invalid'});
+      }
+    });
+  } else {
+    callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
+  }
+};
+
 // Cart - delete
 // Required data: emailAddress
 // Optional data: none

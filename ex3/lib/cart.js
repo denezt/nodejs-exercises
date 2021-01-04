@@ -201,8 +201,5 @@ cart._cart.delete = function(data, callback){
   }
 };
 
-
-
-
 // Export the module
 module.exports = cart;
