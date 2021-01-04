@@ -1,9 +1,11 @@
 # Command Line Interface Application Programming Interface Tester
 
-| Item ID     | Description     |
-| :------------- | :------------- |
-| 1       | [creating the token using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#creating-the-token-using-cliapi)  |
-
+| Item ID     | Using CLIAPI     | Using cURL     |
+| :------------- | :------------- | :------------- |
+| 1       | [creating the token using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#creating-the-token-using-cliapi)  | [creating the token using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#creating-the-token-using-curl) |
+| Break |
+| 2       | [create cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#create-cart-using-cliapi)  | [create-cart-using-curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#create-cart-using-curl) |
+| 3       | [create cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#create-cart-using-cliapi)  | [create-cart-using-curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#create-cart-using-curl) |
 
 <!-- Token Features -->
 <h2>Token Controller</h2>
@@ -99,7 +101,7 @@ $ ./cliapi_tester.sh --action=vC --email=myemail@email.com --token=9zy66v8ktl40f
 $ ./cliapi_tester.sh --action=dC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
 
-<h3>View cart using cURL</h3>
+<h3>Remove all items from cart using cURL</h3>
 <pre>
   curl -v -D- --location --request DELETE "localhost:3000/cart" \
   --header "Content-Type: text/json" \
