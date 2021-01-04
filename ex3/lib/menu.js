@@ -14,8 +14,6 @@ var menu = {};
 // Container for all the menu methods
 menu._menu = {};
 
-menu.baseDir = '.data';
-
 // Menu
 menu.menu = function(data, callback){
   var acceptableMethods = ['get'];
@@ -34,19 +32,6 @@ _data.initiate('menu','menu_items',function(err){
     console.log("Dataset [menu_items] was found");
   }
 });
-
-// Read data from a file
-menu.count = () => {
-  fs.readFile(menu.baseDir+ '/menu/menu_items.json', 'utf8', function(err,data){
-    if(!err && data){
-      var parsedData = helper.parseJsonToObject(data);
-      return parsedData.items.length;
-    } else {
-      return 0;
-    }
-  });
-};
-
 
 // Required data: emailAddress
 // Optional data: none

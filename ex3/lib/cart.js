@@ -74,8 +74,6 @@ cart._cart.put = function(data,callback){
   // Item Count for update
   var itemCount = typeof(Number(data.payload.itemCount)) == 'number' && Number(data.payload.itemCount) >= 0 ? Number(data.payload.itemCount) : -1;
 
-  console.log('menu.limit: ' + menu.count({}));
-
   // Check if required request info given
   if (emailAddress){
     // Error if nothing is sent to update
@@ -86,6 +84,13 @@ cart._cart.put = function(data,callback){
         token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
             if (tokenIsValid){
               var cartName = helper.hash128(emailAddress);
+              _data.read('menu','menu_items',function(err,data){
+                  if(!err && data){
+                    menuCount = data.items.length;
+                  }
+                  console.log('Menu Count: ' + menuCount);
+                });
+
                 _data.read('carts',cartName,function(err,data){
                   if(!err){
                       data.items[itemId-1].count = itemCount;
@@ -98,6 +103,8 @@ cart._cart.put = function(data,callback){
                           callback(500,{'Error' : 'Could not create the new cart'});
                         }
                       });
+                  } elseif (menuCount > itemCount) {
+                    callback(400,{'Error' : 'Incorrect menu count was entered'});  
                   } else {
                     // User already exists
                     callback(400,{'Error' : 'No cart was found'});
