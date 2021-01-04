@@ -184,10 +184,9 @@ order._order.put = function(data, callback){
               headers: {
                  'Content-Type': 'application/x-www-form-urlencoded'
              },
-            response => {
-              console.log(response.statusCode); // 200
-            }
-          );
+             res => {
+               console.log(`statusCode: ${res.statusCode}`);
+          });
 
           req2.on('error', error => {
             console.error(error);
