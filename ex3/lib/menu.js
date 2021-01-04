@@ -14,6 +14,8 @@ var menu = {};
 // Container for all the menu methods
 menu._menu = {};
 
+menu.baseDir = '.data';
+
 // Menu
 menu.menu = function(data, callback){
   var acceptableMethods = ['get'];
@@ -35,7 +37,7 @@ _data.initiate('menu','menu_items',function(err){
 
 // Read data from a file
 menu.count = function(data,callback){
-  fs.readFile(lib.baseDir + '/menu/menu_items.json', 'utf8', function(err,data){
+  fs.readFile(menu.baseDir+ '/menu/menu_items.json', 'utf8', function(err,data){
     if(!err && data){
       var parsedData = helper.parseJsonToObject(data);
       callback(false,parsedData);
