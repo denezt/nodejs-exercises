@@ -7,6 +7,11 @@
 | 3       | [add item in cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#add-item-in-cart-using-cliapi) | [add item in cart using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#add-item-in-cart-using-curl) |
 | 4       | [view cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#view-cart-using-cliapi) | [view cart using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#view-cart-using-curl) |
 | 5       | [remove all items from cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#remove-all-items-from-cart-using-cliapi) | [remove all items from cart using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#remove-all-items-from-cart-using-curl) |
+| 6       | [create order using cliapi](https://github.com/denezt/nodejs-exercises/tree/main/ex3/testing#create-order-using-cliapi) | [create order cart using curl](https://github.com/denezt/nodejs-exercises/tree/main/ex3/testing#create-order-using-curl) |
+| 7       | [view order using cliapi](https://github.com/denezt/nodejs-exercises/tree/main/ex3/testing#view-order-using-cliapi) | [view order cart using curl](https://github.com/denezt/nodejs-exercises/tree/main/ex3/testing#view-order-using-curl) |
+| 8       | [submit order using cliapi](https://github.com/denezt/nodejs-exercises/tree/main/ex3/testing#view-order-using-cliapi) | [submit order cart using curl](https://github.com/denezt/nodejs-exercises/tree/main/ex3/testing#view-order-using-curl) |
+| 9       | [delete order using cliapi](https://github.com/denezt/nodejs-exercises/tree/main/ex3/testing#delete-order-using-cliapi) | [delete order cart using curl](https://github.com/denezt/nodejs-exercises/tree/main/ex3/testing#delete-order-using-curl) |
+
 
 
 <!-- Token Features -->
@@ -165,27 +170,8 @@ $ ./cliapi_tester.sh --action=vO --email=myemail@email.com --token=9zy66v8ktl40f
 
 [Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
 
+
 <!-- Order Features 3 -->
-<h3>Submit order using CLIAPI</h3>
-<pre>
-$ ./cliapi_tester.sh --action=sO --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
-</pre>
-
-<h3>Submit order using cURL</h3>
-<pre>
-  curl -v -D- --location --request PUT "localhost:3000/cart" \
-  --header "Content-Type: text/json" \
-  --header "token: 9zy66v8ktl40fe7qv5f" \
-  --data-raw "{
-      \"emailAddress\": \"myemail@email.com\",
-      \"apiKey\": \"[MAILGUN_API_KEY]\",
-      \"submit\" : true
-    }"
-</pre>
-
-[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
-
-<!-- Order Features 4 -->
 <h3>Delete order using CLIAPI</h3>
 <pre>
 $ ./cliapi_tester.sh --action=dO --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
@@ -202,3 +188,24 @@ $ ./cliapi_tester.sh --action=dO --email=myemail@email.com --token=9zy66v8ktl40f
 </pre>
 
 [Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
+
+
+<!-- Order Features 4 -->
+<h3>Submit order using CLIAPI</h3>
+<pre>
+$ ./cliapi_tester.sh --action=sO --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
+</pre>
+
+<h3>Submit order using cURL</h3>
+<pre>
+curl -v -D- --location --request PUT "localhost:3000/cart" \
+--header "Content-Type: text/json" \
+--header "token: 9zy66v8ktl40fe7qv5f" \
+--data-raw "{
+  \"emailAddress\": \"myemail@email.com\",
+  \"apiKey\": \"[MAILGUN_API_KEY]\",
+  \"submit\" : true
+  }"
+  </pre>
+
+  [Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
