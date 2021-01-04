@@ -43,6 +43,4 @@ submit_order(){
     \"apiKey\": \"${apiKey}\",
     \"submit\" : true
   }"
-
-  echo "${apiKey}"
 }

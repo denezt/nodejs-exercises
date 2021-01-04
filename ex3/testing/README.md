@@ -8,6 +8,7 @@
 | 4       | [view cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#view-cart-using-cliapi) | [view cart using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#view-cart-using-curl) |
 | 5       | [remove all items from cart using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#remove-all-items-from-cart-using-cliapi) | [remove all items from cart using curl](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#remove-all-items-from-cart-using-curl) |
 
+
 <!-- Token Features -->
 <h2>Token Controller</h2>
 <!-- Token Features 1 -->
@@ -78,7 +79,7 @@ $ ./cliapi_tester.sh --action=uC --email=myemail@email.com --token=9zy66v8ktl40f
 </pre>
 <h3>Add item in cart using cURL</h3>
 <pre>
-curl -v -D- --location PUT "${target_server}:${target_port}/cart" \
+curl -v -D- --location PUT "localhost:3000/cart" \
 --header "Content-Type: text/json" \
 --header "token: 9zy66v8ktl40fe7qv5f" \
 --data-raw "{
@@ -115,6 +116,82 @@ $ ./cliapi_tester.sh --action=dC --email=myemail@email.com --token=9zy66v8ktl40f
 </pre>
 
 <h3>Remove all items from cart using cURL</h3>
+<pre>
+  curl -v -D- --location --request DELETE "localhost:3000/cart" \
+  --header "Content-Type: text/json" \
+  --header "token: 9zy66v8ktl40fe7qv5f" \
+  --data-raw "{
+      \"emailAddress\": \"myemail@email.com\"
+    }"
+</pre>
+
+[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
+
+
+<!-- Order Features 1 -->
+<h3>Create order using CLIAPI</h3>
+<pre>
+$ ./cliapi_tester.sh --action=cO --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
+</pre>
+
+<h3>Create order using cURL</h3>
+<pre>
+  curl -v -D- --location --request POST "localhost:3000/cart" \
+  --header "Content-Type: text/json" \
+  --header "token: 9zy66v8ktl40fe7qv5f" \
+  --data-raw "{
+      \"emailAddress\": \"myemail@email.com\"
+    }"
+</pre>
+
+[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
+
+
+<!-- Order Features 2 -->
+<h3>View order using CLIAPI</h3>
+<pre>
+$ ./cliapi_tester.sh --action=vO --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
+</pre>
+
+<h3>View order using cURL</h3>
+<pre>
+  curl -v -D- --location --request GET "localhost:3000/cart" \
+  --header "Content-Type: text/json" \
+  --header "token: 9zy66v8ktl40fe7qv5f" \
+  --data-raw "{
+      \"emailAddress\": \"myemail@email.com\"
+    }"
+</pre>
+
+[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
+
+<!-- Order Features 3 -->
+<h3>Submit order using CLIAPI</h3>
+<pre>
+$ ./cliapi_tester.sh --action=sO --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
+</pre>
+
+<h3>Submit order using cURL</h3>
+<pre>
+  curl -v -D- --location --request PUT "localhost:3000/cart" \
+  --header "Content-Type: text/json" \
+  --header "token: 9zy66v8ktl40fe7qv5f" \
+  --data-raw "{
+      \"emailAddress\": \"myemail@email.com\",
+      \"apiKey\": \"[MAILGUN_API_KEY]\",
+      \"submit\" : true
+    }"
+</pre>
+
+[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
+
+<!-- Order Features 4 -->
+<h3>Delete order using CLIAPI</h3>
+<pre>
+$ ./cliapi_tester.sh --action=dO --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
+</pre>
+
+<h3>Delete order using cURL</h3>
 <pre>
   curl -v -D- --location --request DELETE "localhost:3000/cart" \
   --header "Content-Type: text/json" \

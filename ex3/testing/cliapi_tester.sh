@@ -6,7 +6,13 @@ target_server="139.59.147.182"
 # Port for the target server - application port
 target_port="3000"
 
-source ../../config/settings.sh
+if [ -e "../../config/settings.sh" ];
+then
+	source ../../config/settings.sh
+else
+	apiKey=[MAILGUN_API_KEY]
+fi
+
 source ./lib/error.sh
 source ./lib/user.sh
 source ./lib/token.sh
