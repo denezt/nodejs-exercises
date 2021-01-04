@@ -84,15 +84,19 @@ cart._cart.put = function(data,callback){
         token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
             if (tokenIsValid){
               var cartName = helper.hash128(emailAddress);
+              // will prevent item count from invalid input
+              var validItemCount;
+
               _data.read('menu','menu_items',function(err,data){
                   if(!err && data){
                     menuCount = data.items.length;
                   }
+                   validItemCount = (itemCount > menuCount) ? false : true;
                   console.log('Menu Count: ' + menuCount);
                 });
 
                 _data.read('carts',cartName,function(err,data){
-                  if(!err){
+                  if(!err && validItemCount){
                       data.items[itemId-1].count = itemCount;
                       // Store the cart items
                       _data.update('carts',cartName,data,function(err){
@@ -103,7 +107,7 @@ cart._cart.put = function(data,callback){
                           callback(500,{'Error' : 'Could not create the new cart'});
                         }
                       });
-                  } else if (itemCount > menuCount) {
+                  } else if (!validItemCount) {
                     callback(400,{'Error' : 'Incorrect menu count was entered'});
                   } else {
                     // User already exists
