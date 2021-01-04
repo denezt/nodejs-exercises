@@ -87,7 +87,7 @@ cart._cart.put = function(data,callback){
               var menuCount = 0;
 
               _data.read('menu','menu_items',function(err,data){
-                  if(!err && data){
+                  if(!err){
                     menuCount = data.items.length;
                   }
                 });
