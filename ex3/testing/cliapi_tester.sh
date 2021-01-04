@@ -11,6 +11,7 @@ source ./lib/user.sh
 source ./lib/token.sh
 source ./lib/menu.sh
 source ./lib/cart.sh
+source ./lib/order.sh
 source ./lib/help_menu.sh
 
 for args in $@
@@ -53,6 +54,10 @@ case $_action in
 	update-cart|uC) update_cart "${_emailAddress}" "${_token}" "${_item}" "${_count}";;
 	view-cart|vC) view_cart "${_emailAddress}" "${_token}";;
 	delete-cart|dC) delete_cart "${_emailAddress}" "${_token}";;
+	create-order|cO) create_order "${_emailAddress}" "${_token}";;
+	view-order|vO) view_order "${_emailAddress}" "${_token}";;
+	delete-order|dO) delete_order "${_emailAddress}" "${_token}";;
+	submit-order|sO) submit_order "${_emailAddress}" "${_token}";;
 	*) error "Missing or invalid 'action' parameter was given";;
 esac
 

@@ -27,9 +27,7 @@ order.order = function(data, callback){
 // Required data: emailAddress, itemObject
 // Optional data: none
 order._order.post = function(data,callback){
-  console.log(data.payload);
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-
   if(emailAddress){
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
@@ -46,7 +44,6 @@ order._order.post = function(data,callback){
           });
 
           _data.read('carts',orderName,function(err,cartData){
-            console.log(cartData);
             if(!err){
                 for (var i = 0; i < cartData.items.length; i++) {
                   if (cartData.items[i].count > 0 ){
@@ -55,14 +52,12 @@ order._order.post = function(data,callback){
                         'count' : cartData.items[i].count
                       });
                   }
-                  console.log(itemObject);
                 }
                 // Store the order items
                 _data.create('orders',orderName,itemObject,function(err){
                   if(!err){
                     callback(200,{'status':'created'});
                   } else {
-                    console.log(err);
                     callback(500,{'Error' : 'Could not create the new order'});
                   }
                 });
@@ -85,7 +80,6 @@ order._order.post = function(data,callback){
 // Optional data: None
 order._order.get = function(data,callback){
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-  console.log(token);
 
   if(emailAddress){
     var orderName = helper.hash128(emailAddress);
@@ -100,13 +94,10 @@ order._order.get = function(data,callback){
             if(!err && data){
               menuCount = data.items.length;
             }
-            console.log('Menu Count: ' + menuCount);
           });
           // Lookup the orders
           _data.read('orders',orderName,function(err,data){
             if(!err && data){
-              console.log('Array Length: ' + data.items.length);
-              console.log('Displaying Shopping Cart:');
               for (var i = 0; i < data.items.length; i++) {
                 // Only show if added to order
                 if (data.items[i].count > 0){
@@ -154,9 +145,6 @@ order._order.delete = function(data, callback){
     callback(400,{'Error' : 'Missing required field'});
   }
 };
-
-
-
 
 // Export the module
 module.exports = order;
