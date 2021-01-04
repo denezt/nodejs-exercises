@@ -84,7 +84,7 @@ cart._cart.put = function(data,callback){
         token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
             if (tokenIsValid){
               var cartName = helper.hash128(emailAddress);
-              var menuCount;
+              var menuCount = 0;
 
               _data.read('menu','menu_items',function(err,data){
                   if(!err && data){
