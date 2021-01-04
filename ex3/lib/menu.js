@@ -32,14 +32,19 @@ _data.initiate('menu','menu_items',function(err){
   }
 });
 
-menu.limit = _data.read('menu','menu_items',function(err,data){
-  if(!err && data){
-    data = {'menu_count' : data.items.length}
-    callback(200,data);
-  } else {
-    callback(404);
-  }
-});
+// Read data from a file
+menu.count = function('menu','menu_items',callback){
+  fs.readFile(lib.baseDir + '/' + dir + '/' + file + '.json', 'utf8', function(err,data){
+    if(!err && data){
+      var parsedData = helper.parseJsonToObject(data);
+      callback(false,parsedData);
+      return parsedData.items.length;
+    } else {
+      callback(err,data);
+      return 0;
+    }
+  });
+};
 
 
 // Required data: emailAddress
