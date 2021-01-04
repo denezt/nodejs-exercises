@@ -95,25 +95,27 @@ cart._cart.put = function(data,callback){
                   console.log('Menu Count: ' + menuCount);
                 });
 
-                _data.read('carts',cartName,function(err,data){
-                  if(!err && validItemCount){
-                      data.items[itemId-1].count = itemCount;
-                      // Store the cart items
-                      _data.update('carts',cartName,data,function(err){
-                        if(!err){
-                          callback(200,{'status':'updated'});
-                        } else {
-                          console.log(err);
-                          callback(500,{'Error' : 'Could not create the new cart'});
-                        }
-                      });
-                  } else if (!validItemCount) {
-                    callback(400,{'Error' : 'Incorrect menu count was entered'});
-                  } else {
-                    // User already exists
-                    callback(400,{'Error' : 'No cart was found'});
-                  }
-              });
+                if (validItemCount) {
+                  _data.read('carts',cartName,function(err,data){
+                    if(!err ){
+                        data.items[itemId-1].count = itemCount;
+                        // Store the cart items
+                        _data.update('carts',cartName,data,function(err){
+                          if(!err){
+                            callback(200,{'status':'updated'});
+                          } else {
+                            console.log(err);
+                            callback(500,{'Error' : 'Could not create the new cart'});
+                          }
+                        });
+                    } else {
+                      // User already exists
+                      callback(400,{'Error' : 'No cart was found'});
+                    }
+                });
+              } else {
+                callback(400,{'Error' : 'Incorrect menu count was entered'});
+              }
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }
