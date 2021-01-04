@@ -94,7 +94,7 @@ cart._cart.put = function(data,callback){
 
               _data.read('carts',cartName,function(err,data){
                 if(!err){
-                  if (menuCount <= itemId){
+                  if (menuCount >= itemId){
                     data.items[itemId-1].count = itemCount;
                     // Store the cart items
                     _data.update('carts',cartName,data,function(err){
