@@ -93,7 +93,8 @@ cart._cart.put = function(data,callback){
                 });
 
               _data.read('carts',cartName,function(err,data){
-                if(!err && (menuCount <= itemId)){
+                if(!err){
+                  if (menuCount <= itemId){
                     data.items[itemId-1].count = itemCount;
                     // Store the cart items
                     _data.update('carts',cartName,data,function(err){
@@ -104,6 +105,9 @@ cart._cart.put = function(data,callback){
                         callback(500,{'Error' : 'Could not create the new cart'});
                       }
                     });
+                  } else {
+                    callback(400,{'Error' : 'ItemId is incorrect'});
+                  }
                 } else {
                   // User already exists
                   callback(400,{'Error' : 'No cart was found'});
