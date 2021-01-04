@@ -173,7 +173,7 @@ order._order.put = function(data, callback){
           	 subject: 'Hello rj',
           	 text: 'Congratulations rj, you just sent an email with Mailgun!  You are truly awesome!',
              'api:b97aabb0ce934116a61e2f141af788fa-3d0809fb-7589f9f0'
-           }
+           });
 
           const req2 = https.request(
             {
