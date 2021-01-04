@@ -36,14 +36,12 @@ _data.initiate('menu','menu_items',function(err){
 });
 
 // Read data from a file
-menu.count = function(data,callback){
+menu.count = () => {
   fs.readFile(menu.baseDir+ '/menu/menu_items.json', 'utf8', function(err,data){
     if(!err && data){
       var parsedData = helper.parseJsonToObject(data);
-      callback(false,parsedData);
       return parsedData.items.length;
     } else {
-      callback(err,data);
       return 0;
     }
   });
