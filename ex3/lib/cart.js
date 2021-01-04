@@ -74,6 +74,8 @@ cart._cart.put = function(data,callback){
   // Item Count for update
   var itemCount = typeof(Number(data.payload.itemCount)) == 'number' && Number(data.payload.itemCount) >= 0 ? Number(data.payload.itemCount) : -1;
 
+  console.log('menu.limit: ' + menu.limit);
+
   // Check if required request info given
   if (emailAddress){
     // Error if nothing is sent to update

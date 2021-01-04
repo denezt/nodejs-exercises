@@ -32,6 +32,16 @@ _data.initiate('menu','menu_items',function(err){
   }
 });
 
+menu.limit = _data.read('menu','menu_items',function(err,data){
+  if(!err && data){
+
+    callback(200,{'menu_count' : data.items.length});
+  } else {
+    callback(404);
+  }
+});
+
+
 // Required data: emailAddress
 // Optional data: none
 menu._menu.get = function(data, callback){
