@@ -90,13 +90,14 @@ cart._cart.put = function(data,callback){
                   if(!err && data){
                     menuCount = data.items.length;
                   }
+                  console.log('Menu Count Type: ' + typeof(menuCount));
                   console.log('Menu Count: ' + menuCount);
                 });
 
                 // will prevent item count from invalid input
-                var validItemCount = (menuCount >= Number(itemId)) ? true : false;
+                var validItemCount = (menuCount > Number(itemId)) ? true : false;
 
-                console.log(validItemCount,itemId);
+                console.log(validItemCount, Number(itemId));
 
                 if (validItemCount) {
                   _data.read('carts',cartName,function(err,data){
