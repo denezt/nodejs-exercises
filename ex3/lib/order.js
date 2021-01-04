@@ -175,16 +175,18 @@ order._order.put = function(data, callback){
              api_key: 'api:b97aabb0ce934116a61e2f141af788fa-3d0809fb-7589f9f0'
            });
 
-          const req2 = https.request(
-            {
-              hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org/messages',
-              port: '5000',
-              path: '/upload',
-              method: 'POST',
-              headers: {
-                 'Content-Type': 'application/x-www-form-urlencoded'
-             },
-             res => {
+
+          const option2 = {
+            hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org/messages',
+            port: '5000',
+            path: '/upload',
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/x-www-form-urlencoded'
+             }
+           };
+
+          const req2 = https.request(option2, res => {
                console.log(`statusCode: ${res.statusCode}`);
           });
 
