@@ -90,9 +90,13 @@ cart._cart.put = function(data,callback){
                   if(!err && data){
                     menuCount = data.items.length;
                   }
-                  console.log('Menu Count Type: ' + typeof(menuCount));
-                  console.log('Menu Count: ' + menuCount);
                 });
+
+                console.log('Menu Count Type: ' + typeof(menuCount));
+                console.log('Menu Count: ' + menuCount);
+
+                console.log('Item Id Type: ' + itemId);
+                console.log('Menu Count: ' + itemId);
 
                 // will prevent item count from invalid input
                 if (Number(itemId) <= menuCount) {
