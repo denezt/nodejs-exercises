@@ -13,9 +13,7 @@ Description
 <td>
 1
 </td>
-<td>
-[creating the token using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#creating-the-token-using-cliapi)
-</td>
+<td>[creating the token using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#creating-the-token-using-cliapi)</td>
 </tr>
 </table>
 
