@@ -85,7 +85,7 @@ cart._cart.put = function(data,callback){
             if (tokenIsValid){
               var cartName = helper.hash128(emailAddress);
               var menuCount;
-              
+
               _data.read('menu','menu_items',function(err,data){
                   if(!err && data){
                     menuCount = data.items.length;
