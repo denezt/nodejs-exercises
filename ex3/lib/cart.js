@@ -91,35 +91,24 @@ cart._cart.put = function(data,callback){
                     menuCount = data.items.length;
                   }
                 });
-
-                console.log('Menu Count Type: ' + typeof(menuCount));
-                console.log('Menu Count: ' + menuCount);
-
-                console.log('Item Id Type: ' + itemId);
-                console.log('Menu Count: ' + itemId);
-
-                // will prevent item count from invalid input
-                if (Number(itemId) <= menuCount) {
-                  _data.read('carts',cartName,function(err,data){
-                    if(!err){
-                        data.items[itemId-1].count = itemCount;
-                        // Store the cart items
-                        _data.update('carts',cartName,data,function(err){
-                          if(!err){
-                            callback(200,{'status':'updated'});
-                          } else {
-                            console.log(err);
-                            callback(500,{'Error' : 'Could not create the new cart'});
-                          }
-                        });
-                    } else {
-                      // User already exists
-                      callback(400,{'Error' : 'No cart was found'});
-                    }
-                });
-              } else {
-                callback(400,{'Error' : 'Incorrect menu count was entered'});
-              }
+              
+              _data.read('carts',cartName,function(err,data){
+                if(!err){
+                    data.items[itemId-1].count = itemCount;
+                    // Store the cart items
+                    _data.update('carts',cartName,data,function(err){
+                      if(!err){
+                        callback(200,{'status':'updated'});
+                      } else {
+                        console.log(err);
+                        callback(500,{'Error' : 'Could not create the new cart'});
+                      }
+                    });
+                } else {
+                  // User already exists
+                  callback(400,{'Error' : 'No cart was found'});
+                }
+            });
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }
