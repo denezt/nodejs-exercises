@@ -137,6 +137,37 @@ order._order.put = function(data, callback){
         if (tokenIsValid){
           var cartName = helper.hash128(emailAddress);
           var menuCount = 0;
+          const data = JSON.stringify({
+                  amount : 2000,
+                  currency : 'eur',
+                  description : 'Example charge',
+                  source: 'tok_mastercard',
+                  api_key: 'sk_test_51I5rz5LIu7OWc1YLkwLronOnHTMVxGo5xwHwbgkv2mftAhKr6H8ETCzyOJCrwSuAXdpsg6nOGXtNRktzGtY79wk40019Bxy6FL:'
+          });
+          const options = {
+            hostname: 'api.stripe.com',
+            port: 443,
+            path: '/v1/charges',
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': ' Bearer sk_test_51I5rz5LIu7OWc1YLkwLronOnHTMVxGo5xwHwbgkv2mftAhKr6H8ETCzyOJCrwSuAXdpsg6nOGXtNRktzGtY79wk40019Bxy6FL'
+            }
+          };
+          const req = https.request(options, res => {
+            console.log(`statusCode: ${res.statusCode}`);
+            res.on('data', d => {
+              process.stdout.write(d);
+            });
+          });
+
+          req.on('error', error => {
+            console.error(error);
+          });
+
+          req.write(data);
+          req.end();
+      
           callback(200,{'status':'submitted'});
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
