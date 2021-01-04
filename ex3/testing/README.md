@@ -1,21 +1,9 @@
 # Command Line Interface Application Programming Interface Tester
 
-<table>
-<tr>
-<th>
-Item ID
-</th>
-<th>
-Description
-</th>
-</tr>
-<tr>
-<td>
-1
-</td>
-<td>[creating the token using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#creating-the-token-using-cliapi)</td>
-</tr>
-</table>
+| Item ID     | Description     |
+| :------------- | :------------- |
+| 1       | [creating the token using cliapi](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#creating-the-token-using-cliapi)  |
+
 
 <!-- Token Features -->
 <h2>Token Controller</h2>
