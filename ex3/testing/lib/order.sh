@@ -40,6 +40,9 @@ submit_order(){
   --header "token: ${token}" \
   --data-raw "{
     \"emailAddress\": \"${emailAddress}\",
+    \"apiKey\": \"${apiKey}\",
     \"submit\" : true
   }"
+
+  echo "${apiKey}"
 }
