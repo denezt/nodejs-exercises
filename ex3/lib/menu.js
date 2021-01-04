@@ -33,8 +33,8 @@ _data.initiate('menu','menu_items',function(err){
 });
 
 // Read data from a file
-menu.count = function('menu','menu_items',callback){
-  fs.readFile(lib.baseDir + '/' + dir + '/' + file + '.json', 'utf8', function(err,data){
+menu.count = function(data,callback){
+  fs.readFile(lib.baseDir + '/menu/menu_items.json', 'utf8', function(err,data){
     if(!err && data){
       var parsedData = helper.parseJsonToObject(data);
       callback(false,parsedData);
