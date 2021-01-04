@@ -58,12 +58,12 @@ order._order.post = function(data,callback){
                   if(!err){
                     callback(200,{'status':'created'});
                   } else {
-                    callback(500,{'Error' : 'Could not create the new order'});
+                    callback(500,{'Error' : 'Order already exists update instead'});
                   }
                 });
             } else {
               // User already exists
-              callback(400,{'Error' : 'Order already exists update instead'});
+              callback(400,{'Error' : 'Could not create the new order'});
             }
         });
       } else {
