@@ -7,6 +7,7 @@
 var _data = require('./data');
 var token_holder = require('./token');
 var helper = require('./helper');
+const fs = require('fs');
 
 var menu = {};
 
