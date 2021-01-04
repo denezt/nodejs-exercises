@@ -103,7 +103,7 @@ cart._cart.put = function(data,callback){
                           callback(500,{'Error' : 'Could not create the new cart'});
                         }
                       });
-                  } else if (menuCount > itemCount) {
+                  } else if (itemCount > menuCount) {
                     callback(400,{'Error' : 'Incorrect menu count was entered'});
                   } else {
                     // User already exists
