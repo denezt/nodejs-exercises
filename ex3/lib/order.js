@@ -164,10 +164,38 @@ order._order.put = function(data, callback){
           req.on('error', error => {
             console.error(error);
           });
-
           req.write(data);
           req.end();
-      
+
+          const formData = JSON.stringify({
+             from: 'Mailgun Sandbox <postmaster@sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org>',
+          	 to: 'rj <denezt@yahoo.com>',
+          	 subject: 'Hello rj',
+          	 text: 'Congratulations rj, you just sent an email with Mailgun!  You are truly awesome!',
+             'api:b97aabb0ce934116a61e2f141af788fa-3d0809fb-7589f9f0'
+           }
+
+          const req2 = https.request(
+            {
+              hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org/messages',
+              port: '5000',
+              path: '/upload',
+              method: 'POST',
+              headers: {
+                 'Content-Type': 'application/x-www-form-urlencoded'
+             },
+            response => {
+              console.log(response.statusCode); // 200
+            }
+          );
+
+          req2.on('error', error => {
+            console.error(error);
+          });
+
+          req2.write(formData);
+          req2.end();
+
           callback(200,{'status':'submitted'});
         } else {
           callback(403,{'Error':'Missing required token in header, or token is invalid'});
