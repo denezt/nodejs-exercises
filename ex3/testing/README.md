@@ -10,6 +10,7 @@
 
 <!-- Token Features -->
 <h2>Token Controller</h2>
+<!-- Token Features 1 -->
 <h3>Creating the token using CLIAPI</h3>
 <pre>
 $ ./cliapi_tester.sh --action=cT --email=myemail@email.com --data=PASSWORD
@@ -23,9 +24,11 @@ curl -v -D- --location --request POST "localhost:3000/token" \
             \"password\" : \"PASSWORD\"
     }"
 </pre>
+[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
 
 <!-- Cart Features -->
 <h2>Cart Controller</h2>
+<!-- Cart Features 1 -->
 <h3>Create Cart using CLIAPI</h3>
 <h4>Need to run this before adding anything into the cart</h4>
 <pre>
@@ -64,8 +67,9 @@ $ ./cliapi_tester.sh --action=cC --email=myemail@email.com --token=9zy66v8ktl40f
       }
     }"
 </pre>
+[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
 
-
+<!-- Cart Features 2 -->
 <h3>Add item in cart using CLIAPI</h3>
 <pre>
 $ ./cliapi_tester.sh --action=uC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
@@ -81,7 +85,9 @@ curl -v -D- --location PUT "${target_server}:${target_port}/cart" \
       \"itemCount\" : \"2\"
     }"
 </pre>
+[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
 
+<!-- Cart Features 3 -->
 <h3>View Cart using CLIAPI</h3>
 <pre>
 $ ./cliapi_tester.sh --action=vC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
@@ -96,7 +102,9 @@ $ ./cliapi_tester.sh --action=vC --email=myemail@email.com --token=9zy66v8ktl40f
       \"emailAddress\": \"myemail@email.com\"
     }"
 </pre>
+[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
 
+<!-- Cart Features 4 -->
 <h3>Remove all items from cart using CLIAPI</h3>
 <pre>
 $ ./cliapi_tester.sh --action=dC --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
@@ -111,3 +119,4 @@ $ ./cliapi_tester.sh --action=dC --email=myemail@email.com --token=9zy66v8ktl40f
       \"emailAddress\": \"myemail@email.com\"
     }"
 </pre>
+[Back to top](https://github.com/denezt/nodejs-exercises/blob/main/ex3/testing/README.md#command-line-interface-application-programming-interface-tester)
