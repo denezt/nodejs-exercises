@@ -1,4 +1,3 @@
-
 *.zip
 temp/**
 tmp/**
@@ -7,3 +6,8 @@ tmp/**
 example_dataset
 config/**
 local/**
+*.log
+.data/carts
+.data/users
+.data/tokens
+.data/orders
