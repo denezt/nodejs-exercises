@@ -19,14 +19,14 @@ getpid(){
 	fi
 }
 
-stop_proc(){
-	if [  `getpid` -gt 0 ];
+kill_proc(){
+	if [ `getpid` -gt 0 ];
 	then
 		printf "`getrid`\n"
 		kill -9 "`getrid`"
 		read -p "Remove old logs? [yes, no] " _confirm
 		case $_confirm in
-			y|yes) [ -e "$logfile" ] && rm $logfile;;
+			y|yes) [ -e "${logfile}" ] && rm ${logfile};;
 			*) printf "\033[35mExiting, no action was taken\033[0m\n";;
 		esac
 	else
@@ -37,7 +37,7 @@ stop_proc(){
 start_proc(){
 	if [  `getpid` -gt 0 ];
 	then
-		nohup $process >> $logfile &
+		nohup "${process}" >> ${logfile} &
 	else
 		printf "\033[35mProcess already running \033[32m[`getpid`]\033[0m\n"
 	fi
