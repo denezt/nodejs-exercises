@@ -35,7 +35,7 @@ kill_proc(){
 }
 
 start_proc(){
-	if [  `getpid` -gt 0 ];
+	if [ `getpid` -eq 0 ];
 	then
 		nohup "${process}" >> ${logfile} &
 	else
