@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 option="${1}"
-process="node index.js"
+process="node ./index.js"
 logfile="nodejs_ex3.log"
 
 error(){
