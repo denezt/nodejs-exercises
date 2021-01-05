@@ -6,16 +6,18 @@ getpid(){
 _pid=$(ps axww | egrep 'node ./index.js' | egrep -v 'grep' | awk '{print $1}')
 if [ ! -z "${_pid}" ];
 then
-	printf ${_pid}
+	echo ${_pid}
 else
-	printf -1
+	echo 0
 fi
 }
 
 stop_proc(){
 	if [  `getpid` -gt 0 ];
 	then
-
+		printf "`getrid`\n"
+	else
+		printf "`getrid`\n"
 	fi
 }
 
