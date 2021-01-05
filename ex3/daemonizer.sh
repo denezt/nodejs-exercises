@@ -10,7 +10,7 @@ error(){
 }
 
 getpid(){
-	_pid=$(ps axww | egrep 'node ./index.js' | egrep -v 'grep' | awk '{print $1}')
+	_pid=$(ps axww | egrep "${process}" | egrep -v 'grep' | awk '{print $1}')
 	if [ ! -z "${_pid}" ];
 	then
 		echo ${_pid}
@@ -48,7 +48,7 @@ query_proc(){
 	then
 		printf "No process running for ${process}\n"
 	else
-		printf "Process ($process) running\nPID [`getpid`]\n"
+		printf "Process (${process}) running\nPID [`getpid`]\n"
 	fi
 }
 
@@ -61,7 +61,7 @@ help_menu(){
 	exit 0
 }
 
-case $option in
+case ${option} in
 	-s|-start|--start) start_proc;;
 	-k|-kill|--kill) kill_proc;;
 	-q|-query|--query) query_proc;;
