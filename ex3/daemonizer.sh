@@ -30,7 +30,7 @@ kill_proc(){
 			*) printf "\033[35mExiting, no action was taken\033[0m\n";;
 		esac
 	else
-		printf "`getrid`\n"
+		printf "`getpid`\n"
 	fi
 }
 
