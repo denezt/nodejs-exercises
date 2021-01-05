@@ -39,6 +39,7 @@ start_proc(){
 	then
 		printf "Starting, process ${process} as daemon.\n"
 		nohup ${process} >> ${logfile} &> /dev/null &
+		printf "Done\n"
 	else
 		printf "\033[35mProcess already running \033[32m[`getpid`]\033[0m\n"
 	fi
