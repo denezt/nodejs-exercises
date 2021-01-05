@@ -43,7 +43,7 @@ start_proc(){
 	fi
 }
 
-get_status(){
+query_proc(){
 	if [ `getpid` -gt 0 ];
 	then
 		printf "Process ($process) running\n PID [`getpid`]\n"
@@ -56,6 +56,7 @@ help_menu(){
 	printf "\033[36mProcess Daemonizer\033[0m\n"
 	printf "\033[35mStart Process\t\033[32m[ -s, -start, --start ]\033[0m\n"
 	printf "\033[35mKill Process\t\033[32m[ -k, -kill, --kill ]\033[0m\n"
+	printf "\033[35mQuery Process\t\033[32m[ -q, -query, --query ]\033[0m\n"
 	printf "\033[35mHelp Menu\t\033[32m[ -h, -help, --help ]\033[0m\n"
 	exit 0
 }
@@ -63,6 +64,7 @@ help_menu(){
 case $option in
 	-s|-start|--start) start_proc;;
 	-k|-kill|--kill) kill_proc;;
+	-q|-query|--query) query_proc;;
 	-h|-help|--help) help_menu;;
 	*) error "Missing or invalid parameter was given";;
 esac
