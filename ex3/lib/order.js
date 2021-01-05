@@ -178,7 +178,7 @@ order._order.put = function(data, callback){
 
           const option2 = {
             hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org/messages',
-            port: '5000',
+            port: '443',
             path: '/upload',
             method: 'POST',
             headers: {

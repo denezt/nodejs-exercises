@@ -8,7 +8,9 @@ target_port="3000"
 
 if [ -e "../../config/settings.sh" ];
 then
+	printf "\033[35mLoading apiKey\033[0m\n"
 	source ../../config/settings.sh
+	printf "\033[35mapiKey: \033[32m${apiKey}\033[0m\n"
 else
 	apiKey=[MAILGUN_API_KEY]
 fi
