@@ -44,13 +44,16 @@ start_proc(){
 }
 
 help_menu(){
-	printf "Process Daemonizer\n"
-	printf "\033[35mStart Process\t\033[32m[ -start, --start ]\033[0m\n"
-	printf "\033[35mKill Process\t\033[32m[ -stop, --stop ]\033[0m\n"
+	printf "\033[36mProcess Daemonizer\033[0m\n"
+	printf "\033[35mStart Process\t\033[32m[ -s, -start, --start ]\033[0m\n"
+	printf "\033[35mKill Process\t\033[32m[ -k, -kill, --kill ]\033[0m\n"
+	printf "\033[35mHelp Menu\t\033[32m[ -h, -help, --help ]\033[0m\n"
+	exit 0
 }
 
 case $option in
-	-start|--start) start_proc;;
-	-stop|--stop) stop_proc;;
+	-s|-start|--start) start_proc;;
+	-k|-kill|--kill) kill_proc;;
+	-h|-help|--help) help_menu;;
 	*) error "Missing or invalid parameter was given";;
 esac
