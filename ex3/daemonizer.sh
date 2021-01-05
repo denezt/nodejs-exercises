@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 option="${1}"
-process="node ./index.js"
+process="node index.js"
 logfile="nodejs_ex3.log"
 
 error(){
@@ -37,7 +37,7 @@ kill_proc(){
 start_proc(){
 	if [ `getpid` -eq 0 ];
 	then
-		nohup "${process}" >> ${logfile} &
+		nohup ${process} >> ${logfile} &
 	else
 		printf "\033[35mProcess already running \033[32m[`getpid`]\033[0m\n"
 	fi
