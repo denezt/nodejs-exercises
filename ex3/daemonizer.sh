@@ -22,8 +22,8 @@ getpid(){
 kill_proc(){
 	if [ `getpid` -gt 0 ];
 	then
-		printf "`getrid`\n"
-		kill -9 "`getrid`"
+		printf "`getpid`\n"
+		kill -9 "`getpid`"
 		read -p "Remove old logs? [yes, no] " _confirm
 		case $_confirm in
 			y|yes) [ -e "${logfile}" ] && rm ${logfile};;
