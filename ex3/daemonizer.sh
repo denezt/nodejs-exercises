@@ -37,7 +37,7 @@ kill_proc(){
 start_proc(){
 	if [ `getpid` -eq 0 ];
 	then
-		bash -c "nohup ${process} >> ${logfile} &"
+		nohup ${process} >> ${logfile} &> /dev/null &
 	else
 		printf "\033[35mProcess already running \033[32m[`getpid`]\033[0m\n"
 	fi
