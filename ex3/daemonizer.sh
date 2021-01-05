@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 option="${1}"
 process="node index.js"
