@@ -177,9 +177,9 @@ order._order.put = function(data, callback){
            });
 
           const option2 = {
-            hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org/messages',
-            port: '443',
-            path: '/upload',
+            hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org',
+            port: 443,
+            path: '/messages',
             method: 'POST',
             headers: {
                'Content-Type': 'application/x-www-form-urlencoded'
