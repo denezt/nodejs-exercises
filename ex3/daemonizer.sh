@@ -44,11 +44,11 @@ start_proc(){
 }
 
 query_proc(){
-	if [ `getpid` -gt 0 ];
+	if [ `getpid` -eq 0 ];
 	then
 		printf "No process running for ${process}\n"
 	else
-		printf "Process ($process) running\n PID [`getpid`]\n"
+		printf "Process ($process) running\nPID [`getpid`]\n"
 	fi
 }
 
