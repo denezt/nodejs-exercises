@@ -43,6 +43,15 @@ start_proc(){
 	fi
 }
 
+get_status(){
+	if [ `getpid` -gt 0 ];
+	then
+		printf "Process ($process) running\n PID [`getpid`]\n"
+	else
+		printf "No process running for ${process}\n"
+	fi
+}
+
 help_menu(){
 	printf "\033[36mProcess Daemonizer\033[0m\n"
 	printf "\033[35mStart Process\t\033[32m[ -s, -start, --start ]\033[0m\n"
