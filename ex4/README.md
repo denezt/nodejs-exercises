@@ -9,7 +9,7 @@
 | 2  | Token Administration | Create, edit, delete token. | Implemented |
 | 3  | Menu Viewer          | View the current menu.      | Implemented |
 | 4  | Shopping Cart        | Add, Remove, View           | Implemented |
-| 5  | Create Order         | Add, Remove, Submit         | Implemented |
+| 5  | Create Order         | Add, Remove, Submit         | In Progress |
 
 
 ### Command Line Interface for Testing API
