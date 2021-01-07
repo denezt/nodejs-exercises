@@ -11,7 +11,7 @@ var https = require('https');
 var http = require('http');
 var helpers = require('./helper');
 var url = require('url');
-// var _logs = require('./logs');
+var _logs = require('./logs');
 var util = require('util');
 var debug = util.debuglog('workers');
 
