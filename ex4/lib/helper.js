@@ -6,6 +6,7 @@
 // Dependencies
 var config = require('./config');
 var crypto = require('crypto');
+var path = require('path');
 
 // Container for all the helper
 var helper = {};
