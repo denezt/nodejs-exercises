@@ -9,7 +9,7 @@ var fs = require('fs');
 var _data = require('./data');
 var https = require('https');
 var http = require('http');
-var helpers = require('./helper');
+var helper = require('./helper');
 var url = require('url');
 var _logs = require('./logs');
 var util = require('util');
@@ -170,7 +170,7 @@ workers.processCheckOutcome = function(originalCheckData,checkOutcome){
 // Alert the user as to a change in their check status
 workers.alertUserToStatusChange = function(newCheckData){
   var msg = 'Alert: Your check for '+newCheckData.method.toUpperCase()+' '+newCheckData.protocol+'://'+newCheckData.url+' is currently '+newCheckData.state;
-  helpers.sendTwilioSms(newCheckData.userPhone,msg,function(err){
+  helper.sendTwilioSms(newCheckData.userPhone,msg,function(err){
     if(!err){
       debug("Success: User was alerted to a status change in their check, via sms: ",msg);
     } else {
