@@ -17,7 +17,7 @@ handlers.index = function(data,callback){
   // Reject any request that isn't a GET
   if(data.method == 'get'){
     // Read in a template as a string
-    helpers.getTemplate('index',function(err,str){
+    helper.getTemplate('index',function(err,str){
       if(!err && str){
         callback(200,str,'html');
       } else {
