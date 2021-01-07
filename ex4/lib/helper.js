@@ -7,6 +7,10 @@
 var config = require('./config');
 var crypto = require('crypto');
 var path = require('path');
+var https = require('https');
+var querystring = require('querystring');
+var path = require('path');
+var fs = require('fs');
 
 // Container for all the helper
 var helper = {};
