@@ -155,7 +155,7 @@ server.router = {
   'session/create' : handlers.sessionCreate,
   'session/deleted' : handlers.sessionDeleted,
   'ping' : handlers.ping,
-  'api/users' : user_holder.users,
+  'api/user' : user_holder.user,
   'api/tokens' : token_holder.tokens,
   'favicon.ico' : handlers.favicon,
   'public' : handlers.public

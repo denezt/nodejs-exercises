@@ -378,7 +378,7 @@ app.loadAccountEditPage = function(){
     var queryStringObject = {
       'phone' : phone
     };
-    app.client.request(undefined,'api/users','GET',queryStringObject,undefined,function(statusCode,responsePayload){
+    app.client.request(undefined,'api/user','GET',queryStringObject,undefined,function(statusCode,responsePayload){
       if(statusCode == 200){
         // Put the data into the forms as values where needed
         document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
