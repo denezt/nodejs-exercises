@@ -2,8 +2,6 @@ var _data = require('./data');
 var helper = require('./helper');
 var config = require('./config');
 
-
-
 var account = {}
 
 
@@ -37,3 +35,6 @@ account.accountCreate = function(data,callback){
     callback(405,undefined,'html');
   }
 };
+
+
+module.exports = account;
