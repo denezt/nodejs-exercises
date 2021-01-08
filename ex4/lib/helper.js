@@ -85,6 +85,7 @@ helper.getTemplate = function(templateName,data,callback){
       if(!err && str && str.length > 0){
         // Do interpolation on the string
         var finalString = helper.interpolate(str,data);
+        console.log(finalString);
         callback(false,finalString);
       } else {
         callback('No template could be found');
@@ -107,6 +108,7 @@ helper.addUniversalTemplates = function(str,data,callback){
         if(!err && headerString){
           // Add them all together
           var fullString = headerString+str+footerString;
+          console.log(finalString);
           callback(false,fullString);
         } else {
           callback('Could not find the footer template');
