@@ -12,23 +12,37 @@ var helper = require('./helper');
 // Define all the handlers
 var handlers = {};
 
-// Index Handler
+// Index
 handlers.index = function(data,callback){
   // Reject any request that isn't a GET
   if(data.method == 'get'){
+    // Prepare data for interpolation
+    var templateData = {
+      'head.title' : 'Joe\'s Pizza Online',
+      'head.description' : 'We are the #1 Pizza Online Application.',
+      'body.class' : 'index'
+    };
     // Read in a template as a string
-    helper.getTemplate('index',function(err,str){
+    helpers.getTemplate('index',templateData,function(err,str){
       if(!err && str){
-        callback(200,str,'html');
+        // Add the universal header and footer
+        helpers.addUniversalTemplates(str,templateData,function(err,str){
+          if(!err && str){
+            // Return that page as HTML
+            callback(200,str,'html');
+          } else {
+            callback(500,undefined,'html');
+          }
+        });
       } else {
-        callback(500,undefined,'html')
+        callback(500,undefined,'html');
       }
     });
-    // Return that template as HTML
   } else {
     callback(405,undefined,'html');
   }
 };
+
 
 // Ping
 handlers.ping = function(data,callback){
