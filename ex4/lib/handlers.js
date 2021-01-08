@@ -23,10 +23,10 @@ handlers.index = function(data,callback){
       'body.class' : 'index'
     };
     // Read in a template as a string
-    helpers.getTemplate('index',templateData,function(err,str){
+    helper.getTemplate('index',templateData,function(err,str){
       if(!err && str){
         // Add the universal header and footer
-        helpers.addUniversalTemplates(str,templateData,function(err,str){
+        helper.addUniversalTemplates(str,templateData,function(err,str){
           if(!err && str){
             // Return that page as HTML
             callback(200,str,'html');
