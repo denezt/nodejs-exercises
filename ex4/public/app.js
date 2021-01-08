@@ -218,9 +218,9 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   var functionToCall = false;
   // If account creation was successful, try to immediately log the user in
   if(formId == 'accountCreate'){
-    // Take the phone and password, and use it to log the user in
+    // Take the email address and password, and use it to log the user in
     var newPayload = {
-      'phone' : requestPayload.phone,
+      'email' : requestPayload.email,
       'password' : requestPayload.password
     };
 
@@ -237,18 +237,19 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
       } else {
         // If successful, set the token and redirect the user
         app.setSessionToken(newResponsePayload);
-        window.location = '/checks/all';
+        // window.location = '/checks/all';
       }
     });
   }
   // If login was successful, set the token in localstorage and redirect the user
   if(formId == 'sessionCreate'){
     app.setSessionToken(responsePayload);
-    window.location = '/checks/all';
+    // window.location = '/checks/all';
   }
 
   // If forms saved successfully and they have success messages, show them
-  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1'];
+  // var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1'];
+  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2'];
   if(formsWithSuccessMessages.indexOf(formId) > -1){
     document.querySelector("#"+formId+" .formSuccess").style.display = 'block';
   }
@@ -260,14 +261,14 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   }
 
   // If the user just created a new check successfully, redirect back to the dashboard
-  if(formId == 'checksCreate'){
-    window.location = '/checks/all';
-  }
-
-  // If the user just deleted a check, redirect them to the dashboard
-  if(formId == 'checksEdit2'){
-    window.location = '/checks/all';
-  }
+  // if(formId == 'checksCreate'){
+  //   window.location = '/checks/all';
+  // }
+  //
+  // // If the user just deleted a check, redirect them to the dashboard
+  // if(formId == 'checksEdit2'){
+  //   window.location = '/checks/all';
+  // }
 
 };
 
@@ -358,37 +359,37 @@ app.loadDataOnPage = function(){
     app.loadAccountEditPage();
   }
 
-  // Logic for dashboard page
-  if(primaryClass == 'checksList'){
-    app.loadChecksListPage();
-  }
-
-  // Logic for check details page
-  if(primaryClass == 'checksEdit'){
-    app.loadChecksEditPage();
-  }
+  // // Logic for dashboard page
+  // if(primaryClass == 'checksList'){
+  //   app.loadChecksListPage();
+  // }
+  //
+  // // Logic for check details page
+  // if(primaryClass == 'checksEdit'){
+  //   app.loadChecksEditPage();
+  // }
 };
 
 // Load the account edit page specifically
 app.loadAccountEditPage = function(){
-  // Get the phone number from the current token, or log the user out if none is there
-  var phone = typeof(app.config.sessionToken.phone) == 'string' ? app.config.sessionToken.phone : false;
-  if(phone){
+  // Get the email address from the current token, or log the user out if none is there
+  var emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
+  if(emailAddress){
     // Fetch the user data
     var queryStringObject = {
-      'phone' : phone
+      'emailAddress' : emailAddress
     };
     app.client.request(undefined,'api/user','GET',queryStringObject,undefined,function(statusCode,responsePayload){
       if(statusCode == 200){
         // Put the data into the forms as values where needed
         document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
         document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
-        document.querySelector("#accountEdit1 .displayPhoneInput").value = responsePayload.phone;
+        document.querySelector("#accountEdit1 .displayEmailAddressInput").value = responsePayload.emailAddress;
 
-        // Put the hidden phone field into both forms
-        var hiddenPhoneInputs = document.querySelectorAll("input.hiddenPhoneNumberInput");
-        for(var i = 0; i < hiddenPhoneInputs.length; i++){
-            hiddenPhoneInputs[i].value = responsePayload.phone;
+        // Put the hidden emailAddress field into both forms
+        var hiddenEmailAddressInputs = document.querySelectorAll("input.hiddenEmailAddressInput");
+        for(var i = 0; i < hiddenEmailAddressInputs.length; i++){
+            hiddenEmailAddressInputs[i].value = responsePayload.emailAddress;
         }
 
       } else {

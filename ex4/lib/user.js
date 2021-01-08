@@ -172,7 +172,7 @@ user._user.put = function(data,callback){
 // Required data: emailAddress
 // @TODO Cleanup (delete) any other data files associated with the user
 user._user.delete = function(data,callback){
-  // Check that phone number is valid
+  // Check that email address is valid
   var emailAddress = data.queryStringObject.emailAddress;
   var datastoreFilename = (typeof(helper.datastore(emailAddress)) == 'string') && emailAddress.trim().length > 0 ? helper.datastore(emailAddress) : false;
 
@@ -180,7 +180,7 @@ user._user.delete = function(data,callback){
     // Lookup the user
     // Get the token from the headers
     var token = (typeof(data.headers.token) == 'string') ? data.headers.token : false;
-    // Verify that the given token is valid for the phone number
+    // Verify that the given token is valid for the email address
     token_holder._token.verifyToken(token,emailAddress,function(tokenIsValid){
       if (tokenIsValid) {
         _data.read('users',datastoreFilename,function(err,data){

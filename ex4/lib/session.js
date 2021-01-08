@@ -12,7 +12,7 @@ session.sessionCreate = function(data,callback){
     // Prepare data for interpolation
     var templateData = {
       'head.title' : 'Login to your account.',
-      'head.description' : 'Please enter your phone number and password to access your account.',
+      'head.description' : 'Please enter your email address and password to access your account.',
       'body.class' : 'sessionCreate'
     };
     // Read in a template as a string
