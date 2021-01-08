@@ -81,7 +81,7 @@ server.unifiedServer = function(req,res){
          'queryStringObject' : queryStringObject,
          'method' : method,
          'headers' : headers,
-         'payload' : helpers.parseJsonToObject(buffer)
+         'payload' : helper.parseJsonToObject(buffer)
        };
 
        // Route the request to the handler specified in the router
