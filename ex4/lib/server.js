@@ -22,9 +22,7 @@ var token_holder = require('./token');
 var user_holder = require('./user');
 var menu_holder = require('./menu');
 var order_holder = require('./order');
-
-
-
+var account_holder = require('./account');
 
 // Instantiate the server module object
 var server = {};
@@ -124,14 +122,14 @@ server.unifiedServer = function(req,res){
  // Define the request router
 server.router = {
   '' : handlers.index,
-  'account/create' : handlers.accountCreate,
-  'account/edit' : handlers.accountEdit,
-  'account/deleted' : handlers.accountDeleted,
+  'account/create' : account_holder.accountCreate,
+  'account/edit' : account_holder.accountEdit,
+  'account/deleted' : account_holder.accountDeleted,
   'session/create' : handlers.sessionCreate,
   'session/deleted' : handlers.sessionDeleted,
   'ping' : handlers.ping,
-  'api/users' : handlers.users,
-  'api/tokens' : handlers.tokens,
+  'api/users' : user_holder.users,
+  'api/tokens' : token_holder.tokens,
 };
 
  // Init script
