@@ -60,7 +60,7 @@ user._user.post = function(data,callback){
           // Store the user
           _data.create('users',datastoreFilename,userObject,function(err){
             if(!err){
-              callback(200);
+              callback(200,{'status':'ok'});
             } else {
               console.log(err);
               callback(500,{'Error' : 'Could not create the new user'});
