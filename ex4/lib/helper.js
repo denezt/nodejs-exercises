@@ -108,7 +108,7 @@ helper.addUniversalTemplates = function(str,data,callback){
         if(!err && headerString){
           // Add them all together
           var fullString = headerString+str+footerString;
-          console.log(finalString);
+          console.log(fullString);
           callback(false,fullString);
         } else {
           callback('Could not find the footer template');
