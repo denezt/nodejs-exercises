@@ -72,13 +72,16 @@ server.unifiedServer = function(req,res){
        // Check the router for a matching path for a handler. If one is not found, use the notFound handler instead.
        var chosenHandler = typeof(server.router[trimmedPath]) !== 'undefined' ? server.router[trimmedPath] : handlers.notFound;
 
+       // If the request is within the public directory use to the public handler instead
+       chosenHandler = trimmedPath.indexOf('public/') > -1 ? handlers.public : chosenHandler;
+
        // Construct the data object to send to the handler
        var data = {
          'trimmedPath' : trimmedPath,
          'queryStringObject' : queryStringObject,
          'method' : method,
          'headers' : headers,
-         'payload' : helper.parseJsonToObject(buffer)
+         'payload' : helpers.parseJsonToObject(buffer)
        };
 
        // Route the request to the handler specified in the router
@@ -103,6 +106,30 @@ server.unifiedServer = function(req,res){
            payloadString = typeof(payload) == 'string'? payload : '';
          }
 
+         if(contentType == 'favicon'){
+           res.setHeader('Content-Type', 'image/x-icon');
+           payloadString = typeof(payload) !== 'undefined' ? payload : '';
+         }
+
+         if(contentType == 'plain'){
+           res.setHeader('Content-Type', 'text/plain');
+           payloadString = typeof(payload) !== 'undefined' ? payload : '';
+         }
+
+         if(contentType == 'css'){
+           res.setHeader('Content-Type', 'text/css');
+           payloadString = typeof(payload) !== 'undefined' ? payload : '';
+         }
+
+         if(contentType == 'png'){
+           res.setHeader('Content-Type', 'image/png');
+           payloadString = typeof(payload) !== 'undefined' ? payload : '';
+         }
+
+         if(contentType == 'jpg'){
+           res.setHeader('Content-Type', 'image/jpeg');
+           payloadString = typeof(payload) !== 'undefined' ? payload : '';
+         }
 
          // Return the response-parts common to all content-types
          res.writeHead(statusCode);
@@ -117,7 +144,7 @@ server.unifiedServer = function(req,res){
        });
 
    });
- };
+};
 
  // Define the request router
 server.router = {
