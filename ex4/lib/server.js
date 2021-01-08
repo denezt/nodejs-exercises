@@ -157,6 +157,8 @@ server.router = {
   'ping' : handlers.ping,
   'api/users' : user_holder.users,
   'api/tokens' : token_holder.tokens,
+  'favicon.ico' : handlers.favicon,
+  'public' : handlers.public
 };
 
  // Init script
