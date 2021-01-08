@@ -37,6 +37,7 @@ user._user.post = function(data,callback){
   var password = (typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0) ? data.payload.password.trim() : false;
   var tosAgreement = (typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true) ? true : false;
 
+  console.log(firstName,lastName,emailAddress,streetAddress,password,tosAgreement);
   var datastoreFilename = helper.datastore(data.payload.emailAddress);
   if(firstName && lastName && emailAddress && streetAddress && password && tosAgreement){
     // Make sure the user doesnt already exist
