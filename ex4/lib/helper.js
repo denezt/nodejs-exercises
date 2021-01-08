@@ -75,7 +75,6 @@ helper.datastore = function(data, callback){
   }
 };
 
-
 // Get the string content of a template, and use provided data for string interpolation
 helper.getTemplate = function(templateName,data,callback){
   templateName = typeof(templateName) == 'string' && templateName.length > 0 ? templateName : false;

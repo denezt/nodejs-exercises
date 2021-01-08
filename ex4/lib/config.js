@@ -11,7 +11,13 @@ environments.staging = {
   'httpPort' : 3000,
   'httpsPort' : 3001,
   'envName' : 'staging',
-  'hashingSecret' : 'thisIsASecret'
+  'hashingSecret' : 'thisIsASecret',
+  'templateGlobals' : {
+    'appName' : 'UptimeChecker',
+    'companyName' : 'NotARealCompany, Inc.',
+    'yearCreated' : '2018',
+    'baseUrl' : 'http://localhost:5000/'
+  }
 };
 
 // Production environment
@@ -19,7 +25,13 @@ environments.production = {
   'httpPort' : 5000,
   'httpsPort' : 5001,
   'envName' : 'production',
-  'hashingSecret' : 'thisIsAlsoASecret'
+  'hashingSecret' : 'thisIsAlsoASecret',
+  'templateGlobals' : {
+    'appName' : 'UptimeChecker',
+    'companyName' : 'NotARealCompany, Inc.',
+    'yearCreated' : '2018',
+    'baseUrl' : 'http://localhost:5000/'
+  }
 };
 
 // Determine which environment was passed as a command-line argument
