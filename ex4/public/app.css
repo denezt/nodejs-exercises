@@ -73,6 +73,9 @@ body,p,h1,h2,h3,h4,h5,h6,div,span,header,footer,img,a,a:hover,a:active,a:visited
 
 .footer{
   width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
   background-color: #1a1a1a;
   padding: 50px 0;
   text-align: center;

@@ -15,7 +15,7 @@ environments.staging = {
   'envName' : 'staging',
   'hashingSecret' : 'thisIsASecret',
   'templateGlobals' : {
-    'appName' : 'UptimeChecker',
+    'appName' : 'Online Piza Ordering Tool',
     'companyName' : 'Joe\'s Pizza ',
     'yearCreated' : currentYear,
     'baseUrl' : 'http://139.59.147.182:3000/'
@@ -29,7 +29,7 @@ environments.production = {
   'envName' : 'production',
   'hashingSecret' : 'thisIsAlsoASecret',
   'templateGlobals' : {
-    'appName' : 'UptimeChecker',
+    'appName' : 'Online Piza Ordering Tool',
     'companyName' : 'Joe\'s Pizza ',
     'yearCreated' : currentYear,
     'baseUrl' : 'http://139.59.147.182:5000/'
