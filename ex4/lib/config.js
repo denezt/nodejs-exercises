@@ -6,6 +6,9 @@
 // Container for all environments
 var environments = {};
 
+const currentDate = new Date();
+console.log(currentDate.getFullYear());
+
 // Staging (default) environment
 environments.staging = {
   'httpPort' : 3000,
@@ -14,8 +17,8 @@ environments.staging = {
   'hashingSecret' : 'thisIsASecret',
   'templateGlobals' : {
     'appName' : 'UptimeChecker',
-    'companyName' : 'NotARealCompany, Inc.',
-    'yearCreated' : '2018',
+    'companyName' : 'Joe\'s Pizza ',
+    'yearCreated' : currentDate,
     'baseUrl' : 'http://139.59.147.182:3000/'
   }
 };
@@ -28,8 +31,8 @@ environments.production = {
   'hashingSecret' : 'thisIsAlsoASecret',
   'templateGlobals' : {
     'appName' : 'UptimeChecker',
-    'companyName' : 'NotARealCompany, Inc.',
-    'yearCreated' : '2018',
+    'companyName' : 'Joe\'s Pizza ',
+    'yearCreated' : currentDate,
     'baseUrl' : 'http://139.59.147.182:5000/'
   }
 };
