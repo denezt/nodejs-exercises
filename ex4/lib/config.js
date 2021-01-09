@@ -6,8 +6,7 @@
 // Container for all environments
 var environments = {};
 
-const currentDate = new Date();
-console.log(currentDate.getFullYear());
+const currentYear = new Date().getFullYear();
 
 // Staging (default) environment
 environments.staging = {
@@ -18,7 +17,7 @@ environments.staging = {
   'templateGlobals' : {
     'appName' : 'UptimeChecker',
     'companyName' : 'Joe\'s Pizza ',
-    'yearCreated' : currentDate,
+    'yearCreated' : currentYear,
     'baseUrl' : 'http://139.59.147.182:3000/'
   }
 };
@@ -32,7 +31,7 @@ environments.production = {
   'templateGlobals' : {
     'appName' : 'UptimeChecker',
     'companyName' : 'Joe\'s Pizza ',
-    'yearCreated' : currentDate,
+    'yearCreated' : currentYear,
     'baseUrl' : 'http://139.59.147.182:5000/'
   }
 };
