@@ -2,7 +2,7 @@
 
 option="${1}"
 process="node index.js"
-logfile="nodejs_ex3.log"
+logfile="nodejs_ex4.log"
 
 error(){
 	printf "\033[35mError:\t\033[31m${1}\033[0m\n"
