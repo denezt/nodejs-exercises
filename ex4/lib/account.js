@@ -7,7 +7,7 @@ var account = {};
 // Create Account
 account.accountCreate = function(data,callback){
   // Reject any request that isn't a GET
-  if(data.method == 'get'){
+  if(data.method == 'post'){
     // Prepare data for interpolation
     var templateData = {
       'head.title' : 'Create an Account',
