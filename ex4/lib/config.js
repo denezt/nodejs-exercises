@@ -6,6 +6,9 @@
 // Container for all environments
 var environments = {};
 
+var serverUrl = '139.59.147.182';
+
+
 // Staging (default) environment
 environments.staging = {
   'httpPort' : 3000,
@@ -13,16 +16,11 @@ environments.staging = {
   'envName' : 'staging',
   'hashingSecret' : 'thisIsASecret',
   'maxChecks' : 5,
-  'twilio' : {
-    'accountSid' : 'ACb32d411ad7fe886aac54c665d25e5c5d',
-    'authToken' : '9455e3eb3109edc12e3d8c92768f7a67',
-    'fromPhone' : '+15005550006'
-  },
   'templateGlobals' : {
     'appName' : 'UptimeChecker',
     'companyName' : 'NotARealCompany, Inc.',
     'yearCreated' : '2018',
-    'baseUrl' : 'http://localhost:3000/'
+    'baseUrl' : 'http://' + serverUrl +':3000/'
   }
 };
 
@@ -33,16 +31,11 @@ environments.production = {
   'envName' : 'production',
   'hashingSecret' : 'thisIsAlsoASecret',
   'maxChecks' : 10,
-  'twilio' : {
-    'accountSid' : '',
-    'authToken' : '',
-    'fromPhone' : ''
-  },
   'templateGlobals' : {
     'appName' : 'UptimeChecker',
     'companyName' : 'NotARealCompany, Inc.',
     'yearCreated' : '2018',
-    'baseUrl' : 'http://localhost:5000/'
+    'baseUrl' : 'http://' + serverUrl +':5000/'
   }
 };
 
