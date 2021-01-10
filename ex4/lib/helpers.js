@@ -34,6 +34,16 @@ helpers.hash = function(str){
   }
 };
 
+// Create a SHA128 hash
+helper.hash128 = function(str){
+  if(typeof(str) == 'string' && str.length > 0){
+    var hash = crypto.createHmac('md5', config.hashingSecret).update(str).digest('hex');
+    return hash;
+  } else {
+    return false;
+  }
+};
+
 // Create a string of random alphanumeric characters, of a given length
 helpers.createRandomString = function(strLength){
   strLength = typeof(strLength) == 'number' && strLength > 0 ? strLength : false;
@@ -56,6 +66,16 @@ helpers.createRandomString = function(strLength){
   }
 };
 
+helper.datastore = function(data, callback){
+  let convertToFilename = (typeof(data) !== 'undefined') ? data.replace('@','_').replace('.','_') : false;
+  if (convertToFilename) {
+    return convertToFilename.replace(/^"(.+)"$/,'$1');
+  } else {
+    return false;
+  }
+};
+
+/*
 helpers.sendTwilioSms = function(phone,msg,callback){
   // Validate parameters
   phone = typeof(phone) == 'string' && phone.trim().length == 10 ? phone.trim() : false;
@@ -111,6 +131,7 @@ helpers.sendTwilioSms = function(phone,msg,callback){
     callback('Given parameters were missing or invalid');
   }
 };
+*/
 
 // Get the string content of a template, and use provided data for string interpolation
 helpers.getTemplate = function(templateName,data,callback){

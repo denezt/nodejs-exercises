@@ -218,9 +218,9 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   var functionToCall = false;
   // If account creation was successful, try to immediately log the user in
   if(formId == 'accountCreate'){
-    // Take the phone and password, and use it to log the user in
+    // Take the emailAddress and password, and use it to log the user in
     var newPayload = {
-      'phone' : requestPayload.phone,
+      'emailAddress' : requestPayload.emailAddress,
       'password' : requestPayload.password
     };
 
@@ -371,24 +371,24 @@ app.loadDataOnPage = function(){
 
 // Load the account edit page specifically
 app.loadAccountEditPage = function(){
-  // Get the phone number from the current token, or log the user out if none is there
-  var phone = typeof(app.config.sessionToken.phone) == 'string' ? app.config.sessionToken.phone : false;
-  if(phone){
+  // Get the emailAddress number from the current token, or log the user out if none is there
+  var emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
+  if(emailAddress){
     // Fetch the user data
     var queryStringObject = {
-      'phone' : phone
+      'emailAddress' : emailAddress
     };
     app.client.request(undefined,'api/users','GET',queryStringObject,undefined,function(statusCode,responsePayload){
       if(statusCode == 200){
         // Put the data into the forms as values where needed
         document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
         document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
-        document.querySelector("#accountEdit1 .displayPhoneInput").value = responsePayload.phone;
+        document.querySelector("#accountEdit1 .displayPhoneInput").value = responsePayload.emailAddress;
 
-        // Put the hidden phone field into both forms
+        // Put the hidden emailAddress field into both forms
         var hiddenPhoneInputs = document.querySelectorAll("input.hiddenPhoneNumberInput");
         for(var i = 0; i < hiddenPhoneInputs.length; i++){
-            hiddenPhoneInputs[i].value = responsePayload.phone;
+            hiddenPhoneInputs[i].value = responsePayload.emailAddress;
         }
 
       } else {
@@ -401,6 +401,7 @@ app.loadAccountEditPage = function(){
   }
 };
 
+/*
 // Load the dashboard page specifically
 app.loadChecksListPage = function(){
   // Get the phone number from the current token, or log the user out if none is there
@@ -469,8 +470,9 @@ app.loadChecksListPage = function(){
     app.logUserOut();
   }
 };
+*/
 
-
+/*
 // Load the checks edit page specifically
 app.loadChecksEditPage = function(){
   // Get the check id from the query string, if none is found then redirect back to dashboard
@@ -511,6 +513,7 @@ app.loadChecksEditPage = function(){
     window.location = '/checks/all';
   }
 };
+*/
 
 // Loop to renew token often
 app.tokenRenewalLoop = function(){
