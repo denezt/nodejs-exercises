@@ -5,8 +5,9 @@
 
 // Container for all environments
 var environments = {};
-
 var serverUrl = '139.59.147.182';
+
+var currentYear = Date.Now().currentYear();
 
 
 // Staging (default) environment
@@ -17,9 +18,9 @@ environments.staging = {
   'hashingSecret' : 'thisIsASecret',
   'maxChecks' : 5,
   'templateGlobals' : {
-    'appName' : 'UptimeChecker',
-    'companyName' : 'NotARealCompany, Inc.',
-    'yearCreated' : '2018',
+    'appName' : 'Big Joe\'s Online Pizza Delivery',
+    'companyName' : 'Big Joe\'s Pizza Co.',
+    'yearCreated' : currentYear,
     'baseUrl' : 'http://' + serverUrl +':3000/'
   }
 };
@@ -32,9 +33,9 @@ environments.production = {
   'hashingSecret' : 'thisIsAlsoASecret',
   'maxChecks' : 10,
   'templateGlobals' : {
-    'appName' : 'UptimeChecker',
-    'companyName' : 'NotARealCompany, Inc.',
-    'yearCreated' : '2018',
+    'appName' : 'Big Joe\'s Online Pizza Delivery',
+    'companyName' : 'Big Joe\'s Pizza Co.',
+    'yearCreated' : currentYear,
     'baseUrl' : 'http://' + serverUrl +':5000/'
   }
 };
