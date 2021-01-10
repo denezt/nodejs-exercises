@@ -1,6 +1,6 @@
 
 var _data = require('./data');
-var helpers = require('./helpers');
+var helper = require('./helper');
 var config = require('./config');
 
 var session = {};
@@ -16,10 +16,10 @@ session.sessionCreate = function(data,callback){
       'body.class' : 'sessionCreate'
     };
     // Read in a template as a string
-    helpers.getTemplate('sessionCreate',templateData,function(err,str){
+    helper.getTemplate('sessionCreate',templateData,function(err,str){
       if(!err && str){
         // Add the universal header and footer
-        helpers.addUniversalTemplates(str,templateData,function(err,str){
+        helper.addUniversalTemplates(str,templateData,function(err,str){
           if(!err && str){
             // Return that page as HTML
             callback(200,str,'html');
@@ -37,7 +37,7 @@ session.sessionCreate = function(data,callback){
 };
 
 // Session has been deleted
-handlers.sessionDeleted = function(data,callback){
+session.sessionDeleted = function(data,callback){
   // Reject any request that isn't a GET
   if(data.method == 'get'){
     // Prepare data for interpolation
@@ -47,10 +47,10 @@ handlers.sessionDeleted = function(data,callback){
       'body.class' : 'sessionDeleted'
     };
     // Read in a template as a string
-    helpers.getTemplate('sessionDeleted',templateData,function(err,str){
+    helper.getTemplate('sessionDeleted',templateData,function(err,str){
       if(!err && str){
         // Add the universal header and footer
-        helpers.addUniversalTemplates(str,templateData,function(err,str){
+        helper.addUniversalTemplates(str,templateData,function(err,str){
           if(!err && str){
             // Return that page as HTML
             callback(200,str,'html');
