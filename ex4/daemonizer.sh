@@ -48,12 +48,12 @@ start_proc(){
 restart_proc(){
 	if [ `getpid` -eq 0 ];
 	then
-		printf "Attempting to restart process ${process}...\n"
+		printf "Attempting to restart process \`${process}\`...\n"
 		kill_proc
 		sleep 2
 		start_proc
 	else
-		printf "Restart process ${process}...\n"
+		printf "Restart process \`${process}\`...\n"
 		start_proc
 	fi
 }
