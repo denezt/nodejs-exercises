@@ -23,6 +23,7 @@ var user_holder = require('./user');
 var menu_holder = require('./menu');
 var order_holder = require('./order');
 var account_holder = require('./account');
+var session_holder = require('./session');
 
 // Instantiate the server module object
 var server = {};
@@ -152,8 +153,8 @@ server.router = {
   'account/create' : account_holder.accountCreate,
   'account/edit' : account_holder.accountEdit,
   'account/deleted' : account_holder.accountDeleted,
-  'session/create' : handlers.sessionCreate,
-  'session/deleted' : handlers.sessionDeleted,
+  'session/create' : session_holder.sessionCreate,
+  'session/deleted' : session_holder.sessionDeleted,
   'ping' : handlers.ping,
   'api/user' : user_holder.user,
   'api/tokens' : token_holder.tokens,
