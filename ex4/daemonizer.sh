@@ -45,6 +45,19 @@ start_proc(){
 	fi
 }
 
+restart_proc(){
+	if [ `getpid` -eq 0 ];
+	then
+		printf "Attempting to restart process ${process}...\n"
+		kill_proc
+		sleep 2
+		start_proc
+	else
+		printf "Restart process ${process}...\n"
+		start_proc
+	fi
+}
+
 query_proc(){
 	if [ `getpid` -eq 0 ];
 	then
@@ -67,6 +80,7 @@ case ${option} in
 	-s|-start|--start) start_proc;;
 	-k|-kill|--kill) kill_proc;;
 	-q|-query|--query) query_proc;;
+	-r|-restart|--restart) restart_proc;;
 	-h|-help|--help) help_menu;;
 	*) error "Missing or invalid parameter was given";;
 esac
