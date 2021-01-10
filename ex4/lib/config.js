@@ -7,7 +7,7 @@
 var environments = {};
 var serverUrl = '139.59.147.182';
 
-var currentYear = Date.Now().currentYear();
+const currentYear = new Date().getFullYear();
 
 
 // Staging (default) environment
