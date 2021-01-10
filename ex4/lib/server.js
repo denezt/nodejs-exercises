@@ -157,7 +157,7 @@ server.router = {
   'session/deleted' : session_holder.sessionDeleted,
   'ping' : handlers.ping,
   'api/user' : user_holder.user,
-  'api/tokens' : token_holder.tokens,
+  'api/tokens' : token_holder.token,
   'favicon.ico' : handlers.favicon,
   'public' : handlers.public
 };
