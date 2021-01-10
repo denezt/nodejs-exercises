@@ -85,9 +85,6 @@ body.loggedIn .header ul li.loggedOut{
 
 .footer{
   width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   background-color: #1a1a1a;
   padding: 50px 0;
   text-align: center;

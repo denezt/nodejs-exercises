@@ -4,26 +4,18 @@
  */
 
  // Dependencies
-var http = require('http');
-var https = require('https');
-var url = require('url');
-var StringDecoder = require('string_decoder').StringDecoder;
-var fs = require('fs');
-var path = require('path');
-var util = require('util');
-var debug = util.debuglog('server');
+ var http = require('http');
+ var https = require('https');
+ var url = require('url');
+ var StringDecoder = require('string_decoder').StringDecoder;
+ var config = require('./config');
+ var fs = require('fs');
+ var handlers = require('./handlers');
+ var helpers = require('./helpers');
+ var path = require('path');
+ var util = require('util');
+ var debug = util.debuglog('server');
 
-// User Library
-var config = require('./config');
-var handlers = require('./handlers');
-var helper = require('./helper');
-var cart_holder = require('./cart');
-var token_holder = require('./token');
-var user_holder = require('./user');
-var menu_holder = require('./menu');
-var order_holder = require('./order');
-var account_holder = require('./account');
-var session_holder = require('./session');
 
 // Instantiate the server module object
 var server = {};
@@ -82,7 +74,7 @@ server.unifiedServer = function(req,res){
          'queryStringObject' : queryStringObject,
          'method' : method,
          'headers' : headers,
-         'payload' : helper.parseJsonToObject(buffer)
+         'payload' : helpers.parseJsonToObject(buffer)
        };
 
        // Route the request to the handler specified in the router
@@ -145,19 +137,23 @@ server.unifiedServer = function(req,res){
        });
 
    });
-};
+ };
 
  // Define the request router
 server.router = {
   '' : handlers.index,
   'account/create' : handlers.accountCreate,
-  'account/edit' : account_holder.accountEdit,
-  'account/deleted' : account_holder.accountDeleted,
-  'session/create' : session_holder.sessionCreate,
-  'session/deleted' : session_holder.sessionDeleted,
+  'account/edit' : handlers.accountEdit,
+  'account/deleted' : handlers.accountDeleted,
+  'session/create' : handlers.sessionCreate,
+  'session/deleted' : handlers.sessionDeleted,
+  'checks/all' : handlers.checksList,
+  'checks/create' : handlers.checksCreate,
+  'checks/edit' : handlers.checksEdit,
   'ping' : handlers.ping,
-  'api/user' : user_holder.user,
-  'api/tokens' : token_holder.token,
+  'api/users' : handlers.users,
+  'api/tokens' : handlers.tokens,
+  'api/checks' : handlers.checks,
   'favicon.ico' : handlers.favicon,
   'public' : handlers.public
 };

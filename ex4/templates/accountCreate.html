@@ -2,7 +2,7 @@
 <h2>Signup is easy and only takes a few seconds.</h2>
 
 <div class="formWrapper">
-  <form id="accountCreate" action="/api/user" method="POST">
+  <form id="accountCreate" action="/api/users" method="POST">
     <div class="formError"></div>
     <div class="inputWrapper">
       <div class="inputLabel">First Name</div>
@@ -13,12 +13,8 @@
       <input type="text" name="lastName" placeholder="Smith" />
     </div>
     <div class="inputWrapper">
-      <div class="inputLabel">Street Address</div>
-      <input type="text" name="streetAddress" placeholder="123 Sickamore Str." />
-    </div>
-    <div class="inputWrapper">
-      <div class="inputLabel">Email Address</div>
-      <input type="text" name="emailAddress" placeholder="myemail@email.com" />
+      <div class="inputLabel">Phone Number</div>
+      <input type="text" name="phone" placeholder="(415) 123-4567" />
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Choose a Password</div>
@@ -26,7 +22,7 @@
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Do you agree to the terms and conditions?</div>
-      <input type="checkbox" name="tosAgreement" value="true">
+      <input type="checkbox" name="tosAgreement" value="agree">
     </div>
     <div class="inputWrapper ctaWrapper">
       <button type="submit" class="cta green">Get Started</button>

@@ -14,24 +14,6 @@ var lib = {};
 // Base directory of data folder
 lib.baseDir = path.join(__dirname,'/../.logs/');
 
-// Create all datastore files
-const pathsToCheck = [
-	lib.baseDir
-];
-
-for (let i = 0; i < pathsToCheck.length; i++){
-	let targetFile = pathsToCheck[i];
-	fs.stat(targetFile, function(err,stats){
-		if (typeof stats === 'undefined'){
-			if (err){
-				console.log("Creating missing directory: " + targetFile);
-				fs.mkdir(targetFile, { recursive : true, mode: 0o777 }, (err) =>{ });
-			}
-		}
-	});
-}
-
-
 // Append a string to a file. Create the file if it does not exist
 lib.append = function(file,str,callback){
   // Open the file for appending
