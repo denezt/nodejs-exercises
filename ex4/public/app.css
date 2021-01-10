@@ -296,8 +296,9 @@ td a, td a:hover, td a:active{
 }
 
 /* */
-#picture-gallery {
+#picture-gallery, #picture-image {
   width: 50%;
   height: 50%;
   border-radius: 10px;
+  margin-bottom: 5%;
 }
