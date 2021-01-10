@@ -2,8 +2,7 @@ var _data = require('./data');
 var helper = require('./helper');
 var config = require('./config');
 
-var account = {}
-
+var account = {};
 
 // Create Account
 account.accountCreate = function(data,callback){
