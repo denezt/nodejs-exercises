@@ -150,9 +150,9 @@ server.unifiedServer = function(req,res){
  // Define the request router
 server.router = {
   '' : handlers.index,
-  'account/create' : account_holder.accountCreate,
-  'account/edit' : account_holder.accountEdit,
-  'account/deleted' : account_holder.accountDeleted,
+  'account/create' : handlers.accountCreate,
+  // 'account/edit' : account_holder.accountEdit,
+  // 'account/deleted' : account_holder.accountDeleted,
   'session/create' : session_holder.sessionCreate,
   'session/deleted' : session_holder.sessionDeleted,
   'ping' : handlers.ping,
