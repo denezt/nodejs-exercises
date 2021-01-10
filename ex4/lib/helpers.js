@@ -35,7 +35,7 @@ helpers.hash = function(str){
 };
 
 // Create a SHA128 hash
-helper.hash128 = function(str){
+helpers.hash128 = function(str){
   if(typeof(str) == 'string' && str.length > 0){
     var hash = crypto.createHmac('md5', config.hashingSecret).update(str).digest('hex');
     return hash;
@@ -66,7 +66,7 @@ helpers.createRandomString = function(strLength){
   }
 };
 
-helper.datastore = function(data, callback){
+helpers.datastore = function(data, callback){
   let convertToFilename = (typeof(data) !== 'undefined') ? data.replace('@','_').replace('.','_') : false;
   if (convertToFilename) {
     return convertToFilename.replace(/^"(.+)"$/,'$1');
