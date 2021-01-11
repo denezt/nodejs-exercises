@@ -401,7 +401,7 @@ app.loadAccountEditPage = function(){
   }
 };
 
-/*
+
 // Load the dashboard page specifically
 app.loadChecksListPage = function(){
   // Get the phone number from the current token, or log the user out if none is there
@@ -470,9 +470,9 @@ app.loadChecksListPage = function(){
     app.logUserOut();
   }
 };
-*/
 
-/*
+
+
 // Load the checks edit page specifically
 app.loadChecksEditPage = function(){
   // Get the check id from the query string, if none is found then redirect back to dashboard
@@ -513,7 +513,7 @@ app.loadChecksEditPage = function(){
     window.location = '/checks/all';
   }
 };
-*/
+
 
 // Loop to renew token often
 app.tokenRenewalLoop = function(){
