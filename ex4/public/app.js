@@ -383,12 +383,12 @@ app.loadAccountEditPage = function(){
         // Put the data into the forms as values where needed
         document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
         document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
-        document.querySelector("#accountEdit1 .displayPhoneInput").value = responsePayload.emailAddress;
+        document.querySelector("#accountEdit1 .displayEmailAddressInput").value = responsePayload.emailAddress;
 
         // Put the hidden emailAddress field into both forms
-        var hiddenPhoneInputs = document.querySelectorAll("input.hiddenPhoneNumberInput");
-        for(var i = 0; i < hiddenPhoneInputs.length; i++){
-            hiddenPhoneInputs[i].value = responsePayload.emailAddress;
+        var hiddenEmailInputs = document.querySelectorAll("input.hiddenEmailAddressInput");
+        for(var i = 0; i < hiddenEmailInputs.length; i++){
+            hiddenEmailInputs[i].value = responsePayload.emailAddress;
         }
 
       } else {
@@ -401,7 +401,7 @@ app.loadAccountEditPage = function(){
   }
 };
 
-
+/*
 // Load the dashboard page specifically
 app.loadChecksListPage = function(){
   // Get the phone number from the current token, or log the user out if none is there
@@ -470,9 +470,9 @@ app.loadChecksListPage = function(){
     app.logUserOut();
   }
 };
+*/
 
-
-
+/*
 // Load the checks edit page specifically
 app.loadChecksEditPage = function(){
   // Get the check id from the query string, if none is found then redirect back to dashboard
@@ -513,7 +513,7 @@ app.loadChecksEditPage = function(){
     window.location = '/checks/all';
   }
 };
-
+*/
 
 // Loop to renew token often
 app.tokenRenewalLoop = function(){
