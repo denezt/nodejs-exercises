@@ -12,7 +12,7 @@ app.config = {
 };
 
 // AJAX Client (for RESTful API)
-app.client = {}
+app.client = {};
 
 // Interface for making API calls
 app.client.request = function(headers,path,method,queryStringObject,payload,callback){
@@ -248,7 +248,8 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   }
 
   // If forms saved successfully and they have success messages, show them
-  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1'];
+  // var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1'];
+  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2'];
   if(formsWithSuccessMessages.indexOf(formId) > -1){
     document.querySelector("#"+formId+" .formSuccess").style.display = 'block';
   }
@@ -259,15 +260,15 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
     window.location = '/account/deleted';
   }
 
-  // If the user just created a new check successfully, redirect back to the dashboard
-  if(formId == 'checksCreate'){
-    window.location = '/checks/all';
-  }
-
-  // If the user just deleted a check, redirect them to the dashboard
-  if(formId == 'checksEdit2'){
-    window.location = '/checks/all';
-  }
+  // // If the user just created a new check successfully, redirect back to the dashboard
+  // if(formId == 'checksCreate'){
+  //   window.location = '/checks/all';
+  // }
+  //
+  // // If the user just deleted a check, redirect them to the dashboard
+  // if(formId == 'checksEdit2'){
+  //   window.location = '/checks/all';
+  // }
 
 };
 
@@ -359,14 +360,14 @@ app.loadDataOnPage = function(){
   }
 
   // Logic for dashboard page
-  if(primaryClass == 'checksList'){
-    app.loadChecksListPage();
-  }
-
-  // Logic for check details page
-  if(primaryClass == 'checksEdit'){
-    app.loadChecksEditPage();
-  }
+  // if(primaryClass == 'checksList'){
+  //   app.loadChecksListPage();
+  // }
+  //
+  // // Logic for check details page
+  // if(primaryClass == 'checksEdit'){
+  //   app.loadChecksEditPage();
+  // }
 };
 
 // Load the account edit page specifically
@@ -379,6 +380,8 @@ app.loadAccountEditPage = function(){
       'emailAddress' : emailAddress
     };
     app.client.request(undefined,'api/users','GET',queryStringObject,undefined,function(statusCode,responsePayload){
+      console.log('loadAccountEditPage: ' + statusCode);
+
       if(statusCode == 200){
         // Put the data into the forms as values where needed
         document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
