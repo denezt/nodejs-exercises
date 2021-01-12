@@ -296,10 +296,13 @@ app.setLoggedInClass = function(add){
   var target = document.querySelector("body");
   if(add){
     target.classList.add('loggedIn');
-    target.classList.add('loggedOutRegistration');
+    target.classList.add('loggedInRegistration');
   } else {
     target.classList.remove('loggedIn');
+    target.classList.remove('loggedInRegistration');
   }
+  console.log(target);
+
 };
 
 // Set the session token in the app.config object as well as localstorage

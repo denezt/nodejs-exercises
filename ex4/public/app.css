@@ -67,9 +67,9 @@ body.loggedIn .header ul li.loggedOut {
   display: none;
 }
 
- div.loggedOutRegistration  {
-  display: block;
- }
+div.loggedInRegistration  {
+  display: none;
+}
 
 .header .logo{
   text-align: left;
