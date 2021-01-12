@@ -300,12 +300,11 @@ td a, td a:hover, td a:active{
 #picture-gallery {
   width: auto;
   height: auto;
-  border: 1px solid lightgray;
 }
 
 #picture-image {
   width: 50%;
   height: 30%;
   border-radius: 10px;
-  margin-bottom: 0.5px;
+  margin-bottom: 1em;
 }
