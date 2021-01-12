@@ -155,6 +155,7 @@ server.router = {
   'api/tokens' : handlers.tokens,
   'api/checks' : handlers.checks,
   'favicon.ico' : handlers.favicon,
+  'menu/view' : handlers.menuPage,
   'public' : handlers.public
 };
 
