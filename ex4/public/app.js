@@ -236,7 +236,6 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
 
       } else {
         // If successful, set the token and redirect the user
-        document.querySelector("#loggedOutRegistration").style.display = 'none';
         app.setSessionToken(newResponsePayload);
         window.location = '/checks/all';
       }
@@ -532,6 +531,8 @@ app.tokenRenewalLoop = function(){
 
 // Init (bootstrapping)
 app.init = function(){
+
+  document.querySelector("#loggedOutRegistration").style.display = 'none';
 
   // Bind all form submissions
   app.bindForms();
