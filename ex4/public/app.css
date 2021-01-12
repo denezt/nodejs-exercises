@@ -297,9 +297,13 @@ td a, td a:hover, td a:active{
 }
 
 /* */
-#picture-gallery, #picture-image {
+#picture-gallery {
+  border: 1px solid lightgray;
+}
+
+#picture-image {
   width: 80%;
   height: 60%;
   border-radius: 10px;
-  /* margin-bottom: 0.5px; */
+  margin-bottom: 0.5px;
 }
