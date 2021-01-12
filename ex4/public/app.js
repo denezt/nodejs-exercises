@@ -362,16 +362,6 @@ app.loadDataOnPage = function(){
   if(primaryClass == 'accountEdit'){
     app.loadAccountEditPage();
   }
-
-  // Logic for dashboard page
-  // if(primaryClass == 'checksList'){
-  //   app.loadChecksListPage();
-  // }
-  //
-  // // Logic for check details page
-  // if(primaryClass == 'checksEdit'){
-  //   app.loadChecksEditPage();
-  // }
 };
 
 // Load the account edit page specifically
