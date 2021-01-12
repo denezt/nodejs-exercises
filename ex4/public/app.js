@@ -359,8 +359,6 @@ app.loadDataOnPage = function(){
     app.loadAccountEditPage();
   }
 
-  document.querySelector("#loggedOutRegistration").style.display = 'none';
-
   // Logic for dashboard page
   // if(primaryClass == 'checksList'){
   //   app.loadChecksListPage();
