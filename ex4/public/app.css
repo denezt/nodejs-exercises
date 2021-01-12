@@ -302,8 +302,8 @@ td a, td a:hover, td a:active{
 }
 
 #picture-image {
-  width: 80%;
-  height: 60%;
+  width: 50%;
+  height: 30%;
   border-radius: 10px;
   margin-bottom: 0.5px;
 }
