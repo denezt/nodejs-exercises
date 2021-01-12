@@ -116,6 +116,7 @@ handlers.accountEdit = function(data,callback){
     // Prepare data for interpolation
     var templateData = {
       'head.title' : 'Account Settings',
+      'head.description' : '',
       'body.class' : 'accountEdit'
     };
     // Read in a template as a string
