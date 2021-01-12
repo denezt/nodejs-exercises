@@ -280,7 +280,7 @@ app.getSessionToken = function(){
       var token = JSON.parse(tokenString);
       app.config.sessionToken = token;
       if(typeof(token) == 'object'){
-        document.querySelector("#loggedOutRegistration").style.display = 'none';
+        document.querySelector("#loggedOutRegistration").style.display = 'hidden';
         app.setLoggedInClass(true);
       } else {
         app.setLoggedInClass(false);
