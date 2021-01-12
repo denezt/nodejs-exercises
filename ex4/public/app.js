@@ -532,7 +532,10 @@ app.tokenRenewalLoop = function(){
 // Init (bootstrapping)
 app.init = function(){
 
-  document.querySelector("#loggedOutRegistration").style.display = 'none';
+  var currentToken = typeof(app.config.sessionToken) == 'object' ? app.config.sessionToken : false;
+  if(currentToken){
+    document.querySelector("#loggedOutRegistration").style.display = 'none';
+  }
 
   // Bind all form submissions
   app.bindForms();
