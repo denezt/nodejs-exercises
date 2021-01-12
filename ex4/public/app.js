@@ -296,6 +296,7 @@ app.setLoggedInClass = function(add){
   var target = document.querySelector("body");
   if(add){
     target.classList.add('loggedIn');
+    target.classList.add('loggedOutRegistration');
   } else {
     target.classList.remove('loggedIn');
   }
@@ -384,9 +385,9 @@ app.loadAccountEditPage = function(){
 
       if(statusCode == 200){
         // Put the data into the forms as values where needed
-        document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
-        document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
-        document.querySelector("#accountEdit1 .displayEmailAddressInput").value = responsePayload.emailAddress;
+        document.querySelector("#accountEdit1.firstNameInput").value = responsePayload.firstName;
+        document.querySelector("#accountEdit1.lastNameInput").value = responsePayload.lastName;
+        document.querySelector("#accountEdit1.displayEmailAddressInput").value = responsePayload.emailAddress;
 
         // Put the hidden emailAddress field into both forms
         var hiddenEmailInputs = document.querySelectorAll("input.hiddenEmailAddressInput");
