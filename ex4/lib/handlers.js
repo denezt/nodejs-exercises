@@ -476,7 +476,7 @@ handlers._users.post = function(data,callback){
 handlers._users.get = function(data,callback){
   // Check that emailAddress number is valid
   var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 ? helpers.datastore(data.payload.emailAddress.trim()) : false;
-
+  console.log(emailAddress);
   if(emailAddress){
 
     // Get token from headers
