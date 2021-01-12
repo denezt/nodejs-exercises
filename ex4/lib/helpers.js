@@ -35,7 +35,7 @@ helpers.hash = function(str){
 };
 
 // Create a SHA128 hash
-helpers.hash128 = function(str){
+helpers.hashmd5 = function(str){
   if(typeof(str) == 'string' && str.length > 0){
     var hash = crypto.createHmac('md5', config.hashingSecret).update(str).digest('hex');
     return hash;

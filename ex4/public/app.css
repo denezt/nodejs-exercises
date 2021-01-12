@@ -301,5 +301,5 @@ td a, td a:hover, td a:active{
   width: 80%;
   height: 60%;
   border-radius: 10px;
-  margin-bottom: 0.5px;
+  /* margin-bottom: 0.5px; */
 }
