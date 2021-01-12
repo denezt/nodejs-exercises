@@ -280,6 +280,7 @@ app.getSessionToken = function(){
       var token = JSON.parse(tokenString);
       app.config.sessionToken = token;
       if(typeof(token) == 'object'){
+        document.querySelector("#loggedOutRegistration").style.display = 'none';
         app.setLoggedInClass(true);
       } else {
         app.setLoggedInClass(false);
@@ -531,11 +532,6 @@ app.tokenRenewalLoop = function(){
 
 // Init (bootstrapping)
 app.init = function(){
-
-  var currentToken = typeof(app.config.sessionToken) == 'object' ? app.config.sessionToken : false;
-  if(currentToken){
-    document.querySelector("#loggedOutRegistration").style.display = 'none';
-  }
 
   // Bind all form submissions
   app.bindForms();
