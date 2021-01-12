@@ -298,6 +298,8 @@ td a, td a:hover, td a:active{
 
 /* */
 #picture-gallery {
+  width: auto;
+  height: auto;
   border: 1px solid lightgray;
 }
 
