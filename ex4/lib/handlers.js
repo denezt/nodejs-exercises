@@ -820,6 +820,7 @@ handlers._order.post = function(data,callback){
     _data.read('tokens',token,function(err,tokenData){
       if(!err && tokenData){
         var userEmail = tokenData.emailAddress;
+        console.log('handlers._order.post: ' + tokenData);
 
         // Lookup the user data
         _data.read('users',userEmail,function(err,userData){
