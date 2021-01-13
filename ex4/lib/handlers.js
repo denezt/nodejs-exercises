@@ -422,7 +422,10 @@ handlers._users  = {};
 // Optional data: none
 handlers._users.post = function(data,callback){
   // Check that all required fields are filled out
+  var emailAddressNormal = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? data.payload.emailAddress.trim() : false;
+
   var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? helpers.datastore(data.payload.emailAddress.trim()) : false;
+
 
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
@@ -443,7 +446,7 @@ handlers._users.post = function(data,callback){
           var userObject = {
             'firstName' : firstName,
             'lastName' : lastName,
-            'emailAddress' : data.payload.emailAddress,
+            'emailAddress' : emailAddressNormal,
             'hashedPassword' : hashedPassword,
             'tosAgreement' : true
           };
