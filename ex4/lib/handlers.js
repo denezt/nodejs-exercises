@@ -406,7 +406,7 @@ handlers.notFound = function(data,callback){
 
 // Users
 handlers.users = function(data,callback){
-  var acceptableMethods = ['post','get','put','delete'];
+  var acceptableMethods = ['POST','GET','PUT','DELETE'];
   if(acceptableMethods.indexOf(data.method) > -1){
     handlers._users[data.method](data,callback);
   } else {
