@@ -148,10 +148,10 @@ server.router = {
   'session/create' : handlers.sessionCreate,
   'session/deleted' : handlers.sessionDeleted,
   'order/create' : handlers.orderCreate,
+  'order/confirm' : handlers.orderConfirm,
   'ping' : handlers.ping,
   'api/users' : handlers.users,
   'api/tokens' : handlers.tokens,
-  'api/checks' : handlers.checks,
   'favicon.ico' : handlers.favicon,
   'menu/view' : handlers.menuPage,
   'public' : handlers.public
