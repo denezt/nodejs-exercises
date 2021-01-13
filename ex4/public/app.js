@@ -367,6 +367,8 @@ app.loadDataOnPage = function(){
 
 // Load the account edit page specifically
 app.loadAccountEditPage = function(){
+
+  console.log("app.loadAccountEditPage: " + app.config.sessionToken.emailAddress);
   // Get the emailAddress number from the current token, or log the user out if none is there
   var emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
   if(emailAddress){
