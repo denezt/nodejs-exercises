@@ -376,7 +376,7 @@ app.loadAccountEditPage = function(){
     var queryStringObject = {
       'emailAddress' : emailAddress
     };
-    app.client.request(undefined,'api/users','GET',queryStringObject,undefined,function(statusCode,responsePayload){
+    app.client.request(undefined,'/api/users','GET',queryStringObject,undefined,function(statusCode,responsePayload){
       console.log('loadAccountEditPage: ' + statusCode);
 
       if(statusCode == 200){
