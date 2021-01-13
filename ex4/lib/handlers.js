@@ -443,7 +443,7 @@ handlers._users.post = function(data,callback){
           var userObject = {
             'firstName' : firstName,
             'lastName' : lastName,
-            'emailAddress' : emailAddress,
+            'emailAddress' : data.payload.emailAddress,
             'hashedPassword' : hashedPassword,
             'tosAgreement' : true
           };
