@@ -203,7 +203,7 @@ handlers.accountDeleted = function(data,callback){
 };
 
 // Create a new check
-handlers.checksCreate = function(data,callback){
+handlers.orderCreate = function(data,callback){
   // Reject any request that isn't a GET
   if(data.method == 'get'){
     // Prepare data for interpolation
