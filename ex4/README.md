@@ -11,9 +11,12 @@
 | 4   | Shopping Cart             | Add, Remove, View            | Implemented |
 | 5   | Create Order              | Add, Remove, Submit          | Implemented |
 | 6   | SignUp for Site           | Submit                       | Implemented |
-| 7   | View all the order items  | Submit                       | To Do       |
-| 8   | Fill up a shopping cart   | Add, Remove, Submit          | To Do       |
-| 9   | Place order/Send Email    | Add, Remove, Submit          | To Do       |
+| 7   | Edit User Name            | Submit                       | Implemented |
+| 8   | Change Password           | Submit                       | Implemented |
+| 9   | Delete User               | Submit                       | Implemented |
+| 10  | View all the menu items   | Submit                       | In Progress |
+| 11  | Fill up a shopping cart   | Add, Remove, Submit          | To Do       |
+| 12  | Place order/Send Email    | Add, Remove, Submit          | To Do       |
 
 ### Command Line Interface for Testing API
 

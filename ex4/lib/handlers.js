@@ -208,11 +208,11 @@ handlers.checksCreate = function(data,callback){
   if(data.method == 'get'){
     // Prepare data for interpolation
     var templateData = {
-      'head.title' : 'Create a New Check',
-      'body.class' : 'checksCreate'
+      'head.title' : 'Create an Order ',
+      'body.class' : 'orderCreate'
     };
     // Read in a template as a string
-    helpers.getTemplate('checksCreate',templateData,function(err,str){
+    helpers.getTemplate('orderCreate',templateData,function(err,str){
       if(!err && str){
         // Add the universal header and footer
         helpers.addUniversalTemplates(str,templateData,function(err,str){
