@@ -820,7 +820,7 @@ handlers._order.post = function(data,callback){
     _data.read('tokens',token,function(err,tokenData){
       if(!err && tokenData){
         var userEmail = tokenData.emailAddress;
-        console.log('handlers._order.post: ' + tokenData);
+        console.log('handlers._order.post: ' + tokenData.emailAddress);
 
         // Lookup the user data
         _data.read('users',userEmail,function(err,userData){
@@ -841,7 +841,7 @@ handlers._order.post = function(data,callback){
               };
 
               // Save the object
-              _data.create('order',orderId,orderObject,function(err){
+              _data.create('orders',orderId,orderObject,function(err){
                 if(!err){
                   // Add check id to the user's object
                   userData.order = userOrder;
@@ -882,7 +882,7 @@ handlers._order.get = function(data,callback){
   var id = typeof(data.queryStringObject.id) == 'string' && data.queryStringObject.id.trim().length == 20 ? data.queryStringObject.id.trim() : false;
   if(id){
     // Lookup the check
-    _data.read('order',id,function(err,checkData){
+    _data.read('orders',id,function(err,checkData){
       if(!err && checkData){
         // Get the token that sent the request
         var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
@@ -923,7 +923,7 @@ handlers._order.put = function(data,callback){
     // Error if nothing is sent to update
     if(protocol || url || method || successCodes || timeoutSeconds){
       // Lookup the check
-      _data.read('order',id,function(err,checkData){
+      _data.read('orders',id,function(err,checkData){
         if(!err && checkData){
           // Get the token that sent the request
           var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
@@ -948,7 +948,7 @@ handlers._order.put = function(data,callback){
               }
 
               // Store the new updates
-              _data.update('order',id,checkData,function(err){
+              _data.update('orders',id,checkData,function(err){
                 if(!err){
                   callback(200);
                 } else {
@@ -980,7 +980,7 @@ handlers._order.delete = function(data,callback){
   var id = typeof(data.queryStringObject.id) == 'string' && data.queryStringObject.id.trim().length == 20 ? data.queryStringObject.id.trim() : false;
   if(id){
     // Lookup the check
-    _data.read('order',id,function(err,checkData){
+    _data.read('orders',id,function(err,checkData){
       if(!err && checkData){
         // Get the token that sent the request
         var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
@@ -989,7 +989,7 @@ handlers._order.delete = function(data,callback){
           if(tokenIsValid){
 
             // Delete the check data
-            _data.delete('order',id,function(err){
+            _data.delete('orders',id,function(err){
               if(!err){
                 // Lookup the user's object to get all their order
                 _data.read('users',checkData.userEmail,function(err,userData){
