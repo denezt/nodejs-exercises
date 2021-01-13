@@ -406,7 +406,7 @@ handlers.notFound = function(data,callback){
 
 // Users
 handlers.users = function(data,callback){
-  var acceptableMethods = ['POST','GET','PUT','DELETE'];
+  var acceptableMethods = ['post','get','put','delete'];
   if(acceptableMethods.indexOf(data.method) > -1){
     handlers._users[data.method](data,callback);
   } else {
@@ -480,9 +480,11 @@ handlers._users.get = function(data,callback){
   // Check that emailAddress number is valid
   var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 ? data.payload.emailAddress.trim() : false;
 
+
   // var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 ? helpers.datastore(data.payload.emailAddress.trim()) : false;
 
-  console.log(emailAddress);
+  console.log('handlers._users.get [emailAddress]' + emailAddress);
+  console.log('handlers._users.get [data]' + data);
   if(emailAddress){
 
     // Get token from headers
