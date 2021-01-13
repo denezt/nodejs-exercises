@@ -10,7 +10,7 @@
 | 3   | Menu Viewer               | View the current menu.       | Implemented |
 | 4   | Shopping Cart             | Add, Remove, View            | Implemented |
 | 5   | Create Order              | Add, Remove, Submit          | Implemented |
-| 6   | SignUp for Site           | Submit                       | In Progress |
+| 6   | SignUp for Site           | Submit                       | Implemented |
 | 7   | View all the order items  | Submit                       | To Do       |
 | 8   | Fill up a shopping cart   | Add, Remove, Submit          | To Do       |
 | 9   | Place order/Send Email    | Add, Remove, Submit          | To Do       |

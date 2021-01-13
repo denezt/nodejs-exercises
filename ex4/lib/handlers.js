@@ -476,7 +476,7 @@ handlers._users.post = function(data,callback){
 // Optional data: none
 handlers._users.get = function(data,callback){
   // Check that emailAddress number is valid
-  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 ? helpers.datastore(data.payload.emailAddress.trim()) : false;
+  var emailAddress = typeof(data.queryStringObject.emailAddress) == 'string' && data.queryStringObject.emailAddress.trim().length > 1 ? helpers.datastore(data.queryStringObject.emailAddress.trim()) : false;
 
   console.log('handlers._users.get [emailAddress]' + emailAddress);
   if(emailAddress){
