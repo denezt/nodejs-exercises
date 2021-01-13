@@ -238,14 +238,14 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
       } else {
         // If successful, set the token and redirect the user
         app.setSessionToken(newResponsePayload);
-        window.location = '/checks/all';
+        window.location = '/order/create';
       }
     });
   }
   // If login was successful, set the token in localstorage and redirect the user
   if(formId == 'sessionCreate'){
     app.setSessionToken(responsePayload);
-    window.location = '/checks/all';
+    window.location = '/order/create';
   }
 
   // If forms saved successfully and they have success messages, show them
