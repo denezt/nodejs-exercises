@@ -422,10 +422,13 @@ handlers._users  = {};
 // Optional data: none
 handlers._users.post = function(data,callback){
   // Check that all required fields are filled out
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? data.payload.emailAddress.trim() : false;
+
+  // var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? helpers.datastore(data.payload.emailAddress.trim()) : false;
+
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
 
-  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? helpers.datastore(data.payload.emailAddress.trim()) : false;
 
   var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
   var tosAgreement = typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true ? true : false;
@@ -475,7 +478,10 @@ handlers._users.post = function(data,callback){
 // Optional data: none
 handlers._users.get = function(data,callback){
   // Check that emailAddress number is valid
-  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 ? helpers.datastore(data.payload.emailAddress.trim()) : false;
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 ? data.payload.emailAddress.trim() : false;
+
+  // var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 ? helpers.datastore(data.payload.emailAddress.trim()) : false;
+
   console.log(emailAddress);
   if(emailAddress){
 
@@ -507,8 +513,9 @@ handlers._users.get = function(data,callback){
 // Optional data: firstName, lastName, password (at least one must be specified)
 handlers._users.put = function(data,callback){
   // Check for required field
-  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? helpers.datastore(data.payload.emailAddress.trim()) : false;
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? data.payload.emailAddress.trim() : false;
 
+  // var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? helpers.datastore(data.payload.emailAddress.trim()) : false;
 
   // Check for optional fields
   var firstName = typeof(data.payload.firstName) == 'string' && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
@@ -569,7 +576,9 @@ handlers._users.put = function(data,callback){
 // Cleanup old checks associated with the user
 handlers._users.delete = function(data,callback){
   // Check that emailAddress number is valid
-  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? helpers.datastore(data.payload.emailAddress.trim()) : false;
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? data.payload.emailAddress.trim() : false;
+
+  // var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? helpers.datastore(data.payload.emailAddress.trim()) : false;
 
   if(emailAddress){
 
@@ -645,7 +654,9 @@ handlers._tokens  = {};
 // Required data: emailAddress, password
 // Optional data: none
 handlers._tokens.post = function(data,callback){
-  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? helpers.datastore(data.payload.emailAddress.trim()) : false;
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? data.payload.emailAddress.trim() : false;
+
+  // var emailAddress = typeof(data.payload.emailAddress) == 'string' && data.payload.emailAddress.trim().length > 1 && (data.payload.emailAddress.indexOf('@') > -1 ) ? helpers.datastore(data.payload.emailAddress.trim()) : false;
 
   var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
   if(emailAddress && password){

@@ -393,7 +393,7 @@ app.loadAccountEditPage = function(){
         }
 
       } else {
-        // If the request comes back as something other than 200, log the user our (on the assumption that the api is temporarily down or the users token is bad)
+        // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
 
         console.log('Logging User out');
         // app.logUserOut();
