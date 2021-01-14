@@ -387,8 +387,6 @@ handlers.menuPage = function(data,callback){
   }
 };
 
-
-
 /*
  * JSON API Handlers
  *
