@@ -806,7 +806,7 @@ handlers._order  = {};
 // Optional data: none
 handlers._order.post = function(data,callback){
   // Validate inputs
-  var menuItems = typeof(data.payload.successCodes) == 'object' && data.payload.successCodes instanceof Array && data.payload.successCodes.length > 0 ? data.payload.successCodes : false;
+  var menuItems = typeof(data.payload.menuItems) == 'object' && data.payload.menuItems instanceof Array && data.payload.menuItems.length > 0 ? data.payload.menuItems : false;
 
   if(menuItems){
     // Get token from headers
