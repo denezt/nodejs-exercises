@@ -59,7 +59,7 @@ body,p,h1,h2,h3,h4,h5,h6,div,span,header,footer,img,a,a:hover,a:active,a:visited
   display: none;
 }
 
-body.loggedIn .header ul li.loggedIn li.orderCreated {
+body.loggedIn .header ul li.loggedIn {
   display: inline-block;
 }
 
