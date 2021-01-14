@@ -302,8 +302,8 @@ td a, td a:hover, td a:active{
 
 /* */
 #picture-gallery {
-  width: auto;
-  height: auto;
+  width: 50%;
+  height: 30%;
 }
 
 #picture-image {
