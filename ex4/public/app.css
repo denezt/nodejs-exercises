@@ -59,11 +59,15 @@ body,p,h1,h2,h3,h4,h5,h6,div,span,header,footer,img,a,a:hover,a:active,a:visited
   display: none;
 }
 
-body.loggedIn .header ul li.loggedIn {
+body.loggedIn .header ul li.loggedIn li.orderCreated {
   display: inline-block;
 }
 
 body.loggedIn .header ul li.loggedOut {
+  display: none;
+}
+
+li.orderCreated {
   display: none;
 }
 
