@@ -806,13 +806,9 @@ handlers._order  = {};
 // Optional data: none
 handlers._order.post = function(data,callback){
   // Validate inputs
-  var protocol = typeof(data.payload.protocol) == 'string' && ['https','http'].indexOf(data.payload.protocol) > -1 ? data.payload.protocol : false;
-  var url = typeof(data.payload.url) == 'string' && data.payload.url.trim().length > 0 ? data.payload.url.trim() : false;
-  var method = typeof(data.payload.method) == 'string' && ['post','get','put','delete'].indexOf(data.payload.method) > -1 ? data.payload.method : false;
-  var successCodes = typeof(data.payload.successCodes) == 'object' && data.payload.successCodes instanceof Array && data.payload.successCodes.length > 0 ? data.payload.successCodes : false;
-  var timeoutSeconds = typeof(data.payload.timeoutSeconds) == 'number' && data.payload.timeoutSeconds % 1 === 0 && data.payload.timeoutSeconds >= 1 && data.payload.timeoutSeconds <= 5 ? data.payload.timeoutSeconds : false;
-  if(protocol && url && method && successCodes && timeoutSeconds){
+  var menuItems = typeof(data.payload.successCodes) == 'object' && data.payload.successCodes instanceof Array && data.payload.successCodes.length > 0 ? data.payload.successCodes : false;
 
+  if(menuItems){
     // Get token from headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
 
@@ -828,16 +824,11 @@ handlers._order.post = function(data,callback){
             var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
               // Create random id for check
               var orderId = helpers.createRandomString(20);
-
               // Create check object including userEmail
               var orderObject = {
                 'id' : orderId,
                 'userEmail' : userEmail,
-                'protocol' : protocol,
-                'url' : url,
-                'method' : method,
-                'successCodes' : successCodes,
-                'timeoutSeconds' : timeoutSeconds
+                'menuItems' : menuItems
               };
 
               // Save the object
