@@ -800,7 +800,6 @@ handlers.order = function(data,callback){
 // Container for all the order methods
 handlers._order  = {};
 
-
 // Checks - post
 // Required data: protocol,url,method,successCodes,timeoutSeconds
 // Optional data: none
