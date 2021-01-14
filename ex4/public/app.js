@@ -301,6 +301,7 @@ app.setLoggedInClass = function(add){
   var target = document.querySelector("body");
   if(add){
     target.classList.add('loggedIn');
+    target.classList.add('orderCreated');
     target.classList.add('loggedInRegistration');
   } else {
     target.classList.remove('loggedIn');
