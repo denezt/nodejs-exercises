@@ -260,10 +260,12 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
     app.logUserOut(false);
     window.location = '/account/deleted';
   }
+  var target = document.querySelector("body");
 
-  // // If the user just created a new check successfully, redirect back to the dashboard
+  // If the user just created a new check successfully, redirect back to the dashboard
   if(formId == 'orderCreate'){
     console.log('menuCreate was a success');
+    target.classList.add('orderCreated');
     window.location = '/checks/all';
   }
 
@@ -369,6 +371,13 @@ app.loadDataOnPage = function(){
   if(primaryClass == 'accountEdit'){
     app.loadAccountEditPage();
   }
+
+  // Logic for editing order page
+  if(primaryClass == 'orderCreate'){
+    console.log('Will edit the order');
+  }
+
+
 };
 
 // Load the account edit page specifically
@@ -402,14 +411,13 @@ app.loadAccountEditPage = function(){
 
       } else {
         // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
-
         console.log('Logging User out');
-        // app.logUserOut();
+        app.logUserOut();
       }
     });
   } else {
     console.log('Logging User out');
-    // app.logUserOut();
+    app.logUserOut();
   }
 };
 

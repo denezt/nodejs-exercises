@@ -67,6 +67,11 @@ body.loggedIn .header ul li.loggedOut {
   display: none;
 }
 
+li.orderCreated {
+  display: none;
+}
+
+
 div.loggedInRegistration  {
   display: none;
 }
