@@ -262,14 +262,14 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   }
 
   // If the user just created a new check successfully, redirect back to the dashboard
-  if(formId == 'accountCreate'){
+  if(formId == 'orderCreate'){
     console.log('menuCreate was a success');
     window.location = '/order/confirm';
   }
 
-  // if (formId == 'accountConfirm'){
-  //   app.loadOrderConfirmPage();
-  // }
+  if (formId == 'orderConfirm'){
+    app.loadOrderConfirmPage();
+  }
 
 };
 
@@ -366,10 +366,6 @@ app.loadDataOnPage = function(){
     app.loadAccountEditPage();
   }
 
-  // Logic for editing order page
-  if(primaryClass == 'orderConfirm'){
-    console.log('Confirming Order');
-  }
 };
 
 // Load the account edit page specifically
@@ -416,21 +412,23 @@ app.loadOrderConfirmPage = function(){
   console.log("app.loadOrderConfirmPage: " + app.config.sessionToken.emailAddress);
   // Get the emailAddress number from the current token, or log the user out if none is there
   var emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
+  if(emailAddress){
+    // Fetch the user data
+    var queryStringObject = {
+      'emailAddress' : emailAddress
+    };
 
+    document.querySelector("div.orderInformation").value = "Order Information Goes Here...";
 
-  document.querySelector(".orderInformation").value = "Information";
-
-  // if(emailAddress){
-  //   // Fetch the user data
-  //   var queryStringObject = {
-  //     'emailAddress' : emailAddress
-  //   };
   //   app.client.request(undefined,'/api/users','GET',queryStringObject,undefined,function(statusCode,responsePayload){
   //     console.log('loadAccountEditPage: ' + statusCode);
   //
   //     if(statusCode == 200){
   //       // Put the data into the forms as values where needed
-  //       document.querySelector(".orderInformation").value = "Information";
+  //       document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
+  //       document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
+  //       document.querySelector("#accountEdit1 .displayEmailAddressInput").value = responsePayload.emailAddress;
+  //
   //       // Put the hidden emailAddress field into both forms
   //       var hiddenEmailInputs = document.querySelectorAll("input.hiddenEmailAddressInput");
   //       for(var i = 0; i < hiddenEmailInputs.length; i++){
@@ -448,12 +446,6 @@ app.loadOrderConfirmPage = function(){
   //   app.logUserOut();
   // }
 };
-
-
-
-
-
-
 
 
 
