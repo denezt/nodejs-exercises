@@ -260,11 +260,11 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
     app.logUserOut(false);
     window.location = '/account/deleted';
   }
-  
+
   // If the user just created a new check successfully, redirect back to the dashboard
   if(formId == 'accountCreate'){
     console.log('menuCreate was a success');
-    window.location = 'order/confirm';
+    window.location = '/order/confirm';
   }
 
   // if (formId == 'accountConfirm'){
