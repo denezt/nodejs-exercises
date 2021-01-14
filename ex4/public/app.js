@@ -364,11 +364,9 @@ app.loadDataOnPage = function(){
   }
 
   // Logic for editing order page
-  if(primaryClass == 'orderCreate'){
-    console.log('Will edit the order');
+  if(primaryClass == 'orderConfirm'){
+    console.log('Confirming Order');
   }
-
-
 };
 
 // Load the account edit page specifically
@@ -408,6 +406,54 @@ app.loadAccountEditPage = function(){
     app.logUserOut();
   }
 };
+
+// Load the account edit page specifically
+app.loadOrderConfirmPage = function(){
+
+  console.log("app.loadOrderConfirmPage: " + app.config.sessionToken.emailAddress);
+  // Get the emailAddress number from the current token, or log the user out if none is there
+  var emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
+
+
+  document.querySelector(".orderInformation").value = "Information";
+
+  // if(emailAddress){
+  //   // Fetch the user data
+  //   var queryStringObject = {
+  //     'emailAddress' : emailAddress
+  //   };
+  //   app.client.request(undefined,'/api/users','GET',queryStringObject,undefined,function(statusCode,responsePayload){
+  //     console.log('loadAccountEditPage: ' + statusCode);
+  //
+  //     if(statusCode == 200){
+  //       // Put the data into the forms as values where needed
+  //       document.querySelector(".orderInformation").value = "Information";
+  //       // Put the hidden emailAddress field into both forms
+  //       var hiddenEmailInputs = document.querySelectorAll("input.hiddenEmailAddressInput");
+  //       for(var i = 0; i < hiddenEmailInputs.length; i++){
+  //           hiddenEmailInputs[i].value = responsePayload.emailAddress;
+  //       }
+  //
+  //     } else {
+  //       // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
+  //       console.log('Logging User out');
+  //       app.logUserOut();
+  //     }
+  //   });
+  // } else {
+  //   console.log('Logging User out');
+  //   app.logUserOut();
+  // }
+};
+
+
+
+
+
+
+
+
+
 
 // Loop to renew token often
 app.tokenRenewalLoop = function(){
