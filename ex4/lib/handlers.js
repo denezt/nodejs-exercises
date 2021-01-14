@@ -841,11 +841,11 @@ handlers._order.post = function(data,callback){
                       // Return the data about the new check
                       callback(200,orderObject);
                     } else {
-                      callback(500,{'Error' : 'Could not update the user with the new check.'});
+                      callback(500,{'Error' : 'Could not update the order.'});
                     }
                   });
                 } else {
-                  callback(500,{'Error' : 'Could not create the new check'});
+                  callback(500,{'Error' : 'Could not create the new order'});
                 }
               });
           } else {

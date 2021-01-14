@@ -263,9 +263,13 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   var target = document.querySelector("body");
 
   // If the user just created a new check successfully, redirect back to the dashboard
-  if(formId == 'orderCreate'){
+  if(formId == 'accountCreate'){
     console.log('menuCreate was a success');
     window.location = 'order/confirm';
+  }
+
+  if (formId == 'accountConfirm'){
+    app.loadOrderConfirmPage();
   }
 
 };
