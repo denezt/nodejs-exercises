@@ -266,7 +266,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   if(formId == 'orderCreate'){
     console.log('menuCreate was a success');
     target.classList.add('orderCreated');
-    window.location = '/checks/all';
+    window.location = 'order/confirm';
   }
 
   //

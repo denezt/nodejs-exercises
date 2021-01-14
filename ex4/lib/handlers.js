@@ -233,16 +233,16 @@ handlers.orderCreate = function(data,callback){
 };
 
 // Dashboard (view all order)
-handlers.orderList = function(data,callback){
+handlers.orderConfirm = function(data,callback){
   // Reject any request that isn't a GET
   if(data.method == 'get'){
     // Prepare data for interpolation
     var templateData = {
-      'head.title' : 'Dashboard',
-      'body.class' : 'orderList'
+      'head.title' : 'Confirm Your Order',
+      'body.class' : 'orderConfirm'
     };
     // Read in a template as a string
-    helpers.getTemplate('orderList',templateData,function(err,str){
+    helpers.getTemplate('orderConfirm',templateData,function(err,str){
       if(!err && str){
         // Add the universal header and footer
         helpers.addUniversalTemplates(str,templateData,function(err,str){
