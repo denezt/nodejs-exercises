@@ -317,3 +317,8 @@ height: 30%;
   border-radius: 10px;
   margin-bottom: 1em;
 }
+
+table.orderTable {
+  border: 1px dotted lightgray;
+  border-radius: 3px;
+}

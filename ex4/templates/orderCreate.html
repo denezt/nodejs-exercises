@@ -14,9 +14,28 @@
     <div class="inputWrapper">
       <div class="inputLabel">Select items for your order</div>
       <div class="checkboxGroup">
-        <input type="checkbox" class="multiselect intval" name="menuItems" value="1" checked>Italian Sausage and Cheese Pizza
-        <input type="checkbox" class="multiselect intval" name="menuItems" value="2">Pepperoni and Cheese Pizza
-        <input type="checkbox" class="multiselect intval" name="menuItems" value="3">Cheese Pizza
+        <table class="orderTable">
+          <tr>
+            <th>Menu ID</th>
+            <th>Description</th>
+            <th>Add</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Italian Sausage and Cheese Pizza</td>
+            <td><input type="checkbox" class="multiselect intval" name="menuItems" value="1"></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Pepperoni and Cheese Pizza</td>
+            <td><input type="checkbox" class="multiselect intval" name="menuItems" value="2"></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Cheese Pizza</td>
+            <td><input type="checkbox" class="multiselect intval" name="menuItems" value="3"></td>
+          </tr>
+        </table>
       </div>
     </div>
     <div class="inputWrapper ctaWrapper">
