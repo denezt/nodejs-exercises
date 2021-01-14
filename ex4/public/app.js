@@ -262,9 +262,11 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   }
 
   // // If the user just created a new check successfully, redirect back to the dashboard
-  // if(formId == 'checksCreate'){
-  //   window.location = '/checks/all';
-  // }
+  if(formId == 'menuCreate'){
+    console.log('menuCreate was a success');
+    // window.location = '/checks/all';
+  }
+
   //
   // // If the user just deleted a check, redirect them to the dashboard
   // if(formId == 'checksEdit2'){
