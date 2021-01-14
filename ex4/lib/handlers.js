@@ -822,7 +822,7 @@ handlers._order.post = function(data,callback){
           if(!err && userData){
             var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
               // Create random id for check
-              var orderId = helpers.createRandomString(20);
+              var orderId = helpers.hashmd5(userEmail);
               // Create check object including userEmail
               var orderObject = {
                 'id' : orderId,
