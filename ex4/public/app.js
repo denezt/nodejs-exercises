@@ -361,6 +361,10 @@ app.loadDataOnPage = function(){
   var bodyClasses = document.querySelector("body").classList;
   var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false;
 
+  for (var i = 0; i < bodyClasses.length; i++) {
+    console.log('bodyClasses: ' + bodyClasses[i]);
+  }
+
   // Logic for account settings page
   if(primaryClass == 'accountEdit'){
     app.loadAccountEditPage();
