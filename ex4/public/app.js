@@ -265,15 +265,8 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   // If the user just created a new check successfully, redirect back to the dashboard
   if(formId == 'orderCreate'){
     console.log('menuCreate was a success');
-    target.classList.add('orderCreated');
     window.location = 'order/confirm';
   }
-
-  //
-  // // If the user just deleted a check, redirect them to the dashboard
-  // if(formId == 'checksEdit2'){
-  //   window.location = '/checks/all';
-  // }
 
 };
 
@@ -394,9 +387,6 @@ app.loadAccountEditPage = function(){
 
       if(statusCode == 200){
         // Put the data into the forms as values where needed
-        // document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
-        // document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
-        // document.querySelector("#accountEdit1 .displayEmailAddressInput").value = responsePayload.emailAddress;
         document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
         document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
         document.querySelector("#accountEdit1 .displayEmailAddressInput").value = responsePayload.emailAddress;
