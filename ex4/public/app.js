@@ -262,7 +262,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   }
 
   // // If the user just created a new check successfully, redirect back to the dashboard
-  if(formId == 'menuCreate'){
+  if(formId == 'orderCreate'){
     console.log('menuCreate was a success');
     // window.location = '/checks/all';
   }
