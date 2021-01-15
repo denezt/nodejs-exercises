@@ -1104,7 +1104,7 @@ handlers._cart.get = function(data,callback){
         // Get the token that sent the request
         var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
         // Verify that the given token is valid and belongs to the user who created the check
-        handlers._tokens.verifyToken(token,userData.userEmail,function(tokenIsValid){
+        handlers._tokens.verifyToken(token,emailAddress,function(tokenIsValid){
           if(tokenIsValid){
             // Return check data
             callback(200,userData);
