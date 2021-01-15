@@ -425,7 +425,6 @@ app.loadOrderConfirmPage = function(){
   // Get the emailAddress number from the current token, or log the user out if none is there
   var emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
     // Fetch the user data
-    console.log(menuItemArray.items[1]);
     if(emailAddress){
       // Fetch the user data
       var queryStringObject = {
