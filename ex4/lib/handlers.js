@@ -1057,9 +1057,13 @@ handlers._cart.post = function(data,callback){
         _data.read('users',userEmail,function(err,userData){
           if(!err && userData){
             var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
-            for (var i = 0; i < userOrder.length; i++) {
-              console.log(userOrder[i]);
-            }
+
+            lastOrder = userOrder.length - 1;
+            console.log('Get Last Order: ' + userOrder[lastOrder]);
+
+            // for (var i = 0; i < userOrder.length; i++) {
+            //   console.log(userOrder[i]);
+            // }
             callback(200);
           } else {
             callback(403);
