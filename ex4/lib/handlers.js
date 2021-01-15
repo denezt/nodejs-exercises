@@ -1060,11 +1060,18 @@ handlers._cart.post = function(data,callback){
 
             lastOrder = userOrder.length - 1;
             console.log('Get Last Order: ' + userOrder[lastOrder]);
-
-            // for (var i = 0; i < userOrder.length; i++) {
-            //   console.log(userOrder[i]);
-            // }
-            callback(200);
+            for (var i = 0; i < userOrder.length; i++) {
+              console.log('Removing all Orders after confirmation: ' + userOrder[i]);
+            }
+            userData.order = [];
+            });
+            _data.update('users',tokenData.emailAddress,userData,function(err){
+              if(!err){
+                callback(200);
+              } else {
+                callback(500,{'Error' : 'Could not update the user.'});
+              }
+            });
           } else {
             callback(403);
           }
