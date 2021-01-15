@@ -304,12 +304,7 @@ td a, td a:hover, td a:active{
   display: none;
 }
 
-/*
-#picture-gallery {
-width: 50%;
-height: 30%;
-}
-*/
+/* User-Defined */
 
 #picture-image {
   height: 50%;
@@ -321,4 +316,10 @@ height: 30%;
 table.orderTable {
   border: 1px dotted lightgray;
   border-radius: 3px;
+}
+
+.orderInformation {
+  font-family: monospace;
+  font-style: rgb(0, 0, 255);
+  resize: none;
 }

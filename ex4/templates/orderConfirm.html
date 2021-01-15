@@ -8,9 +8,11 @@
   <form id="orderConfirm" action="/api/order" method="POST">
     <center>
       <label>Confirm your order to complete the process</label>
-
-      <textarea class="orderInformation" name="orderInformation"></textarea>
-
+      <br/>
+        <div id='orderConfirmation'>
+          <textarea class="orderInformation" name="orderInformation" readonly></textarea>
+        </div>
+      <br/>
       <div class="inputWrapper ctaWrapper">
         <button type="submit" class="cta green">Confirm Order</button>
       </div>
