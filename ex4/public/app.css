@@ -324,7 +324,7 @@ table.orderTable {
   border: 0.5px solid gray;
   border-radius: 3px;
   font-family: monospace;
-  font-size: 0.9em;
+  font-size: 1em;
   font-style: rgb(0, 0, 255);
   resize: none;
 }
