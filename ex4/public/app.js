@@ -267,10 +267,6 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
     window.location = '/order/confirm';
   }
 
-  if (formId == 'orderConfirm'){
-    app.loadOrderConfirmPage();
-  }
-
 };
 
 // Get the session token from localstorage and set it in the app.config object
@@ -365,7 +361,10 @@ app.loadDataOnPage = function(){
   if(primaryClass == 'accountEdit'){
     app.loadAccountEditPage();
   }
-
+  // Logic for account settings page
+  if(primaryClass == 'orderConfirm'){
+    app.loadAccountEditPage();
+  }
 };
 
 // Load the account edit page specifically
@@ -417,7 +416,7 @@ app.loadOrderConfirmPage = function(){
     var queryStringObject = {
       'emailAddress' : emailAddress
     };
-    document.querySelector("div.orderInformation").value = "Order Information Goes Here...";
+    document.querySelector(".orderInformation").value = "Order Information Goes Here...";
   } else {
     console.log("app.loadOrderConfirmPage: Email Address Information was not found");
   }
