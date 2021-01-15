@@ -214,7 +214,10 @@ app.bindForms = function(){
   }
 };
 
-// Form response processor
+/**
+* Form response processor
+* Purpose: This is what will execute after form was submitted
+*/
 app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   var functionToCall = false;
   // If account creation was successful, try to immediately log the user in
@@ -265,6 +268,11 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   if(formId == 'orderCreate'){
     console.log('menuCreate was a success');
     window.location = '/order/confirm';
+  }
+
+  if(formId == 'orderConfirm'){
+    console.log('Order Confirm was a success');
+    window.location = '/menu/view';
   }
 
 };
