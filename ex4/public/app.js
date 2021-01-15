@@ -135,7 +135,11 @@ app.bindForms = function(){
         var method = this.method.toUpperCase();
 
         // Hide the error message (if it's currently shown due to a previous error)
-        document.querySelector("#"+formId+" .formError").style.display = 'none';
+        try {
+          document.querySelector("#"+formId+" .formError").style.display = 'none';
+        } catch (e) {
+          console.log(e);
+        }
 
         // Hide the success message (if it's currently shown due to a previous error)
         if(document.querySelector("#"+formId+" .formSuccess")){
