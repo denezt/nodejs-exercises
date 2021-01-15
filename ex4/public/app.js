@@ -437,11 +437,11 @@ app.loadOrderConfirmPage = function(){
 
         if(statusCode == 200){
           // Put the data into the forms as values where needed
-          document.querySelector("#orderConfirm .orderInformation").value = menuItemArray.items[1];
+          document.querySelector("#orderConfirm .orderInformation").value = menuItemArray.items[1].name;
         } else {
           // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
           console.log('Logging User out');
-          app.logUserOut();
+          // app.logUserOut();
         }
       });
     } else {
