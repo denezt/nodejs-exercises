@@ -16,7 +16,7 @@ environments.staging = {
   'httpsPort' : 3001,
   'envName' : 'staging',
   'hashingSecret' : 'thisIsASecret',
-  'maxChecks' : 5,
+  'maxOrders' : 5,
   'templateGlobals' : {
     'appName' : 'Big Joe\'s Online Pizza Delivery',
     'companyName' : 'Big Joe\'s Pizza Co.',
@@ -31,7 +31,7 @@ environments.production = {
   'httpsPort' : 5001,
   'envName' : 'production',
   'hashingSecret' : 'thisIsAlsoASecret',
-  'maxChecks' : 10,
+  'maxOrders' : 10,
   'templateGlobals' : {
     'appName' : 'Big Joe\'s Online Pizza Delivery',
     'companyName' : 'Big Joe\'s Pizza Co.',
