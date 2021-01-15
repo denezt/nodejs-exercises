@@ -424,46 +424,31 @@ app.loadOrderConfirmPage = function(){
   console.log("app.loadOrderConfirmPage: " + app.config.sessionToken.emailAddress);
   // Get the emailAddress number from the current token, or log the user out if none is there
   var emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
-  if(emailAddress){
     // Fetch the user data
-    var queryStringObject = {
-      'emailAddress' : emailAddress
-    };
-    helpers.menu(1);
-    document.querySelector("#orderConfirm .orderInformation").value = "Order Information Goes Here...";
-  } else {
-    console.log("app.loadOrderConfirmPage: Email Address Information was not found");
-  }
+    console.log(menuItemArray.items[1]);
+    if(emailAddress){
+      // Fetch the user data
+      var queryStringObject = {
+        'emailAddress' : emailAddress
+      };
+      app.client.request(undefined,'/api/cart','GET',queryStringObject,undefined,function(statusCode,responsePayload){
+        console.log('loadOrderConfirmPage: ' + statusCode);
 
-  //   app.client.request(undefined,'/api/users','GET',queryStringObject,undefined,function(statusCode,responsePayload){
-  //     console.log('loadAccountEditPage: ' + statusCode);
-  //
-  //     if(statusCode == 200){
-  //       // Put the data into the forms as values where needed
-  //       document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
-  //       document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
-  //       document.querySelector("#accountEdit1 .displayEmailAddressInput").value = responsePayload.emailAddress;
-  //
-  //       // Put the hidden emailAddress field into both forms
-  //       var hiddenEmailInputs = document.querySelectorAll("input.hiddenEmailAddressInput");
-  //       for(var i = 0; i < hiddenEmailInputs.length; i++){
-  //           hiddenEmailInputs[i].value = responsePayload.emailAddress;
-  //       }
-  //
-  //     } else {
-  //       // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
-  //       console.log('Logging User out');
-  //       app.logUserOut();
-  //     }
-  //   });
-  // } else {
-  //   console.log('Logging User out');
-  //   app.logUserOut();
-  // }
+        var menuItemArray = {"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]};
+
+        if(statusCode == 200){
+          // Put the data into the forms as values where needed
+          document.querySelector("#orderConfirm .orderInformation").value = menuItemArray.items[1];
+        } else {
+          // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
+          console.log('Logging User out');
+          app.logUserOut();
+        }
+      });
+    } else {
+      console.log("app.loadOrderConfirmPage: Email Address Information was not found");
+    }
 };
-
-
-
 
 // Loop to renew token often
 app.tokenRenewalLoop = function(){
