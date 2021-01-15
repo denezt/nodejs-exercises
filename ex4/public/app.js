@@ -439,9 +439,9 @@ app.loadOrderConfirmPage = function(){
           // Put the data into the forms as values where needed
           console.log(responsePayload);
 
-          // for (var item in responsePayload.menuItems) {
-          //   document.querySelector("#orderConfirm .orderInformation").value = menuItemArray.items[item].name + '\n';
-          // }
+          for (var item in responsePayload.menuItems) {
+            document.querySelector("#orderConfirm .orderInformation").value = menuItemArray.items[item].name + '\n';
+          }
           // document.querySelector("#orderConfirm .orderInformation").value = responsePayload.menuItems;
 
         } else {
