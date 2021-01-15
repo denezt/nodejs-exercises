@@ -438,7 +438,7 @@ app.loadOrderConfirmPage = function(){
         if(statusCode == 200){
           // Put the data into the forms as values where needed
           for (var item in responsePayload.menuItems) {
-            document.querySelector("#orderConfirm .orderInformation").value += menuItemArray.items[1].name + '\n';
+            document.querySelector("#orderConfirm .orderInformation").value += menuItemArray.items[item].name + '\n';
           }
           // document.querySelector("#orderConfirm .orderInformation").value = responsePayload.menuItems;
 
