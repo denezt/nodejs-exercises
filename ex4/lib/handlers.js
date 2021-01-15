@@ -1058,7 +1058,7 @@ handlers._cart.post = function(data,callback){
           if(!err && userData){
             var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
             for (var i = 0; i < userOrder.length; i++) {
-              console.log(userOrder);
+              console.log(userOrder[i]);
             }
 
           } else {
