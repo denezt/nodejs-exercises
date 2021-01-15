@@ -1021,6 +1021,58 @@ handlers._order.delete = function(data,callback){
   }
 };
 
+// Order
+handlers.cart = function(data,callback){
+  var acceptableMethods = ['post','get','put','delete'];
+  if(acceptableMethods.indexOf(data.method) > -1){
+    handlers._cart[data.method](data,callback);
+  } else {
+    callback(405);
+  }
+};
+
+// Container for all the order methods
+handlers._cart  = {};
+
+// Checks - post
+// Required data: protocol,url,method,successCodes,timeoutSeconds
+// Optional data: none
+handlers._cart.post = function(data,callback){
+  // Validate inputs
+  var confirmOrder = typeof(data.payload.confirm) == 'boolean' ? true : false;
+
+  if(confirmOrder){
+    // Get token from headers
+    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+
+    // Lookup the user emailAddress by reading the token
+    _data.read('tokens',token,function(err,tokenData){
+      if(!err && tokenData){
+        var userEmail = tokenData.emailAddress;
+        console.log('handlers._cart.post: ' + tokenData.emailAddress);
+
+        // Lookup the user data
+        _data.read('users',userEmail,function(err,userData){
+          if(!err && userData){
+            var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
+            for (var i = 0; i < userOrder.length; i++) {
+              console.log(userOrder[i]);
+            }
+
+          } else {
+            callback(403);
+          }
+        });
+
+      } else {
+        callback(403);
+      }
+    });
+  } else {
+    callback(200,{});
+  }
+};
+
 
 // Export the handlers
 module.exports = handlers;

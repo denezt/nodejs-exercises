@@ -152,6 +152,7 @@ server.router = {
   'ping' : handlers.ping,
   'api/users' : handlers.users,
   'api/order' : handlers.order,
+  'api/cart' : handlers.cart,
   'api/tokens' : handlers.tokens,
   'favicon.ico' : handlers.favicon,
   'menu/view' : handlers.menuPage,
