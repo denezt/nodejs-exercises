@@ -439,9 +439,10 @@ app.loadOrderConfirmPage = function(){
           // Put the data into the forms as values where needed
           console.log(responsePayload);
           var menuItems = "";
-
+          var item = 0;
           for (var i = 0; i < responsePayload.menuItems.length; i++) {
-              menuItems += menuItemArray.items[Number(responsePayload.menuItems[i])].name + '\n';
+              item = Number(responsePayload.menuItems[i]) - 1;
+              menuItems += menuItemArray.items[item].name + '\n';
           }
 
           document.querySelector("#orderConfirm .orderInformation").value = menuItems;
