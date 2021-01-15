@@ -1039,7 +1039,7 @@ handlers._cart  = {};
 // Optional data: none
 handlers._cart.post = function(data,callback){
   // Validate inputs
-  var confirmOrder = typeof(data.payload.confirm) == 'boolean' ? true : false;
+  var confirmOrder = typeof(data.payload.confirm) == 'boolean' ? data.payload.confirm : false;
 
   if(confirmOrder){
     // Get token from headers
