@@ -1041,7 +1041,6 @@ handlers._cart.post = function(data,callback){
   // Validate inputs
   var confirmOrder = (typeof(data.payload.confirm) == 'string' && data.payload.confirm === "true") ? true : false;
 
-
   console.log('handlers._cart.post: ' + confirmOrder + ' ' + typeof(data.payload.confirm));
   if(confirmOrder){
     // Get token from headers

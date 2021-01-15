@@ -157,5 +157,14 @@ helpers.getStaticAsset = function(fileName,callback){
   }
 };
 
+helpers.menu = function(orderItems){
+  var menuItemArray = {"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]};
+  console.log(menuItemArray.items[1]);
+  // for (var i = 0; i < array.length; i++) {
+  //   console.log(menuItemArray.items[1]);
+  // }
+
+};
+
 // Export the module
 module.exports = helpers;
