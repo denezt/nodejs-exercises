@@ -1106,8 +1106,8 @@ handlers._cart.get = function(data,callback){
         // Verify that the given token is valid and belongs to the user who created the check
         handlers._tokens.verifyToken(token,emailAddress,function(tokenIsValid){
           if(tokenIsValid){
-            var recentOrder = userData.orders.length - 1;
-            _data.read('orders',userData.orders[recentOrder],function(err,orderData){
+            var recentOrder = userData.order.length - 1;
+            _data.read('orders',userData.order[recentOrder],function(err,orderData){
               // Return check data
               callback(200,orderData);
             });
