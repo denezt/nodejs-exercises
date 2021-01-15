@@ -441,6 +441,7 @@ app.loadOrderConfirmPage = function(){
           var menuItems = "";
 
           for (var item in responsePayload.menuItems) {
+            console.log(typeof(item));
             menuItems += menuItemArray.items[item].name + '\n';
           }
           document.querySelector("#orderConfirm .orderInformation").value = menuItems;
