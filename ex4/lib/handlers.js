@@ -1064,7 +1064,7 @@ handlers._cart.post = function(data,callback){
               console.log('Removing all Orders after confirmation: ' + userOrder[i]);
             }
             userData.order = [];
-            });
+
             _data.update('users',tokenData.emailAddress,userData,function(err){
               if(!err){
                 callback(200);
