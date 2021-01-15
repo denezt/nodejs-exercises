@@ -1060,17 +1060,15 @@ handlers._cart.post = function(data,callback){
 
             lastOrder = userOrder.length - 1;
             console.log('Get Last Order: ' + userOrder[lastOrder]);
-            for (var i = 0; i < userOrder.length; i++) {    
+            for (var i = 0; i < userOrder.length; i++) {
               // Delete the check data
               _data.delete('orders',userOrder[i],function(err){
                 if(!err){
                   // Lookup the user's object to get all their order
-                  console.log('Removing all Orders after confirmation: ' + userOrder[i]);
+                  console.log('Removing all Orders after confirmation');
                 }
               });
             }
-
-
             // Flush All orders
             userData.order = [];
 
