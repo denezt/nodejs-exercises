@@ -1092,6 +1092,34 @@ handlers._cart.post = function(data,callback){
   }
 };
 
+// Required data: id
+// Optional data: none
+handlers._cart.get = function(data,callback){
+  // Check that id is valid
+  var emailAddress = typeof(data.queryStringObject.emailAddress) == 'string' ? data.queryStringObject.emailAddress : false;
+  if(emailAddress){
+    // Lookup the check
+    _data.read('users',emailAddress,function(err,userData){
+      if(!err && userData){
+        // Get the token that sent the request
+        var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+        // Verify that the given token is valid and belongs to the user who created the check
+        handlers._tokens.verifyToken(token,userData.userEmail,function(tokenIsValid){
+          if(tokenIsValid){
+            // Return check data
+            callback(200,userData);
+          } else {
+            callback(403);
+          }
+        });
+      } else {
+        callback(404);
+      }
+    });
+  } else {
+    callback(400,{'Error' : 'Missing required field, or field invalid'})
+  }
+};
 
 // Export the handlers
 module.exports = handlers;
