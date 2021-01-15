@@ -416,7 +416,7 @@ app.loadOrderConfirmPage = function(){
     var queryStringObject = {
       'emailAddress' : emailAddress
     };
-    document.querySelector(".orderInformation").value = "Order Information Goes Here...";
+    document.querySelector("#orderConfirm .orderInformation").value = "Order Information Goes Here...";
   } else {
     console.log("app.loadOrderConfirmPage: Email Address Information was not found");
   }
