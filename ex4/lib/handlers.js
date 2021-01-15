@@ -1041,7 +1041,8 @@ handlers._cart.post = function(data,callback){
   // Validate inputs
   var confirmOrder = typeof(data.payload.confirm) == 'boolean' ? data.payload.confirm : false;
 
-  console.log('handlers._cart.post: ' + confirmOrder);
+
+  console.log('handlers._cart.post: ' + confirmOrder + ' ' + typeof(data.payload.confirm));
   if(confirmOrder){
     // Get token from headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
