@@ -440,11 +440,10 @@ app.loadOrderConfirmPage = function(){
           console.log(responsePayload);
           var menuItems = "";
 
-          for (var item in responsePayload.menuItems) {
-            console.log(typeof(item),item);
-
-            menuItems += menuItemArray.items[Number(item)].name + '\n';
+          for (var i = 0; i < responsePayload.menuItems.length; i++) {
+              menuItems += menuItemArray.items[Number(responsePayload.menuItems[i])].name + '\n';
           }
+
           document.querySelector("#orderConfirm .orderInformation").value = menuItems;
         } else {
           // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
