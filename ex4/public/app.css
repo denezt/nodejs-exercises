@@ -319,6 +319,10 @@ table.orderTable {
 }
 
 .orderInformation {
+  height: 50%;
+  width: 50%;
+  border: 0.5px solid gray;
+  border-radius: 3px;
   font-family: monospace;
   font-style: rgb(0, 0, 255);
   resize: none;
