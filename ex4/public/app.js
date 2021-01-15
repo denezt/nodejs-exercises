@@ -277,6 +277,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   if(formId == 'orderConfirm'){
     console.log('Order Confirm was a success');
     window.location = '/menu/view';
+    alert('Confirmation was sent!');
   }
 
 };
