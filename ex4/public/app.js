@@ -363,7 +363,7 @@ app.loadDataOnPage = function(){
   }
   // Logic for account settings page
   if(primaryClass == 'orderConfirm'){
-    app.loadAccountEditPage();
+    app.loadOrderConfirmPage();
   }
 };
 
