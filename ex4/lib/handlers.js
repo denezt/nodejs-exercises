@@ -1060,7 +1060,7 @@ handlers._cart.post = function(data,callback){
             for (var i = 0; i < userOrder.length; i++) {
               console.log(userOrder[i]);
             }
-
+            callback(200);
           } else {
             callback(403);
           }
