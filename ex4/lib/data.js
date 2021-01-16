@@ -17,12 +17,12 @@ lib.baseDir = path.join(__dirname,'/../.data/');
 // Create all datastore files
 const pathsToCheck = [
 	lib.baseDir,
-	lib.baseDir + '/users',
-	lib.baseDir + '/tokens',
-	lib.baseDir + '/menu',
-	lib.baseDir + '/carts',
-	lib.baseDir + '/orders',
-  lib.baseDir + '/test'
+	lib.baseDir + 'users',
+	lib.baseDir + 'tokens',
+	lib.baseDir + 'menu',
+	lib.baseDir + 'carts',
+	lib.baseDir + 'orders',
+  lib.baseDir + 'test'
 ];
 
 for (let i = 0; i < pathsToCheck.length; i++){
