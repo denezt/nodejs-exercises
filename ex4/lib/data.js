@@ -21,7 +21,8 @@ const pathsToCheck = [
 	lib.baseDir + '/tokens',
 	lib.baseDir + '/menu',
 	lib.baseDir + '/carts',
-	lib.baseDir + '/orders'
+	lib.baseDir + '/orders',
+  lib.baseDir + '/test'
 ];
 
 for (let i = 0; i < pathsToCheck.length; i++){
