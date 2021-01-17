@@ -45,12 +45,9 @@
           ]
         };
         console.log(f.items.length);
-        // for (var i = 0; i < array.length; i++) {
-        //   array[i]
-        // }
-
-        document.getElementById("menu-item-1").innerHTML = f.items[0].name;
-        document.getElementById("menu-item-2").innerHTML = f.items[1].name;
+        for (var i = 0; i < f.items.length; i++) {
+          document.getElementById("menu-item-" + i).innerHTML = f.items[i].name;
+        }
     </script>
 
 
