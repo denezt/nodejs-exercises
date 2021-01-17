@@ -1170,39 +1170,40 @@ handlers._pay.post = function(data, callback){
             req.write(data);
             req.end();
 
-            const formData = JSON.stringify({
-               from: 'Mailgun Sandbox <postmaster@sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org>',
-            	 to: 'rj <denezt@yahoo.com>',
-            	 subject: 'Hello rj',
-            	 text: 'Congratulations rj, you just sent an email with Mailgun!  You are truly awesome!',
-               api_key: apiKey
-             });
-
-            const option2 = {
-              hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org',
-              port: 443,
-              path: '/messages',
-              method: 'POST',
-              headers: {
-                 'Content-Type': 'application/x-www-form-urlencoded'
-               }
-             };
-
-            const req2 = https.request(option2, res => {
-                 console.log(`statusCode: ${res.statusCode}`);
-            });
-
-            req2.on('error', error => {
-              console.error(error);
-            });
-
-            req2.write(formData);
-            req2.end();
 
             _data.read('users',userEmail,function(err,userData){
               if(!err && userData){
                 console.log(userData.api_key.mailgun);
                 apiKey = userData.api_key.mailgun;
+                
+                const formData = JSON.stringify({
+                  from: 'Mailgun Sandbox <postmaster@sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org>',
+                  to: 'rj <denezt@yahoo.com>',
+                  subject: 'Hello rj',
+                  text: 'Congratulations rj, you just sent an email with Mailgun!  You are truly awesome!',
+                  api_key: apiKey
+                });
+
+                const option2 = {
+                  hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org',
+                  port: 443,
+                  path: '/messages',
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                  }
+                };
+
+                const req2 = https.request(option2, res => {
+                  console.log(`statusCode: ${res.statusCode}`);
+                });
+
+                req2.on('error', error => {
+                  console.error(error);
+                });
+
+                req2.write(formData);
+                req2.end();
 
                 // Order Extraction
                 var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
@@ -1221,13 +1222,10 @@ handlers._pay.post = function(data, callback){
                 userData.order = [];
 
                 _data.update('users',tokenData.emailAddress,userData,function(err){
-                  if(!err){
-                    callback(200);
-                  } else {
+                  if(err){
                     callback(500,{'Error' : 'Could not update the user.'});
                   }
                 });
-
               } else {
                 callback(403);
               }
