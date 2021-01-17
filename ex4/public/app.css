@@ -320,11 +320,12 @@ table.orderTable {
 
 .orderInformation {
   background-color: lightgray;
-  height: auto;
+  height: 40%;
   width: 80%;
   border: 0.5px solid gray;
   border-radius: 3px;
   font-family: monospace;
+  color: gray;
   font-size: 1.5em;
   font-style: rgb(0, 0, 255);
   resize: none;
