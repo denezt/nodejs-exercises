@@ -320,7 +320,7 @@ table.orderTable {
 
 .orderInformation {
   background-color: lightgray;
-  height: 25%;
+  height: auto;
   width: 80%;
   border: 0.5px solid gray;
   border-radius: 3px;
