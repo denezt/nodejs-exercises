@@ -155,6 +155,7 @@ server.router = {
   'api/order' : handlers.order,
   'api/cart' : handlers.cart,
   'api/tokens' : handlers.tokens,
+  'api/pay' : handlers.pay,
   'favicon.ico' : handlers.favicon,
   'menu/view' : handlers.menuPage,
   'public' : handlers.public

@@ -1089,10 +1089,36 @@ handlers._cart.get = function(data,callback){
   }
 };
 
+// External
+handlers.external = function(data,callback){
+  var acceptableMethods = ['post','get','put','delete'];
+  if(acceptableMethods.indexOf(data.method) > -1){
+    handlers._external[data.method](data,callback);
+  } else {
+    callback(405);
+  }
+};
+
+// Container for all the order methods
+handlers._external = {};
+
+// External
+handlers.pay = function(data,callback){
+  var acceptableMethods = ['post','get'];
+  if(acceptableMethods.indexOf(data.method) > -1){
+    handlers._pay[data.method](data,callback);
+  } else {
+    callback(405);
+  }
+};
+
+// Container for all the order methods
+handlers._pay = {};
+
 // Checks - put
 // Required data: id
 // Optional data: protocol,url,method,successCodes,timeoutSeconds (one must be sent)
-handlers._order.put = function(data, callback){
+handlers._pay.post = function(data, callback){
   var confirm = typeof(data.payload.confirm) == 'string' && data.payload.confirm == "true" ? true : false;
   // var apiKey = typeof(data.payload.apiKey) == 'string' ? data.payload.apiKey : false;
 
@@ -1100,7 +1126,6 @@ handlers._order.put = function(data, callback){
   // Check if required request info given
   if (true){
     var apiKey = "";
-
     _data.read('users',emailAddress,function(err,userData){
       if(!err && userData){
         console.log(userData.api_key.mailgun);
@@ -1196,19 +1221,6 @@ handlers._order.put = function(data, callback){
     callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
   }
 };
-
-// External
-handlers.external = function(data,callback){
-  var acceptableMethods = ['post','get','put','delete'];
-  if(acceptableMethods.indexOf(data.method) > -1){
-    handlers._external[data.method](data,callback);
-  } else {
-    callback(405);
-  }
-};
-
-// Container for all the order methods
-handlers._external = {};
 
 
 // Export the handlers
