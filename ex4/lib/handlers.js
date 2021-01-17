@@ -1131,147 +1131,117 @@ handlers._pay.post = function(data, callback){
 
     // Lookup the user emailAddress by reading the token
     _data.read('tokens',token,function(err,tokenData){
+
       if(!err && tokenData){
         var userEmail = tokenData.emailAddress;
-        console.log('handlers._cart.post: ' + tokenData.emailAddress);
 
-
-        // Lookup the user data
-        _data.read('users',userEmail,function(err,userData){
-          if(!err && userData){
-            console.log(userData.api_key.mailgun);
-            apiKey = userData.api_key.mailgun;
-
-            // Order Extraction
-            var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
-            lastOrder = userOrder.length - 1;
-            console.log('Get Last Order: ' + userOrder[lastOrder]);
-            for (var i = 0; i < userOrder.length; i++) {
-              // Delete the check data
-              _data.delete('orders',userOrder[i],function(err){
-                if(!err){
-                  // Lookup the user's object to get all their order
-                  console.log('Removing all Orders after confirmation');
-                }
+        token_holder._token.verifyToken(token, userEmail, function(tokenIsValid){
+          if (tokenIsValid){
+            var cartName = helper.hash128(emailAddress);
+            var menuCount = 0;
+            const data = JSON.stringify({
+                    amount : 2000,
+                    currency : 'eur',
+                    description : 'Example charge',
+                    source: 'tok_mastercard',
+                    api_key: 'sk_test_51I5rz5LIu7OWc1YLkwLronOnHTMVxGo5xwHwbgkv2mftAhKr6H8ETCzyOJCrwSuAXdpsg6nOGXtNRktzGtY79wk40019Bxy6FL:'
+            });
+            const options = {
+              hostname: 'api.stripe.com',
+              port: 443,
+              path: '/v1/charges',
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': ' Bearer sk_test_51I5rz5LIu7OWc1YLkwLronOnHTMVxGo5xwHwbgkv2mftAhKr6H8ETCzyOJCrwSuAXdpsg6nOGXtNRktzGtY79wk40019Bxy6FL'
+              }
+            };
+            const req = https.request(options, res => {
+              console.log(`statusCode: ${res.statusCode}`);
+              res.on('data', d => {
+                process.stdout.write(d);
               });
-            }
-            // Flush All orders
-            userData.order = [];
+            });
 
-            _data.update('users',tokenData.emailAddress,userData,function(err){
-              if(!err){
-                callback(200);
+            req.on('error', error => {
+              console.error(error);
+            });
+            req.write(data);
+            req.end();
+
+            const formData = JSON.stringify({
+               from: 'Mailgun Sandbox <postmaster@sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org>',
+            	 to: 'rj <denezt@yahoo.com>',
+            	 subject: 'Hello rj',
+            	 text: 'Congratulations rj, you just sent an email with Mailgun!  You are truly awesome!',
+               api_key: apiKey
+             });
+
+            const option2 = {
+              hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org',
+              port: 443,
+              path: '/messages',
+              method: 'POST',
+              headers: {
+                 'Content-Type': 'application/x-www-form-urlencoded'
+               }
+             };
+
+            const req2 = https.request(option2, res => {
+                 console.log(`statusCode: ${res.statusCode}`);
+            });
+
+            req2.on('error', error => {
+              console.error(error);
+            });
+
+            req2.write(formData);
+            req2.end();
+
+            _data.read('users',userEmail,function(err,userData){
+              if(!err && userData){
+                console.log(userData.api_key.mailgun);
+                apiKey = userData.api_key.mailgun;
+
+                // Order Extraction
+                var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
+                lastOrder = userOrder.length - 1;
+                console.log('Get Last Order: ' + userOrder[lastOrder]);
+                  for (var i = 0; i < userOrder.length; i++) {
+                    // Delete the check data
+                    _data.delete('orders',userOrder[i],function(err){
+                      if(!err){
+                        // Lookup the user's object to get all their order
+                        console.log('Removing all Orders after confirmation');
+                      }
+                    });
+                  }
+                // Flush All orders
+                userData.order = [];
+
+                _data.update('users',tokenData.emailAddress,userData,function(err){
+                  if(!err){
+                    callback(200);
+                  } else {
+                    callback(500,{'Error' : 'Could not update the user.'});
+                  }
+                });
+
               } else {
-                callback(500,{'Error' : 'Could not update the user.'});
+                callback(403);
               }
             });
+
+            callback(200,{'status':'submitted'});
           } else {
-            callback(403);
+            callback(403,{'Error':'Missing required token in header, or token is invalid'});
           }
         });
-      } else {
-        callback(403);
       }
     });
   } else {
     callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
   }
-    // if (true){
-    //   var apiKey = "";
-    //   _data.read('users',emailAddress,function(err,userData){
-    //     if(!err && userData){
-    //       console.log(userData.api_key.mailgun);
-    //       apiKey = userData.api_key.mailgun;
-    //     }
-    //   });
-    //   callback(200,{});
-    // // Get the token from the headers
-    // var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
-    //   // Verify that the given token is valid for the email
-    //   token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
-    //     if (tokenIsValid){
-    //       var cartName = helper.hash128(emailAddress);
-    //       var menuCount = 0;
-    //       const data = JSON.stringify({
-    //               amount : 2000,
-    //               currency : 'eur',
-    //               description : 'Example charge',
-    //               source: 'tok_mastercard',
-    //               api_key: 'sk_test_51I5rz5LIu7OWc1YLkwLronOnHTMVxGo5xwHwbgkv2mftAhKr6H8ETCzyOJCrwSuAXdpsg6nOGXtNRktzGtY79wk40019Bxy6FL:'
-    //       });
-    //       const options = {
-    //         hostname: 'api.stripe.com',
-    //         port: 443,
-    //         path: '/v1/charges',
-    //         method: 'GET',
-    //         headers: {
-    //           'Content-Type': 'application/x-www-form-urlencoded',
-    //           'Authorization': ' Bearer sk_test_51I5rz5LIu7OWc1YLkwLronOnHTMVxGo5xwHwbgkv2mftAhKr6H8ETCzyOJCrwSuAXdpsg6nOGXtNRktzGtY79wk40019Bxy6FL'
-    //         }
-    //       };
-    //       const req = https.request(options, res => {
-    //         console.log(`statusCode: ${res.statusCode}`);
-    //         res.on('data', d => {
-    //           process.stdout.write(d);
-    //         });
-    //       });
-    //
-    //       req.on('error', error => {
-    //         console.error(error);
-    //       });
-    //       req.write(data);
-    //       req.end();
-    //
-    //       const formData = JSON.stringify({
-    //          from: 'Mailgun Sandbox <postmaster@sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org>',
-    //       	 to: 'rj <denezt@yahoo.com>',
-    //       	 subject: 'Hello rj',
-    //       	 text: 'Congratulations rj, you just sent an email with Mailgun!  You are truly awesome!',
-    //          api_key: apiKey
-    //        });
-    //
-    //       const option2 = {
-    //         hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org',
-    //         port: 443,
-    //         path: '/messages',
-    //         method: 'POST',
-    //         headers: {
-    //            'Content-Type': 'application/x-www-form-urlencoded'
-    //          }
-    //        };
-    //
-    //       const req2 = https.request(option2, res => {
-    //            console.log(`statusCode: ${res.statusCode}`);
-    //       });
-    //
-    //       req2.on('error', error => {
-    //         console.error(error);
-    //       });
-    //
-    //       req2.write(formData);
-    //       req2.end();
-    //
-    //
-    //       // Finally we will remove the order from queue
-    //       _data.delete('orders',cartName,function(err){
-    //         if(!err){
-    //           console.log("Remove order" + cartName);
-    //         }
-    //       });
-    //       _data.delete('carts',cartName,function(err){
-    //         if(!err){
-    //           console.log("Remove shopping cart" + cartName);
-    //         }
-    //       });
-    //
-    //       callback(200,{'status':'submitted'});
-    //     } else {
-    //       callback(403,{'Error':'Missing required token in header, or token is invalid'});
-    //     }
-    //   });
-    // } else {
-    //   callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
-    // }
 };
 
 
