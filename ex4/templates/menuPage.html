@@ -46,9 +46,9 @@
         };
         console.log(f.items.length);
         var a = 0;
+        var menuItemNameArray = [ 'menu-item-1', 'menu-item-2', 'menu-item-3', 'menu-item-4', 'menu-item-5' ];
         for (var i = 0; i < f.items.length; i++) {
-          document.getElementById("menu-item-1").innerHTML = f.items[a].name;
-          a++;
+          document.getElementById(menuItemNameArray[i]).innerHTML = f.items[i].name;
         }
     </script>
 
