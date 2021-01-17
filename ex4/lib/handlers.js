@@ -4,9 +4,10 @@
  */
 
 // Dependencies
-var _data = require('./data');
-var helpers = require('./helpers');
-var config = require('./config');
+const _data = require('./data');
+const helpers = require('./helpers');
+const config = require('./config');
+const https = require('https');
 
 // Define all the handlers
 var handlers = {};
