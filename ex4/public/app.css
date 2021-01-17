@@ -320,11 +320,11 @@ table.orderTable {
 
 .orderInformation {
   height: 25%;
-  width: 50%;
+  width: 80%;
   border: 0.5px solid gray;
   border-radius: 3px;
   font-family: monospace;
-  font-size: 1em;
+  font-size: 1.5em;
   font-style: rgb(0, 0, 255);
   resize: none;
 }
