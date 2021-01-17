@@ -31,13 +31,13 @@ kill_proc(){
 	then
 		printf "`getpid`\n"
 		kill -9 "`getpid`"
-		read -p "Remove old logs? [yes, no] " _confirm
 		case $_force in
 			'true') _confirm="yes";;
 			*) read -p "Remove old logs? [yes, no] " _confirm;;
 		esac
 		case $_confirm in
 			y|yes) [ -e "${logfile}" ] && rm ${logfile};;
+			n|no) printf "\033[32mDone!\033[0m\n";;
 			*) printf "\033[35mExiting, no action was taken\033[0m\n";;
 		esac
 	else
