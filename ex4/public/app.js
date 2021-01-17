@@ -442,7 +442,7 @@ app.loadOrderConfirmPage = function(){
           var item = 0;
           for (var i = 0; i < responsePayload.menuItems.length; i++) {
               item = Number(responsePayload.menuItems[i]) - 1;
-              menuItems += '\t' + menuItemArray.items[item].name + '\n';
+              menuItems += '[√]' + menuItemArray.items[item].name + '\n';
           }
 
           document.querySelector("#orderConfirm .orderInformation").value = menuItems;
