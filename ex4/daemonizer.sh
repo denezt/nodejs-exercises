@@ -20,11 +20,20 @@ getpid(){
 }
 
 kill_proc(){
+	for args in $@
+	do
+		force:*) _force=$(echo $args | cut -d':' -f2);;
+	done
+
 	if [ `getpid` -gt 0 ];
 	then
 		printf "`getpid`\n"
 		kill -9 "`getpid`"
 		read -p "Remove old logs? [yes, no] " _confirm
+		case $_force in
+			'true') _confirm="yes";;
+			*) read -p "Remove old logs? [yes, no] " _confirm;;
+		esac
 		case $_confirm in
 			y|yes) [ -e "${logfile}" ] && rm ${logfile};;
 			*) printf "\033[35mExiting, no action was taken\033[0m\n";;
@@ -48,7 +57,7 @@ start_proc(){
 restart_proc(){
 	git pull origin main --ff
 	printf "Attempting to restart process \`${process}\`...\n"
-	kill_proc
+	kill_proc force:true
 	start_proc
 }
 
