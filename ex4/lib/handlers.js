@@ -1124,15 +1124,63 @@ handlers._pay.post = function(data, callback){
 
   // console.log('confirm: ' + confirm);
   // Check if required request info given
-  if (true){
-    var apiKey = "";
-    _data.read('users',emailAddress,function(err,userData){
-      if(!err && userData){
-        console.log(userData.api_key.mailgun);
-        apiKey = userData.api_key.mailgun;
+  if(confirm){
+    // Get token from headers
+    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+    // console.log(userData.api_key.mailgun);
+    // apiKey = userData.api_key.mailgun;
+
+    // Lookup the user emailAddress by reading the token
+    _data.read('tokens',token,function(err,tokenData){
+      if(!err && tokenData){
+        var userEmail = tokenData.emailAddress;
+        console.log('handlers._cart.post: ' + tokenData.emailAddress);
+
+        // Lookup the user data
+        _data.read('users',userEmail,function(err,userData){
+          if(!err && userData){
+            var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
+            lastOrder = userOrder.length - 1;
+            console.log('Get Last Order: ' + userOrder[lastOrder]);
+            for (var i = 0; i < userOrder.length; i++) {
+              // Delete the check data
+              _data.delete('orders',userOrder[i],function(err){
+                if(!err){
+                  // Lookup the user's object to get all their order
+                  console.log('Removing all Orders after confirmation');
+                }
+              });
+            }
+            // Flush All orders
+            userData.order = [];
+
+            _data.update('users',tokenData.emailAddress,userData,function(err){
+              if(!err){
+                callback(200);
+              } else {
+                callback(500,{'Error' : 'Could not update the user.'});
+              }
+            });
+          } else {
+            callback(403);
+          }
+        });
+      } else {
+        callback(403);
       }
     });
-    callback(200,{});
+  } else {
+    callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
+  }
+    // if (true){
+    //   var apiKey = "";
+    //   _data.read('users',emailAddress,function(err,userData){
+    //     if(!err && userData){
+    //       console.log(userData.api_key.mailgun);
+    //       apiKey = userData.api_key.mailgun;
+    //     }
+    //   });
+    //   callback(200,{});
     // // Get the token from the headers
     // var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
     //   // Verify that the given token is valid for the email
@@ -1217,9 +1265,9 @@ handlers._pay.post = function(data, callback){
     //       callback(403,{'Error':'Missing required token in header, or token is invalid'});
     //     }
     //   });
-  } else {
-    callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
-  }
+    // } else {
+    //   callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
+    // }
 };
 
 
