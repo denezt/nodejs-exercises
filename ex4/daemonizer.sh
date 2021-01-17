@@ -48,8 +48,7 @@ start_proc(){
 restart_proc(){
 	git pull origin main --ff
 	printf "Attempting to restart process \`${process}\`...\n"
-	kill -9 "`getpid`"
-	sleep 2
+	kill_proc
 	start_proc
 }
 
