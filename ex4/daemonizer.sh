@@ -22,7 +22,9 @@ getpid(){
 kill_proc(){
 	for args in $@
 	do
-		force:*) _force=$(echo $args | cut -d':' -f2);;
+		case $args in
+			force:*) _force=$(echo $args | cut -d':' -f2);;
+		esac
 	done
 
 	if [ `getpid` -gt 0 ];
