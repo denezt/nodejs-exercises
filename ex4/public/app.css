@@ -319,6 +319,7 @@ table.orderTable {
 }
 
 .orderInformation {
+  background-color: lightgray;
   height: 25%;
   width: 80%;
   border: 0.5px solid gray;
