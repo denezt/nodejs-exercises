@@ -1137,7 +1137,7 @@ handlers._pay.post = function(data, callback){
 
         handlers._tokens.verifyToken(token, userEmail, function(tokenIsValid){
           if (tokenIsValid){
-            var cartName = helper.hashmd5(emailAddress);
+            // var cartName = helper.hashmd5(emailAddress);
             var menuCount = 0;
             const data = JSON.stringify({
                     amount : 2000,
