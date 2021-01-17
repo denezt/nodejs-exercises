@@ -45,8 +45,10 @@
           ]
         };
         console.log(f.items.length);
+        var a = 0;
         for (var i = 0; i < f.items.length; i++) {
-          document.getElementById("menu-item-" + i.toString()).innerHTML = f.items[i].name;
+          document.getElementById("menu-item-" + a.toString()).innerHTML = f.items[a].name;
+          a++;
         }
     </script>
 
