@@ -47,16 +47,10 @@ start_proc(){
 
 restart_proc(){
 	git pull origin main --ff
-	if [ `getpid` -eq 0 ];
-	then
-		printf "Attempting to restart process \`${process}\`...\n"
-		kill -9 "`getpid`"
-		sleep 2
-		start_proc
-	else
-		printf "Restart process \`${process}\`...\n"
-		start_proc
-	fi
+	printf "Attempting to restart process \`${process}\`...\n"
+	kill -9 "`getpid`"
+	sleep 2
+	start_proc
 }
 
 query_proc(){
