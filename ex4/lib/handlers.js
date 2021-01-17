@@ -895,67 +895,100 @@ handlers._order.get = function(data,callback){
 // Checks - put
 // Required data: id
 // Optional data: protocol,url,method,successCodes,timeoutSeconds (one must be sent)
-handlers._order.put = function(data,callback){
-  // Check for required field
-  var id = typeof(data.payload.id) == 'string' && data.payload.id.trim().length == 20 ? data.payload.id.trim() : false;
+handlers._order.put = function(data, callback){
+  var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
+  var submit = typeof(data.payload.submit) == 'boolean' && data.payload.submit == true ? true : false;
+  var apiKey = typeof(data.payload.apiKey) == 'string' ? data.payload.apiKey : false;
 
-  // Check for optional fields
-  var protocol = typeof(data.payload.protocol) == 'string' && ['https','http'].indexOf(data.payload.protocol) > -1 ? data.payload.protocol : false;
-  var url = typeof(data.payload.url) == 'string' && data.payload.url.trim().length > 0 ? data.payload.url.trim() : false;
-  var method = typeof(data.payload.method) == 'string' && ['post','get','put','delete'].indexOf(data.payload.method) > -1 ? data.payload.method : false;
-  var successCodes = typeof(data.payload.successCodes) == 'object' && data.payload.successCodes instanceof Array && data.payload.successCodes.length > 0 ? data.payload.successCodes : false;
-  var timeoutSeconds = typeof(data.payload.timeoutSeconds) == 'number' && data.payload.timeoutSeconds % 1 === 0 && data.payload.timeoutSeconds >= 1 && data.payload.timeoutSeconds <= 5 ? data.payload.timeoutSeconds : false;
+  console.log('submit: ' + submit);
+  // Check if required request info given
+  if (emailAddress){
+    // Get the token from the headers
+    var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
+      // Verify that the given token is valid for the email
+      token_holder._token.verifyToken(token, emailAddress, function(tokenIsValid){
+        if (tokenIsValid){
+          var cartName = helper.hash128(emailAddress);
+          var menuCount = 0;
+          const data = JSON.stringify({
+                  amount : 2000,
+                  currency : 'eur',
+                  description : 'Example charge',
+                  source: 'tok_mastercard',
+                  api_key: 'sk_test_51I5rz5LIu7OWc1YLkwLronOnHTMVxGo5xwHwbgkv2mftAhKr6H8ETCzyOJCrwSuAXdpsg6nOGXtNRktzGtY79wk40019Bxy6FL:'
+          });
+          const options = {
+            hostname: 'api.stripe.com',
+            port: 443,
+            path: '/v1/charges',
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': ' Bearer sk_test_51I5rz5LIu7OWc1YLkwLronOnHTMVxGo5xwHwbgkv2mftAhKr6H8ETCzyOJCrwSuAXdpsg6nOGXtNRktzGtY79wk40019Bxy6FL'
+            }
+          };
+          const req = https.request(options, res => {
+            console.log(`statusCode: ${res.statusCode}`);
+            res.on('data', d => {
+              process.stdout.write(d);
+            });
+          });
 
-  // Error if id is invalid
-  if(id){
-    // Error if nothing is sent to update
-    if(protocol || url || method || successCodes || timeoutSeconds){
-      // Lookup the check
-      _data.read('orders',id,function(err,checkData){
-        if(!err && checkData){
-          // Get the token that sent the request
-          var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
-          // Verify that the given token is valid and belongs to the user who created the check
-          handlers._tokens.verifyToken(token,checkData.userEmail,function(tokenIsValid){
-            if(tokenIsValid){
-              // Update check data where necessary
-              if(protocol){
-                checkData.protocol = protocol;
-              }
-              if(url){
-                checkData.url = url;
-              }
-              if(method){
-                checkData.method = method;
-              }
-              if(successCodes){
-                checkData.successCodes = successCodes;
-              }
-              if(timeoutSeconds){
-                checkData.timeoutSeconds = timeoutSeconds;
-              }
+          req.on('error', error => {
+            console.error(error);
+          });
+          req.write(data);
+          req.end();
 
-              // Store the new updates
-              _data.update('orders',id,checkData,function(err){
-                if(!err){
-                  callback(200);
-                } else {
-                  callback(500,{'Error' : 'Could not update the check.'});
-                }
-              });
-            } else {
-              callback(403);
+          const formData = JSON.stringify({
+             from: 'Mailgun Sandbox <postmaster@sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org>',
+          	 to: 'rj <denezt@yahoo.com>',
+          	 subject: 'Hello rj',
+          	 text: 'Congratulations rj, you just sent an email with Mailgun!  You are truly awesome!',
+             api_key: apiKey
+           });
+
+          const option2 = {
+            hostname: 'api.mailgun.net/v3/sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org',
+            port: 443,
+            path: '/messages',
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/x-www-form-urlencoded'
+             }
+           };
+
+          const req2 = https.request(option2, res => {
+               console.log(`statusCode: ${res.statusCode}`);
+          });
+
+          req2.on('error', error => {
+            console.error(error);
+          });
+
+          req2.write(formData);
+          req2.end();
+
+
+          // Finally we will remove the order from queue
+          _data.delete('orders',cartName,function(err){
+            if(!err){
+              console.log("Remove order" + cartName);
             }
           });
+          _data.delete('carts',cartName,function(err){
+            if(!err){
+              console.log("Remove shopping cart" + cartName);
+            }
+          });
+
+          callback(200,{'status':'submitted'});
         } else {
-          callback(400,{'Error' : 'Check ID did not exist.'});
+          callback(403,{'Error':'Missing required token in header, or token is invalid'});
         }
       });
-    } else {
-      callback(400,{'Error' : 'Missing fields to update.'});
-    }
   } else {
-    callback(400,{'Error' : 'Missing required field.'});
+    callback(400,{'Error' : 'Missing required field or parameters are incorrect.(user login information)'});
   }
 };
 
@@ -1123,6 +1156,20 @@ handlers._cart.get = function(data,callback){
     callback(400,{'Error' : 'Missing required field, or field invalid'})
   }
 };
+
+// External
+handlers.external = function(data,callback){
+  var acceptableMethods = ['post','get','put','delete'];
+  if(acceptableMethods.indexOf(data.method) > -1){
+    handlers._external[data.method](data,callback);
+  } else {
+    callback(405);
+  }
+};
+
+// Container for all the order methods
+handlers._external = {};
+
 
 // Export the handlers
 module.exports = handlers;
