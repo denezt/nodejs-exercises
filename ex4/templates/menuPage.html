@@ -47,7 +47,7 @@
         console.log(f.items.length);
         var a = 0;
         for (var i = 0; i < f.items.length; i++) {
-          document.getElementById("menu-item-" + a.toString()).innerHTML = f.items[a].name;
+          document.getElementById("menu-item-${a.toString()}").innerHTML = f.items[a].name;
           a++;
         }
     </script>
