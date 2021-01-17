@@ -1120,15 +1120,14 @@ handlers._pay = {};
 // Optional data: protocol,url,method,successCodes,timeoutSeconds (one must be sent)
 handlers._pay.post = function(data, callback){
   var confirm = typeof(data.payload.confirm) == 'string' && data.payload.confirm == "true" ? true : false;
-  // var apiKey = typeof(data.payload.apiKey) == 'string' ? data.payload.apiKey : false;
 
-  // console.log('confirm: ' + confirm);
+  console.log('confirm: ' + confirm);
+
   // Check if required request info given
   if(confirm){
     // Get token from headers
+    var apiKey = "";
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
-    // console.log(userData.api_key.mailgun);
-    // apiKey = userData.api_key.mailgun;
 
     // Lookup the user emailAddress by reading the token
     _data.read('tokens',token,function(err,tokenData){
@@ -1136,9 +1135,14 @@ handlers._pay.post = function(data, callback){
         var userEmail = tokenData.emailAddress;
         console.log('handlers._cart.post: ' + tokenData.emailAddress);
 
+
         // Lookup the user data
         _data.read('users',userEmail,function(err,userData){
           if(!err && userData){
+            console.log(userData.api_key.mailgun);
+            apiKey = userData.api_key.mailgun;
+
+            // Order Extraction
             var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
             lastOrder = userOrder.length - 1;
             console.log('Get Last Order: ' + userOrder[lastOrder]);
