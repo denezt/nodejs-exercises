@@ -1135,7 +1135,7 @@ handlers._pay.post = function(data, callback){
       if(!err && tokenData){
         var userEmail = tokenData.emailAddress;
 
-        token_holder._token.verifyToken(token, userEmail, function(tokenIsValid){
+        handlers._tokens.verifyToken(token, userEmail, function(tokenIsValid){
           if (tokenIsValid){
             var cartName = helper.hash128(emailAddress);
             var menuCount = 0;
