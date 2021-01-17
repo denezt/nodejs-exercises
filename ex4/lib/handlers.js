@@ -1096,9 +1096,9 @@ handlers._order.put = function(data, callback){
   var confirm = typeof(data.payload.confirm) == 'string' && data.payload.confirm == "true" ? true : false;
   // var apiKey = typeof(data.payload.apiKey) == 'string' ? data.payload.apiKey : false;
 
-  console.log('confirm: ' + confirm);
+  // console.log('confirm: ' + confirm);
   // Check if required request info given
-  if (confirm){
+  if (true){
     var apiKey = "";
 
     _data.read('users',emailAddress,function(err,userData){
