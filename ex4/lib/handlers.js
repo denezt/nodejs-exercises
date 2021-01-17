@@ -927,12 +927,20 @@ handlers._order.get = function(data,callback){
 // Optional data: protocol,url,method,successCodes,timeoutSeconds (one must be sent)
 handlers._order.put = function(data, callback){
   var emailAddress = typeof(data.payload.emailAddress) == 'string' ? data.payload.emailAddress : false;
-  var submit = typeof(data.payload.submit) == 'boolean' && data.payload.submit == true ? true : false;
-  var apiKey = typeof(data.payload.apiKey) == 'string' ? data.payload.apiKey : false;
+  var confirm = typeof(data.payload.confirm) == 'string' && data.payload.confirm == "true" ? true : false;
+  // var apiKey = typeof(data.payload.apiKey) == 'string' ? data.payload.apiKey : false;
 
   console.log('submit: ' + submit);
   // Check if required request info given
   if (emailAddress){
+    var apiKey = "";
+
+    _data.read('users',emailAddress,function(err,userData){
+      if(!err && userData){
+        console.log(userData.api_key.mailgun);
+        apiKey = userData.api_key.mailgun;
+      }
+    });
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the email
