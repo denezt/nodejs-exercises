@@ -1127,7 +1127,6 @@ handlers._pay.post = function(data, callback){
   // Check if required request info given
   if(confirm){
     // Get token from headers
-    var apiKey = "";
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
 
     // Lookup the user emailAddress by reading the token
@@ -1172,10 +1171,12 @@ handlers._pay.post = function(data, callback){
 
 
             _data.read('users',userEmail,function(err,userData){
+              // var apiKey = "";
+              const apiKey = userData.api_key.mailgun;
+
               if(!err && userData){
                 console.log(userData.api_key.mailgun);
-                apiKey = userData.api_key.mailgun;
-                
+
                 const formData = JSON.stringify({
                   from: 'Mailgun Sandbox <postmaster@sandbox2a526e8998d24d17ba93494a7d7e2adf.mailgun.org>',
                   to: 'rj <denezt@yahoo.com>',
