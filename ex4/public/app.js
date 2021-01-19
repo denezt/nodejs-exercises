@@ -444,8 +444,8 @@ app.loadOrderConfirmPage = function(){
               item = Number(responsePayload.menuItems[i]) - 1;
               menuItems += '[√]' + menuItemArray.items[item].name + '\n';
           }
-          document.querySelector("#orderConfirm .firstName").value = 'responsePayload.firstName';
-          document.querySelector("#orderConfirm .lastName").value = 'responsePayload.lastName';
+          // document.querySelector("#orderConfirm .firstName").value = 'responsePayload.firstName';
+          // document.querySelector("#orderConfirm .lastName").value = 'responsePayload.lastName';
           document.querySelector("#orderConfirm .orderInformation").value = menuItems;
         } else {
           // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
