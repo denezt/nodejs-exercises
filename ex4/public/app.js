@@ -423,10 +423,21 @@ app.loadAccountEditPage = function(){
 };
 
 app.loadOrderCreatePage = function(){
-  console.log("");
-  document.querySelector("#orderCreate.menuItem1").checked = true;
-  document.querySelector("#orderCreate.menuItem2").checked = true;
-  document.querySelector("#orderCreate.menuItem4").checked = true;
+  console.log("Loading, loadOrderCreatePage: " + app.config.sessionToken.emailAddress);
+  // Get the emailAddress number from the current token, or log the user out if none is there
+  var emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
+    // Fetch the user data
+    if(emailAddress){
+      // Fetch the user data
+      var queryStringObject = {
+        'emailAddress' : emailAddress
+      };
+      app.client.request(undefined,'/api/cart','GET',queryStringObject,undefined,function(statusCode,responsePayload){
+        document.querySelector("#orderCreate.menuItem1").checked = true;
+        document.querySelector("#orderCreate.menuItem2").checked = true;
+        document.querySelector("#orderCreate.menuItem4").checked = true;
+      });
+    }
 };
 
 // Load the account edit page specifically
