@@ -1101,7 +1101,7 @@ handlers._cart.get = function(data,callback){
               firstName = userData.firstName;
               lastName = userData.lastName;
             });
-            if (recentOrder){
+            if (typeof(recentOrder) != 'boolean' ){
               _data.read('orders',userData.order[recentOrder],function(err,orderData){
                 // Return check data
                 orderData.firstName = firstName;
