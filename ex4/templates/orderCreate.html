@@ -14,32 +14,37 @@
           <tr>
             <th>Menu ID</th>
             <th>Description</th>
+            <th>Price</th>
             <th>Add</th>
           </tr>
           <tr>
             <td>1</td>
-            <!-- <td>Italian Sausage and Cheese Pizza</td> -->
             <td><div id="menu-name-1"></div></td>
+            <td><div id="menu-price-1"></div></td>
             <td><input type="checkbox" class="multiselect intval" name="menuItems" value="1"></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Pepperoni and Cheese Pizza</td>
+            <td><div id="menu-name-2"></div></td>
+            <td><div id="menu-price-2"></div></td>
             <td><input type="checkbox" class="multiselect intval" name="menuItems" value="2"></td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Happy Sparkling Juice</td>
+            <td><div id="menu-name-3"></div></td>
+            <td><div id="menu-price-3"></div></td>
             <td><input type="checkbox" class="multiselect intval" name="menuItems" value="3"></td>
           </tr>
           <tr>
             <td>4</td>
-            <td>White Chocolate Chip Cookies</td>
+            <td><div id="menu-name-4"></div></td>
+            <td><div id="menu-price-4"></div></td>
             <td><input type="checkbox" class="multiselect intval" name="menuItems" value="4"></td>
           </tr>
           <tr>
             <td>5</td>
-            <td>New World Lemonade</td>
+            <td><div id="menu-name-5"></div></td>
+            <td><div id="menu-price-5"></div></td>
             <td><input type="checkbox" class="multiselect intval" name="menuItems" value="5"></td>
           </tr>
         </table>
@@ -63,8 +68,10 @@
       ]
   };
   const menuNameArray = [ "menu-name-1", "menu-name-2", "menu-name-3", "menu-name-4", "menu-name-5" ];
+  const menuPriceArray = [ "menu-price-1", "menu-price-2", "menu-price-3", "menu-price-4", "menu-price-5" ];
   for (var i = 0; i < menuNameArray.length; i++) {
     document.getElementById(menuNameArray[i]).innerHTML = menuItem.items[i].name;
-    console.log(menuItem.items[i].name);
+    document.getElementById(menuPriceArray[i]).innerHTML = menuItem.items[i].price;
+    console.log(menuItem.items[i].name,menuItem.items[i].price);
   }
 </script>
