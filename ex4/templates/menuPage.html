@@ -15,27 +15,27 @@
         <th>Cost</th>
       </tr>
       <tr>
-        <td>1</td>
+        <td><div id="menu-id-1"></div></td>
         <td><div id="menu-name-1"></div></td>
         <td><div id="menu-price-1"></div></td>
       </tr>
       <tr>
-        <td>1</td>
+        <td><div id="menu-id-2"></div></td>
         <td><div id="menu-name-2"></div></td>
         <td><div id="menu-price-2"></div></td>
       </tr>
       <tr>
-        <td>1</td>
+        <td><div id="menu-id-3"></div></td>
         <td><div id="menu-name-3"></div></td>
         <td><div id="menu-price-3"></div></td>
       </tr>
       <tr>
-        <td>1</td>
+        <td><div id="menu-id-4"></div></td>
         <td><div id="menu-name-4"></div></td>
         <td><div id="menu-price-4"></div></td>
       </tr>
       <tr>
-        <td>1</td>
+        <td><div id="menu-id-5"></div></td>
         <td><div id="menu-name-5"></div></td>
         <td><div id="menu-price-5"></div></td>
       </tr>
@@ -83,9 +83,11 @@
         };
         console.log(f.items.length);
         var a = 0;
+        var menuIdArray = [ 'menu-id-1', 'menu-id-2', 'menu-id-3', 'menu-id-4', 'menu-id-5' ];
         var menuNameArray = [ 'menu-name-1', 'menu-name-2', 'menu-name-3', 'menu-name-4', 'menu-name-5' ];
-        var menuPriceArray = [ 'menu-name-1', 'menu-name-2', 'menu-name-3', 'menu-name-4', 'menu-name-5' ];
+        var menuPriceArray = [ 'menu-price-1', 'menu-price-2', 'menu-price-3', 'menu-price-4', 'menu-price-5' ];
         for (var i = 0; i < f.items.length; i++) {
+          document.getElementById(menuNameArray[i]).innerHTML = i + 1;
           document.getElementById(menuNameArray[i]).innerHTML = f.items[i].name;
           document.getElementById(menuPriceArray[i]).innerHTML = f.items[i].price;
         }
