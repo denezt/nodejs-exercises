@@ -272,7 +272,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   if(formId == 'orderCreate'){
     console.log('menuCreate was a success');
     alert('Saving, order!!!');
-    window.location = 'menu/view';
+    window.location = '/order/confirm';
   }
 
   if(formId == 'orderConfirm'){
@@ -537,11 +537,6 @@ app.showCart = function(){
           // app.logUserOut();
         }
       });
-      if (shoppingCartEmpty == 0){
-        document.querySelector("#shoppingCartFilled .shoppingCartFilled").style.visibility = 'hidden';
-      } else {
-        document.querySelector("#shoppingCartFilled .shoppingCartFilled").style.visibility = 'visible';
-      }
     } else {
       console.log("app.loadOrderConfirmPage: Email Address Information was not found");
     }
