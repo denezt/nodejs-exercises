@@ -434,9 +434,17 @@ app.loadOrderCreatePage = function(){
       };
       app.client.request(undefined,'/api/cart','GET',queryStringObject,undefined,function(statusCode,responsePayload){
         if(statusCode == 200){
-          document.querySelector("#orderCreate .menuItem1").checked = responsePayload.menuItems["menuItem1"];
-          document.querySelector("#orderCreate .menuItem2").checked = responsePayload.menuItems["menuItem2"];
-          document.querySelector("#orderCreate .menuItem4").checked = responsePayload.menuItems["menuItem4"];
+          var itemNameArray = [ "menuItem1", "menuItem2", "menuItem3", "menuItem4", "menuItem5" ];
+          for (var i = 0; i < itemNameArray.length; i++ ){
+            console.log('Iterating MenuItem: '+itemNameArray[i]);
+            document.querySelector("#orderCreate ."+ itemNameArray[i]).checked = responsePayload.menuItems[itemNameArray[i]];
+          }
+
+          // document.querySelector("#orderCreate .menuItem1").checked = responsePayload.menuItems["menuItem1"];
+          // document.querySelector("#orderCreate .menuItem2").checked = responsePayload.menuItems["menuItem2"];
+          // document.querySelector("#orderCreate .menuItem3").checked = responsePayload.menuItems["menuItem3"];
+          // document.querySelector("#orderCreate .menuItem4").checked = responsePayload.menuItems["menuItem4"];
+          // document.querySelector("#orderCreate .menuItem5").checked = responsePayload.menuItems["menuItem5"];
         } else {
           console.log("Status Code: " + statusCode);
         }
