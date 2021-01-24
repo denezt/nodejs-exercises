@@ -1102,8 +1102,8 @@ handlers._cart.get = function(data,callback){
             });
             _data.read('orders',userData.order[recentOrder],function(err,orderData){
               // Return check data
-              orderData.firstName = userData;
-              orderData.lastName = userDatas;
+              orderData.firstName = firstName;
+              orderData.lastName = lastName;
               callback(200,orderData);
             });
           } else {
