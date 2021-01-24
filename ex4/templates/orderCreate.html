@@ -9,9 +9,9 @@
       {"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}
       ]
   };
-  function getValue(id,key){
-    var value = menuItem.items[0]['name'];
-    return value;
+  const menuNameArray = [ "menu-name-1" ];
+  for (var i = 0; i < menuNameArray.length; i++) {
+    getElementById(menuNameArray[i]).innerHTML = menuitem.items[i].name;
   }
 </script>
 
@@ -35,7 +35,7 @@
           <tr>
             <td>1</td>
             <!-- <td>Italian Sausage and Cheese Pizza</td> -->
-            <td><input value="" onload="getValue(1,'name');" readonly></td>
+            <td><div id="menu-name-1"></div></td>
             <td><input type="checkbox" class="multiselect intval" name="menuItems" value="1"></td>
           </tr>
           <tr>
