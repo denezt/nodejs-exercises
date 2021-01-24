@@ -331,5 +331,5 @@ table.orderTable {
 }
 
 li.shoppingCartFilled {
-  display: inline-block;
+  visibility: hidden;
 }

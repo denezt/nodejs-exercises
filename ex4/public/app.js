@@ -530,8 +530,8 @@ app.showCart = function(){
               break;
             }
           }
-          if (shoppingCartEmpty > 0){
-            target.classList.add('shoppingCartEmpty');
+          if (shoppingCartEmpty == 0){
+            target.classList.add('shoppingCartFilleds');
           }
 
         } else {
