@@ -62,9 +62,9 @@
       {"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}
       ]
   };
-  const menuNameArray = [ "menu-name-1" ];
+  const menuNameArray = [ "menu-name-1", "menu-name-2", "menu-name-3", "menu-name-4", "menu-name-5" ];
   for (var i = 0; i < menuNameArray.length; i++) {
-    document.getElementById(menuNameArray[0]).innerHTML = menuItem.items[0].name;
-    console.log(menuItem.items[0].name);
+    document.getElementById(menuNameArray[i]).innerHTML = menuItem.items[i].name;
+    console.log(menuItem.items[i].name);
   }
 </script>
