@@ -329,3 +329,7 @@ table.orderTable {
   font-style: rgb(0, 0, 255);
   resize: none;
 }
+
+.shoppingCartEmpty {
+  display: none ;
+}
