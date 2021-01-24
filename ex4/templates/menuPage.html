@@ -87,7 +87,7 @@
         var menuNameArray = [ 'menu-name-1', 'menu-name-2', 'menu-name-3', 'menu-name-4', 'menu-name-5' ];
         var menuPriceArray = [ 'menu-price-1', 'menu-price-2', 'menu-price-3', 'menu-price-4', 'menu-price-5' ];
         for (var i = 0; i < f.items.length; i++) {
-          document.getElementById(menuNameArray[i]).innerHTML = i + 1;
+          document.getElementById(menuIdArray[i]).innerHTML = i + 1;
           document.getElementById(menuNameArray[i]).innerHTML = f.items[i].name;
           document.getElementById(menuPriceArray[i]).innerHTML = f.items[i].price;
         }
