@@ -550,8 +550,6 @@ app.showCart = function(){
 // Init (bootstrapping)
 app.init = function(){
 
-  // Only show cart when items were selected.
-  app.showCart();
 
   // Bind all form submissions
   app.bindForms();
@@ -568,6 +566,8 @@ app.init = function(){
   // Load data on page
   app.loadDataOnPage();
 
+  // Only show cart when items were selected.
+  app.showCart();
 };
 
 // Call the init processes after the window loads
