@@ -1101,8 +1101,8 @@ handlers._cart.get = function(data,callback){
               lastName = userData.lastName;
               _data.read('orders',userData.order[recentOrder],function(err,orderData){
                 // Return check data
-                firstName = userData.firstName;
-                lastName = userData.lastName;
+                orderData.firstName = userData.firstName;
+                orderData.lastName = userData.lastName;
                 callback(200,orderData);
               });
 
