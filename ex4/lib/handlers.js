@@ -1092,6 +1092,7 @@ handlers._cart.get = function(data,callback){
         // Verify that the given token is valid and belongs to the user who created the check
         handlers._tokens.verifyToken(token,emailAddress,function(tokenIsValid){
           if(tokenIsValid){
+            console.log('userData.order.length: ' + userData.order.length);
             var recentOrder = (userData.order.length > 0 ) ? userData.order.length - 1 : false;
             var firstName = "";
             var lastName = "";

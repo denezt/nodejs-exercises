@@ -506,42 +506,6 @@ app.tokenRenewalLoop = function(){
   },1000 * 60);
 };
 
-app.showCart = function(){
-    var shoppingCartEmpty = 0;
-    var target = document.querySelector("body");
-    // Get the emailAddress number from the current token, or log the user out if none is there
-    const emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
-    // Fetch the user data
-    if(emailAddress){
-      // Fetch the user data
-      const queryStringObject = {
-        'emailAddress' : emailAddress
-      };
-      app.client.request(undefined,'/api/cart','GET',queryStringObject,undefined,function(statusCode,responsePayload){
-        console.log('loadOrderConfirmPage [statusCode]: ' + statusCode);
-        if(statusCode == 200){
-          // Put the data into the forms as values where needed
-          console.log('app.loadOrderConfirmPage [responsePayload]: ' +  Object.keys(responsePayload));
-          const menuNameArray = [ "menuItem1", "menuItem2", "menuItem3", "menuItem4", "menuItem5" ];
-          for (var i = 0; i < menuNameArray.length; i++) {
-            if (responsePayload.menuItems[menuNameArray[i]]){
-              console.log('Customer bought: ' + menuItemArray.items[i].name + ' =>' + menuNameArray[i]);
-              shoppingCartEmpty++;
-              break;
-            }
-          }
-
-        } else {
-          // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
-          console.log('Logging User out');
-          // app.logUserOut();
-        }
-      });
-    } else {
-      console.log("app.loadOrderConfirmPage: Email Address Information was not found");
-    }
-}
-
 // Init (bootstrapping)
 app.init = function(){
 
@@ -560,9 +524,6 @@ app.init = function(){
 
   // Load data on page
   app.loadDataOnPage();
-
-  // Only show cart when items were selected.
-  app.showCart();
 };
 
 // Call the init processes after the window loads
