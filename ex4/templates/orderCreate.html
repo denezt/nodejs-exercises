@@ -1,20 +1,3 @@
-<script type="text/javascript">
-  const menuItem = {
-    "items":
-    [
-      {"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},
-      {"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},
-      {"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},
-      {"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},
-      {"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}
-      ]
-  };
-  const menuNameArray = [ "menu-name-1" ];
-  for (var i = 0; i < menuNameArray.length; i++) {
-    document.getElementById(menuNameArray[0]).innerHTML = menuItem.items[0].name;
-    console.log(menuItem.items[0].name);
-  }
-</script>
 
 <h1>Ordering Dashboard</h1>
 <h2>Let's create an order</h2>
@@ -67,3 +50,21 @@
     </div>
   </form>
 </div>
+
+<script type="text/javascript">
+  const menuItem = {
+    "items":
+    [
+      {"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},
+      {"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},
+      {"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},
+      {"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},
+      {"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}
+      ]
+  };
+  const menuNameArray = [ "menu-name-1" ];
+  for (var i = 0; i < menuNameArray.length; i++) {
+    document.getElementById(menuNameArray[0]).innerHTML = menuItem.items[0].name;
+    console.log(menuItem.items[0].name);
+  }
+</script>
