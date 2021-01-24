@@ -468,13 +468,17 @@ app.loadOrderConfirmPage = function(){
         if(statusCode == 200){
           // Put the data into the forms as values where needed
           console.log('app.loadOrderConfirmPage [responsePayload]: ' +  Object.keys(responsePayload));
-          var menuItems = "";
-          var item = 0;
-          console.log('menuItem1: ' + responsePayload.menuItems["menuItem1"]);
 
+          const menuNameArray = [ "menuItem1", "menuItem2", "menuItem3", "menuItem4", "menuItem5" ];
+
+          for (var i = 0; i < menuNameArray.length; i++) {
+            if (responsePayload.menuItems[menuNameArray[i]]){
+              console.log('Customer bought: ' + menuItemArray.items[i].name + ' =>' + menuNameArray[i]);
+            }
+          }
           document.querySelector("#orderConfirm .firstName").value = responsePayload.firstName;
           document.querySelector("#orderConfirm .lastName").value = responsePayload.lastName;
-          document.querySelector("#orderConfirm .orderInformation").value = menuItems;
+          // document.querySelector("#orderConfirm .orderInformation").value = menuItems;
         } else {
           // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
           console.log('Logging User out');
