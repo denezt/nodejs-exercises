@@ -375,6 +375,10 @@ app.loadDataOnPage = function(){
     app.loadAccountEditPage();
   }
   // Logic for account settings page
+  if(primaryClass == 'orderCreate'){
+    app.loadOrderCreatePage();
+  }
+  // Logic for account settings page
   if(primaryClass == 'orderConfirm'){
     app.loadOrderConfirmPage();
   }
@@ -416,6 +420,13 @@ app.loadAccountEditPage = function(){
     console.log('Logging User out');
     app.logUserOut();
   }
+};
+
+app.loadOrderCreatePage = function(){
+  console.log("");
+  document.querySelector("#orderCreate.menuItem1").checked = true;
+  document.querySelector("#orderCreate.menuItem2").checked = true;
+  document.querySelector("#orderCreate.menuItem4").checked = true;
 };
 
 // Load the account edit page specifically
