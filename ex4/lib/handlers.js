@@ -1022,7 +1022,7 @@ handlers._cart.post = function(data,callback){
         _data.read('users',userEmail,function(err,userData){
           if(!err && userData){
             var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
-
+            
             lastOrder = userOrder.length - 1;
             console.log('Get Last Order: ' + userOrder[lastOrder]);
             for (var i = 0; i < userOrder.length; i++) {
