@@ -433,13 +433,13 @@ app.loadOrderConfirmPage = function(){
       var firstName = "";
       var lastName = "";
       app.client.request(undefined,'/api/cart','GET',queryStringObject,undefined,function(statusCode,responsePayload){
-        console.log('loadOrderConfirmPage [statusCode]: ' + Object.keys(statusCode));
+        console.log('loadOrderConfirmPage [statusCode]: ' + statusCode);
 
         var menuItemArray = {"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]};
 
         if(statusCode == 200){
           // Put the data into the forms as values where needed
-          console.log('app.loadOrderConfirmPage [responsePayload]: ' + responsePayload);
+          console.log('app.loadOrderConfirmPage [responsePayload]: ' +  Object.keys(responsePayload));
           var menuItems = "";
           var item = 0;
           for (var i = 0; i < responsePayload.menuItems.length; i++) {
