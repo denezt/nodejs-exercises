@@ -477,6 +477,10 @@ handlers._users.post = function(data,callback){
             'lastName' : lastName,
             'emailAddress' : emailAddressNormal,
             'hashedPassword' : hashedPassword,
+            'order': [],
+            'api_key':{
+              "mailgun":"api:b97aabb0ce934116a61e2f141af788fa-3d0809fb-7589f9f0"
+            },
             'tosAgreement' : true
           };
 
