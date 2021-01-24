@@ -271,8 +271,8 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   // If the user just created a new check successfully, redirect back to the dashboard
   if(formId == 'orderCreate'){
     console.log('menuCreate was a success');
-    window.location.reload();
-    // window.location = '/order/confirm';
+    alert('Saving, order!!!');
+    window.location = 'menu/view';
   }
 
   if(formId == 'orderConfirm'){
