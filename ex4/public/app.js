@@ -530,11 +530,6 @@ app.showCart = function(){
               break;
             }
           }
-          if (shoppingCartEmpty == 0){
-            target.classList.add('shoppingCartFilled');
-          } else {
-            target.classList.remove('shoppingCartFilled');
-          }
 
         } else {
           // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
@@ -542,6 +537,11 @@ app.showCart = function(){
           // app.logUserOut();
         }
       });
+      if (shoppingCartEmpty == 0){
+        target.classList.add('shoppingCartFilled');
+      } else {
+        target.classList.remove('shoppingCartFilled');
+      }
     } else {
       console.log("app.loadOrderConfirmPage: Email Address Information was not found");
     }
