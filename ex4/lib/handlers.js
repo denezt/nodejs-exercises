@@ -834,9 +834,17 @@ handlers._order  = {};
 // Optional data: none
 handlers._order.post = function(data,callback){
   // Validate inputs
-  var menuItems = typeof(data.payload.menuItems) == 'object' && data.payload.menuItems instanceof Array && data.payload.menuItems.length > 0 ? data.payload.menuItems : false;
+  var menuItem1 = typeof(data.payload.menuItem1) == 'object' && data.payload.menuItem1 instanceof Array && data.payload.menuItem1.length > 0 ? data.payload.menuItem1 : false;
 
-  if(menuItems){
+  var menuItem2 = typeof(data.payload.menuItem2) == 'object' && data.payload.menuItem2 instanceof Array && data.payload.menuItem2.length > 0 ? data.payload.menuItem2 : false;
+
+  var menuItem3 = typeof(data.payload.menuItem3) == 'object' && data.payload.menuItem3 instanceof Array && data.payload.menuItem3.length > 0 ? data.payload.menuItem3 : false;
+
+  var menuItem4 = typeof(data.payload.menuItem4) == 'object' && data.payload.menuItem4 instanceof Array && data.payload.menuItem4.length > 0 ? data.payload.menuItem4 : false;
+
+  var menuItem5 = typeof(data.payload.menuItem5) == 'object' && data.payload.menuItem5 instanceof Array && data.payload.menuItem5.length > 0 ? data.payload.menuItem5 : false;
+
+  if(menuItem1 || menuItem2 || menuItem3 || menuItem4 || menuItem5){
     // Get token from headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
 
@@ -852,11 +860,18 @@ handlers._order.post = function(data,callback){
             var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
               // Create random id for check
               var orderId = helpers.createRandomString(20);
+
               // Create check object including userEmail
               var orderObject = {
                 'id' : orderId,
                 'userEmail' : userEmail,
-                'menuItems' : menuItems
+                'menuItems' : {
+                  menuItem1,
+                  menuItem2,
+                  menuItem3,
+                  menuItem4,
+                  menuItem5
+                }
               };
 
               // Save the object
