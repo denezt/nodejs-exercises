@@ -434,16 +434,9 @@ app.loadOrderCreatePage = function(){
       };
       app.client.request(undefined,'/api/cart','GET',queryStringObject,undefined,function(statusCode,responsePayload){
         if(statusCode == 200){
-
-          var menuItems = [];
-          var item = 0;
-          // for (var i = 0; i < responsePayload.menuItems.length; i++) {
-          //     item = Number(responsePayload.menuItems[i]) - 1;
-          //
-          // }
-          document.querySelector("#orderCreate .menuItem1").checked = "true";
-          document.querySelector("#orderCreate .menuItem2").checked = "true";
-          document.querySelector("#orderCreate .menuItem4").checked = "true";
+          document.querySelector("#orderCreate .menuItem1").checked = responsePayload.menuItems["menuItem1"];
+          document.querySelector("#orderCreate .menuItem2").checked = responsePayload.menuItems["menuItem2"];
+          document.querySelector("#orderCreate .menuItem4").checked = responsePayload.menuItems["menuItem4"];
         } else {
           console.log("Status Code: " + statusCode);
         }
