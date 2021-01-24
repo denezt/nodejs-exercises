@@ -1092,7 +1092,7 @@ handlers._cart.get = function(data,callback){
         // Verify that the given token is valid and belongs to the user who created the check
         handlers._tokens.verifyToken(token,emailAddress,function(tokenIsValid){
           if(tokenIsValid){
-            var recentOrder = (userData.order.length > 0 ) ? userData.order.length - 1 : 0;
+            var recentOrder = (userData.order.length > 0 ) ? userData.order.length - 1 : false;
             var firstName = "";
             var lastName = "";
             _data.read('users',emailAddress,function(err,userData){
@@ -1100,12 +1100,14 @@ handlers._cart.get = function(data,callback){
               firstName = userData.firstName;
               lastName = userData.lastName;
             });
-            _data.read('orders',userData.order[recentOrder],function(err,orderData){
-              // Return check data
-              orderData.firstName = firstName;
-              orderData.lastName = lastName;
-              callback(200,orderData);
-            });
+            if (recentOrder){
+              _data.read('orders',userData.order[recentOrder],function(err,orderData){
+                // Return check data
+                orderData.firstName = firstName;
+                orderData.lastName = lastName;
+                callback(200,orderData);
+              });
+            }
           } else {
             callback(403);
           }
