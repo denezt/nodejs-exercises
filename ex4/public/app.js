@@ -451,34 +451,38 @@ app.loadOrderConfirmPage = function(){
 
   console.log("app.loadOrderConfirmPage: " + app.config.sessionToken.emailAddress);
   // Get the emailAddress number from the current token, or log the user out if none is there
-  var emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
+    const emailAddress = typeof(app.config.sessionToken.emailAddress) == 'string' ? app.config.sessionToken.emailAddress : false;
     // Fetch the user data
     if(emailAddress){
       // Fetch the user data
-      var queryStringObject = {
+      const queryStringObject = {
         'emailAddress' : emailAddress
       };
       var firstName = "";
       var lastName = "";
       app.client.request(undefined,'/api/cart','GET',queryStringObject,undefined,function(statusCode,responsePayload){
         console.log('loadOrderConfirmPage [statusCode]: ' + statusCode);
-
-        var menuItemArray = {"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]};
+        let menuItems = "";
+        const menuItemArray = {"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]};
 
         if(statusCode == 200){
           // Put the data into the forms as values where needed
           console.log('app.loadOrderConfirmPage [responsePayload]: ' +  Object.keys(responsePayload));
 
           const menuNameArray = [ "menuItem1", "menuItem2", "menuItem3", "menuItem4", "menuItem5" ];
+          var totalCost = 0.0;
 
           for (var i = 0; i < menuNameArray.length; i++) {
             if (responsePayload.menuItems[menuNameArray[i]]){
               console.log('Customer bought: ' + menuItemArray.items[i].name + ' =>' + menuNameArray[i]);
+              menuItems += '[+] ' + menuItemArray.items[i].name + '\n';
+              totalCost += Number(menuItemArray.items[i].price);
             }
           }
           document.querySelector("#orderConfirm .firstName").value = responsePayload.firstName;
           document.querySelector("#orderConfirm .lastName").value = responsePayload.lastName;
-          // document.querySelector("#orderConfirm .orderInformation").value = menuItems;
+          document.querySelector("#orderConfirm .orderInformation").value = menuItems;
+          document.querySelector("#orderConfirm .totalCost").value = totalCost;
         } else {
           // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
           console.log('Logging User out');
