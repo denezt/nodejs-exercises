@@ -1,15 +1,27 @@
+<script type="text/javascript">
+  const menuItem = {
+    "items":
+    [
+      {"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},
+      {"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},
+      {"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},
+      {"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},
+      {"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}
+      ]
+  };
+  function getValue(id,key){
+    var value = menuItem.items[id][key];
+    return value;
+  }
+</script>
+
 <h1>Ordering Dashboard</h1>
 <h2>Let's create an order</h2>
 <a class="backButton" href="/menu/view">Back</a>
 <hr />
-
-
 <div class="formWrapper">
   <form id="orderCreate" action="/api/order" method="POST">
     <div class="formError"></div>
-<!--
-{"items": [{"id":"1","price": "$11.25", "name": "Italian Sausage Pizza","description" :"Italian Sausage and Cheese"},{"id":"2","price": "$10.00","name": "Pepperoni Pizza","description": "Pepperoni and Cheese"},{"id":"3","price": "$5.60","name": "Happy Sparkling Juice","description": "Natural water and juice."},{"id":"4","price": "$2.18","name": "White Chocolate Chip Cookies","description": "Fat Free and Low Carb Dessert"},{"id":"5","price": "$4.50","name": "New World Lemonade","description": "Lemonade with organic sugar"}]};
- -->
 
     <div class="inputWrapper">
       <div class="inputLabel">Select items for your order</div>
@@ -22,7 +34,8 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Italian Sausage and Cheese Pizza</td>
+            <!-- <td>Italian Sausage and Cheese Pizza</td> -->
+            <td><input value="" onload="getValue(1,'name');" readonly></td>
             <td><input type="checkbox" class="multiselect intval" name="menuItems" value="1"></td>
           </tr>
           <tr>
