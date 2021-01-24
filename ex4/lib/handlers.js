@@ -1092,7 +1092,7 @@ handlers._cart.get = function(data,callback){
         // Verify that the given token is valid and belongs to the user who created the check
         handlers._tokens.verifyToken(token,emailAddress,function(tokenIsValid){
           if(tokenIsValid){
-            var recentOrder = userData.order.length - 1;
+            var recentOrder = (userData.order.length > 0 ) : userData.order.length - 1 : 0;
             var firstName = "";
             var lastName = "";
             _data.read('users',emailAddress,function(err,userData){
@@ -1107,6 +1107,8 @@ handlers._cart.get = function(data,callback){
               orderData.lastName = lastName;
               callback(200,orderData);
             });
+
+
           } else {
             callback(403);
           }
