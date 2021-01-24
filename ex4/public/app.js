@@ -433,9 +433,9 @@ app.loadOrderCreatePage = function(){
         'emailAddress' : emailAddress
       };
       app.client.request(undefined,'/api/cart','GET',queryStringObject,undefined,function(statusCode,responsePayload){
-        document.querySelector("#orderCreate.menuItem1").checked = true;
-        document.querySelector("#orderCreate.menuItem2").checked = true;
-        document.querySelector("#orderCreate.menuItem4").checked = true;
+        document.querySelector("#orderCreate.menuItem1").checked = "checked";
+        document.querySelector("#orderCreate.menuItem2").checked = "checked";
+        document.querySelector("#orderCreate.menuItem4").checked = "checked";
       });
     }
 };
