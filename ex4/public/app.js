@@ -531,7 +531,9 @@ app.showCart = function(){
             }
           }
           if (shoppingCartEmpty == 0){
-            target.classList.add('shoppingCartFilleds');
+            target.classList.add('shoppingCartFilled');
+          } else {
+            target.classList.remove('shoppingCartFilled');
           }
 
         } else {
