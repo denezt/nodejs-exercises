@@ -1022,7 +1022,7 @@ handlers._cart.post = function(data,callback){
         _data.read('users',userEmail,function(err,userData){
           if(!err && userData){
             var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
-            
+
             lastOrder = userOrder.length - 1;
             console.log('Get Last Order: ' + userOrder[lastOrder]);
             for (var i = 0; i < userOrder.length; i++) {
@@ -1073,8 +1073,18 @@ handlers._cart.get = function(data,callback){
         handlers._tokens.verifyToken(token,emailAddress,function(tokenIsValid){
           if(tokenIsValid){
             var recentOrder = userData.order.length - 1;
+            var firstName = "";
+            var lastName = "";
+            _data.read('users',emailAddress,function(err,userData){
+              // Return check data
+              firstName = userData.firstName;
+              lastName = userData.lastName;
+            });
+
             _data.read('orders',userData.order[recentOrder],function(err,orderData){
               // Return check data
+              orderData.firstName = firstName;
+              orderData.lastName = lastName;
               callback(200,orderData);
             });
           } else {
