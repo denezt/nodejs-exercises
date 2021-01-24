@@ -538,9 +538,9 @@ app.showCart = function(){
         }
       });
       if (shoppingCartEmpty == 0){
-        target.classList.add('shoppingCartFilled');
+        document.querySelector("#shoppingCartFilled .shoppingCartFilled").style.visibility = 'hidden';
       } else {
-        target.classList.remove('shoppingCartFilled');
+        document.querySelector("#shoppingCartFilled .shoppingCartFilled").style.visibility = 'visible';
       }
     } else {
       console.log("app.loadOrderConfirmPage: Email Address Information was not found");
