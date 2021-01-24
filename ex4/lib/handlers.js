@@ -1099,14 +1099,14 @@ handlers._cart.get = function(data,callback){
               // Return check data
               firstName = userData.firstName;
               lastName = userData.lastName;
+              _data.read('orders',userData.order[recentOrder],function(err,orderData){
+                // Return check data
+                firstName = userData.firstName;
+                lastName = userData.lastName;
+                callback(200,orderData);
+              });
+
             });
-
-            _data.read('orders',userData.order[recentOrder],function(err,orderData){
-              // Return check data
-              callback(200,orderData);
-            });
-
-
           } else {
             callback(403);
           }
