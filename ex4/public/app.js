@@ -404,7 +404,7 @@ app.loadAccountEditPage = function(){
         document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
         document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
         document.querySelector("#accountEdit1 .displayEmailAddressInput").value = responsePayload.emailAddress;
-        document.querySelector("#accountEdit4 .apikeyInput").value = responsePayload.apikey;
+        document.querySelector("#accountEdit4 .apikeyInput").value = responsePayload.api_key.mailgun;
 
         // Put the hidden emailAddress field into both forms
         var hiddenEmailInputs = document.querySelectorAll("input.hiddenEmailAddressInput");
