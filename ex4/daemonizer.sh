@@ -50,6 +50,7 @@ start_proc(){
 	then
 		printf "Starting, process ${process} as daemon.\n"
 		nohup ${process} >> ${logfile} &> /dev/null &
+		printf "\033[36mApplication is now accessible via\033[0m \033[35m=> \033[32mlocalhost:3000\033[0m\n"
 		printf "Done\n"
 	else
 		printf "\033[35mProcess already running \033[32m[`getpid`]\033[0m\n"
