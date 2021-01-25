@@ -257,7 +257,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
 
   // If forms saved successfully and they have success messages, show them
   // var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1'];
-  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2'];
+  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','accountEdit4'];
   if(formsWithSuccessMessages.indexOf(formId) > -1){
     document.querySelector("#"+formId+" .formSuccess").style.display = 'block';
   }
