@@ -555,12 +555,12 @@ handlers._users.put = function(data,callback){
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
   var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
 
-  var apikey = typeof(data.payload.apikey) == 'string' && data.payload.apikey.trim().length > 0 ? data.payload.password.trim() : false;
+  var apikey = typeof(data.payload.apikey) == 'string' && data.payload.apikey.trim().length > 0 ? data.payload.apikey.trim() : false;
 
   // Error if emailAddress is invalid
   if(emailAddress){
     // Error if nothing is sent to update
-    if(firstName || lastName || password){
+    if(firstName || lastName || password || apikey){
 
       // Get token from headers
       var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
