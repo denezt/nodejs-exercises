@@ -473,10 +473,9 @@ app.loadOrderConfirmPage = function(){
 
           const menuNameArray = [ "menuItem1", "menuItem2", "menuItem3", "menuItem4", "menuItem5" ];
           var totalCost = 0.0;
-          var menuNameValue = "";
+
           for (var i = 0; i < menuNameArray.length; i++) {
-            menuNameValue = (typeof(menuNameArray[i]) == 'string') ? menuNameArray[i] : false;
-            if (menuNameValue){
+            if (responsePayload.menuItems[menuNameArray[i]]){
               console.log('Customer bought: ' + menuItemArray.items[i].name + ' =>' + menuNameArray[i]);
               menuItems += '[+] ' + menuItemArray.items[i].name + '\n';
               totalCost += Number(menuItemArray.items[i].price);
