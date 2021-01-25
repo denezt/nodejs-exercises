@@ -461,6 +461,9 @@ handlers._users.post = function(data,callback){
 
 
   var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
+
+  var apikey = typeof(data.payload.apikey) == 'string' && data.payload.apikey.trim().length > 0 ? data.payload.apikey.trim() : false;
+
   var tosAgreement = typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true ? true : false;
 
   if(firstName && lastName && emailAddress && password && tosAgreement){
@@ -479,7 +482,7 @@ handlers._users.post = function(data,callback){
             'hashedPassword' : hashedPassword,
             'order': [],
             'api_key':{
-              "mailgun":"api:b97aabb0ce934116a61e2f141af788fa-3d0809fb-7589f9f0"
+              "mailgun": apikey              
             },
             'tosAgreement' : true
           };

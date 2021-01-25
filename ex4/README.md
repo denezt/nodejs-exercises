@@ -58,3 +58,8 @@ USAGE:
 ./cliapi_tester.sh --action=get-token --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 ./cliapi_tester.sh --action=update-token --email=myemail@email.com --token=9zy66v8ktl40fe7qv5f
 </pre>
+
+
+<p>
+Current Demo Server: http://139.59.147.182:3000
+</p>
