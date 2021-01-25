@@ -11,3 +11,4 @@ local/**
 .data/users
 .data/tokens
 .data/orders
+**/.data
