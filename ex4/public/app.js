@@ -485,8 +485,8 @@ app.loadOrderConfirmPage = function(){
               }
             }
           }
-          // document.querySelector("#orderConfirm .firstName").value = responsePayload.firstName;
-          // document.querySelector("#orderConfirm .lastName").value = responsePayload.lastName;
+          document.querySelector("#orderConfirm .firstName").value = responsePayload.firstName;
+          document.querySelector("#orderConfirm .lastName").value = responsePayload.lastName;
           document.querySelector("#orderConfirm .orderInformation").value = menuItems;
           document.querySelector("#orderConfirm .totalCost").value = totalCost;
         } else {
