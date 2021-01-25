@@ -583,7 +583,7 @@ handlers._users.put = function(data,callback){
                 userData.hashedPassword = helpers.hash(password);
               }
               if(apikey){
-                userData.apikey = apikey;
+                userData.api_key.mailgun = apikey;
               }
               // Store the new updates
               _data.update('users',emailAddress,userData,function(err){
