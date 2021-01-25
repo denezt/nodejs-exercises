@@ -475,7 +475,7 @@ app.loadOrderConfirmPage = function(){
           var totalCost = 0.0;
           var menuNameValue = "";
           for (var i = 0; i < menuNameArray.length; i++) {
-            menuNameValue = (typeof(responsePayload.menuItems[menuNameArray[i]]) == 'string') ? responsePayload.menuItems[menuNameArray[i]] : false;
+            menuNameValue = (typeof(menuNameArray[i]) == 'string') ? menuNameArray[i] : false;
             if (menuNameValue){
               console.log('Customer bought: ' + menuItemArray.items[i].name + ' =>' + menuNameArray[i]);
               menuItems += '[+] ' + menuItemArray.items[i].name + '\n';
