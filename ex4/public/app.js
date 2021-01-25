@@ -475,10 +475,12 @@ app.loadOrderConfirmPage = function(){
           var totalCost = 0.0;
 
           for (var i = 0; i < menuNameArray.length; i++) {
-            if (responsePayload.menuItems[menuNameArray[i]]){
-              console.log('Customer bought: ' + menuItemArray.items[i].name + ' =>' + menuNameArray[i]);
-              menuItems += '[+] ' + menuItemArray.items[i].name + '\n';
-              totalCost += Number(menuItemArray.items[i].price);
+            if (typeof(menuNameArray[i]) != 'undefined'){
+              if (responsePayload.menuItems[menuNameArray[i]]){
+                console.log('Customer bought: ' + menuItemArray.items[i].name + ' =>' + menuNameArray[i]);
+                menuItems += '[+] ' + menuItemArray.items[i].name + '\n';
+                totalCost += Number(menuItemArray.items[i].price);
+              }
             }
           }
           // document.querySelector("#orderConfirm .firstName").value = responsePayload.firstName;
