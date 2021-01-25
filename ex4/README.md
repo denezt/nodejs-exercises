@@ -1,6 +1,17 @@
 # NodeJS API for Pizza Delivery Company
 ## Backend application for pizza delivery Company
 
+### Usage
+
+``` sh
+# Start the application as a background service
+$ ./daemonizer.sh --start
+```
+
+
+
+
+
 ### Features
 
 | Id  | Feature                   | Description                  | Status      |
