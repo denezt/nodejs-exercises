@@ -475,7 +475,7 @@ app.loadOrderConfirmPage = function(){
           var totalCost = 0.0;
 
           for (var i = 0; i < menuNameArray.length; i++) {
-            if (typeof(menuNameArray[i]) != 'undefined'){
+            if (typeof(responsePayload.menuItems[menuNameArray[i]]) != 'undefined'){
               if (responsePayload.menuItems[menuNameArray[i]]){
                 console.log('Customer bought: ' + menuItemArray.items[i].name + ' =>' + menuNameArray[i]);
                 menuItems += '[+] ' + menuItemArray.items[i].name + '\n';
