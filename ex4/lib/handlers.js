@@ -482,7 +482,7 @@ handlers._users.post = function(data,callback){
             'hashedPassword' : hashedPassword,
             'order': [],
             'api_key':{
-              "mailgun": apikey              
+              "mailgun": apikey
             },
             'tosAgreement' : true
           };
@@ -555,6 +555,8 @@ handlers._users.put = function(data,callback){
   var lastName = typeof(data.payload.lastName) == 'string' && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
   var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
 
+  var apikey = typeof(data.payload.apikey) == 'string' && data.payload.apikey.trim().length > 0 ? data.payload.password.trim() : false;
+
   // Error if emailAddress is invalid
   if(emailAddress){
     // Error if nothing is sent to update
@@ -579,6 +581,9 @@ handlers._users.put = function(data,callback){
               }
               if(password){
                 userData.hashedPassword = helpers.hash(password);
+              }
+              if(apikey){
+                userData.apikey = apikey;
               }
               // Store the new updates
               _data.update('users',emailAddress,userData,function(err){
