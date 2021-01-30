@@ -48,8 +48,14 @@
   </center>
   <script type="text/javascript">
 
-  var fileReader = new FileReader("public/menu_items.json");
-  console.log(fileReader.readAsText());
+  function printFile(file) {
+    var reader = new FileReader();
+    reader.onload = function(evt) {
+      console.log(evt.target.result);
+    };
+    reader.readAsText(file);
+  }
+  console.log(printFile("public/menu_items.json"));
 
    /* <script type="text/javascript">
         var f  = {
