@@ -53,9 +53,9 @@
     reader.onload = function(evt) {
       console.log(evt.target.result);
     };
-    reader.readAsText(file);
+    reader.readAsText(file, "UTF-16");
   }
-  console.log(printFile("public/menu_items.json", "UTF-16"));
+  console.log(printFile("public/menu_items.json"));
 
    /* <script type="text/javascript">
         var f  = {
