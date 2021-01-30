@@ -6,6 +6,7 @@
 // Dependencies
 var readline = require('readline');
 var util = require('util');
+var fs = require('fs');
 var debug = util.debuglog('cli');
 var events = require('events');
 class _events extends events{};
@@ -19,16 +20,20 @@ e.on('help',function(str){
   cli.responders.help();
 });
 
-e.on('exit',function(str){
-  cli.responders.exit();
-});
-
 e.on('menu items',function(str){
   cli.responders.menu();
 });
 
 e.on('view menu items',function(str){
   cli.responders.menu();
+});
+
+e.on('recent orders',function(str){
+  cli.responders.orders();
+});
+
+e.on('exit',function(str){
+  cli.responders.exit();
 });
 
 // Responders object
@@ -76,15 +81,17 @@ cli.responders.menu = function(){
   ],
   "count" : 5
   };
-
   console.log(menuitem.items);
+};
+
+cli.responders.orders = function(){
+  console.log("showing orders");
 };
 
 // Exit
 cli.responders.exit = function(){
   process.exit(0);
 };
-
 
 // Input processor
 cli.processInput = function(str){
