@@ -58,10 +58,9 @@
             fileReader.addEventListener('load', function(){
                  //do stuff with fileReader.result
             });
-            fileReader.readAsText(file);
+            console.log(fileReader.readAsText(file));
         }
       }
-      console.log(xhr);
       xhr.send();
   }
   readJSON("public/menu_items.json");
