@@ -47,17 +47,6 @@
     <div id="menu-item-5"></div> -->
   </center>
   <script type="text/javascript">
-
-  function printFile(file) {
-    var reader = new FileReader();
-    reader.onload = function(evt) {
-      console.log(evt.target.result);
-    };
-    reader.readAsText(file, "UTF-16");
-  }
-  console.log(printFile("public/menu_items.json"));
-
-   /* <script type="text/javascript">
         var f  = {
           "items": [
           {
@@ -101,17 +90,7 @@
           document.getElementById(menuIdArray[i]).innerHTML = i + 1;
           document.getElementById(menuNameArray[i]).innerHTML = f.items[i].name;
           document.getElementById(menuPriceArray[i]).innerHTML = f.items[i].price;
-        } */
+        }
     </script>
-
-
-
   </div>
-
-
-
-
-
-
-
 </div>
