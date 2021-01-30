@@ -4,13 +4,13 @@
  */
 
 // Dependencies
-var readline = require('readline');
-var util = require('util');
-var fs = require('fs');
-var debug = util.debuglog('cli');
-var events = require('events');
+const readline = require('readline');
+const util = require('util');
+const fs = require('fs');
+const debug = util.debuglog('cli');
+const events = require('events');
 class _events extends events{};
-var e = new _events();
+const e = new _events();
 
 // Instantiate the cli module object
 var cli = {};
@@ -28,7 +28,7 @@ e.on('view menu items',function(str){
   cli.responders.menu();
 });
 
-e.on('recent orders',function(str){
+e.on('view recent orders',function(str){
   cli.responders.orders();
 });
 
