@@ -50,7 +50,6 @@ cli.responders.exit = function(){
 };
 
 
-
 // Input processor
 cli.processInput = function(str){
   str = typeof(str) == 'string' && str.trim().length > 0 ? str.trim() : false;
@@ -119,4 +118,3 @@ cli.init = function(){
 
 // Export the module
 module.exports = cli;
-

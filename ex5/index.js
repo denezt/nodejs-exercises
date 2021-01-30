@@ -21,9 +21,9 @@ app.init = function(){
 
  // Starts the CLI,
  // and ensure it starts last
- setTimeout(function(){
-	cli.init();
- },50);
+  setTimeout(function(){
+    cli.init();
+  },50);
 
 };
 
