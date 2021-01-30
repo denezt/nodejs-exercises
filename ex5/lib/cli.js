@@ -28,7 +28,7 @@ e.on('view menu items',function(str){
   cli.responders.menu();
 });
 
-e.on('view recent orders',function(str){
+e.on('orders',function(str){
   cli.responders.orders();
 });
 
