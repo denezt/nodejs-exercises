@@ -77,7 +77,7 @@ cli.responders.menu = function(){
   "count" : 5
   };
 
-  return menuitem.items;
+  console.log(menuitem.items);
 };
 
 // Exit
