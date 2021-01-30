@@ -28,7 +28,7 @@ e.on('view menu items',function(str){
   cli.responders.menu();
 });
 
-e.on('orders',function(str){
+e.on('view recent orders',function(str){
   cli.responders.orders();
 });
 
@@ -103,7 +103,8 @@ cli.processInput = function(str){
       'help',
       'exit',
       'menu items',
-      'view menu items'
+      'view menu items',
+      'view recent orders'
     ];
 
     // Go through the possible inputs, emit event when a match is found
