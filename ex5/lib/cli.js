@@ -99,9 +99,9 @@ cli.responders.signups = function(){
   const signUpDate = dd + '-' + mm + '-' + yyyy;
   fs.readFile('.data/records/users_list.json', 'utf8', function(err, contents) {
     signups = contents;
-    for (var i = 0; i < contents['recent_signup'].length; i++) {
-      console.log(contents.recent_signup[i].firstName);
-      console.log(contents.recent_signup[i].lastName);
+    for (var variable in contents['recent_signup']) {
+      console.log(variable.recent_signup[i].firstName);
+      console.log(variable.recent_signup[i].lastName);
     }
     // console.log(contents);
   });
