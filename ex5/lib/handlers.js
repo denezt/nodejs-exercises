@@ -513,7 +513,7 @@ handlers._users.post = function(data,callback){
               _data.read('records','users_list',function(err,data){
                 if(!err && data){
                   // Count Recent SignUps
-                  console.log('Signup Count [data]: ' + data.recent_signup.length);
+                  console.log('Signup Count [data]: ' + (data.recent_signup.length + 1));
                   userSignUpList = data
                   userSignUpList.recent_signup.push(userSignInfo);
                   // Append new data to users_list
