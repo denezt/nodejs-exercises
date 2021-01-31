@@ -489,11 +489,6 @@ handlers._users.post = function(data,callback){
 
           // Store the user
           _data.create('users',emailAddress,userObject,function(err){
-            var userLogInfo = {
-              'firstName' : userObject.firstName,
-              'lastName' : userObject.lastName,
-              'emailAddress' : userObject.emailAddressNormal,
-            };
             // Get older logging records
             _data.read('users',emailAddress,function(err,data){
               if(!err && data){
@@ -502,9 +497,31 @@ handlers._users.post = function(data,callback){
                 callback(404);
               }
             });
+
             // Update the records
+            const userSignInfo = {
+              'firstName' : userObject.firstName,
+              'lastName' : userObject.lastName,
+              'emailAddress' : userObject.emailAddressNormal,
+            };
+            var userSignUpList = [];
+            userSignUpList.push(userSignInfo);
+
             if(!err){
-              _data.update('records','users_list',userLogInfo,function(err){
+
+              // Extract data from users_list
+              _data.read('records','users_list',function(err,data){
+                if(!err && data){
+                  if (data.recent_orders.length > 0){
+                    userSignUpList.push(data["recent_orders"]);
+                  }
+                  callback(200,data);
+                } else {
+                  callback(404);
+                }
+              });
+              // Append new data to users_list
+              _data.update('records','users_list',userSignUpList,function(err){
                 if(err){
                   callback(200);
                 } else {
