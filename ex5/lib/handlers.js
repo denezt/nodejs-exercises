@@ -1290,8 +1290,8 @@ handlers._pay.post = function(data, callback){
                 var userOrder = typeof(userData.order) == 'object' && userData.order instanceof Array ? userData.order : [];
                 lastOrder = userOrder.length - 1;
                 console.log('Get Last Order: ' + userOrder[lastOrder]);
+                  // Removing all User's Orders
                   for (var i = 0; i < userOrder.length; i++) {
-                    // Delete the check data
                     _data.delete('orders',userOrder[i],function(err){
                       if(!err){
                         // Lookup the user's object to get all their order

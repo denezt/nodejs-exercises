@@ -7,6 +7,7 @@
 const readline = require('readline');
 const util = require('util');
 const fs = require('fs');
+const _data = require('data');
 const debug = util.debuglog('cli');
 const events = require('events');
 class _events extends events{};
@@ -26,6 +27,10 @@ e.on('menu items',function(str){
 
 e.on('view menu items',function(str){
   cli.responders.menu();
+});
+
+e.on('view recent signups',function(str){
+  cli.responders.signups();
 });
 
 e.on('view recent orders',function(str){
@@ -84,6 +89,14 @@ cli.responders.menu = function(){
   console.log(menuitem.items);
 };
 
+cli.responders.signups = function(){
+  _data.read('records','users_list',function(err,signupData){
+    if(!err && signupData){
+      console.log(signupDate);
+    }
+  });
+};
+
 cli.responders.orders = function(){
   console.log("showing orders");
 };
@@ -104,7 +117,8 @@ cli.processInput = function(str){
       'exit',
       'menu items',
       'view menu items',
-      'view recent orders'
+      'view recent orders',
+      'view recent signups'
     ];
 
     // Go through the possible inputs, emit event when a match is found
