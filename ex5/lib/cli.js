@@ -97,9 +97,11 @@ cli.responders.signups = function(){
   var mm = String(now.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = now.getFullYear();
   const signUpDate = dd + '-' + mm + '-' + yyyy;
+
   fs.readFile('.data/records/users_list.json', 'utf8', function(err, contents) {
-    return contents;
+    signups = JSON.stringify(contents);
   });
+  return signups;
 };
 
 cli.responders.orders = function(){
