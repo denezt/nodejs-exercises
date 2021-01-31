@@ -517,7 +517,7 @@ handlers._users.post = function(data,callback){
                   // Limit SignUps to last five
                   userSignUpList.recent_orders = data.recent_orders;
                   userSignUpList.recent_signup = [];
-                  if (data.recent_signup.length > 3){
+                  if (data.recent_signup.length > 5){
                       for (var i = 3; i > 1; i--) {
                         userSignUpList.recent_signup[i] = data.recent_signup[i];
                       }
