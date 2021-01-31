@@ -515,9 +515,9 @@ handlers._users.post = function(data,callback){
                   // Count Recent SignUps
                   console.log('Signup Count [data]: ' + (data.recent_signup.length + 1));
                   // Limit SignUps to last five
-                  if ((data.recent_signup.length + 1) > 5){
+                  if (data.recent_signup.length > 5){
                       userSignUpList = data;
-                      for (var i = 3; i < data.recent_signup.length; i--) {
+                      for (var i = 4; i > 1; i--) {
                         userSignUpList.recent_signup[i] = data.recent_signup[i];
                       }
                   } else {
