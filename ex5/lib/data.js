@@ -56,7 +56,7 @@ lib.init = function(){
 				}
 			});
 		} else {
-			console.log('Could not create new file, it may already exist');
+			console.log('Found user_list records...');
 		}
 	});
 };
