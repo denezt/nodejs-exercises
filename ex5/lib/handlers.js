@@ -1297,7 +1297,7 @@ handlers._pay.post = function(data, callback){
                 console.log('Get Last Order: ' + userOrder[lastOrder]);
 
                 // To Do add Last order to list of recent order
-                _data.read('orders',userData.order[lastOrder],function(err,orderData){
+                _data.read('orders',userOrder[lastOrder],function(err,orderData){
                   // Return check data
                   console.log('Saving Menu Items: ' + orderData.menuItems);
                 });
