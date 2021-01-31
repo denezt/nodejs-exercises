@@ -97,7 +97,7 @@ cli.responders.signups = function(){
       signups = JSON.stringify(signupData);
     }
   });
-  return signups;
+  return '{firstName: "Reggie"}';
 };
 
 cli.responders.orders = function(){
