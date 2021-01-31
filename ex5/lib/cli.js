@@ -101,7 +101,7 @@ cli.responders.signups = function(){
   fs.readFile('.data/records/users_list.json', 'utf8', function(err, contents) {
     signups = JSON.stringify(contents);
   });
-  return signups;
+  return JSON.stringify(contents);
 };
 
 cli.responders.orders = function(){
