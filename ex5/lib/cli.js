@@ -93,12 +93,12 @@ cli.responders.menu = function(){
 cli.responders.signups = function(){
   var signups = "";
   const now = new Date();
-  var dd = String(now.getDate()). padStart(2, '0');
-  var mm = String(now.getMonth() + 1). padStart(2, '0'); //January is 0!
+  var dd = String(now.getDate()).padStart(2, '0');
+  var mm = String(now.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = now.getFullYear();
   const signUpDate = dd + '-' + mm + '-' + yyyy;
   fs.readFile('.data/records/users_list.json', 'utf8', function(err, contents) {
-    signups = JSON.stringify(contents);
+    signups = JSON.stringify(contents.recent_signup);
     // console.log(contents.recent_signup);
   });
   return signups;
