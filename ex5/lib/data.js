@@ -73,7 +73,7 @@ data.init = function(){
 	// 		callback('Could not create new file, it may already exist');
 	// 	}
 	// });
-}
+};
 
 // Write data to a file
 lib.create = function(dir,file,data,callback){
