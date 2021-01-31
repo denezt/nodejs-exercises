@@ -504,6 +504,7 @@ handlers._users.post = function(data,callback){
               'firstName' : userObject.firstName,
               'lastName' : userObject.lastName,
               'emailAddress' : userObject.emailAddressNormal,
+              'sigup_date' : Date.toDateString()
             };
             // Container for New User SignUps
             var userSignUpList = {};
