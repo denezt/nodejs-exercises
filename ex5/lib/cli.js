@@ -8,6 +8,7 @@ const readline = require('readline');
 const util = require('util');
 const fs = require('fs');
 const _data = require('./data');
+const helpers = require('./helpers');
 const debug = util.debuglog('cli');
 const events = require('events');
 class _events extends events{};
