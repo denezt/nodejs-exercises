@@ -38,7 +38,7 @@ for (let i = 0; i < pathsToCheck.length; i++){
 	});
 }
 
-lib.init = function(){
+lib.init = function(callback){
 	fs.open(lib.baseDir + 'records/users_list.json', 'wx', function(err, fileDescriptor){
 		if(!err && fileDescriptor){
 			// Write to file and close it
