@@ -1299,7 +1299,11 @@ handlers._pay.post = function(data, callback){
                 // To Do add Last order to list of recent order
                 _data.read('orders',userOrder[lastOrder],function(err,orderData){
                   // Return check data
-                  console.log('Saving Menu Items: ' + orderData.menuItems);
+                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem1);
+                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem2);
+                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem3);
+                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem4);
+                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem5);
                 });
 
                 // Removing all User's Orders
