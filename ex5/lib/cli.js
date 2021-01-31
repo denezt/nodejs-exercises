@@ -92,12 +92,11 @@ cli.responders.menu = function(){
 
 cli.responders.signups = function(){
   var signups = "";
-  _data.read('records','users_list',function(err,signupData){
-    if(!err && signupData){
-      signups = JSON.stringify(signupData);
-    }
+  fs.readFile('../.data/records/users_list.json', 'utf8', function(err, contents) {
+    signups = contents;
+    console. log(contents);
   });
-  return '{firstName: "Reggie"}';
+  return signups;
 };
 
 cli.responders.orders = function(){
