@@ -512,9 +512,10 @@ handlers._users.post = function(data,callback){
               // Extract data from users_list
               _data.read('records','users_list',function(err,data){
                 if(!err && data){
+                  // Count Recent SignUps
+                  console.log('Signup Count [data]: ' + data.recent_signup.length);
                   userSignUpList = data
                   userSignUpList.recent_signup.push(userSignInfo);
-                  console.log('Signup Count: ' + userSignUpList.recent_signup.length);
                   // Append new data to users_list
                   _data.update('records','users_list',userSignUpList,function(err){
                     if(!err){
