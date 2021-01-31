@@ -487,8 +487,6 @@ handlers._users.post = function(data,callback){
             'tosAgreement' : true
           };
 
-
-
           // Store the user
           _data.create('users',emailAddress,userObject,function(err){
             var userLogInfo = {
