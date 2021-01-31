@@ -1304,7 +1304,7 @@ handlers._pay.post = function(data, callback){
                   var id = 1;
                   for (var variable in itemsArray) {
                     if (variable == true){
-                      console.log(itemsObj.items[id]);
+                      console.log('\033[34m' + itemsObj.items[id] + '\033[0m');
                     }
                     id++;
                   }
