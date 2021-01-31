@@ -1299,11 +1299,15 @@ handlers._pay.post = function(data, callback){
                 // To Do add Last order to list of recent order
                 _data.read('orders',userOrder[lastOrder],function(err,orderData){
                   // Return check data
-                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem1);
-                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem2);
-                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem3);
-                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem4);
-                  console.log('Saving Menu Items: ' + orderData.menuItems.menuItem5);
+                  const itemsObj = {"items": [{"id":1,"name": "Italian Sausage Pizza"},{"id":2,"name": "Pepperoni Pizza"},{"id":3,"name": "Happy Sparkling Juice"},{"id":4,"name": "White Chocolate Chip Cookies"},{"id":5,"name":"New World Lemonade"}]};
+                  const itemsArray = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3, orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
+                  var id = 1;
+                  for (var variable in itemsArray) {
+                    if (variable){
+                      console.log(itemsArray.items[id]);
+                    }
+                    id++;
+                  }
                 });
 
                 // Removing all User's Orders
