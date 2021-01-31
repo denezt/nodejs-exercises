@@ -26,15 +26,11 @@ e.on('menu items',function(str){
   cli.responders.menu();
 });
 
-e.on('view menu items',function(str){
-  cli.responders.menu();
-});
-
-e.on('view recent signups',function(str){
+e.on('recent signups',function(str){
   console.log(cli.responders.signups());
 });
 
-e.on('view recent orders',function(str){
+e.on('recent orders',function(str){
   cli.responders.orders();
 });
 
@@ -47,7 +43,11 @@ cli.responders = {};
 
 // Help
 cli.responders.help = function(){
-  console.log("You asked for help");
+  console.log("Show Help Menu       - help");
+  console.log("Show Menu Items      - menu items");
+  console.log("Show Recent SignUps  - recent signups");
+  console.log("Show Recent Orders   - recent orders");
+  console.log("Exit CLI             - exit");
 };
 
 // Current Menu items
@@ -128,9 +128,8 @@ cli.processInput = function(str){
       'help',
       'exit',
       'menu items',
-      'view menu items',
-      'view recent orders',
-      'view recent signups'
+      'recent orders',
+      'recent signups'
     ];
 
     // Go through the possible inputs, emit event when a match is found
