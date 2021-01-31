@@ -38,7 +38,7 @@ for (let i = 0; i < pathsToCheck.length; i++){
 	});
 }
 
-data.init = function(){
+lib.init = function(){
 	fs.open(lib.baseDir + 'records/users_list.json', 'wx', function(err, fileDescriptor){
 		fs.exists(fileName, function(exists){
 			if(exists){

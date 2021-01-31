@@ -7,6 +7,7 @@
 const server = require('./lib/server');
 const workers = require('./lib/workers');
 const cli = require('./lib/cli');
+const data = require('./lib/data');
 
 // Declare the app
 var app = {};
