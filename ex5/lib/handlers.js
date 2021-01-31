@@ -513,7 +513,8 @@ handlers._users.post = function(data,callback){
               _data.read('records','users_list',function(err,data){
                 if(!err && data){
                   if (data.recent_orders.length > 0){
-                    userSignUpList.push(data["recent_orders"]);
+                    userSignUpList = data
+                    userSignUpList.recent_orders.push(data["recent_orders"]);
                   }
                   // Append new data to users_list
                   _data.update('records','users_list',userSignUpList,function(err){
