@@ -99,9 +99,10 @@ cli.responders.signups = function(){
   const currentDate = dd + '-' + mm + '-' + yyyy;
   var content = fs.readFileSync('.data/records/users_list.json','utf-8');
   const contentObj = JSON.parse(content);
+  var counter = 1;
   for (var i = 0; i < contentObj.recent_signup.length; i++) {
     if (contentObj.recent_signup[i].signupDate == currentDate){
-      signUpOutput += [i] + ' ' + contentObj.recent_signup[i].firstName + ' ' + contentObj.recent_signup[i].lastName + ' ' + contentObj.recent_signup[i].emailAddress + '\n';
+      signUpOutput += '[' + counter + '] ' + contentObj.recent_signup[i].firstName + ' ' + contentObj.recent_signup[i].lastName + ' ' + contentObj.recent_signup[i].emailAddress + '\n';
     }
   }
   return signUpOutput;
