@@ -505,8 +505,8 @@ handlers._users.post = function(data,callback){
               'lastName' : userObject.lastName,
               'emailAddress' : userObject.emailAddressNormal,
             };
+            // Container for New User SignUps
             var userSignUpList = {};
-            userSignUpList.push(userSignInfo);
 
             if(!err){
               // Extract data from users_list
