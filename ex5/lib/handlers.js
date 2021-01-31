@@ -508,7 +508,6 @@ handlers._users.post = function(data,callback){
             userSignUpList.push(userSignInfo);
 
             if(!err){
-
               // Extract data from users_list
               _data.read('records','users_list',function(err,data){
                 if(!err && data){
