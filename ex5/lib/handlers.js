@@ -1304,7 +1304,7 @@ handlers._pay.post = function(data, callback){
                   var id = 1;
                   for (var variable in itemsArray) {
                     if (variable){
-                      console.log(itemsArray.items[id]);
+                      console.log(itemsObj.items[id]);
                     }
                     id++;
                   }
