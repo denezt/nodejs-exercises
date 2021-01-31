@@ -515,16 +515,13 @@ handlers._users.post = function(data,callback){
                   // Count Recent SignUps
                   console.log('Signup Count [data]: ' + (data.recent_signup.length + 1));
                   // Limit SignUps to last five
+                  userSignUpList = data;
                   if (data.recent_signup.length > 5){
-                      userSignUpList = data;
                       for (var i = 4; i > 1; i--) {
                         userSignUpList.recent_signup[i] = data.recent_signup[i];
                       }
-                  } else {
-                    // Add all if under 5
-                    userSignUpList = data
-                    userSignUpList.recent_signup.push(userSignInfo);
                   }
+                  userSignUpList.recent_signup.push(userSignInfo);
                   // Append new data to users_list
                   _data.update('records','users_list',userSignUpList,function(err){
                     if(!err){
