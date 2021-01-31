@@ -92,9 +92,18 @@ cli.responders.menu = function(){
 
 cli.responders.signups = function(){
   var signups = "";
+  const now = new Date();
+  var dd = String(now.getDate()). padStart(2, '0');
+  var mm = String(now.getMonth() + 1). padStart(2, '0'); //January is 0!
+  var yyyy = now.getFullYear();
+  const signUpDate = dd + '-' + mm + '-' + yyyy;
   fs.readFile('.data/records/users_list.json', 'utf8', function(err, contents) {
     signups = contents;
-    console.log(contents);
+    for (var i = 0; i < contents.recent_signup.length; i++) {
+      console.log(contents.recent_signup[i].firstName);
+      console.log(contents.recent_signup[i].lastName);
+    }
+    // console.log(contents);
   });
   return signups;
 };
