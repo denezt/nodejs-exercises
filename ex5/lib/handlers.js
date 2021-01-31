@@ -1301,7 +1301,7 @@ handlers._pay.post = function(data, callback){
                   // Return check data
                   const itemsObj = {"items": [{"id":1,"name": "Italian Sausage Pizza"},{"id":2,"name": "Pepperoni Pizza"},{"id":3,"name": "Happy Sparkling Juice"},{"id":4,"name": "White Chocolate Chip Cookies"},{"id":5,"name":"New World Lemonade"}]};
                   const itemsArray = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3, orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
-                  var id = 1;
+                  var id = 0;
                   for (var variable in itemsArray) {
                     if (variable == true){
                       console.log('\033[34m' + itemsObj.items[id].name + '\033[0m');
