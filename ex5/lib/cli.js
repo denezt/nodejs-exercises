@@ -91,17 +91,21 @@ cli.responders.menu = function(){
 };
 
 cli.responders.signups = function(){
+  var signUpOutput = "";
   const now = new Date();
   var dd = String(now.getDate()).padStart(2, '0');
   var mm = String(now.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = now.getFullYear();
-  const signUpDate = dd + '-' + mm + '-' + yyyy;
+  const currentDate = dd + '-' + mm + '-' + yyyy;
   var content = fs.readFileSync('.data/records/users_list.json','utf-8');
   const contentObj = JSON.parse(content);
   for (var i = 0; i < contentObj.recent_signup.length; i++) {
-    console.log(contentObj.recent_signup[i]);
+    if (contentObj.recent_signup[i].signupDate != currentDate){
+      console.log(contentObj.recent_signup[i].firstName);
+      signUpOutput += contentObj.recent_signup[i].firstName + '\n';
+    }
   }
-  return JSON.parse(content);
+  return signUpOutput;
 };
 
 cli.responders.orders = function(){
