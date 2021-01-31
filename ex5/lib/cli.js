@@ -92,9 +92,9 @@ cli.responders.menu = function(){
 
 cli.responders.signups = function(){
   var signups = "";
-  fs.readFile('../.data/records/users_list.json', 'utf8', function(err, contents) {
+  fs.readFile('.data/records/users_list.json', 'utf8', function(err, contents) {
     signups = contents;
-    console. log(contents);
+    console.log(contents);
   });
   return signups;
 };
