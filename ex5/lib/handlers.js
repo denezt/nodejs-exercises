@@ -498,13 +498,13 @@ handlers._users.post = function(data,callback){
                 callback(404);
               }
             });
-
+            const signupDate = new Date();
             // Update the records
             const userSignInfo = {
               'firstName' : userObject.firstName,
               'lastName' : userObject.lastName,
               'emailAddress' : userObject.emailAddressNormal,
-              'sigup_date' : Date.toDateString()
+              'sigup_date' : signupDate.toDateString()
             };
             // Container for New User SignUps
             var userSignUpList = {};
