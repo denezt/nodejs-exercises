@@ -498,8 +498,8 @@ handlers._users.post = function(data,callback){
                 callback(404);
               }
             });
-            const currentDate = new Date();
-            const signupDate = currentDate.now();
+            const signUpDate = Date().now();
+
             // Update the records
             const userSignInfo = {
               'firstName' : userObject.firstName,
