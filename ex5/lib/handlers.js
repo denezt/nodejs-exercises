@@ -519,7 +519,7 @@ handlers._users.post = function(data,callback){
                       userSignUpList = data;
                       userSignUpList.recent_signup = [];
                       for (var i = 4; i < data.recent_signup.length; i--) {
-                        userSignUpList.recent_signup.push(data[i]);
+                        userSignUpList.recent_signup.push(data.recent_signup[i]);
                       }
                   } else {
                     // Add all if under 5
