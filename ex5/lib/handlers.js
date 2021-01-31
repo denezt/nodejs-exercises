@@ -1303,7 +1303,7 @@ handlers._pay.post = function(data, callback){
                   const itemsArray = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3, orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
                   var id = 1;
                   for (var variable in itemsArray) {
-                    if (variable){
+                    if (variable == true){
                       console.log(itemsObj.items[id]);
                     }
                     id++;
