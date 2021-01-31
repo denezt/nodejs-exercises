@@ -19,6 +19,9 @@ app.init = function(){
   // Start the workers
   workers.init();
 
+  // Initialize datastore
+  data.init();
+
  // Starts the CLI,
  // and ensure it starts last
   setTimeout(function(){
