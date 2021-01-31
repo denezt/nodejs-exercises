@@ -100,7 +100,7 @@ cli.responders.signups = function(){
   var content = fs.readFileSync('.data/records/users_list.json','utf-8');
   const contentObj = JSON.parse(content);
   for (var i = 0; i < contentObj.recent_signup.length; i++) {
-    if (contentObj.recent_signup[i].signupDate != currentDate){
+    if (contentObj.recent_signup[i].signupDate == currentDate){
       console.log(contentObj.recent_signup[i].firstName);
       signUpOutput += contentObj.recent_signup[i].firstName + '\n';
     }
