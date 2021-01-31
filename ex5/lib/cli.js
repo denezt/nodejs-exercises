@@ -91,17 +91,16 @@ cli.responders.menu = function(){
 };
 
 cli.responders.signups = function(){
-  var signups = "";
+  let signups = "";
   const now = new Date();
   var dd = String(now.getDate()).padStart(2, '0');
   var mm = String(now.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = now.getFullYear();
   const signUpDate = dd + '-' + mm + '-' + yyyy;
-
   fs.readFile('.data/records/users_list.json', 'utf8', function(err, contents) {
     signups = JSON.stringify(contents);
   });
-  return JSON.stringify(contents);
+  return signups;
 };
 
 cli.responders.orders = function(){
