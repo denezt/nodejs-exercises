@@ -91,14 +91,13 @@ cli.responders.menu = function(){
 };
 
 cli.responders.signups = function(){
-  var parsedData = "";
-  fs.readFile('../.data/records/users_list.json', 'utf8', function(err,data){
-    if(!err && data){
-      parsedData = helpers.parseJsonToObject(data);
+  var signups = "";
+  _data.read('records','users_list',function(err,signupData){
+    if(!err && signupData){
+      signups = JSON.stringify(signupData);
     }
   });
-  console.log('All Signups');
-  return parsedData;
+  return signups;
 };
 
 cli.responders.orders = function(){
