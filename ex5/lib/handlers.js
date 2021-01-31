@@ -512,18 +512,16 @@ handlers._users.post = function(data,callback){
               // Extract data from users_list
               _data.read('records','users_list',function(err,data){
                 if(!err && data){
-                  if (data.recent_orders.length > 0){
-                    userSignUpList.recent_signup = data.recent_signup
-                    userSignUpList.recent_orders.push(data["recent_orders"]);
-                    // Append new data to users_list
-                    _data.update('records','users_list',userSignUpList,function(err){
-                      if(err){
-                        callback(200);
-                      } else {
-                        callback(404);
-                      }
-                    });
-                  }
+                  userSignUpList.recent_signup = data.recent_signup
+                  userSignUpList.recent_orders.push(data["recent_orders"]);
+                  // Append new data to users_list
+                  _data.update('records','users_list',userSignUpList,function(err){
+                    if(err){
+                      callback(200);
+                    } else {
+                      callback(404);
+                    }
+                  });
                   // callback(200,data);
                 } else {
                   callback(404);
