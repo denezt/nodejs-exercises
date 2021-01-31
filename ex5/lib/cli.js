@@ -101,7 +101,6 @@ cli.responders.signups = function(){
   const contentObj = JSON.parse(content);
   for (var i = 0; i < contentObj.recent_signup.length; i++) {
     if (contentObj.recent_signup[i].signupDate == currentDate){
-      console.log(contentObj.recent_signup[i].firstName);
       signUpOutput += contentObj.recent_signup[i].firstName + '\n';
     }
   }
