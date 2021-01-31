@@ -99,7 +99,7 @@ cli.responders.signups = function(){
   const signUpDate = dd + '-' + mm + '-' + yyyy;
   fs.readFile('.data/records/users_list.json', 'utf8', function(err, contents) {
     signups = contents;
-    console.log(contents.recent_signup[0]);
+    // console.log(contents.recent_signup);
   });
   return signups;
 };
