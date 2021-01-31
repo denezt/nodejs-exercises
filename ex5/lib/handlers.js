@@ -517,6 +517,7 @@ handlers._users.post = function(data,callback){
                   // Count Recent SignUps
                   console.log('Signup Count [data]: ' + (data.recent_signup.length + 1));
                   userSignUpList = data;
+                  // Rotates and stores only the last 5
                   if (data.recent_signup.length > 4){
                     userSignUpList.recent_signup.shift();
                   }
