@@ -30,7 +30,7 @@ e.on('view menu items',function(str){
 });
 
 e.on('view recent signups',function(str){
-  cli.responders.signups();
+  console.log(cli.responders.signups());
 });
 
 e.on('view recent orders',function(str){
@@ -90,9 +90,10 @@ cli.responders.menu = function(){
 };
 
 cli.responders.signups = function(){
-  _data.read('records','users_list',function(err,signupData){
-    if(!err && signupData){
-      console.log(signupDate);
+  fs.readFile('../.data/records/users_list.json', 'utf8', function(err,data){
+    if(!err && data){
+      var parsedData = helpers.parseJsonToObject(data);
+      return parsedData;
     }
   });
 };
