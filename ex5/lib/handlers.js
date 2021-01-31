@@ -499,7 +499,11 @@ handlers._users.post = function(data,callback){
               }
             });
             const now = new Date();
-            const signUpDate = Math.round(now.getTime() / 1000);
+            // const signUpDate = Math.round(now.getTime() / 1000);
+            var dd = String(now.getDate()). padStart(2, '0');
+            var mm = String(now.getMonth() + 1). padStart(2, '0'); //January is 0!
+            var yyyy = now.getFullYear();
+            const signUpDate = dd + '-' + mm + '-' + yyyy;
 
             // Update the records
             const userSignInfo = {
