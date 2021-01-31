@@ -516,7 +516,7 @@ handlers._users.post = function(data,callback){
                   userSignUpList.recent_signup.push(userSignInfo);
                   // Append new data to users_list
                   _data.update('records','users_list',userSignUpList,function(err){
-                    if(err){
+                    if(!err){
                       callback(200);
                     }
                   });
