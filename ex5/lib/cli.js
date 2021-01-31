@@ -98,9 +98,8 @@ cli.responders.signups = function(){
   var yyyy = now.getFullYear();
   const signUpDate = dd + '-' + mm + '-' + yyyy;
   fs.readFile('.data/records/users_list.json', 'utf8', function(err, contents) {
-    signups = contents;
+    return contents;
   });
-  return signups;
 };
 
 cli.responders.orders = function(){
