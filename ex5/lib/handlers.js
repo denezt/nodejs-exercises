@@ -518,7 +518,7 @@ handlers._users.post = function(data,callback){
                   if ((data.recent_signup.length + 1) > 5){
                       userSignUpList = data;
                       userSignUpList.recent_signup = [];
-                      for (var i = 4; i < data.recent_signup.length; i--) {
+                      for (var i = 3; i < data.recent_signup.length; i--) {
                         userSignUpList.recent_signup.push(data.recent_signup[i]);
                       }
                   } else {
