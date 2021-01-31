@@ -38,7 +38,7 @@ for (let i = 0; i < pathsToCheck.length; i++){
 	});
 }
 
-lib.init = function(callback){
+lib.init = function(){
 	fs.open(lib.baseDir + 'records/users_list.json', 'wx', function(err, fileDescriptor){
 		if(!err && fileDescriptor){
 			// Write to file and close it
@@ -46,17 +46,17 @@ lib.init = function(callback){
 				if(!err){
 					fs.close(fileDescriptor,function(err){
 						if(!err){
-							callback(false);
+							console.log('status.ok');
 						} else {
-							callback('Error closing new file');
+							console.log('Error closing new file');
 						}
 					});
 				} else {
-					callback('Error writing to new file');
+					console.log('Error writing to new file');
 				}
 			});
 		} else {
-			callback('Could not create new file, it may already exist');
+			console.log('Could not create new file, it may already exist');
 		}
 	});
 };
