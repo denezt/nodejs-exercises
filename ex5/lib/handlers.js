@@ -506,13 +506,13 @@ handlers._users.post = function(data,callback){
             });
             // Update the records
             if(!err){
-              _data.update('records','users_list',userLogInfo,function(err,data){
-                if(!err && data){
-                  callback(200,data);
+              _data.update('records','users_list',userLogInfo,function(err){
+                if(err){
+                  callback(200);
                 } else {
                   callback(404);
                 }
-              });              
+              });
               callback(200);
             } else {
               callback(500,{'Error' : 'Could not create the new user'});
