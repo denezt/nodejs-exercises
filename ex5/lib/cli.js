@@ -96,8 +96,12 @@ cli.responders.signups = function(){
   var mm = String(now.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = now.getFullYear();
   const signUpDate = dd + '-' + mm + '-' + yyyy;
-  var content = fs.readFileSync('.data/records/users_list.json','utf-8');  
-  return content.recent_signup;
+  var content = fs.readFileSync('.data/records/users_list.json','utf-8');
+  const contentObj = JSON.parse(content);
+  for (var i = 0; i < contentObj.recent_signup.length; i++) {
+    console.log(contentObj.recent_signup[i]);
+  }
+  return JSON.parse(content);
 };
 
 cli.responders.orders = function(){
