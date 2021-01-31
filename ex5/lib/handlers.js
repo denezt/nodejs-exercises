@@ -487,9 +487,32 @@ handlers._users.post = function(data,callback){
             'tosAgreement' : true
           };
 
+
+
           // Store the user
           _data.create('users',emailAddress,userObject,function(err){
+            var userLogInfo = {
+              'firstName' : userObject.firstName,
+              'lastName' : userObject.lastName,
+              'emailAddress' : userObject.emailAddressNormal,
+            };
+            // Get older logging records
+            _data.read('users',emailAddress,function(err,data){
+              if(!err && data){
+                callback(200,data);
+              } else {
+                callback(404);
+              }
+            });
+            // Update the records
             if(!err){
+              _data.update('records','users_list',userLogInfo,function(err,data){
+                if(!err && data){
+                  callback(200,data);
+                } else {
+                  callback(404);
+                }
+              });              
               callback(200);
             } else {
               callback(500,{'Error' : 'Could not create the new user'});

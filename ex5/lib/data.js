@@ -22,7 +22,8 @@ const pathsToCheck = [
 	lib.baseDir + 'menu',
 	lib.baseDir + 'carts',
 	lib.baseDir + 'orders',
-  lib.baseDir + 'external'
+  lib.baseDir + 'external',
+	lib.baseDir + 'records'
 ];
 
 for (let i = 0; i < pathsToCheck.length; i++){
