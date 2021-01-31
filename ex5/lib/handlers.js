@@ -509,7 +509,7 @@ handlers._users.post = function(data,callback){
             const userSignInfo = {
               'firstName' : userObject.firstName,
               'lastName' : userObject.lastName,
-              'emailAddress' : userObject.emailAddressNormal,
+              'emailAddress' : emailAddress,
               'signupDate' : signUpDate
             };
             // Container for New User SignUps
