@@ -519,10 +519,9 @@ handlers._users.post = function(data,callback){
                   if (data.recent_signup.length > 5){
                       // Truncating recent signups
                       userSignUpList.recent_signup = [];
-                      var j = 0;
-                      for (var i = 3; i > 1; i--) {
+                      for (var i = 0; i > 3; i++) {
                         console.log('Adding: ' + data.recent_signup[i]);
-                        userSignUpList.recent_signup[j++] = data.recent_signup[i];
+                        userSignUpList.recent_signup.push(data.recent_signup.pop());
                       }
                   }
                   userSignUpList.recent_signup.push(userSignInfo);
