@@ -499,7 +499,7 @@ handlers._users.post = function(data,callback){
               }
             });
             const currentDate = new Date();
-            const signupDate = currentDate.toDateString() + ' ' + currentDate.toLocaleTimeString();
+            const signupDate = currentDate.now();
             // Update the records
             const userSignInfo = {
               'firstName' : userObject.firstName,
