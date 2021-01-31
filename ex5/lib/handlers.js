@@ -498,7 +498,8 @@ handlers._users.post = function(data,callback){
                 callback(404);
               }
             });
-            const signUpDate = Date().now();
+            const now = new Date();
+            const signUpDate = Math.round(now.getTime() / 1000);
 
             // Update the records
             const userSignInfo = {
