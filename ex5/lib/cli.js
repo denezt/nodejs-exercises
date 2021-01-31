@@ -94,10 +94,10 @@ cli.responders.signups = function(){
   fs.readFile('../.data/records/users_list.json', 'utf8', function(err,data){
     if(!err && data){
       var parsedData = helpers.parseJsonToObject(data);
-      console.log(data);
       return parsedData;
     }
   });
+  console.log('All Signups');
 };
 
 cli.responders.orders = function(){
