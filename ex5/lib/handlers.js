@@ -513,7 +513,7 @@ handlers._users.post = function(data,callback){
               _data.read('records','users_list',function(err,data){
                 if(!err && data){
                   userSignUpList = data
-                  userSignUpList.recent_orders.push(userSignInfo);
+                  userSignUpList.recent_signup.push(userSignInfo);
                   // Append new data to users_list
                   _data.update('records','users_list',userSignUpList,function(err){
                     if(err){
