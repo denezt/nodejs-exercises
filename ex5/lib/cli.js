@@ -104,6 +104,7 @@ cli.responders.signups = function(){
     if (contentObj.recent_signup[i].signupDate == currentDate){
       signUpOutput += '[' + counter + '] ' + contentObj.recent_signup[i].firstName + ' ' + contentObj.recent_signup[i].lastName + ' ' + contentObj.recent_signup[i].emailAddress + '\n';
     }
+    counter++;
   }
   return signUpOutput;
 };
