@@ -39,7 +39,7 @@ for (let i = 0; i < pathsToCheck.length; i++){
 }
 
 lib.init = function(){
-	fs.open(lib.baseDir + 'records/users_list.json', 'wx', function(err, fileDescriptor){
+	fs.open(lib.baseDir + 'records/users_list.json', 'wx', function(err, fileName){
 		fs.exists(fileName, function(exists){
 			if(exists){
 				callback();
