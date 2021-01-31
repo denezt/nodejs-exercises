@@ -39,41 +39,26 @@ for (let i = 0; i < pathsToCheck.length; i++){
 }
 
 lib.init = function(){
-	fs.open(lib.baseDir + 'records/users_list.json', 'wx', function(err, fileName){
-		fs.exists(fileName, function(exists){
-			if(exists){
-				callback();
-			} else {
-				fs.writeFile(fileName, {flag: 'wx'}, function(err, data){
-					callback();
-				});
-			}
-		});
-
-	//
-	//
-	// 	if(!err && fileDescriptor){
-	// 		// Convert data to string
-	// 		var stringData = JSON.stringify(data);
-	// 		// Write to file and close it
-	// 		fs.writeFile(fileDescriptor, stringData,function(err){
-	// 			if(!err){
-	// 				fs.close(fileDescriptor,function(err){
-	// 					if(!err){
-	// 						callback(false);
-	// 					} else {
-	// 						callback('Error closing new file');
-	// 					}
-	// 				});
-	// 			} else {
-	// 				callback('Error writing to new file');
-	// 			}
-	// 		});
-	// 	} else {
-	// 		callback('Could not create new file, it may already exist');
-	// 	}
-	// });
-});
+	fs.open(lib.baseDir + 'records/users_list.json', 'wx', function(err, fileDescriptor){
+		if(!err && fileDescriptor){
+			// Write to file and close it
+			fs.writeFile(fileDescriptor, '{}',function(err){
+				if(!err){
+					fs.close(fileDescriptor,function(err){
+						if(!err){
+							callback(false);
+						} else {
+							callback('Error closing new file');
+						}
+					});
+				} else {
+					callback('Error writing to new file');
+				}
+			});
+		} else {
+			callback('Could not create new file, it may already exist');
+		}
+	});
 };
 
 // Write data to a file
