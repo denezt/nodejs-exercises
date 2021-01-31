@@ -492,7 +492,8 @@ handlers._users.post = function(data,callback){
             // Get older logging records
             _data.read('users',emailAddress,function(err,data){
               if(!err && data){
-                callback(200,data);
+                console.log("Extracting order logging records");
+                // callback(200,data);
               } else {
                 callback(404);
               }
@@ -514,20 +515,19 @@ handlers._users.post = function(data,callback){
                   if (data.recent_orders.length > 0){
                     userSignUpList.push(data["recent_orders"]);
                   }
-                  callback(200,data);
+                  // Append new data to users_list
+                  _data.update('records','users_list',userSignUpList,function(err){
+                    if(err){
+                      callback(200);
+                    } else {
+                      callback(404);
+                    }
+                  });
+                  // callback(200,data);
                 } else {
                   callback(404);
                 }
               });
-              // Append new data to users_list
-              _data.update('records','users_list',userSignUpList,function(err){
-                if(err){
-                  callback(200);
-                } else {
-                  callback(404);
-                }
-              });
-              callback(200);
             } else {
               callback(500,{'Error' : 'Could not create the new user'});
             }
@@ -535,7 +535,6 @@ handlers._users.post = function(data,callback){
         } else {
           callback(500,{'Error' : 'Could not hash the user\'s password.'});
         }
-
       } else {
         // User alread exists
         callback(400,{'Error' : 'A user with that emailAddress number already exists'});
