@@ -41,8 +41,15 @@ for (let i = 0; i < pathsToCheck.length; i++){
 lib.init = function(){
 	fs.open(lib.baseDir + 'records/users_list.json', 'wx', function(err, fileDescriptor){
 		if(!err && fileDescriptor){
+			const recordDataTemplate = {
+				'recent_orders' : [],
+				'recent_signup': []
+			};
+			var stringData = JSON.stringify(recordDataTemplate);
+
 			// Write to file and close it
-			fs.writeFile(fileDescriptor, '{}',function(err){
+			fs.writeFile(fileDescriptor, stringData,function(err){
+
 				if(!err){
 					fs.close(fileDescriptor,function(err){
 						if(!err){
