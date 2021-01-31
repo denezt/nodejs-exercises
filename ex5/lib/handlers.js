@@ -516,9 +516,11 @@ handlers._users.post = function(data,callback){
                   console.log('Signup Count [data]: ' + (data.recent_signup.length + 1));
                   // Limit SignUps to last five
                   userSignUpList.recent_orders = data.recent_orders;
-                  userSignUpList.recent_signup = [];
                   if (data.recent_signup.length > 5){
+                      // Truncating recent signups
+                      userSignUpList.recent_signup = [];
                       for (var i = 3; i > 1; i--) {
+                        console.log('Adding: ' + data.recent_signup[i]);
                         userSignUpList.recent_signup[i] = data.recent_signup[i];
                       }
                   }
