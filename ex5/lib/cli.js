@@ -165,7 +165,7 @@ cli.responders.order = function(str){
   var orderInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
 
   if (orderInfo){
-    var givenOrderArg =  (typeof(orderInfo.split(' ')[0]) == 'string' && orderInfo.split(' ')[0] == 'order') ? true : false;    
+    var givenOrderArg =  (typeof(orderInfo.split(' ')[0]) == 'string' && orderInfo.split(' ')[0] == 'order') ? true : false;
     if (givenOrderArg){
       var orderId = orderInfo.split(' ')[1];
       _data.read('orders',orderId,function(err,orderData){
@@ -173,11 +173,14 @@ cli.responders.order = function(str){
         if (foundId){
           const menuItem = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3,  orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
           if (!err){
+            var cost = 0;
             for (var i = 0; i < menuItem.length; i++) {
               if (menuItem[i]){
                 console.log('Order Item:\t' + menuitem.items[i + 1].name);
+                cost += Number(menuitem.items[i + 1].price.replace('$',''));
               }
             }
+            console.log('Order Cost:\t' + cost);
           }
         } else {
           console.log("Missing or unable to find information for id");
@@ -186,7 +189,8 @@ cli.responders.order = function(str){
     } else {
       console.log("Missing or invalid parameter was given");
     }
-
+  } else {
+    console.log("Missing or invalid parameter was given");
   }
 
 
