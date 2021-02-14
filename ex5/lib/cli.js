@@ -109,9 +109,9 @@ cli.responders.help = function(){
   console.log("Show Menu Items      - menu items");
   console.log("Show Recent SignUps  - recent signups");
   console.log("Show Recent Orders   - recent orders");
-  console.log("Find specific Order  - order, order details");
+  console.log("Find specific Order  - order, order details --id ORDER_ID");
   console.log("Find specific Users  - user, user details --email EMAIL_ADDRESS");
-  console.log("Exit CLI             - exit");
+    console.log("Exit CLI             - exit");
 };
 
 // Current Menu items
@@ -165,7 +165,7 @@ cli.responders.order = function(str){
   var orderInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
 
   if (orderInfo){
-    var givenOrderArg =  (typeof(orderInfo.split(' ')[0]) == 'string' && orderInfo.split(' ')[0] == 'order') ? true : false;
+    var givenOrderArg =  (typeof(orderInfo.split(' ')[0]) == 'string' && orderInfo.split(' ')[0] == 'id') ? true : false;
     if (givenOrderArg){
       var orderId = orderInfo.split(' ')[1];
       _data.read('orders',orderId,function(err,orderData){
