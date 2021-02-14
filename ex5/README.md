@@ -59,7 +59,3 @@ Last Name:	Gwinn
 Email Address:	kgwinn@yahoo.com
 
 ```
-
-<p>
-Current Demo Server: http://139.59.147.182:3000
-</p>
