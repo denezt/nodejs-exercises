@@ -126,6 +126,7 @@ cli.responders.user = function(str){
     console.log("showing user: ",userEmail);
     _data.read('users',userEmail,function(err,userData){
       if (!err){
+        delete userData.hashedPassword;
         console.log(userData);
       }
     });
