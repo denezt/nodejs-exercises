@@ -168,14 +168,20 @@ cli.responders.order = function(str){
   if (orderInfo && givenOrderArg){
     var orderId = orderInfo.split(' ')[1];
     _data.read('orders',orderId,function(err,orderData){
-      const menuItem = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3,  orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
-      if (!err){
-        for (var i = 0; i < menuItem.length; i++) {
-          if (menuItem[i]){
-            console.log('Order Item:\t' + menuitem.items[i + 1]);
+      var foundId = (typeof(orderData.id) == 'string') ? true : false;
+
+      if (foundId){
+        const menuItem = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3,  orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
+        if (!err){
+          for (var i = 0; i < menuItem.length; i++) {
+            if (menuItem[i]){
+              console.log('Order Item:\t' + menuitem.items[i + 1]);
+            }
           }
         }
-      }
+      } else {
+        console.log("Missing or unable to find information for id");
+      }        
     });
   } else {
     console.log("Missing or invalid parameter was given");
