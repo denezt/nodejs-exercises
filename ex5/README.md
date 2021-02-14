@@ -50,10 +50,17 @@ Exit CLI             - exit
 
 # Usage Examples
 # Get a specific order
-order --id liuruiicexb0beplpmlg
+order --id l3x7jc3a2jx7epfiv1vr
+Order Item:	Pepperoni Pizza
+Order Item:	Happy Sparkling Juice
+Order Item:	New World Lemonade
+Order Cost:	 $20.10
 
 # Get a specific user information
-order --email maxmustermann@gmx.de
+user --email kgwinn@yahoo.com
+First Name:	Kevin
+Last Name:	Gwinn
+Email Address:	kgwinn@yahoo.com
 
 ```
 
