@@ -172,7 +172,7 @@ cli.responders.order = function(str){
       if (!err){
         for (var i = 0; i < menuItem.length; i++) {
           if (menuItem[i]){
-            console.log('Order Item:\t' + menuitem[i + 1]);
+            console.log('Order Item:\t' + menuitem.items[i + 1]);
           }
         }
       }
