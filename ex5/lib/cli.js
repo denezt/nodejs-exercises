@@ -125,7 +125,7 @@ cli.responders.user = function(str){
     var userEmail = userInfo.split(' ')[1].replace('@','_');
     console.log("showing user: ",userEmail[1]);
     _data.read('users',userEmail,function(err,userData){
-      console.log(userData.firstName);
+      console.log(userData);
     });
   }
 };
