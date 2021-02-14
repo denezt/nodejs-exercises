@@ -111,7 +111,7 @@ cli.responders.help = function(){
   console.log("Show Recent Orders   - recent orders");
   console.log("Find specific Order  - order, order details --id ORDER_ID");
   console.log("Find specific Users  - user, user details --email EMAIL_ADDRESS");
-    console.log("Exit CLI             - exit");
+  console.log("Exit CLI             - exit");
 };
 
 // Current Menu items
