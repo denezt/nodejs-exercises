@@ -129,7 +129,9 @@ cli.responders.user = function(str){
     _data.read('users',userEmail,function(err,userData){
       if (!err){
         delete userData.hashedPassword;
-        console.log(userData.firstName, userData.lastName, userData.emailAddress);
+        console.log('First Name:\t' + userData.firstName);
+        console.log('Last Name:\t' + userData.lastName);
+        console.log('Email Address:\t' + userData.emailAddress);
       }
     });
   } else {
