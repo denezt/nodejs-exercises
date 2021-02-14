@@ -130,9 +130,9 @@ cli.responders.orders = function(){
   var counter = 1;
   for (var i = 0; i < contentObj.recent_orders.length; i++) {
     if (contentObj.recent_orders[i].orderDate == currentDate){
-      signUpOutput += '[' + counter + '] ' + contentObj.recent_orders[i].orderId;
-      signUpOutput += '\nItems:\n';
-      signUpOutput += contentObj.recent_orders[i].orderItems + '\n';
+      signUpOutput += '[' + counter + '] ';
+      signUpOutput += 'OrderID: ' + contentObj.recent_orders[i].orderId + '\n';
+      signUpOutput += 'Items: ' + contentObj.recent_orders[i].orderItems + '\n';
     }
     counter++;
   }
