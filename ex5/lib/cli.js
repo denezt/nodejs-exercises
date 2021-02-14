@@ -118,7 +118,9 @@ cli.responders.orders = function(){
 };
 
 cli.responders.user = function(str){
-  console.log("showing user: ",str);
+  var arr = str.split('--');
+  var userId = typeof(arr[1] == 'string' && arr[1].trim() : false;
+  console.log("showing user: ",userId);
 };
 
 
