@@ -122,12 +122,11 @@ cli.responders.user = function(str){
   var arr = typeof(str) == 'string' ? str.split('--') : false;
   var userInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
   if (userInfo){
-    var userEmail = userInfo.split(' ');
-    console.log("showing user: ",userEmail[1].replace('@','_'));
+    var userEmail = userInfo.split(' ')[1].replace('@','_');
+    console.log("showing user: ",userEmail[1]);
     _data.read('users',userEmail,function(err,userData){
-
-
-    }
+      console.log(userData.firstName);
+    });
   }
 };
 
