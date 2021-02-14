@@ -1338,9 +1338,6 @@ handlers._pay.post = function(data, callback){
                     // Append new data to users_list
                     _data.update('records','users_list',userOrderItemsData,function(err){
                       console.log(err);
-                      // if(!err){
-                      //   callback(200);
-                      // }
                     });
                   }
                 });

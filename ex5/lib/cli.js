@@ -32,7 +32,7 @@ e.on('recent signups',function(){
 });
 
 e.on('recent orders',function(){
-  cli.responders.orders();
+  console.log(cli.responders.orders());
 });
 
 e.on('user details',function(str){
@@ -115,7 +115,22 @@ cli.responders.signups = function(){
 };
 
 cli.responders.orders = function(){
-  console.log("showing orders");
+  var signUpOutput = "";
+  const now = new Date();
+  var dd = String(now.getDate()).padStart(2, '0');
+  var mm = String(now.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = now.getFullYear();
+  const currentDate = dd + '-' + mm + '-' + yyyy;
+  var content = fs.readFileSync('.data/records/users_list.json','utf-8');
+  const contentObj = JSON.parse(content);
+  var counter = 1;
+  for (var i = 0; i < contentObj.recent_orders.length; i++) {
+    if (contentObj.recent_orders[i].orderDate == currentDate){
+      signUpOutput += '[' + counter + '] ' + contentObj.recent_orders[i].orderId + ' ' + contentObj.recent_orders[i].orderItems + '\n';
+    }
+    counter++;
+  }
+  return signUpOutput;
 };
 
 cli.responders.user = function(str){
