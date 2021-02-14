@@ -123,9 +123,11 @@ cli.responders.user = function(str){
   var userInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
   if (userInfo){
     var userEmail = userInfo.split(' ')[1].replace('@','_');
-    console.log("showing user: ",userEmail[1]);
+    console.log("showing user: ",userEmail);
     _data.read('users',userEmail,function(err,userData){
-      console.log(userData);
+      if (err){
+        console.log(userData);        
+      }
     });
   }
 };
