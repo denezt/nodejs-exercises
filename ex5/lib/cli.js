@@ -180,7 +180,7 @@ cli.responders.order = function(str){
                 cost += Number(menuitem.items[i + 1].price.replace('$',''));
               }
             }
-            console.log('Order Cost:\t' + cost);
+            console.log('Order Cost:\t $' + parseFloat(cost).toFixed(2));
           }
         } else {
           console.log("Missing or unable to find information for id");
