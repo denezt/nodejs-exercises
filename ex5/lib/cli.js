@@ -168,8 +168,13 @@ cli.responders.order = function(str){
   if (orderInfo && givenOrderArg){
     var orderId = orderInfo.split(' ')[1];
     _data.read('orders',orderId,function(err,orderData){
+      const menuItem = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3,  orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
       if (!err){
-        console.log('Menu Items:\t' + orderData.menuItems);
+        for (var i = 0; i < menuItem.length; i++) {
+          if (menuItem[i]){
+            console.log('Order Item:\t' + menuitem[i]);
+          }
+        }
       }
     });
   } else {
