@@ -18,7 +18,7 @@ const e = new _events();
 var cli = {};
 
 // Input handlers
-e.on('help',function(str){
+e.on('help',function(){
   cli.responders.help();
 });
 
@@ -31,6 +31,10 @@ e.on('recent signups',function(str){
 });
 
 e.on('recent orders',function(str){
+  cli.responders.orders();
+});
+
+e.on('user details',function(str){
   cli.responders.orders();
 });
 
