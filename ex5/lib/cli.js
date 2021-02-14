@@ -7,6 +7,7 @@
 const readline = require('readline');
 const util = require('util');
 const fs = require('fs');
+const v8 = require('v8');
 const _data = require('./data');
 const helpers = require('./helpers');
 const debug = util.debuglog('cli');
@@ -35,7 +36,7 @@ e.on('recent orders',function(){
 });
 
 e.on('user details',function(str){
-  cli.responders.user();
+  cli.responders.user(str);
 });
 
 e.on('exit',function(){
