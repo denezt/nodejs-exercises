@@ -15,6 +15,43 @@ const events = require('events');
 class _events extends events{};
 const e = new _events();
 
+const menuitem = {
+ "items": [
+ {
+   "id":"1",
+   "price": "$11.25",
+   "name": "Italian Sausage Pizza",
+   "description" :"Italian Sausage and Cheese"
+ },
+ {
+   "id":"2",
+   "price":"$10.00",
+   "name": "Pepperoni Pizza",
+   "description": "Pepperoni and Cheese"
+ },
+ {
+   "id":"3",
+   "price": "$5.60",
+   "name": "Happy Sparkling Juice",
+   "description": "Natural water and juice."
+ },
+ {
+   "id":"4",
+   "price": "$2.18",
+   "name": "White Chocolate Chip Cookies",
+   "description": "Fat Free and Low Carb Dessert"
+ },
+ {
+   "id":"5",
+   "price":"$4.50",
+   "name":"New World Lemonade",
+   "description": "Lemonade with organic sugar"
+ }
+],
+"count" : 5
+};
+
+
 // Instantiate the cli module object
 var cli = {};
 
@@ -22,24 +59,40 @@ var cli = {};
 e.on('help',function(){
   cli.responders.help();
 });
-
+// View current menu items
 e.on('menu items',function(){
   cli.responders.menu();
 });
 
-e.on('recent signups',function(){
-  console.log("=========================================");
-  console.log(cli.responders.signups());
-  console.log("=========================================");
-});
-
+// View orders placed in the last 24 hours
 e.on('recent orders',function(){
   console.log("=========================================");
   console.log(cli.responders.orders());
   console.log("=========================================");
 });
 
+// ToDo: Lookup the details of a specific order by order id
+e.on('order details',function(str){
+  cli.responders.order(str);
+});
+
+e.on('order',function(str){
+  cli.responders.order(str);
+});
+
+// View all the users who have signed up in the last 24 hours
+e.on('recent signups',function(){
+  console.log("=========================================");
+  console.log(cli.responders.signups());
+  console.log("=========================================");
+});
+
+// Lookup the details of a specific user by email address
 e.on('user details',function(str){
+  cli.responders.user(str);
+});
+
+e.on('user',function(str){
   cli.responders.user(str);
 });
 
@@ -56,46 +109,13 @@ cli.responders.help = function(){
   console.log("Show Menu Items      - menu items");
   console.log("Show Recent SignUps  - recent signups");
   console.log("Show Recent Orders   - recent orders");
+  console.log("Find specific Users  - user, user details --email EMAIL_ADDRESS");
   console.log("Exit CLI             - exit");
 };
 
 // Current Menu items
 cli.responders.menu = function(){
-  const menuitem = {
-   "items": [
-   {
-     "id":"1",
-     "price": "$11.25",
-     "name": "Italian Sausage Pizza",
-     "description" :"Italian Sausage and Cheese"
-   },
-   {
-     "id":"2",
-     "price":"$10.00",
-     "name": "Pepperoni Pizza",
-     "description": "Pepperoni and Cheese"
-   },
-   {
-     "id":"3",
-     "price": "$5.60",
-     "name": "Happy Sparkling Juice",
-     "description": "Natural water and juice."
-   },
-   {
-     "id":"4",
-     "price": "$2.18",
-     "name": "White Chocolate Chip Cookies",
-     "description": "Fat Free and Low Carb Dessert"
-   },
-   {
-     "id":"5",
-     "price":"$4.50",
-     "name":"New World Lemonade",
-     "description": "Lemonade with organic sugar"
-   }
-  ],
-  "count" : 5
-  };
+
   console.log(menuitem.items);
 };
 
@@ -139,6 +159,23 @@ cli.responders.orders = function(){
   return signUpOutput;
 };
 
+cli.responders.order = function(str){
+  var arr = typeof(str) == 'string' ? str.split('--') : false;
+  var orderInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
+  var givenOrderArg =  (typeof(orderInfo.split(' ')[0]) == 'string' && orderInfo.split(' ')[0] == 'order') ? true : false;
+
+  if (orderInfo && givenOrderArg){
+    var orderId = orderInfo.split(' ')[1];
+    _data.read('orders',orderId,function(err,orderData){
+      if (!err){
+        console.log('Menu Items:\t' + orderData.menuItems);
+      }
+    });
+  } else {
+    console.log("Missing or invalid parameter was given");
+  }
+};
+
 cli.responders.user = function(str){
   var arr = typeof(str) == 'string' ? str.split('--') : false;
   var userInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
@@ -176,6 +213,7 @@ cli.processInput = function(str){
       'menu items',
       'recent orders',
       'recent signups',
+      'user',
       'user details'
     ];
 

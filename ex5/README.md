@@ -29,8 +29,8 @@ $ ./daemonizer.sh --start
 | 11  | Fill up a shopping cart                                   | Add, Remove, Submit         | Implemented |
 | 12  | Place order/Send Email                                    | Add, Remove, Submit         | Implemented |
 | 13  | View current menu items                                   | CLI Output                  | Implemented |
-| 14  | View orders placed in the last 24 hours                   | CLI Output                  | In Progress |
-| 15  | Lookup details of a specific order by order ID            | CLI Output                  | To Do       |
+| 14  | View orders placed in the last 24 hours                   | CLI Output                  | Implemented |
+| 15  | Lookup details of a specific order by order ID            | CLI Output                  | In Progress |
 | 16  | View all the users who have signed up in the last 24 hours| CLI Output                  | Implemented |
 | 17  | Lookup the details of a specific user by email address    | CLI Output                  | Implemented |
 
