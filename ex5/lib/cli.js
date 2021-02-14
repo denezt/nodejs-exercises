@@ -122,7 +122,7 @@ cli.responders.user = function(str){
   var arr = typeof(str) == 'string' ? str.split('--') : false;
   var userId = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
   if (userId){
-    console.log("showing user: ",userId.replace('@','_').replace(''));
+    console.log("showing user: ",userId.replace('@','_').replace('.com','.json'));
   }
 };
 
