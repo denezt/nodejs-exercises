@@ -109,6 +109,7 @@ cli.responders.help = function(){
   console.log("Show Menu Items      - menu items");
   console.log("Show Recent SignUps  - recent signups");
   console.log("Show Recent Orders   - recent orders");
+  console.log("Find specific Order  - order, order details");
   console.log("Find specific Users  - user, user details --email EMAIL_ADDRESS");
   console.log("Exit CLI             - exit");
 };
@@ -212,6 +213,8 @@ cli.processInput = function(str){
       'exit',
       'menu items',
       'recent orders',
+      'order details',
+      'order',
       'recent signups',
       'user',
       'user details'
