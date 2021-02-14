@@ -121,7 +121,8 @@ cli.responders.orders = function(){
 cli.responders.user = function(str){
   var arr = str.split('--');
   var userId = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
-  console.log("showing user: ",userId);
+
+  console.log("showing user: ",userId.replace('@','_'));
 };
 
 
