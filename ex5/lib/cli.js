@@ -122,7 +122,7 @@ cli.responders.user = function(str){
   var arr = typeof(str) == 'string' ? str.split('--') : false;
   var userInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
   if (userInfo){
-    var emailArg = (userInfo.split(' ')[1] == '--email') ? true : false;
+    var emailArg = (userInfo.split(' ')[0] == '--email') ? true : false;
     if (emailArg){
       var userEmail = userInfo.split(' ')[1].replace('@','_').replace('.','_');
       console.log("showing user: ",userEmail);
