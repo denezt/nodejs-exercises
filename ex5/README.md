@@ -30,7 +30,7 @@ $ ./daemonizer.sh --start
 | 12  | Place order/Send Email                                    | Add, Remove, Submit         | Implemented |
 | 13  | View current menu items                                   | CLI Output                  | Implemented |
 | 14  | View orders placed in the last 24 hours                   | CLI Output                  | Implemented |
-| 15  | Lookup details of a specific order by order ID            | CLI Output                  | In Progress |
+| 15  | Lookup details of a specific order by order ID            | CLI Output                  | Implemented |
 | 16  | View all the users who have signed up in the last 24 hours| CLI Output                  | Implemented |
 | 17  | Lookup the details of a specific user by email address    | CLI Output                  | Implemented |
 
