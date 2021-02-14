@@ -138,7 +138,8 @@ cli.processInput = function(str){
       'exit',
       'menu items',
       'recent orders',
-      'recent signups'
+      'recent signups',
+      'user details'
     ];
 
     // Go through the possible inputs, emit event when a match is found
