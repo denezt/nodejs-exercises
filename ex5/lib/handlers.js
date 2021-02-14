@@ -1296,18 +1296,18 @@ handlers._pay.post = function(data, callback){
                 lastOrder = userOrder.length - 1;
                 console.log('Get Last Order: ' + userOrder[lastOrder]);
 
+                const now = new Date();
+                // const signUpDate = Math.round(now.getTime() / 1000);
+                var dd = String(now.getDate()). padStart(2, '0');
+                var mm = String(now.getMonth() + 1). padStart(2, '0'); //January is 0!
+                var yyyy = now.getFullYear();
+                const orderDate = dd + '-' + mm + '-' + yyyy;
+                // Container for order items
+                var orderItem = {};
+                var orderRecord = [];
+
                 // To Do add Last order to list of recent order
                 _data.read('orders',userOrder[lastOrder],function(err,orderData){
-                  const now = new Date();
-                  // const signUpDate = Math.round(now.getTime() / 1000);
-                  var dd = String(now.getDate()). padStart(2, '0');
-                  var mm = String(now.getMonth() + 1). padStart(2, '0'); //January is 0!
-                  var yyyy = now.getFullYear();
-                  const orderDate = dd + '-' + mm + '-' + yyyy;
-                  // Container for order items
-                  var orderItem = {};
-                  var orderRecord = [];
-
                   // Return check data
                   const itemsObj = {"items": [{"id":1,"name": "Italian Sausage Pizza"},{"id":2,"name": "Pepperoni Pizza"},{"id":3,"name": "Happy Sparkling Juice"},{"id":4,"name": "White Chocolate Chip Cookies"},{"id":5,"name":"New World Lemonade"}]};
                   const itemsArray = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3, orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
