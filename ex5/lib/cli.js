@@ -28,11 +28,15 @@ e.on('menu items',function(){
 });
 
 e.on('recent signups',function(){
+  console.log(=========================================);
   console.log(cli.responders.signups());
+  console.log(=========================================);
 });
 
 e.on('recent orders',function(){
+  console.log(=========================================);
   console.log(cli.responders.orders());
+  console.log(=========================================);
 });
 
 e.on('user details',function(str){
