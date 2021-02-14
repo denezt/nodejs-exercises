@@ -163,28 +163,33 @@ cli.responders.orders = function(){
 cli.responders.order = function(str){
   var arr = typeof(str) == 'string' ? str.split('--') : false;
   var orderInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
-  var givenOrderArg =  (typeof(orderInfo.split(' ')[0]) == 'string' && orderInfo.split(' ')[0] == 'order') ? true : false;
 
-  if (orderInfo && givenOrderArg){
-    var orderId = orderInfo.split(' ')[1];
-    _data.read('orders',orderId,function(err,orderData){
-      var foundId = (typeof(orderData) == 'object') ? true : false;
-      if (foundId){
-        const menuItem = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3,  orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
-        if (!err){
-          for (var i = 0; i < menuItem.length; i++) {
-            if (menuItem[i]){
-              console.log('Order Item:\t' + menuitem.items[i + 1].name);
+  if (orderInfo){
+    var givenOrderArg =  (typeof(orderInfo.split(' ')[0]) == 'string' && orderInfo.split(' ')[0] == 'order') ? true : false;    
+    if (givenOrderArg){
+      var orderId = orderInfo.split(' ')[1];
+      _data.read('orders',orderId,function(err,orderData){
+        var foundId = (typeof(orderData) == 'object') ? true : false;
+        if (foundId){
+          const menuItem = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3,  orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
+          if (!err){
+            for (var i = 0; i < menuItem.length; i++) {
+              if (menuItem[i]){
+                console.log('Order Item:\t' + menuitem.items[i + 1].name);
+              }
             }
           }
+        } else {
+          console.log("Missing or unable to find information for id");
         }
-      } else {
-        console.log("Missing or unable to find information for id");
-      }
-    });
-  } else {
-    console.log("Missing or invalid parameter was given");
+      });
+    } else {
+      console.log("Missing or invalid parameter was given");
+    }
+
   }
+
+
 };
 
 cli.responders.user = function(str){
