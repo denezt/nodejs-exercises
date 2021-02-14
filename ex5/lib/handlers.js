@@ -1342,15 +1342,17 @@ handlers._pay.post = function(data, callback){
                   }
                 });
 
+                // Commenting on 14.02.2021
                 // Removing all User's Orders
-                for (var i = 0; i < userOrder.length; i++) {
-                  _data.delete('orders',userOrder[i],function(err){
-                    if(!err){
-                      // Lookup the user's object to get all their order
-                      console.log('Removing all Orders after confirmation');
-                    }
-                  });
-                }
+                // Need to Remove this in order to test the get order CLI function
+                // for (var i = 0; i < userOrder.length; i++) {
+                //   _data.delete('orders',userOrder[i],function(err){
+                //     if(!err){
+                //       // Lookup the user's object to get all their order
+                //       console.log('Removing all Orders after confirmation');
+                //     }
+                //   });
+                // }
                 // Flush All orders
                 userData.order = [];
 
