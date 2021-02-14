@@ -121,10 +121,13 @@ cli.responders.orders = function(){
 cli.responders.user = function(str){
   var arr = typeof(str) == 'string' ? str.split('--') : false;
   var userInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
-  var userEmail = userInfo.split(' ');
   if (userInfo){
-    console.log("showing user: ",userEmail[1]);
-    // console.log("showing user: ",userInfo.replace('@','_').replace('.com','.json'));
+    var userEmail = userInfo.split(' ');
+    console.log("showing user: ",userEmail[1].replace('@','_'));
+    _data.read('users',userEmail,function(err,userData){
+
+
+    }
   }
 };
 
