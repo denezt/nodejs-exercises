@@ -35,6 +35,27 @@ $ ./daemonizer.sh --start
 | 17  | Lookup the details of a specific user by email address    | CLI Output                  | Implemented |
 
 
+### Using the Command Line Interface for Application Query
+``` sh
+The CLI is running
+# Display the Help Menu
+help
+Show Help Menu       - help
+Show Menu Items      - menu items
+Show Recent SignUps  - recent signups
+Show Recent Orders   - recent orders
+Find specific Order  - order, order details --id ORDER_ID
+Find specific Users  - user, user details --email EMAIL_ADDRESS
+Exit CLI             - exit
+
+# Usage Examples
+# Get a specific order
+order --id liuruiicexb0beplpmlg
+
+# Get a specific user information
+order --email maxmustermann@gmx.de
+
+```
 
 
 
