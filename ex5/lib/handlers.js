@@ -1298,14 +1298,51 @@ handlers._pay.post = function(data, callback){
 
                 // To Do add Last order to list of recent order
                 _data.read('orders',userOrder[lastOrder],function(err,orderData){
+                  const now = new Date();
+                  // const signUpDate = Math.round(now.getTime() / 1000);
+                  var dd = String(now.getDate()). padStart(2, '0');
+                  var mm = String(now.getMonth() + 1). padStart(2, '0'); //January is 0!
+                  var yyyy = now.getFullYear();
+                  const orderDate = dd + '-' + mm + '-' + yyyy;
+                  // Container for order items
+                  var orderItem = {};
+                  var orderRecord = [];
+
                   // Return check data
                   const itemsObj = {"items": [{"id":1,"name": "Italian Sausage Pizza"},{"id":2,"name": "Pepperoni Pizza"},{"id":3,"name": "Happy Sparkling Juice"},{"id":4,"name": "White Chocolate Chip Cookies"},{"id":5,"name":"New World Lemonade"}]};
                   const itemsArray = [ orderData.menuItems.menuItem1, orderData.menuItems.menuItem2, orderData.menuItems.menuItem3, orderData.menuItems.menuItem4, orderData.menuItems.menuItem5 ];
                   var id = 0;
+                  // Store Record Information
+                  orderItem.orderId = userOrder[lastOrder];
+                  orderItem.orderDate = orderDate;
+                  orderItem.orderItems = [];
                   for (var i = 0; i < itemsArray.length; i++) {
                     if (itemsArray[i]){
                       console.log('\033[34m' + itemsObj.items[i].name + '\033[0m');
+                      orderItem.orderItems.push(itemsObj.items[i].name);
                     }
+                  }
+                  orderRecord.push(orderItem);
+                });
+
+                var userOrderItemsData = {};
+                // Extract data from users_list
+                _data.read('records','users_list',function(err,data){
+                  if(!err && data){
+                    // Count Recent SignUps
+                    console.log('Signup Count [data]: ' + (data.recent_orders.length + 1));
+                    userOrderItemsData = data;
+                    // Rotates and stores only the last 5
+                    if (data.recent_orders.length > 4){
+                      userOrderItemsData.recent_orders.shift();
+                    }
+                    userOrderItemsData.recent_orders.push(orderRecord);
+                    // Append new data to users_list
+                    _data.update('records','users_list',userOrderItemsData,function(err){
+                      if(!err){
+                        callback(200);
+                      }
+                    });
                   }
                 });
 

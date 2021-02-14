@@ -125,7 +125,6 @@ cli.responders.user = function(str){
 
   if (userInfo && givenEmailArg){
     var userEmail = userInfo.split(' ')[1].replace('@','_').replace('.','_');
-    console.log("showing user: ",userEmail);
     _data.read('users',userEmail,function(err,userData){
       if (!err){
         delete userData.hashedPassword;
