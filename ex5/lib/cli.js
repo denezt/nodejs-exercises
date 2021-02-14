@@ -119,7 +119,7 @@ cli.responders.orders = function(){
 
 cli.responders.user = function(str){
   var arr = str.split('--');
-  var userId = typeof(arr[1] == 'string' && arr[1].trim() : false;
+  var userId = typeof(arr[1]) == 'string' && arr[1].trim() : false;
   console.log("showing user: ",userId);
 };
 
