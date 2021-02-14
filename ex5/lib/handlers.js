@@ -1304,7 +1304,6 @@ handlers._pay.post = function(data, callback){
                 const orderDate = dd + '-' + mm + '-' + yyyy;
                 // Container for order items
                 var orderItem = {};
-                var orderRecord = [];
 
                 // To Do add Last order to list of recent order
                 _data.read('orders',userOrder[lastOrder],function(err,orderData){
@@ -1322,7 +1321,6 @@ handlers._pay.post = function(data, callback){
                       orderItem.orderItems.push(itemsObj.items[i].name);
                     }
                   }
-                  orderRecord.push(orderItem);
                 });
 
                 var userOrderItemsData = {};
@@ -1336,12 +1334,13 @@ handlers._pay.post = function(data, callback){
                     if (data.recent_orders.length > 4){
                       userOrderItemsData.recent_orders.shift();
                     }
-                    userOrderItemsData.recent_orders.push(orderRecord);
+                    userOrderItemsData.recent_orders.push(orderItem);
                     // Append new data to users_list
                     _data.update('records','users_list',userOrderItemsData,function(err){
-                      if(!err){
-                        callback(200);
-                      }
+                      console.log(err);
+                      // if(!err){
+                      //   callback(200);
+                      // }
                     });
                   }
                 });
