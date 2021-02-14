@@ -22,23 +22,23 @@ e.on('help',function(){
   cli.responders.help();
 });
 
-e.on('menu items',function(str){
+e.on('menu items',function(){
   cli.responders.menu();
 });
 
-e.on('recent signups',function(str){
+e.on('recent signups',function(){
   console.log(cli.responders.signups());
 });
 
-e.on('recent orders',function(str){
+e.on('recent orders',function(){
   cli.responders.orders();
 });
 
 e.on('user details',function(str){
-  cli.responders.orders();
+  cli.responders.user();
 });
 
-e.on('exit',function(str){
+e.on('exit',function(){
   cli.responders.exit();
 });
 
@@ -116,6 +116,11 @@ cli.responders.signups = function(){
 cli.responders.orders = function(){
   console.log("showing orders");
 };
+
+cli.responders.user = function(str){
+  console.log("showing user: ",str);
+};
+
 
 // Exit
 cli.responders.exit = function(){
