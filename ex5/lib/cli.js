@@ -121,7 +121,7 @@ cli.responders.orders = function(){
 cli.responders.user = function(str){
   var arr = typeof(str) == 'string' ? str.split('--') : false;
   var userInfo = typeof(arr[1]) == 'string' && arr[1].trim().length > 0  ? arr[1].trim() : false;
-  var emailArg =  (userInfo.split(' ')[0] == 'email') ? true : false;
+  var emailArg =  (typeof(userInfo.split(' ')[0]) == 'string' && userInfo.split(' ')[0] == 'email') ? true : false;
 
   console.log('Type of: ' + typeof(userInfo.split(' ')[0]));
   if (userInfo && emailArg){
