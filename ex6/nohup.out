@@ -1,0 +1,15 @@
+[33mBackground workers are running[0m
+[36mThe HTTP server is running on port 3000[0m
+[35mThe HTTPS server is running on port 3001[0m
+Found user_list records...
+[34mThe CLI is running[0m
+events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: EBADF: bad file descriptor, read
+[33mBackground workers are running[0m
+[36mThe HTTP server is running on port 3000[0m
+[35mThe HTTPS server is running on port 3001[0m
+Found user_list records...
+[34mThe CLI is running[0m
