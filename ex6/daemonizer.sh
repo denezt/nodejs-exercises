@@ -5,7 +5,7 @@ process="node index.js"
 logfile="nodejs_ex5.log"
 
 error(){
-	printf "\033[35mError:\t\033[31m${1}\033[0m\n"
+	printf "\x1b[35mError:\t\x1b[31m${1}\x1b[0m\n"
 	exit 1
 }
 
@@ -37,8 +37,8 @@ kill_proc(){
 		esac
 		case $_confirm in
 			y|yes) [ -e "${logfile}" ] && rm ${logfile};;
-			n|no) printf "\033[32mDone!\033[0m\n";;
-			*) printf "\033[35mExiting, no action was taken\033[0m\n";;
+			n|no) printf "\x1b[32mDone!\x1b[0m\n";;
+			*) printf "\x1b[35mExiting, no action was taken\x1b[0m\n";;
 		esac
 	else
 		printf "No running process for ${process} was found.\n"
@@ -50,10 +50,10 @@ start_proc(){
 	then
 		printf "Starting, process ${process} as daemon.\n"
 		nohup ${process} >> ${logfile} &> /dev/null &
-		printf "\033[36mApplication is now accessible via\033[0m \033[35m=> \033[32mlocalhost:3000\033[0m\n"
+		printf "\x1b[36mApplication is now accessible via\x1b[0m \x1b[35m=> \x1b[32mlocalhost:3000\x1b[0m\n"
 		printf "Done\n"
 	else
-		printf "\033[35mProcess already running \033[32m[`getpid`]\033[0m\n"
+		printf "\x1b[35mProcess already running \x1b[32m[`getpid`]\x1b[0m\n"
 	fi
 }
 
@@ -74,11 +74,11 @@ query_proc(){
 }
 
 help_menu(){
-	printf "\033[36mProcess Daemonizer\033[0m\n"
-	printf "\033[35mStart Process\t\033[32m[ -s, -start, --start ]\033[0m\n"
-	printf "\033[35mKill Process\t\033[32m[ -k, -kill, --kill ]\033[0m\n"
-	printf "\033[35mQuery Process\t\033[32m[ -q, -query, --query ]\033[0m\n"
-	printf "\033[35mHelp Menu\t\033[32m[ -h, -help, --help ]\033[0m\n"
+	printf "\x1b[36mProcess Daemonizer\x1b[0m\n"
+	printf "\x1b[35mStart Process\t\x1b[32m[ -s, -start, --start ]\x1b[0m\n"
+	printf "\x1b[35mKill Process\t\x1b[32m[ -k, -kill, --kill ]\x1b[0m\n"
+	printf "\x1b[35mQuery Process\t\x1b[32m[ -q, -query, --query ]\x1b[0m\n"
+	printf "\x1b[35mHelp Menu\t\x1b[32m[ -h, -help, --help ]\x1b[0m\n"
 	exit 0
 }
 

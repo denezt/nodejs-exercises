@@ -31,37 +31,6 @@ unit['helpers.getANumber should return 2'] = function(done){
 	assert.equal(val,2);
 	done();
 };
-/*
-// Logs.list should callback an array and a false error
-unit['logs.list should callback a false error and an array of log names'] = function(done){
-	logs.list(true,function(err,logFileNames){
-		assert.equal(err,false);
-		assert.ok(logFileNames instanceof Array);
-		assert.ok(logFileNames.length > 1);
-		done();
-	});
-
-};
-
-// Logs.trunction should not throw if the logId doesn't exist
-unit['logs.truncate should not throw if the logId does not exist. It should callback an error instead'] = function(done){
-	assert.doesNotThrow(function(){
-		log.truncate('I do not exist',function(err){
-			assert.ok(err);
-			done();
-		});
-	},TypeError);
-};
-
-// Logs.trunction should not throw (but is does)
-unit['exampleDebuggingProblem.init should not throw when called'] = function(done){
-        assert.doesNotThrow(function(){
- 		exampleDebuggingProblem.init();
-		done();
-	},TypeError);
-};
-*/
-
 
 // Export all test to runner
 module.exports = unit;
