@@ -12,3 +12,6 @@ local/**
 .data/tokens
 .data/orders
 **/.data
+
+# MAC Users
+.DS_Store
