@@ -7,19 +7,20 @@
 var environments = {};
 var serverUrl = 'localhost';
 
-let setServerIp = async function (arg)
+let setServerIp = function (arg)
 {
-	let inServerIp = arg.match(/--serverip=[0-9].[0-9].[0-9].[0-9]/gi);
-	let outServerIp = (!inServerIp) ? inServerIp.split('=')[1] : 'localhost';
-	console.log(inServerIp);
-	if (outServerIp){
-		console.log(outServerIp);
+	// Match only valid IP Addresses
+	let inServerIp = arg.match(/--serverip=(?=\d+\.\d+\.\d+\.\d+$)(?:(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]|[0-9])\.?){4}$/gi);
+	if (inServerIp){
+		// console.log('Typeof: %s, Value: %s', typeof(inServerIp), inServerIp[0].split('='));
+		serverUrl = inServerIp[0].split('=')[1];
 	}
-	return outServerIp;
+	return serverUrl;
 }
 
-process.argv.forEach(async function(element){
-	s = await setServerIp(element);
+process.argv.forEach(function(element){
+	s = setServerIp(element);
+	console.log(s);
 });
 
 const currentYear = new Date().getFullYear();

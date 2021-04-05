@@ -1,6 +1,5 @@
 *.zip
-temp/**
-tmp/**
+
 .gradle
 .buildfile
 example_dataset
@@ -18,3 +17,10 @@ local/**
 # Logging file types
 nohup.out
 *.log
+
+# Local Temporary Files
+temp/**
+*/temp/**
+*/tmp/**
+tmp/**
+
