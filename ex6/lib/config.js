@@ -5,7 +5,7 @@
 
 // Container for all environments
 var environments = {};
-var serverUrl = '139.59.147.182';
+var serverUrl = 'localhost';
 
 const currentYear = new Date().getFullYear();
 
