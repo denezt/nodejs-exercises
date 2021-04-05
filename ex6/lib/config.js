@@ -11,16 +11,19 @@ let setServerIp = function (arg)
 {
 	// Match only valid IP Addresses
 	let inServerIp = arg.match(/--serverip=(?=\d+\.\d+\.\d+\.\d+$)(?:(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]|[0-9])\.?){4}$/gi);
+	let outServerIp;
 	if (inServerIp){
 		// console.log('Typeof: %s, Value: %s', typeof(inServerIp), inServerIp[0].split('='));
 		serverUrl = inServerIp[0].split('=')[1];
-		console.log(s);
+		console.log('Setting IP: %s', serverUrl);
+	} else {
+		console.log('Using Default: %s', serverUrl);
 	}
 	return serverUrl;
 }
 
 process.argv.forEach(function(element){
-	s = setServerIp(element);
+	let s = setServerIp(element);
 });
 
 const currentYear = new Date().getFullYear();
