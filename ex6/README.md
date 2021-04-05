@@ -11,7 +11,7 @@ $ node index.js
 ```
 
 ``` sh
-# Start the application as a background service
+# Run Unit test for the application
 $ node test
 ```
 
