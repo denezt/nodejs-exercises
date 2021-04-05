@@ -30,6 +30,13 @@ unit['lib.checkIfNumber should return 2'] = function(done){
 	done();
 };
 
+// Assert that the getANumber function is returning a 2
+unit['lib.checkIfWord should return string'] = function(done){
+	var val = lib.checkIfString('nodejs');
+	assert.equal(typeof(val),'string');
+	done();
+};
+
 unit['lib.checkIfPalindrome should return true'] = function(done){
 	var val = lib.checkIfPalindrome('won','now');
 	assert.equal(val,true);
