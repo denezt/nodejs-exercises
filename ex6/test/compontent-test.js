@@ -34,8 +34,8 @@ comp_test['logs.truncate'] = function(done){
 
 // Logs.trunction should not throw (but is does)
 comp_test['exampleDebuggingProblem.init should not throw when called'] = function(done){
-        assert.doesNotThrow(function(){
- 		exampleDebuggingProblem.init();
+	assert.doesNotThrow(function(){
+		exampleDebuggingProblem.init();
 		done();
 	},TypeError);
 };

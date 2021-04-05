@@ -15,11 +15,11 @@ _runner.tests.unit = require('./unit');
 
 // Count all of the tests
 _runner.countTests = function(){
-	var counter = 0;
-	for (var key in _runner.tests){
+	let counter = 0;
+	for (let key in _runner.tests){
 		if (_runner.tests.hasOwnProperty(key)){
-			var subTests = _runner.tests[key];
-			for (var testName in subTests){
+			let subTests = _runner.tests[key];
+			for (let testName in subTests){
 				if (subTests.hasOwnProperty(testName)){
 					counter++;
 				}
@@ -31,18 +31,18 @@ _runner.countTests = function(){
 
 // Run all the tests, collection the errors and successes
 _runner.runTests = function(){
-	var errors = [];
-	var successes = 0;
-	var limit = _runner.countTests();
-	var counter = 0;
-	for (var key in _runner.tests){
+	let errors = [];
+	let successes = 0;
+	let limit = _runner.countTests();
+	let counter = 0;
+	for (let key in _runner.tests){
 		if (_runner.tests.hasOwnProperty(key)){
-			var subTests = _runner.tests[key];
-			for (var testName in subTests){
+			let subTests = _runner.tests[key];
+			for (let testName in subTests){
 				if (subTests.hasOwnProperty(testName)){
 					(function(){
-						var tmpTestName = testName;
-						var testValue = subTests[testName];
+						let tmpTestName = testName;
+						let testValue = subTests[testName];
 						// Calling the test
 						try {
 							testValue(function(){
@@ -90,8 +90,8 @@ _runner.produceTestReport = function(limit,successes,errors){
 		console.log("");
 		errors.forEach(function(testError){
 			console.log('\x1b[41m%s\x1b[0m',testError.name);
-			console.log('\x1b[31m%s\x1b[0m',testError.error);
-			// console.log(testError.error);
+			// console.log('\x1b[31m%s\x1b[0m',testError.error);
+			console.log(testError.error);
 			console.log("");
 		});
 		console.log("");

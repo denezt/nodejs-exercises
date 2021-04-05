@@ -5,12 +5,14 @@
 // Application logic for the test runner
 var _lib = {};
 
-_lib.checkIfNumber = function(){
-	return 1;
+_lib.checkIfNumber = function(val){
+	let valueOut = ((typeof(val) != 'undefined') && (typeof(val) == 'number')) ? val : false;
+	return valueOut;
 }
 
 _lib.checkIfString = function(word){
-	return word;
+	let wordOut = ((typeof(word) != 'undefined') && (typeof(word) == 'string')) ? word : false;
+	return wordOut;
 }
 
 _lib.checkIfPalindrome = function(word1, word2){
