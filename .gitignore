@@ -5,11 +5,7 @@
 example_dataset
 config/**
 local/**
-.data/carts
-.data/users
-.data/tokens
-.data/orders
-**/.data
+.data
 
 # MAC Users
 .DS_Store
