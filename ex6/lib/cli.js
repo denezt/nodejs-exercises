@@ -255,7 +255,6 @@ cli.processInput = function(str){
     if(!matchFound){
       console.log("Sorry, try again");
     }
-
   }
 };
 
@@ -269,7 +268,7 @@ cli.init = function(){
   var _interface = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: ''
+    prompt: '> '
   });
 
   // Create an initial prompt

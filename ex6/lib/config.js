@@ -14,17 +14,16 @@ let setServerIp = function (arg)
 	if (inServerIp){
 		// console.log('Typeof: %s, Value: %s', typeof(inServerIp), inServerIp[0].split('='));
 		serverUrl = inServerIp[0].split('=')[1];
+		console.log(s);
 	}
 	return serverUrl;
 }
 
 process.argv.forEach(function(element){
 	s = setServerIp(element);
-	console.log(s);
 });
 
 const currentYear = new Date().getFullYear();
-
 
 // Staging (default) environment
 environments.staging = {
@@ -57,10 +56,15 @@ environments.production = {
 };
 
 // Determine which environment was passed as a command-line argument
-var currentEnvironment = typeof(process.env.NODE_ENV) == 'string' ? process.env.NODE_ENV.toLowerCase() : '';
+var currentEnvironment = (typeof(process.env.NODE_ENV) == 'string') ? process.env.NODE_ENV.toLowerCase() : '';
 
 // Check that the current environment is one of the environments above, if not default to staging
-var environmentToExport = typeof(environments[currentEnvironment]) == 'object' ? environments[currentEnvironment] : environments.staging;
+var environmentToExport = (typeof(environments[currentEnvironment]) == 'object') ? environments[currentEnvironment] : environments.staging;
+
+// Execute after exit
+process.on('exit', (code) => {
+	console.log(`Exiting with code: ${code}`);
+});
 
 // Export the module
 module.exports = environmentToExport;
