@@ -8,5 +8,4 @@ var _test = require('./runner');
 
 // var networkInterfaces = os.networkInterfaces();
 // console.log(networkInterfaces);
-
 module.exports = _test;

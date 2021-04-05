@@ -7,6 +7,21 @@
 var environments = {};
 var serverUrl = 'localhost';
 
+let setServerIp = async function (arg)
+{
+	let inServerIp = arg.match(/--serverip=[0-9].[0-9].[0-9].[0-9]/gi);
+	let outServerIp = (!inServerIp) ? inServerIp.split('=')[1] : 'localhost';
+	console.log(inServerIp);
+	if (outServerIp){
+		console.log(outServerIp);
+	}
+	return outServerIp;
+}
+
+process.argv.forEach(async function(element){
+	s = await setServerIp(element);
+});
+
 const currentYear = new Date().getFullYear();
 
 
