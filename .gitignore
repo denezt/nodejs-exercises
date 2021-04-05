@@ -21,6 +21,4 @@ nohup.out
 # Local Temporary Files
 temp/**
 */temp/**
-*/tmp/**
-tmp/**
-
+tmp
