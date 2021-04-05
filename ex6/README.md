@@ -15,7 +15,6 @@ $ node index.js
 $ node test
 ```
 
-
 ### Features
 
 | Id  | Feature                                                   | Description                 | Status      |
