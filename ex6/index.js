@@ -13,7 +13,7 @@ const data = require('./lib/data');
 var app = {};
 
 // Init function
-app.init = function(){
+app.init = function(callback){
   // Start the server
   server.init();
 
@@ -27,11 +27,14 @@ app.init = function(){
  // and ensure it starts last
   setTimeout(function(){
     cli.init();
+    callback();
   },50);
 };
 
-// Self executing
-app.init();
+// Self Invoke only when required directly
+if (require.main === module){
+  app.init(function(){});
+}
 
 
 // Export the app

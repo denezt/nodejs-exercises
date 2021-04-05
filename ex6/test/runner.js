@@ -4,6 +4,10 @@
 * Test Runner
 */
 
+// Overriding the NODE_ENV variable
+process.env.NODE_ENV = 'testing';
+
+
 // Application logic for the test runner
 var _runner = {};
 
@@ -12,6 +16,7 @@ _runner.tests = {};
 
 // Insert the unit tests
 _runner.tests.unit = require('./unit');
+_runner.tests.api = require('./api');
 
 // Count all of the tests
 _runner.countTests = function(){
@@ -90,8 +95,7 @@ _runner.produceTestReport = function(limit,successes,errors){
 		console.log("");
 		errors.forEach(function(testError){
 			console.log('\x1b[41m%s\x1b[0m',testError.name);
-			// console.log('\x1b[31m%s\x1b[0m',testError.error);
-			console.log(testError.error);
+		  console.log('\x1b[31m%s\x1b[0m',testError.error);
 			console.log("");
 		});
 		console.log("");
@@ -99,7 +103,8 @@ _runner.produceTestReport = function(limit,successes,errors){
 	}
 	console.log("");
 	console.log("----------END TEST REPORT----------");
-
+	// Stop the process and prevent it from further running.
+	process.exit(0);
 };
 
 // Run the tests

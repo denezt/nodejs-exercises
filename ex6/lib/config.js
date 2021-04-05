@@ -43,6 +43,21 @@ environments.staging = {
   }
 };
 
+// Testing environment
+environments.testing = {
+  'httpPort' : 4000,
+  'httpsPort' : 4001,
+  'envName' : 'testing',
+  'hashingSecret' : 'thisIsAlsoASecret',
+  'maxOrders' : 5,
+  'templateGlobals' : {
+    'appName' : 'Big Joe\'s Online Pizza Delivery',
+    'companyName' : 'Big Joe\'s Pizza Co.',
+    'yearCreated' : currentYear,
+    'baseUrl' : 'http://' + serverUrl +':4000/'
+  }
+};
+
 // Production environment
 environments.production = {
   'httpPort' : 5000,
