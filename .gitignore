@@ -6,7 +6,6 @@ tmp/**
 example_dataset
 config/**
 local/**
-*.log
 .data/carts
 .data/users
 .data/tokens
@@ -15,3 +14,7 @@ local/**
 
 # MAC Users
 .DS_Store
+
+# Logging file types
+nohup.out
+*.log
