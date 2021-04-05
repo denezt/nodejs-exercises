@@ -3,10 +3,18 @@
 
 ### Application Usage
 
+## Start the application
+
 ``` sh
 # Start the application as a background service
 $ node index.js
 ```
+
+``` sh
+# Start the application as a background service
+$ node test
+```
+
 
 ### Features
 
