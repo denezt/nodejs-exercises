@@ -17,8 +17,6 @@ $ node index.js --serverip=[SERVER_IP_ADDRESS]
 $ node index.js --serverip=192.168.0.100
 ```
 
-
-
 ``` sh
 # Run Unit test for the application
 $ node test
