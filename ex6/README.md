@@ -11,6 +11,15 @@ $ node index.js
 ```
 
 ``` sh
+# Start the application as a background service
+$ node index.js --serverip=[SERVER_IP_ADDRESS]
+# Example
+$ node index.js --serverip=192.168.0.100
+```
+
+
+
+``` sh
 # Run Unit test for the application
 $ node test
 ```
