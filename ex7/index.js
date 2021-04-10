@@ -4,9 +4,9 @@
  */
 
 // Dependencies
-var server = require('./lib/server');
-var cluster = require('cluster');
-var os = require('os');
+const server = require('./lib/server');
+const cluster = require('cluster');
+const os = require('os');
 
 // Declare the app
 var app = {};
@@ -14,7 +14,6 @@ var app = {};
 // Init function
 app.init = function(callback){
   // Start the server
-  console.log('Number of CPUs: ' + os.cpus().length);
   if (cluster.isMaster){
     // Fork the process
     for(var i = 0; i < os.cpus().length; i++){

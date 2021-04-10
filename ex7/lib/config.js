@@ -2,6 +2,7 @@
  * Create and export configuration variables
  *
  */
+const os = require('os');
 
 // Container for all environments
 var environments = {};
@@ -16,7 +17,7 @@ environments.staging = {
 // Production environment
 environments.production = {
   'httpPort' : 5000,
-  'httpsPort' : 5001,  
+  'httpsPort' : 5001,
   'envName' : 'production'
 };
 

@@ -158,6 +158,7 @@ server.init = function(){
 server.router = {
   '' : handlers.index,
   'hello' : handlers.hello,
+  'info' : handlers.info,
   'ping' : handlers.ping
 };
 
