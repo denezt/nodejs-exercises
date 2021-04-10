@@ -14,6 +14,7 @@ var app = {};
 // Init function
 app.init = function(callback){
   // Start the server
+  console.log('Number of CPUs: ' + os.cpus().length);
   if (cluster.isMaster){
     // Fork the process
     for(var i = 0; i < os.cpus().length; i++){
