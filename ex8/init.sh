@@ -1,4 +1,10 @@
 #!/bin/sh
 
+ipaddr=$1
 
-node index.js --serverip=139.59.147.182
+if [ ! -z "$ipaddr" ];
+then
+	node index.js --serverip=$ipaddr
+else
+	printf "\033[35mError: \033[31mMissing IP Address\033[0m\n"
+fi
