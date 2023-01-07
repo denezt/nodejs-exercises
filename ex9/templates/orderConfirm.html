@@ -1,0 +1,69 @@
+<h1>Confirming Order</h1>
+<h2>Thank you for your order!!!</h2>
+<a class="backButton" href="/menu/view">Back</a>
+<hr />
+
+
+<div class="formWrapper">
+  <form id="orderConfirm" action="/api/pay" method="POST">
+    <div class="formError"></div>
+    <input type="hidden" name="confirm" value="true"/>
+    <center>
+      <div class="credit-card-info">
+        <label>Enter Credit Card Information</label>
+        <br/>
+        <table>
+          <tr>
+            <td>First Name:</td>
+            <td colspan="3">
+              <input type="text" class="firstName" placeholder="Enter Your First Name">
+            </td>
+          </tr>
+          <tr>
+            <td>Last Name:</td>
+            <td colspan="3">
+              <input type="text" class="lastName" placeholder="Enter Your First Name">
+            </td>
+          </tr>
+          <tr>
+            <td>Card Type:</td>
+            <td colspan="3">
+              <select id="creditcard" name="creditcard">
+                <option value="mastercard">Mastercard</option>
+                <option value="visa" selected="selected">Visa</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="number" name="number1" min=0000 max=9999 maxlength="4" value="4242" placeholder="1234" required>
+              </td>
+              <td>
+                <input type="number" name="number2" min=0000 max=9999 maxlength="4" value="4242" placeholder="1234" required>
+              </td>
+              <td>
+                <input type="number" name="number3" min=0000 max=9999 maxlength="4" value="4242" placeholder="1234" required>
+              </td>
+              <td>
+                <input type="number" name="number4" min=0000 max=9999 maxlength="4" value="4242" placeholder="1234" required>
+              </td>
+          </tr>
+        </table>
+      </div><br/>
+      <label>Confirm your order to complete the process</label>
+      <br/>
+        <div id='orderConfirmation'>
+          <textarea class="orderInformation" name="orderInformation" readonly></textarea>
+        </div>
+      <br/>
+      <br/>
+        <!-- <div id='orderConfirmation'>
+          <input class="totalCost" name="totalCost" readonly>
+        </div>
+      <br/> -->
+      <div class="inputWrapper ctaWrapper">
+        <button type="submit" class="cta green">Confirm Order</button>
+      </div>
+    </center>
+  </form>
+</div>

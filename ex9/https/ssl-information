@@ -1,0 +1,2 @@
+SSLCertificateFile /etc/letsencrypt/live/cyberican.com/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/cyberican.com/privkey.pem
